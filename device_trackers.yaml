@@ -1,0 +1,55 @@
+- platform: nmap_tracker
+  hosts: 192.168.1.90-91     #android phones
+  home_interval: 2
+  consider_home: 180        #consider home for 3 minutes to help with false not_home's
+- platform: nmap_tracker
+  hosts: 192.168.1.92-95    #iphones, iwatches
+  home_interval: 2
+  consider_home: 300        #consider home for 5 minutes to help with false not_home's
+- platform: iphonedetect
+  consider_home: 300        #consider home for 10 minutes to help with false not_home's
+  new_device_defaults:
+    track_new_devices: false
+  hosts:
+    phone_kale_iphonedetect: 192.168.1.92
+- platform: iphonedetect
+  consider_home: 300        #consider home for 5 minutes to help with false not_home's
+  new_device_defaults:
+    track_new_devices: false
+  hosts:
+    phone_jalynne_iphonedetect: 192.168.1.93
+
+- platform: nmap_tracker
+  hosts: 192.168.1.64-65       #Dining Room TV
+  consider_home: 120        #consider home for 2 minutes to help with false not_home's
+- platform: nmap_tracker
+  hosts: 192.168.1.66       #Chromecast Family Room (used to determine that receiver is on)
+  consider_home: 120        #consider home for 2 minutes to help with false not_home's
+- platform: nmap_tracker
+  hosts: 192.168.1.67       #Chromecast Dining Room (used to determine that TV is on)
+  consider_home: 120        #consider home for 2 minutes to help with false not_home's
+- platform: nmap_tracker
+  hosts: 192.168.1.68       #Chromecast Bedroom (used to determine that TV is on)
+  consider_home: 120        #consider home for 2 minutes to help with false not_home's
+- platform: nmap_tracker
+  hosts: 192.168.1.69       #Chromecast Theatre (used to determine that TV is on)
+  consider_home: 120        #consider home for 2 minutes to help with false not_home's
+- platform: nmap_tracker
+  hosts: 192.168.1.85       #Ikea Tradfri Gateway
+  consider_home: 120        #consider home for 2 minutes to help with false not_home's
+
+- platform: ping
+  hosts:
+    tv_dining_room_wireless_ping: 192.168.1.64
+    tv_dining_room_ping: 192.168.1.65
+    chromecast_family_room_ping: 192.168.1.66
+    chromecast_dining_room_ping: 192.168.1.67
+    chromecast_bedroom_ping: 192.168.1.68
+    chromecast_theatre_ping: 192.168.1.69
+    ikea_tradfri_gateway_ping: 192.168.1.85
+    phone_wayne_ping: 192.168.1.90
+    phone_jenn_ping: 192.168.1.91
+    phone_kale_ping: 192.168.1.92
+    phone_jalynne_ping: 192.168.1.93
+    watch_kale_ping: 192.168.1.94
+    watch_jalynne_ping: 192.168.1.95

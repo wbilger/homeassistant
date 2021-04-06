@@ -1,0 +1,37 @@
+- name: fbmessenger
+  platform: facebook
+  page_access_token: EAACZAiqneUusBANk7F9WPljELinFpP9bSn4HRZAcQPW37C411rZAiOatAY4AgubyeiR4F9ZB6P4eOvRPkqxp9oHACHZAyFUE5PV4V63mnwm7LC4pcUZAzxbDquQxgrnkhKsXEbwOB6O5Our0gUjnZBcDBKwYzIdsBDTIsgRcaL1KTFUFKUdqmzOMzqOD6SKGZAAZD
+
+# HTML5 browser notifications
+# - name: google
+#   platform: html5
+#   vapid_pub_key: !secret google_push_vapid_pub_key
+#   vapid_prv_key: !secret google_push_vapid_prv_key
+#   vapid_email: waynebilger@gmail.com #!secret google_email
+
+- name: bilger_family
+  platform: group
+  services:
+    - service: mobile_app_phone_wayne
+    - service: mobile_app_phone_jenn
+    - service: mobile_app_kales_iphone
+    - service: mobile_app_jays_phone
+
+- name: bilger_parents
+  platform: group
+  services:
+    - service: mobile_app_phone_wayne
+    - service: mobile_app_phone_jenn
+
+- name: bilger_iphones
+  platform: group
+  services:
+    - service: mobile_app_kales_iphone
+    - service: mobile_app_jays_phone
+
+- name: google_assistant_broadcast
+  platform: rest
+  resource: http://192.168.1.14:5000/broadcast_message
+- name: google_assistant_command
+  platform: rest
+  resource: http://192.168.1.14:5000/command

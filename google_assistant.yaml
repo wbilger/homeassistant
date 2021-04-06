@@ -1,0 +1,440 @@
+project_id: !secret google_assistant_project_id
+service_account: !include /share/service_account.json
+report_state: true
+#expose_by_default: false
+exposed_domains:
+  - lock
+  - light
+  - media_player
+  - climate
+  - script
+  #only expose individual - switch
+  #- group
+  #- input_boolean
+#DEPRECATED (not sure if need another way...test)  allow_unlock: true
+entity_config:
+  #renames and aliases
+  light.deck_lights:
+    name: Deck Lights
+    aliases:
+      - Outside Lights
+  light.bedroom_light:
+    name: Bedroom Light
+    aliases:
+      - Fan Light
+      - Bedroom Fan Light
+      - Bedroom Ceiling Light
+  light.jenn_bedroom:
+    name: Jenn's Light
+    aliases:
+      - Jenn Light
+      - Jenn Bedroom Light
+      - Jenn's Bedroom Light
+      - Jenn Side Light
+      - Jenn's Side Light
+  light.dining_room_plug:
+    name: Reading Light
+    aliases:
+      - Dining Room Lamp
+      - Dining Room Reading Light
+  light.desk_lamp:
+    aliases:
+      - Desk Light
+  light.couch_lamp:
+    aliases:
+      - Couch Light
+  switch.sonoff_basic_02:
+    expose: true
+    name: Bedroom Fan
+    aliases:
+      - Ceiling Fan
+      - Bedroom Ceiling Fan
+  switch.deck_fan:
+    expose: true
+    name: Deck TV Fan
+    aliases:
+      - Deck Fan
+      - Deck TV Fan
+      - TV Fan
+  switch.dining_room_fan:
+    expose: true
+    aliases:
+      - Dining Room Ceiling Fan
+  light.bedroom_jalynne_light:
+    expose: true
+    name: Jay's Ceiling Light
+    aliases:
+      - Jays Bedroom Light
+      - Jalynne Bedroom Light
+      - Jalynnes Light
+  switch.jalynne_bedroom_fan:
+    expose: true
+    name: Jay's Fan
+    aliases:
+      - Jalynnes Fan
+      - Jalynnes Bedroom Fan
+      - Jalynnes Ceiling Fan
+      - Fan Jalynne
+      - Bedroom Fan Jalynne
+      - Ceiling Fan Jalynne
+  group.family_room_tv:
+    expose: true
+    name: Family Room TV
+  switch.family_room_tv:
+    expose: true
+    name: Family Room Roku
+  switch.family_room_surround_sound:
+    expose: true
+    name: Family Room Surround Sound
+  switch.dining_room_tv:
+    expose: true
+    name: Dining Room TV
+  switch.bedroom_tv:
+    expose: true
+    name: Bedroom TV
+
+  script.bedroom_watch_chromecast:
+    expose: true
+    name: Bedroom Watch Chromecast
+  script.bedroom_watch_kodi:
+    expose: true
+    name: Bedroom Watch Kodi
+  script.bedroom_watch_tv:
+    expose: true
+    name: Bedroom Watch TV
+  script.bedtime:
+    expose: true
+    name: Bedtime
+  script.dining_room_tv_poweroff:
+    expose: true
+    name: Dining Room TV Off
+    aliases:
+      - Turn off the dining room tv
+  script.dining_room_tv_poweron:
+    expose: true
+    name: Dining Room TV On
+    aliases:
+      - Turn on the dining room tv
+  script.dining_room_watch_chromecast:
+    expose: true
+    name: Dining Room Watch Chromecast
+  script.dining_room_watch_roku:
+    expose: true
+    name: Dining Room Watch Roku
+  script.dining_room_watch_tv:
+    expose: true
+    name: Dining Room Watch TV
+  script.family_room_bell_time:
+    expose: true
+    name: Family Room TV Time
+  script.family_room_off:
+    expose: true
+    name: Family Room Off
+  script.family_room_plex_time:
+    expose: true
+    name: Family Room Watch TV
+    aliases:
+      - Family Room Movie Time
+      - Family Room Plex Time
+  script.family_room_tv_poweroff:
+    expose: true
+    name: Family Room TV Off
+    aliases: turn off the family room tv
+  script.family_room_tv_poweron:
+    expose: true
+    name: Family Room TV on
+    aliases:
+      - turn on the family room tv
+  script.kitchen_lights_night_dim:
+    expose: true
+    name: Dim Island Lights
+    aliases:
+      - Dim The Island Lights
+      - Kitchen Dim
+  script.theatre_movie_time:
+    expose: true
+    name: Theatre Movie Roku
+    aliases:
+      - Theatre Watch Movie
+      - Theatre Watch Roku
+      - Watch Movie Theatre
+      - Watch Roku Theatre
+
+  #hide entitites from google assistant
+  light.dashboard_screen_kitchen:
+    expose: false
+  light.family_room_1:
+    expose: false
+  light.family_room_2:
+    expose: false
+  light.kitchen_island_1:
+    expose: false
+  light.kitchen_island_2:
+    expose: false
+  light.kitchen_island_3:
+    expose: false
+  light.theatre_lights_front:
+    expose: false
+  light.theatre_lights_rear:
+    expose: false
+  light.theatre_fl:
+    expose: false
+  light.theatre_fr:
+    expose: false
+  light.theatre_rl:
+    expose: false
+  light.theatre_rr:
+    expose: false
+
+  script.bedroom_radio_station_p1:
+    expose: false
+  script.bedroom_radio_station_p2:
+    expose: false
+  script.bedroom_radio_station_p3:
+    expose: false
+  script.bedroom_radio_station_p4:
+    expose: false
+  script.speakers_google_home_all:
+    expose: false
+  script.speakers_google_home_bedroom:
+    expose: false
+  script.speakers_google_home_kitchen:
+    expose: false
+  script.speakers_google_home_kitchen_bedroom:
+    expose: false
+  script.speakers_google_home_kitchen_bedroom_bathroom:
+    expose: false
+  script.speakers_google_home_kitchen_bathroom:
+    expose: false
+  script.speakers_google_home_kitchen_outside:
+    expose: false
+  script.speakers_google_home_kitchen_outside_portable:
+    expose: false
+  script.speakers_google_home_kitchen_portable:
+    expose: false
+  script.speakers_google_home_outside:
+    expose: false
+  script.speakers_google_home_outside_portable:
+    expose: false
+  script.speakers_google_home_portable:
+    expose: false
+  script.dark_sky_summaries:
+    expose: false
+  script.dining_room_tv_down_1_ok:
+    expose: false
+  script.dining_room_tv_down_3_ok:
+    expose: false
+  script.dining_room_tv_input_chromecast:
+    expose: false
+  script.dining_room_tv_input_down_1:
+    expose: false
+  script.dining_room_tv_input_down_3:
+    expose: false
+  script.dining_room_tv_input_down_4:
+    expose: false
+  script.dining_room_tv_input_roku:
+    expose: false
+  script.dining_room_tv_input_tv:
+    expose: false
+  script.dining_room_tv_input_up_1:
+    expose: false
+  script.dining_room_tv_input_up_3:
+    expose: false
+  script.dining_room_tv_up_1_ok:
+    expose: false
+  script.dining_room_tv_off:
+    expose: false
+  script.family_room_surround_sound_tv:
+    expose: false
+  script.family_room_tv:
+    expose: false
+  script.family_room_tv_channel_10:
+    expose: false
+  script.family_room_tv_channel_31:
+    expose: false
+  script.family_room_tv_chromecast:
+    expose: false
+  script.family_room_tv_netflix:
+    expose: false
+  script.family_room_tv_pc:
+    expose: false
+  script.family_room_tv_surround_sound:
+    expose: false
+  script.family_room_tv_time_lights:
+    expose: false
+  script.family_room_tv_tv:
+    expose: false
+  script.family_room_tv_youtube:
+    expose: false
+  script.family_room_watch_bell:
+    expose: false
+  script.family_room_watch_chromecast:
+    expose: false
+  script.family_room_watch_kodi:
+    expose: false
+  script.family_room_watch_plex:
+    expose: false
+  script.family_room_watch_tv:
+    expose: false
+  script.kale_bedroom_tv_poweroff:
+    expose: false
+  script.kale_bedroom_tv_poweron:
+    expose: false
+  script.kitchen_island_lights_bright:
+    expose: false
+  script.kitchen_island_lights_on_trasnsition:
+    expose: false
+  script.kitchen_lights_night_dim_auto:
+    expose: false
+  script.kitchen_radio_station_p1:
+    expose: false
+  script.kitchen_radio_station_p2:
+    expose: false
+  script.kitchen_radio_station_p3:
+    expose: false
+  script.kitchen_radio_station_p4:
+    expose: false
+  script.lights_arrival:
+    expose: false
+  script.lights_arrival_entrance:
+    expose: false
+  script.lights_arrival_kitchen_island:
+    expose: false
+  script.lights_arrival_porch:
+    expose: false
+  script.lights_kitchen_morning:
+    expose: false
+  script.notification_test_wayne_lrt:
+    expose: false
+  script.notification_test_wayne_phone:
+    expose: false
+  script.notify_washing_machine_stop_jalynne:
+    expose: false
+  script.notify_washing_machine_stop_jenn:
+    expose: false
+  script.notify_washing_machine_stop_kale:
+    expose: false
+  script.notify_washing_machine_stop_speakers:
+    expose: false
+  script.notify_washing_machine_stop_wayne:
+    expose: false
+  script.radio_get_preset_station:
+    expose: false
+  script.radio_play:
+    expose: false
+  script.radio_play_bedroom:
+    expose: false
+  script.radio_play_kitchen:
+    expose: false
+  script.remote_bedroom_chromecast:
+    expose: false
+  script.remote_bedroom_kodi:
+    expose: false
+  script.remote_bedroom_tv:
+    expose: false
+  script.remote_bedroom_watch_chromecast:
+    expose: false
+  script.remote_bedroom_watch_kodi:
+    expose: false
+  script.remote_bedroom_watch_tv:
+    expose: false
+  script.remote_dining_room_chromecast:
+    expose: false
+  script.remote_dining_room_roku:
+    expose: false
+  script.remote_dining_room_tv:
+    expose: false
+  script.remote_dining_room_watch_chromecast:
+    expose: false
+  script.remote_dining_room_watch_roku:
+    expose: false
+  script.remote_dining_room_watch_tv:
+    expose: false
+  script.remote_family_room_bell:
+    expose: false
+  script.remote_family_room_bell_active:
+    expose: false
+  script.remote_family_room_chromecast:
+    expose: false
+  script.remote_family_room_kodi:
+    expose: false
+  script.remote_family_room_kodi_active:
+    expose: false
+  script.remote_family_room_kodi_fullscreen:
+    expose: false
+  script.remote_family_room_kodi_plex_home:
+    expose: false
+  script.remote_family_room_plex:
+    expose: false
+  script.remote_family_room_plex_active:
+    expose: false
+  script.remote_family_room_plex_fastforward:
+    expose: false
+  script.remote_family_room_plex_rewind:
+    expose: false
+  script.remote_family_room_plex_search:
+    expose: false
+  script.remote_family_room_tv:
+    expose: false
+  script.remote_family_room_watch_bell:
+    expose: false
+  script.remote_family_room_watch_chromecast:
+    expose: false
+  script.remote_family_room_watch_kodi:
+    expose: false
+  script.remote_family_room_watch_plex:
+    expose: false
+  script.remote_family_room_watch_tv:
+    expose: false
+  script.remote_jalynne_netflix:
+    expose: false
+  script.remote_jalynne_plex:
+    expose: false
+  script.remote_jalynne_plex_fastforward:
+    expose: false
+  script.remote_jalynne_plex_rewind:
+    expose: false
+  script.remote_theatre_chromecast:
+    expose: false
+  script.remote_theatre_projector:
+    expose: false
+  script.remote_theatre_roku:
+    expose: false
+  script.remote_theatre_stereo:
+    expose: false
+  script.remote_theatre_watch_chromecast:
+    expose: false
+  script.remote_theatre_watch_roku:
+    expose: false
+  script.restart_ha:
+    expose: false
+  script.spotify_play:
+    expose: false
+  script.test_notify_wayne_lrt:
+    expose: false
+  script.test_notify_wayne_phone:
+    expose: false
+  script.theatre_chromecast_time:
+    expose: false
+  script.theatre_lights_bright:
+    expose: false
+  script.theatre_lights_dim:
+    expose: false
+  script.theatre_off:
+    expose: false
+  script.theatre_play_lights:
+    expose: false
+  script.theatre_projector_16x9:
+    expose: false
+  script.theatre_projector_21x9:
+    expose: false
+  script.theatre_projector_off:
+    expose: false
+  script.theatre_stop_lights:
+    expose: false
+  script.theatre_surround_sound_chromecast:
+    expose: false
+  script.theatre_surround_sound_radio:
+    expose: false
+  script.theatre_surround_sound_tv:
+    expose: false

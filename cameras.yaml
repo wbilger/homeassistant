@@ -1,0 +1,24 @@
+#Generic camera for Weather Underground Radar maps      
+# - platform: generic
+#   still_image_url: https://radblast.wunderground.com/cgi-bin/radar/WUNIDS_map?station=WSO&brand=wui&num=10&delay=100&type=C0R&frame=0&scale=1.000&noclutter=0&showstorms=5&mapx=400&mapy=240&centerx=400&centery=240&transx=0&transy=0&showlabels=1&severe=0&rainsnow=1&lightning=1&smooth=0&rand=25206986&lat=0&lon=0&label=you
+#   name: Exeter
+  
+- platform: generic
+  still_image_url: !secret fully_kiosk_kitchen_camera
+  name: Kitchen Dashboard Camera
+- platform: generic
+  still_image_url: !secret fully_kiosk_family_room_camera
+  name: Family Room Remote Camera
+
+# - platform: generic
+#   still_image_url: !secret fully_kiosk_family_room_camera
+#   name: Family Room Remote Camera
+  
+#Camera on Family Room Remote running WallPanel Dashboard
+# - platform: mjpeg
+#   mjpeg_url: http://192.168.1.75:2971/camera/stream
+#   name: Remote Family Room Camera
+# #Camera on Theatre Remote running WallPanel Dashboard
+# - platform: mjpeg
+#   mjpeg_url: http://192.168.1.76:2971/camera/stream
+#   name: Remote Theatre Camera

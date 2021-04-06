@@ -1,0 +1,25 @@
+# purge_interval: 7
+# purge_keep_days: 30   #hass now defaults to 10 days instead of keep all
+db_url: !secret mysql_connection_url
+# include:
+#   domains:
+#     - device_tracker
+#     - automation
+#     - scripts
+#     - switch
+#     - light
+#     - media_player
+#     - binary_sensor
+#     - input_boolean
+#     - input_datetime
+#     - input_number
+#     - input_select
+#     - input_text
+#     - sensor   # if sensor included, may want to exclude all useless history, weather, system monitor, media
+#   entities: 
+#     - group.bilger_home
+# # exclude: 
+# #   domains:
+# #     - updater
+# #   entities:
+# #     - sun.sun

@@ -1,0 +1,134 @@
+homeassistant:
+  auth_providers:
+    - type: homeassistant
+  name: !secret hass_name # Name of the location where Home Assistant is running
+  latitude: !secret latitude
+  longitude: !secret longitude
+  elevation: !secret elevation
+  unit_system: metric # metric for Metric, imperial for Imperial
+  time_zone: America/Toronto
+  customize: !include_dir_merge_named customize/ # Customization files
+  customize_glob: !include_dir_merge_named customize_glob/
+  packages: !include_dir_named packages
+frontend:
+  themes: !include_dir_merge_named themes/
+system_health:
+config: # Enables configuration UI
+mobile_app: #integration allows Home Assistant mobile apps to easily integrate with Home Assistant
+ios: !include ios.yaml
+updater: #Checks for available updates #Hass.io has it’s own schedule for release it doesn’t make sense to use this component on Hass.io, but kept on for notifications
+conversation: # Allows you to issue voice commands from the frontend in enabled browsers
+recorder: !include recorder.yaml
+history: # Enables support for tracking state changes over time
+logbook: # View all events in a logbook
+logger:
+  default: error
+  #default: info
+  #default: debug
+  # logs:
+  #   homeassistant.components.websocket_api: debug #fatal
+map: # Enables a map showing the location of tracked devices
+sun: # Track the sun
+google:
+  client_id: !secret google_client_id
+  client_secret: !secret google_client_secret
+google_assistant: !include google_assistant.yaml
+camera: !include cameras.yaml
+
+#yaml configuration files
+automation: !include_dir_merge_list automations/
+binary_sensor: !include_dir_merge_list sensors_binary/
+device_tracker: !include device_trackers.yaml
+group: !include_dir_merge_named groups/
+input_boolean: !include_dir_merge_named inputs/boolean/
+input_datetime: !include_dir_merge_named inputs/datetime/
+input_number: !include_dir_merge_named inputs/number/
+input_select: !include_dir_merge_named inputs/select/
+input_text: !include_dir_merge_named inputs/text/
+light: !include_dir_merge_list lights/
+media_player: !include_dir_merge_list media_players/
+notify: !include notify.yaml
+rest_command: !include_dir_merge_named rest_commands/
+script: !include_dir_merge_named scripts/
+sensor: !include_dir_merge_list sensors/
+switch: !include_dir_merge_list switches/
+timer: !include_dir_merge_named timers/
+tplink:
+  discovery: false
+  switch:
+    - host: 192.168.1.30 #deck lights
+    - host: 192.168.1.31 #bedroom light
+    - host: 192.168.1.32 #sink light
+  dimmer:
+    - host: 192.168.1.33 #kale ceiling light
+tts: # Text to speech
+  - platform: google_translate
+    service_name: google_say
+    cache: false
+
+# Custom Components
+browser_mod: !include browser_mod.yaml #installed with HACS - turn your browser into a controllable entity - and also an audio player and a security camera
+
+#UI configuration items
+#iRobot - 192.168.1.50 username: 3173C71442408660 password: :1:1609091352:IeeeTtgkc2z3t2cH
+#to regenerate run-> docker run -it node sh -c "npm install -g dorita980 && get-roomba-password 192.168.1.50"
+lovelace:
+  mode: yaml #Enable yaml config for lovelace
+  resources:
+    # HACS TRACKED CARDS (community)
+    - url: /hacsfiles/atomic-calendar-revive/atomic-calendar-revive.js
+      type: module
+    - url: /hacsfiles/button-card/button-card.js
+      type: module
+    - url: /hacsfiles/flex-horseshoe-card/flex-horseshoe-card.js
+      type: module
+    - url: /hacsfiles/Home-Assistant-Lovelace-Local-Conditional-card/local-conditional-card.js
+      type: module
+    - url: /hacsfiles/kiosk-mode/kiosk-mode.js
+      type: module
+    - url: /hacsfiles/lovelace-auto-entities/auto-entities.js
+      type: module
+    - url: /hacsfiles/lovelace-battery-entity-row/battery-entity-row.js
+      type: module
+    - url: /hacsfiles/lovelace-card-mod/card-mod.js
+      type: module
+    - url: /hacsfiles/lovelace-card-tools/card-tools.js
+      type: module
+    - url: /hacsfiles/lovelace-fold-entity-row/fold-entity-row.js
+      type: module
+    - url: /hacsfiles/lovelace-multiple-entity-row/multiple-entity-row.js
+      type: js
+    - url: /hacsfiles/lovelace-slider-entity-row/slider-entity-row.js
+      type: module
+    - url: /hacsfiles/lovelace-text-input-row/lovelace-text-input-row.js
+      type: js
+    - url: /hacsfiles/mini-graph-card/mini-graph-card-bundle.js
+      type: module
+    - url: /hacsfiles/mini-media-player/mini-media-player-bundle.js
+      type: module
+    - url: /hacsfiles/radial-menu/radial-menu.js
+      type: module
+    - url: /hacsfiles/search-card/search-card.js
+      type: module
+    - url: /hacsfiles/state-element/state-element.js
+      type: module
+    - url: /hacsfiles/lovelace-state-switch/state-switch.js
+      type: module
+    - url: /hacsfiles/text-action-element/text-action-element-bundle.js
+      type: module
+    - url: /hacsfiles/text-divider-row/text-divider-row.js
+      type: module
+    - url: /hacsfiles/text-element/text-element.js
+      type: js
+    - url: /hacsfiles/upcoming-media-card/upcoming-media-card.js
+      type: js
+    - url: /hacsfiles/vertical-stack-in-card/vertical-stack-in-card.js
+      type: module
+    - url: /hacsfiles/weather-card/weather-card.js
+      type: module
+
+    # cards not in HACS
+    - url: /local/custom-cards/dark-sky-weather-card.js?v=7.1
+      type: module
+    - url: /local/custom-cards/q-card.js?v=1
+      type: module

@@ -1,0 +1,27 @@
+push:
+  categories:
+    - name: Test
+      identifier: 'test'
+      actions:
+        - identifier: 'TEST'
+          title: 'Testbutton 1'  
+        - identifier: 'TEST2'
+          title: 'Testbutton 2'  
+    - name: Curbside Pickup
+      identifier: 'curbside_pickup_notify_cancel'
+      actions:
+        - identifier: 'NOTIFY_CURBSIDE_PICKUP_CANCEL'
+          title: "Don't Notify Again"
+          # activationMode: 'background'
+          # authenticationRequired: no
+          # destructive: no
+          # behavior: 'default'
+    - name: Washing Machine Notify Stop
+      identifier: 'washing_machine_notify_stop'
+      actions:
+        - identifier: 'WASHING_MACHINE_NOTIFY_CANCEL'
+          title: "Don't Notify"
+        - identifier: 'WASHING_MACHINE_NOTIFY_PHONE'
+          title: "Phone"
+        - identifier: 'WASHING_MACHINE_NOTIFY_SPEAKERS'
+          title: "and Speakers"

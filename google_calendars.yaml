@@ -1,0 +1,137 @@
+## FAMILY CALENDARS
+- cal_id: family00490980312611646622@group.calendar.google.com
+  entities:
+  - device_id: bilger_family
+    name: Family
+    track: true
+- cal_id: 8f72ngbkle0ja7tep6l1tpvudk@group.calendar.google.com
+  entities:
+  - device_id: bilger_work
+    name: Work
+    track: true
+- cal_id: waynebilger@gmail.com
+  entities:
+  - device_id: bilger_wayne
+    name: Wayne
+    track: true
+- cal_id: jennbilger@gmail.com
+  entities:
+  - device_id: bilger_jenn
+    name: Jenn
+    track: true
+- cal_id: kalebilger@gmail.com
+  entities:
+  - device_id: bilger_kale
+    name: Kale
+    track: true
+- cal_id: jalynnebilger@gmail.com
+  entities:
+  - device_id: bilger_jalynne
+    name: Jalynne
+    track: true
+- cal_id: lcoqf28cngopnht8l90336j4a8@group.calendar.google.com
+  entities:
+  - device_id: curbside_pickup_garbage_day
+    name: Garbage Day
+    track: true
+    search: "Garbage Day"
+  - device_id: curbside_pickup_yard_waste
+    name: Yard Waste Pickup
+    track: true
+    search: "Yard Waste Pickup"
+
+## SPORTS CALENDARS
+- cal_id: qdmv2tim4slemgcq8ie1idcbqunqp079@import.calendar.google.com
+  entities:
+  - device_id: bilger_wayne_slopitch
+    name: Dorchester Men's Recreational Slo-Pitch League
+    track: true
+- cal_id: dknb11t0cb7kdpuutod19hd82ms8klic@import.calendar.google.com
+  entities:
+  - device_id: bilger_wayne_tecumsehs_umpiring
+    ignore_availability: true
+    name: Tecumsehs-Umpiring
+    track: true
+# - cal_id: 7csaic1rh4abh6phhd0snkou8uv5p064@import.calendar.google.com
+#   entities:
+#   - device_id: Bilger_Kale_Hockey
+#     ignore_availability: true
+#     name: Kale-Hockey
+#     track: true
+# - cal_id: j41q8h86olluu24tujd4jl39mto7oeib@import.calendar.google.com
+#   entities:
+#   - device_id: Bilger_Jalynne_Hockey
+#     ignore_availability: true
+#     name: Jalynne-Hockey
+#     track: true
+
+
+## SPECIAL CALENDARS
+- cal_id: thomcom.com_qj75716rgb99sevehcn74u94qs@group.calendar.google.com
+  entities:
+  - device_id: ontario_holidays
+    name: Holidays
+    track: true
+    
+## CALENDARS NOT TRACKED        
+- cal_id: h24er6qi4d3a18da6gv3utnnfs@group.calendar.google.com
+  entities:
+  - device_id: lrt
+    name: LRT
+    track: false
+
+- cal_id: 2dumf0djv2oo6qk9rnmroatjv4@group.calendar.google.com
+  entities:
+  - device_id: waynefitness
+    name: Wayne-Fitness
+    track: false
+
+- cal_id: '#contacts@group.v.calendar.google.com'
+  entities:
+  - device_id: contacts
+    name: Contacts
+    track: false
+
+- cal_id: mlb_14_%54oronto+%42lue+%4aays#sports@group.v.calendar.google.com
+  entities:
+  - device_id: toronto_blue_jays
+    name: Toronto Blue Jays
+    track: false
+
+- cal_id: nfl_2_%42uffalo+%42ills#sports@group.v.calendar.google.com
+  entities:
+  - device_id: buffalo_bills
+    name: Buffalo Bills
+    track: false
+
+- cal_id: nhl_21_%54oronto+%4daple+%4ceafs#sports@group.v.calendar.google.com
+  entities:
+  - device_id: toronto_maple_leafs
+    name: Toronto Maple Leafs
+    track: false
+
+- cal_id: p#weather@group.v.calendar.google.com
+  entities:
+  - device_id: weather_63017
+    name: 'Weather: 63017'
+    track: false
+    
+- cal_id: 0g6m2u655sc11gegi1brbi0q6o@group.calendar.google.com
+  entities:
+  - device_id: tecumsehs_vacations
+    ignore_availability: true
+    name: Tecumsehs Vacations
+    track: false
+    
+- cal_id: addressbook#contacts@group.v.calendar.google.com
+  entities:
+  - device_id: contacts
+    ignore_availability: true
+    name: Contacts
+    track: false
+- cal_id: en.canadian#holiday@group.v.calendar.google.com
+  entities:
+  - device_id: holidays_in_canada
+    ignore_availability: true
+    name: Holidays in Canada
+    track: true
