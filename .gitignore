@@ -14,7 +14,6 @@
 deps
 custom_components
 tts
-lock-manager
 
 # Ignore files
 secrets.yaml
