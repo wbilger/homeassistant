@@ -1,0 +1,19 @@
+notification_home_arrival:
+  entities: 
+    - input_boolean.notification_home_arrival_wayne
+    - input_boolean.notification_home_arrival_jenn
+
+notification_washing_machine:
+  entities:
+    - input_boolean.notification_washing_machine_wayne_phone
+    - input_boolean.notification_washing_machine_jenn_phone
+    - input_boolean.notification_washing_machine_kale_phone    
+    - input_boolean.notification_washing_machine_jalynne_phone
+    
+notification_curbside_pickup:
+  entities:
+    - input_boolean.notification_curbside_pickup_wayne_phone
+    - input_boolean.notification_curbside_pickup_jenn_phone
+    - input_boolean.notification_curbside_pickup_kale_phone
+    - input_boolean.notification_curbside_pickup_jalynne_phone
+    

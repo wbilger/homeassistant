@@ -1,0 +1,25 @@
+system_cleanup:
+  sequence:
+    #- service: homekit.start If you use homekit, uncomment this statement
+    - service: input_boolean.turn_on
+      entity_id: input_boolean.system_ready
+    - service: input_boolean.turn_on
+      data:
+        entity_id: 'input_boolean.allow_automation_execution'
+
+lock_front_door_lock:
+  alias: Lock Front Door
+  sequence:
+    - condition: template
+      value_template: "{{ states('lock.schlage_allegion_be469_touchscreen_deadbolt_locked_frontdoor') != 'unavailable' }}"
+    - service: lock.lock
+      data:
+        entity_id: lock.schlage_allegion_be469_touchscreen_deadbolt_locked_frontdoor
+lock_front_door_unlock:
+  alias: Unlock Front Door
+  sequence:
+    - condition: template
+      value_template: "{{ states('lock.schlage_allegion_be469_touchscreen_deadbolt_locked_frontdoor') != 'unavailable' }}"
+    - service: lock.unlock
+      data:
+        entity_id: lock.schlage_allegion_be469_touchscreen_deadbolt_locked_frontdoor

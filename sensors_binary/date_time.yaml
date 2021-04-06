@@ -1,0 +1,18 @@
+- platform: workday
+  name: Work Day
+  country: CA
+  province: 'ON' #need to wrap in quotes so that HA does not evaluate as 'True' (on)
+
+# not needed anymore (waste of time to check every minute), just check time in automation when needed
+# - platform: template
+#   sensors:
+#     work_day_time:
+#       friendly_name: 'Work Day Time'
+#       value_template: >
+#         {% set t = states('sensor.time') %}
+#         {{ is_state("binary_sensor.work_day", "on") and ( 8 <= now().hour <= 15 or ( now().hour == 16 and now().minute <=30 ) ) }}
+#     work_day_time_arrive:
+#       friendly_name: 'Work Day Home Arrival Time'
+#       value_template: >
+#         {% set t = states('sensor.time') %} 
+#         {{ is_state("binary_sensor.work_day", "on") and 15 <= now().hour <= 18 }}

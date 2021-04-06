@@ -1,0 +1,23 @@
+- platform: template
+  sensors:
+    schlage_front_door_lock_problem:
+      friendly_name: 'Front Door Lock Problem'
+      value_template: >-
+        {{ not (is_state_attr("lock.schlage_allegion_be469_touchscreen_deadbolt_locked_frontdoor", "notification", "Manual Lock") or
+        is_state_attr("lock.schlage_allegion_be469_touchscreen_deadbolt_locked_frontdoor", "notification", "Manual Unlock") or
+        is_state_attr("lock.schlage_allegion_be469_touchscreen_deadbolt_locked_frontdoor", "notification", "Keypad Lock") or
+        is_state_attr("lock.schlage_allegion_be469_touchscreen_deadbolt_locked_frontdoor", "notification", "Keypad Unlock") or
+        is_state_attr("lock.schlage_allegion_be469_touchscreen_deadbolt_locked_frontdoor", "notification", "RF Lock") or
+        is_state_attr("lock.schlage_allegion_be469_touchscreen_deadbolt_locked_frontdoor", "notification", "RF Unlock")) }}
+    schlage_front_door_lock_notification:
+      friendly_name: 'Front Door Notification'
+      value_template: '{{ state_attr("lock.schlage_allegion_be469_touchscreen_deadbolt_locked_frontdoor", "notification") }}'      
+    schlage_front_door_lock_status:
+      friendly_name: 'Front Door Lock Status'
+      value_template: '{{ state_attr("lock.schlage_allegion_be469_touchscreen_deadbolt_locked_frontdoor", "lock_status") }}'      
+    schlage_front_door_battery:
+      friendly_name: 'Front Door Battery Level'
+      unit_of_measurement: '%'
+      value_template: '{{ state_attr("zwave.schlage_allegion_be469_touchscreen_deadbolt", "battery_level") }}'
+      
+      

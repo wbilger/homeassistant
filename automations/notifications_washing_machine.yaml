@@ -1,0 +1,146 @@
+- alias: notify washing machine start
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.sonoff_pow01_power
+      above: '50'
+      for: 
+        hours: "0"
+        minutes: "0"
+        seconds: "10"   #wait for 10 seconds to ignore false positives
+  action:
+    - service: automation.turn_on         #enable automation to let know when done
+      entity_id: automation.notify_washing_machine_stop
+    - service: automation.turn_off         #disable automation as wattage will drop below during cycle
+      data:
+        entity_id: automation.notify_washing_machine_start
+        stop_actions: false
+    - service: homeassistant.turn_on
+      entity_id: group.notification_washing_machine   #turn on all for notification_washing_machine input_boolean for devices
+    - service: input_boolean.turn_off                   #turn off notification_washing_machine_speakers
+      entity_id: input_boolean.notification_washing_machine_speakers
+    - service: notify.bilger_family 
+      data:
+        title: "Washing Machine has been started."
+        message: "You will be notified when load finished?"
+        data:   
+          tag: washing_machine_start
+          icon_url: local/photos/notify_washing_machine.png
+          actions:  #for android phones
+            - action: washing_machine_notify_ok
+              title: Ok
+            - action: washing_machine_notify_speakers
+              title: and Speakers
+            - action: washing_machine_notify_cancel
+              title: Don't Notify
+          push:     #for ios phones
+            category: washing_machine_notify_stop
+          sticky: true        #doesn't go away when clicked
+          #persistent: true    #cannot be dimissed by swiping away          
+
+- alias: '[Notify Washing Machine - Action] Ok'
+  initial_state: 'on'
+  trigger:
+    - platform: event
+      event_type: mobile_app_notification_action
+      event_data:
+        action: washing_machine_notify_ok
+  action:
+    - service: >
+        notify.mobile_app_phone_{% if trigger.event.context["user_id"] == "c9ce4686a1b642fc9acb4a8b59181499" %}wayne
+        {% elif trigger.event.context["user_id"] == "52011960541f4ae3872b4f7eded76992" %}jenn
+        {% elif trigger.event.context["user_id"] == "kalesuseridstring" %}kale
+        {% else %}jalynne{% endif %}
+      data:
+        message: clear_notification
+        data:
+          tag: washing_machine_start
+
+- alias: '[Notify Washing Machine - Action] Speakers'
+  initial_state: 'on'
+  trigger:
+    - platform: event
+      event_type: mobile_app_notification_action
+      event_data:
+        action: washing_machine_notify_speakers
+  action:
+    - service: input_boolean.turn_on
+      entity_id: input_boolean.notification_washing_machine_speakers
+    - service: >
+        notify.mobile_app_phone_{% if trigger.event.context["user_id"] == "c9ce4686a1b642fc9acb4a8b59181499" %}wayne
+        {% elif trigger.event.context["user_id"] == "52011960541f4ae3872b4f7eded76992" %}jenn
+        {% elif trigger.event.context["user_id"] == "kalesuseridstring" %}kale
+        {% else %}jalynne{% endif %}
+      data:
+        message: clear_notification
+        data:
+          tag: washing_machine_start
+
+- alias: '[Notify Washing Machine - Action] Cancel'
+  initial_state: 'on'
+  trigger:
+    - platform: event
+      event_type: mobile_app_notification_action
+      event_data:
+        action: washing_machine_notify_cancel
+  action:
+    - service: input_boolean.turn_off
+      data_template:    
+        entity_id: >
+          input_boolean.notification_washing_machine_{% if trigger.event.context["user_id"] == "c9ce4686a1b642fc9acb4a8b59181499" %}wayne_phone
+          {% elif trigger.event.context["user_id"] == "52011960541f4ae3872b4f7eded76992" %}jenn_phone
+          {% elif trigger.event.context["user_id"] == "kalesuseridstring" %}kale_phone
+          {% else %}jalynne_phone{% endif %}
+    - service: >
+        notify.mobile_app_phone_{% if trigger.event.context["user_id"] == "c9ce4686a1b642fc9acb4a8b59181499" %}wayne
+        {% elif trigger.event.context["user_id"] == "52011960541f4ae3872b4f7eded76992" %}jenn
+        {% elif trigger.event.context["user_id"] == "kalesuseridstring" %}kale
+        {% else %}jalynne{% endif %}
+      data:
+        message: clear_notification
+        data:
+          tag: washing_machine_start
+
+- alias: notify washing machine stop
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.sonoff_pow01_power
+      below: '20'
+      for: 
+        seconds: "60"    #wait for 1 minute, sometimes drops below temporarily during cycle
+  action:
+    - service: automation.turn_on         #re-enable automation as load finished, for next load
+      data:
+        entity_id:
+          - automation.notify_washing_machine_start
+    - service: automation.turn_off         #disable automation until next load started
+      data:
+        entity_id: automation.notify_washing_machine_stop
+        stop_actions: false
+    - service: script.notify_washing_machine_stop_wayne
+    - service: script.notify_washing_machine_stop_jenn
+    - service: script.notify_washing_machine_stop_kale
+    - service: script.notify_washing_machine_stop_jalynne
+    - service: script.notify_washing_machine_stop_speakers
+
+- alias: notify washing machine stop ios cancel
+  initial_state: 'on'
+  trigger:
+    platform: event
+    event_type: ios.notification_action_fired
+    event_data:
+      actionName: WASHING_MACHINE_NOTIFY_CANCEL
+  action:
+    - service: input_boolean.turn_off
+      data_template:
+        entity_id: 'input_boolean.notification_washing_machine_{% if trigger.event.data["sourceDeviceName"] == "KalesiPhone" %}kale_phone{% else %}jalynne_phone{% endif %}'
+- alias: notify washing machine stop ios speakers
+  initial_state: 'on'
+  trigger:
+    platform: event
+    event_type: ios.notification_action_fired
+    event_data:
+      actionName: WASHING_MACHINE_NOTIFY_SPEAKERS
+  action:
+    - service: input_boolean.turn_on
+      data:
+        entity_id: input_boolean.notification_washing_machine_speakers

@@ -1,0 +1,33 @@
+- platform: wake_on_lan
+  mac: "8C-89-A5-FA-F8-AB"
+  name: wayne_pc_wol
+  host: 192.168.1.100
+- platform: wake_on_lan
+  mac: "E8-9A-8F-60-79-E9"   #LAN MAC
+  #mac: "8C-A9-82-B2-3A-A6"    #WIFI MAC
+  name: wayne_fr_wol
+  host: 192.168.1.101
+- platform: command_line
+  switches:
+    wayne_pc_hibernate:
+      command_on: "/usr/bin/curl -X GET http://192.168.1.100:5001/wayne-pc/"
+    wayne_fr_hibernate:
+      command_on: "/usr/bin/curl -X GET http://192.168.1.101:5001/wayne-fr/"
+- platform: template
+  switches:
+    wayne_pc:
+      value_template: '{{ states("switch.wayne_pc_wol") }}'
+      turn_on:
+        service: switch.turn_on
+        entity_id: switch.wayne_pc_wol
+      turn_off:
+        service: switch.turn_on
+        entity_id: switch.wayne_pc_hibernate
+    wayne_fr:
+      value_template: '{{ states("switch.wayne_fr_wol") }}'
+      turn_on:
+        service: switch.turn_on
+        entity_id: switch.wayne_fr_wol
+      turn_off:
+        service: switch.turn_on
+        entity_id: switch.wayne_fr_hibernate        

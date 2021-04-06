@@ -1,0 +1,12 @@
+notify_database_error_delay:
+  duration: '01:00:00'
+person_home_message:
+  duration: '00:02:00'
+away_home_timeout_kale:
+  duration: '01:00:00'
+away_home_timeout_jalynne:
+  duration: '01:00:00'
+arrival_lights_porch_timeout:
+  duration: '00:01:00'
+arrival_lights_entrance_timeout:
+  duration: '00:02:30'

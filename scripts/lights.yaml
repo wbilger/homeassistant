@@ -1,0 +1,111 @@
+lights_kitchen_morning:
+  sequence:
+    - condition: or
+      conditions:
+        - condition: template
+          value_template: '{{ state_attr("sun.sun", "elevation") < 3.5 }}'
+        - condition: and
+          conditions:
+            - condition: template
+              value_template: '{{ state_attr("sun.sun", "elevation") < 6.5 }}'
+            - condition: template
+              value_template: '{{ states("sensor.dark_sky_cloud_coverage") | float > 75 }}'
+        - condition: and
+          conditions:
+            - condition: template
+              value_template: '{{ state_attr("sun.sun", "elevation") < 9.5 }}'
+            - condition: template
+              value_template: '{{ states("sensor.dark_sky_cloud_coverage") | float > 95 }}'
+    - service: light.turn_on
+      data:
+        entity_id: light.kitchen_sink_light
+    - service: script.kitchen_island_lights_on_trasnsition
+
+lights_arrival:
+  sequence:
+    - service: script.lights_arrival_porch
+    - service: script.lights_arrival_entrance
+lights_arrival_porch:
+  sequence: 
+    - condition: state
+      entity_id: light.entrance_light_porch
+      state: 'off'
+    - service: light.turn_on
+      data:
+        entity_id: light.entrance_light_porch
+    - service: timer.start
+      entity_id: timer.arrival_lights_porch_timeout     #start timer to turn light off
+lights_arrival_entrance:
+  sequence: 
+    - condition: state
+      entity_id: light.entrance_light
+      state: 'off'
+    - service: light.turn_on
+      data:
+        entity_id: light.entrance_light
+    - service: timer.start
+      entity_id: timer.arrival_lights_entrance_timeout  #start timer to turn light off
+lights_arrival_kitchen_island:
+  sequence: 
+    - condition: state
+      entity_id: light.kitchen_island_lights
+      state: 'off'
+    - wait_template: '{{ is_state("binary_sensor.kitchen_occupancy", "on") or is_state("binary_sensor.fully_kitchen_dashboard", "on") }}'
+      timeout: '00:02:00'   #wait 2 minutes to detect occupancy
+      continue_on_timeout: 'false'  
+    - service: script.kitchen_island_lights_on_trasnsition
+kitchen_island_lights_on_trasnsition:
+  sequence: 
+    - service: light.turn_on
+      data:
+        entity_id: light.kitchen_island_lights
+        transition: 60
+        brightness_pct: 75
+        
+kitchen_lights_night_dim_auto:
+  alias: Kitchen Island Dim Night
+  sequence:
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+    - service: script.kitchen_lights_night_dim
+  
+kitchen_lights_night_dim:
+  alias: Kitchen Island Dim
+  sequence:
+    - service: light.turn_off
+      entity_id: light.kitchen_sink_light
+    - service: light.turn_on
+      data:
+        entity_id: light.kitchen_island_2   
+        brightness_pct: 10
+    - service: light.turn_off
+      entity_id: light.kitchen_island_1
+    - service: light.turn_off
+      entity_id: light.kitchen_island_3
+
+kitchen_island_lights_bright:
+  sequence: 
+    - service: light.turn_on
+      data:
+        entity_id: light.kitchen_island_lights
+        brightness_pct: 100
+
+theatre_lights_dim:
+  alias: Theatre Lights Dim
+  sequence:
+    - service: light.turn_on
+      data:
+        entity_id: light.theatre_lights_front   
+        brightness_pct: 10
+    - service: light.turn_on
+      data:
+        entity_id: light.theatre_lights_rear
+        brightness_pct: 20
+
+theatre_lights_bright:
+  sequence: 
+    - service: light.turn_on
+      data:
+        entity_id: light.theatre_lights
+        brightness_pct: 100

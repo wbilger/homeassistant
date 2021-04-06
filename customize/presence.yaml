@@ -1,0 +1,24 @@
+device_tracker.phone_wayne_gps:
+  entity_picture: /local/photos/wayne.jpg
+device_tracker.phone_jenn_gps:
+  entity_picture: /local/photos/jenn.jpg
+device_tracker.phone_kale_gps:
+  entity_picture: /local/photos/kale.jpg
+device_tracker.phone_jalynne_gps:
+  entity_picture: /local/photos/jalynne.jpg
+person.wayne:
+  entity_picture: /local/photos/wayne.jpg
+person.jenn:
+  entity_picture: /local/photos/jenn.jpg
+person.kale:
+  entity_picture: /local/photos/kale.jpg
+person.jalynne:
+  entity_picture: /local/photos/jalynne.jpg
+sensor.presence_wayne_status:
+  entity_picture: /local/photos/wayne.jpg
+sensor.presence_jenn_status:
+  entity_picture: /local/photos/jenn.jpg
+sensor.presence_kale_status:
+  entity_picture: /local/photos/kale.jpg
+sensor.presence_jalynne_status:
+  entity_picture: /local/photos/jalynne.jpg

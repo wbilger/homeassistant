@@ -1,0 +1,175 @@
+#remote switches (for conditional remotes)
+- platform: template
+  switches:
+    remote_family_room_plex:
+      value_template: '{{ is_state("input_select.remote_family_room", "Plex") }}'
+      turn_on:
+        service: script.remote_family_room_plex
+      turn_off:
+        service: switch.turn_on
+        data:
+          entity_id: switch.remote_family_room_plex
+    remote_family_room_tv:
+      value_template: '{{ is_state("input_select.remote_family_room", "TV") }}'
+      turn_on:
+        service: script.remote_family_room_tv
+      turn_off:
+        service: switch.turn_on
+        data:
+          entity_id: switch.remote_family_room_tv
+    remote_family_room_chromecast:
+      value_template: '{{ is_state("input_select.remote_family_room", "Chromecast") }}'
+      turn_on:
+        service: script.remote_family_room_chromecast
+      turn_off:
+        service: switch.turn_on
+        data:
+          entity_id: switch.remote_family_room_chromecast
+    remote_family_room_bell:
+      value_template: '{{ is_state("input_select.remote_family_room", "Bell") }}'
+      turn_on:
+        service: script.remote_family_room_bell
+      turn_off:
+        service: switch.turn_on
+        data:
+          entity_id: switch.remote_family_room_bell
+    remote_family_room_kodi:
+      value_template: '{{ is_state("input_select.remote_family_room", "Kodi") }}'
+      turn_on:
+        service: script.remote_family_room_kodi
+      turn_off:
+        service: switch.turn_on
+        data:
+          entity_id: switch.remote_family_room_kodi
+          
+    remote_theatre_roku:
+      value_template: '{{ is_state("input_select.remote_theatre", "Roku") }}'
+      turn_on:
+        service: script.remote_theatre_roku
+      turn_off:
+        service: switch.turn_on
+        data:
+          entity_id: switch.remote_theatre_roku
+    remote_theatre_chromecast:
+      value_template: '{{ is_state("input_select.remote_theatre", "Chromecast") }}'
+      turn_on:
+        service: script.remote_theatre_chromecast
+      turn_off:
+        service: switch.turn_on
+        data:
+          entity_id: switch.remote_theatre_chromecast
+    remote_theatre_stereo:
+      value_template: '{{ is_state("input_select.remote_theatre", "Stereo") }}'
+      turn_on:
+        service: script.remote_theatre_stereo
+      turn_off:
+        service: switch.turn_on
+        data:
+          entity_id: switch.remote_theatre_stereo
+    remote_theatre_projector:
+      value_template: '{{ is_state("input_select.remote_theatre", "Projector") }}'
+      turn_on:
+        service: script.remote_theatre_projector
+      turn_off:
+        service: switch.turn_on
+        data:
+          entity_id: switch.remote_theatre_projector
+          
+    remote_dining_room_firetv:
+      value_template: '{{ is_state("input_select.remote_dining_room", "FireTV") }}'
+      turn_on:
+        service: script.remote_dining_room_firetv
+      turn_off:
+        service: switch.turn_on
+        data:
+          entity_id: switch.remote_dining_room_firetv
+    remote_dining_room_roku:
+      value_template: '{{ is_state("input_select.remote_dining_room", "Roku") }}'
+      turn_on:
+        service: script.remote_dining_room_roku
+      turn_off:
+        service: switch.turn_on
+        data:
+          entity_id: switch.remote_dining_room_roku
+    remote_dining_room_chromecast:
+      value_template: '{{ is_state("input_select.remote_dining_room", "Chromecast") }}'
+      turn_on:
+        service: script.remote_dining_room_chromecast
+      turn_off:
+        service: switch.turn_on
+        data:
+          entity_id: switch.remote_dining_room_chromecast
+    remote_dining_room_tv:
+      value_template: '{{ is_state("input_select.remote_dining_room", "TV") }}'
+      turn_on:
+        service: script.remote_dining_room_tv
+      turn_off:
+        service: switch.turn_on
+        data:
+          entity_id: switch.remote_dining_room_tv
+          
+    remote_bedroom_roku:
+      value_template: '{{ is_state("input_select.remote_bedroom", "Roku") }}'
+      turn_on:
+        service: script.remote_bedroom_roku
+      turn_off:
+        service: switch.turn_on
+        data:
+          entity_id: switch.remote_bedroom_roku
+    remote_bedroom_firetv:
+      value_template: '{{ is_state("input_select.remote_bedroom", "FireTV") }}'
+      turn_on:
+        service: script.remote_bedroom_firetv
+      turn_off:
+        service: switch.turn_on
+        data:
+          entity_id: switch.remote_bedroom_firetv
+    remote_bedroom_plex:
+      value_template: '{{ is_state("input_select.remote_bedroom", "Plex") }}'
+      turn_on:
+        service: script.remote_bedroom_plex
+      turn_off:
+        service: switch.turn_on
+        data:
+          entity_id: switch.remote_bedroom_plex
+    remote_bedroom_kodi:
+      value_template: '{{ is_state("input_select.remote_bedroom", "Kodi") }}'
+      turn_on:
+        service: script.remote_bedroom_kodi
+      turn_off:
+        service: switch.turn_on
+        data:
+          entity_id: switch.remote_bedroom_kodi
+    remote_bedroom_chromecast:
+      value_template: '{{ is_state("input_select.remote_bedroom", "Chromecast") }}'
+      turn_on:
+        service: script.remote_bedroom_chromecast
+      turn_off:
+        service: switch.turn_on
+        data:
+          entity_id: switch.remote_bedroom_chromecast
+    remote_bedroom_tv:
+      value_template: '{{ is_state("input_select.remote_bedroom", "TV") }}'
+      turn_on:
+        service: script.remote_bedroom_tv
+      turn_off:
+        service: switch.turn_on
+        data:
+          entity_id: switch.remote_bedroom_tv
+          
+    remote_jalynne_plex:
+      value_template: '{{ is_state("input_select.remote_jalynne", "Plex") }}'
+      turn_on:
+        service: script.remote_jalynne_plex
+      turn_off:
+        service: switch.turn_on
+        data:
+          entity_id: switch.remote_jalynne_plex
+    remote_jalynne_netflix:
+      value_template: '{{ is_state("input_select.remote_jalynne", "Netflix") }}'
+      turn_on:
+        service: script.remote_jalynne_netflix
+      turn_off:
+        service: switch.turn_on
+        data:
+          entity_id: switch.remote_jalynne_netflix

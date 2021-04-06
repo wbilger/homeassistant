@@ -1,0 +1,116 @@
+phone_wayne_update:
+  sequence:
+    - service: script.phone_wayne_update_missing
+    - condition: template
+      value_template: '{{ states("device_tracker.phone_wayne_gps") != "unknown" }}'
+    - service: device_tracker.see
+      data_template:
+        dev_id: phone_wayne
+        location_name: >
+          {% if (states("device_tracker.phone_wayne_gps") == "home" and as_timestamp(now())-as_timestamp(states.device_tracker.phone_wayne_gps.last_updated) > 300) 
+            or as_timestamp(now())-as_timestamp(states.device_tracker.phone_wayne_gps.last_updated) > 1200 %}
+            not_home
+          {% else %}
+            {{ states("device_tracker.phone_wayne_gps") }}
+          {% endif %}
+        gps:
+          - '{{ state_attr("device_tracker.phone_wayne_gps","latitude") }}'
+          - '{{ state_attr("device_tracker.phone_wayne_gps","longitude") }}'
+        gps_accuracy: '{{ state_attr("device_tracker.phone_wayne_gps","gps_accuracy") }}'
+        battery: '{{ state_attr("device_tracker.phone_wayne_gps","battery_level") }}' 
+phone_wayne_update_missing:
+  sequence:
+    - condition: template
+      value_template: '{{ states("device_tracker.phone_wayne_gps") == "unknown" }}'
+    - service: device_tracker.see
+      data_template:
+        dev_id: phone_wayne
+        location_name: 'not_home'
+
+phone_jenn_update:
+  sequence:
+    - service: script.phone_jenn_update_missing
+    - condition: template
+      value_template: '{{ states("device_tracker.phone_jenn_gps") != "unknown" }}'
+    - service: device_tracker.see
+      data_template:
+        dev_id: phone_jenn
+        location_name: >
+          {% if (states("device_tracker.phone_jenn_gps") == "home" and as_timestamp(now())-as_timestamp(states.device_tracker.phone_jenn_gps.last_updated) > 300) 
+            or as_timestamp(now())-as_timestamp(states.device_tracker.phone_jenn_gps.last_updated) > 1200 %}
+            not_home
+          {% else %}
+            {{ states("device_tracker.phone_jenn_gps") }}
+          {% endif %}
+        gps:
+          - '{{ state_attr("device_tracker.phone_jenn_gps","latitude") }}'
+          - '{{ state_attr("device_tracker.phone_jenn_gps","longitude") }}'
+        gps_accuracy: '{{ state_attr("device_tracker.phone_jenn_gps","gps_accuracy") }}'
+        battery: '{{ state_attr("device_tracker.phone_jenn_gps","battery_level") }}' 
+phone_jenn_update_missing:
+  sequence:
+    - condition: template
+      value_template: '{{ states("device_tracker.phone_jenn_gps") == "unknown" }}'
+    - service: device_tracker.see
+      data_template:
+        dev_id: phone_jenn
+        location_name: 'not_home'
+
+phone_kale_update:
+  sequence:
+    - service: script.phone_kale_update_missing
+    - condition: template
+      value_template: '{{ states("device_tracker.phone_kale_gps") != "unknown" }}'
+    - service: device_tracker.see
+      data_template:
+        dev_id: phone_kale
+        location_name: >
+          {% if (states("device_tracker.phone_kale_gps") == "home" and as_timestamp(now())-as_timestamp(states.device_tracker.phone_kale_gps.last_updated) > 300) 
+            or as_timestamp(now())-as_timestamp(states.device_tracker.phone_kale_gps.last_updated) > 1200 %}
+            not_home
+          {% else %}
+            {{ states("device_tracker.phone_kale_gps") }}
+          {% endif %}
+        gps:
+          - '{{ state_attr("device_tracker.phone_kale_gps","latitude") }}'
+          - '{{ state_attr("device_tracker.phone_kale_gps","longitude") }}'
+        gps_accuracy: '{{ state_attr("device_tracker.phone_kale_gps","gps_accuracy") }}'
+        battery: '{{ state_attr("device_tracker.phone_kale_gps","battery_level") }}' 
+phone_kale_update_missing:
+  sequence:
+    - condition: template
+      value_template: '{{ states("device_tracker.phone_kale_gps") == "unknown" }}'
+    - service: device_tracker.see
+      data_template:
+        dev_id: phone_kale
+        location_name: 'not_home'
+
+phone_jalynne_update:
+  sequence:
+    - service: script.phone_jalynne_update_missing
+    - condition: template
+      value_template: '{{ states("device_tracker.phone_jalynne_gps") != "unknown" }}'
+    - service: device_tracker.see
+      data_template:
+        dev_id: phone_jalynne
+        location_name: >
+          {% if (states("device_tracker.phone_jalynne_gps") == "home" and as_timestamp(now())-as_timestamp(states.device_tracker.phone_jalynne_gps.last_updated) > 300) 
+            or as_timestamp(now())-as_timestamp(states.device_tracker.phone_jalynne_gps.last_updated) > 1200 %}
+            not_home
+          {% else %}
+            {{ states("device_tracker.phone_jalynne_gps") }}
+          {% endif %}
+        gps:
+          - '{{ state_attr("device_tracker.phone_jalynne_gps","latitude") }}'
+          - '{{ state_attr("device_tracker.phone_jalynne_gps","longitude") }}'
+        gps_accuracy: '{{ state_attr("device_tracker.phone_jalynne_gps","gps_accuracy") }}'
+        battery: '{{ state_attr("device_tracker.phone_jalynne_gps","battery_level") }}' 
+phone_jalynne_update_missing:
+  sequence:
+    - condition: template
+      value_template: '{{ states("device_tracker.phone_jalynne_gps") == "unknown" }}'
+    - service: device_tracker.see
+      data_template:
+        dev_id: phone_jalynne
+        location_name: 'not_home'
+

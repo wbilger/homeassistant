@@ -1,0 +1,6 @@
+restart_ha:
+  alias: Restart HomeAssistant
+  sequence:
+    - service: homeassistant.restart
+        
+        

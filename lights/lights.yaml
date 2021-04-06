@@ -1,0 +1,80 @@
+## Ikea Tradfri Gateway Security Code: UQj6FzC8GJvouvR0 - Host: 192.168.1.85
+
+- platform: template      #Fully Kiosk
+  lights:
+    dashboard_screen_kitchen:
+      turn_on:
+      turn_off:
+      set_level:
+
+- platform: group
+  name: Kitchen Island Lights
+  entities:
+    - light.kitchen_island_1
+    - light.kitchen_island_2
+    - light.kitchen_island_3
+- platform: group
+  name: Family Room Light
+  entities:
+    - light.family_room_1
+    - light.family_room_2
+- platform: group
+  name: Theatre Lights
+  entities:
+    - light.theatre_fl
+    - light.theatre_fr
+    - light.theatre_rl
+    - light.theatre_rr
+- platform: group
+  name: Theatre Lights Front
+  entities:
+    - light.theatre_fl
+    - light.theatre_fr
+- platform: group
+  name: Theatre Lights Rear
+  entities:
+    - light.theatre_rl
+    - light.theatre_rr
+        
+- platform: switch
+  name: Deck Lights
+  entity_id: switch.deck_lights
+- platform: switch
+  name: Kitchen Sink Light
+  entity_id: switch.sink_light
+- platform: switch
+  name: Entrance Light
+  entity_id: switch.front_entrance
+- platform: switch
+  name: Entrance Light Porch
+  entity_id: switch.front_porch
+- platform: switch
+  name: Dining Room Light
+  entity_id: switch.dining_room_light
+- platform: switch
+  name: Dining Room Plug
+  entity_id: switch.dining_room_plug
+- platform: switch
+  name: Bedroom Light
+  entity_id: switch.bedroom_light
+- platform: switch
+  name: Kales Lamp
+  entity_id: switch.kales_lamp
+- platform: switch
+  name: Jalynnes Lamp
+  entity_id: switch.jalynnes_lamp
+- platform: switch
+  name: Jalynne Bedroom
+  entity_id: switch.jalynne_bedroom_light
+- platform: switch
+  name: Front Window
+  entity_id: switch.rf_etekcity_4
+- platform: switch
+  name: Bar Light
+  entity_id: switch.rf_etekcity_2
+- platform: switch
+  name: Desk Lamp
+  entity_id: switch.rf_etekcity_5
+#stole for IKEA Gateway - steal Bar Light for month, or buy new - platform: switch
+#   name: Christmas Tree Lights
+#   entity_id: switch.rf_etekcity_1        

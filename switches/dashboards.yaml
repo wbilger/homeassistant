@@ -1,0 +1,35 @@
+- platform: command_line
+  switches:
+    fully_kiosk_kitchen_relaunch:
+      command_on: !secret fully_kiosk_kitchen_relaunch
+    fully_kiosk_kitchen_good_morning:
+      command_on: !secret fully_kiosk_kitchen_good_morning
+      friendly_name: Kitchen Dashboard Good Morning
+      
+    remote_family_room_camera:
+      command_on: "/usr/bin/curl -X POST http://192.168.1.75:2971/api/command -H \"Content-type: application/json\" -d '{'camera': true}'"
+      command_off: "/usr/bin/curl -X POST http://192.168.1.75:2971/api/command -H \"Content-type: application/json\" -d '{'camera': false}'"
+    remote_family_room_relaunch:
+      command_on: "/usr/bin/curl -X POST http://192.168.1.75:2971/api/command -H \"Content-type: application/json\" -d '{'relaunch': true}'"
+    remote_family_room_reload:
+      command_on: "/usr/bin/curl -X POST http://192.168.1.75:2971/api/command -H \"Content-type: application/json\" -d '{'reload': true}'"
+    remote_family_room_wake:
+      command_on: "/usr/bin/curl -X POST http://192.168.1.75:2971/api/command -H \"Content-type: application/json\" -d '{'wake': true}'"
+    remote_family_room_clear_cache:
+      command_on: "/usr/bin/curl -X POST http://192.168.1.75:2971/api/command -H \"Content-type: application/json\" -d '{'clearCache': true}'"
+    remote_family_room_home:
+      command_on: !secret url_remote_family_room_home
+
+    remote_theatre_room_camera:
+      command_on: "/usr/bin/curl -X POST http://192.168.1.76:2971/api/command -H \"Content-type: application/json\" -d '{'camera': true}'"
+      command_off: "/usr/bin/curl -X POST http://192.168.1.76:2971/api/command -H \"Content-type: application/json\" -d '{'camera': false}'"
+    remote_theatre_relaunch:
+      command_on: "/usr/bin/curl -X POST http://192.168.1.76:2971/api/command -H \"Content-type: application/json\" -d '{'relaunch': true}'"
+    remote_theatre_reload:
+      command_on: "/usr/bin/curl -X POST http://192.168.1.76:2971/api/command -H \"Content-type: application/json\" -d '{'reload': true}'"
+    remote_theatre_wake:
+      command_on: "/usr/bin/curl -X POST http://192.168.1.76:2971/api/command -H \"Content-type: application/json\" -d '{'wake': true}'"
+    remote_theatre_clear_cache:
+      command_on: "/usr/bin/curl -X POST http://192.168.1.76:2971/api/command -H \"Content-type: application/json\" -d '{'clearCache': true}'"
+    remote_theatre_home:
+      command_on: !secret url_remote_theatre_home

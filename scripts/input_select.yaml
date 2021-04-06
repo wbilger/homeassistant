@@ -1,0 +1,72 @@
+speakers_google_home_kitchen:
+  sequence:
+    - service: input_select.select_option
+      data: 
+        entity_id: input_select.speakers_google_home
+        option: Kitchen
+speakers_google_home_portable:
+  sequence:
+    - service: input_select.select_option
+      data: 
+        entity_id: input_select.speakers_google_home
+        option: Portable
+speakers_google_home_kitchen_portable:
+  sequence:
+    - service: input_select.select_option
+      data: 
+        entity_id: input_select.speakers_google_home
+        option: Kitchen and Portable
+speakers_google_home_bedroom:
+  sequence:
+    - service: input_select.select_option
+      data: 
+        entity_id: input_select.speakers_google_home
+        option: Bedroom
+speakers_google_home_kitchen_bedroom:
+  sequence:
+    - service: input_select.select_option
+      data: 
+        entity_id: input_select.speakers_google_home
+        option: Kitchen and Bedroom
+speakers_google_home_kitchen_bathroom:
+  sequence:
+    - service: input_select.select_option
+      data: 
+        entity_id: input_select.speakers_google_home
+        option: Kitchen and Bathroom
+speakers_google_home_kitchen_bedroom_bathroom:
+  sequence:
+    - service: input_select.select_option
+      data: 
+        entity_id: input_select.speakers_google_home
+        option: Kitchen Bedroom Bathroom
+speakers_google_home_outside:
+  sequence:
+    - service: input_select.select_option
+      data: 
+        entity_id: input_select.speakers_google_home
+        option: Outside
+speakers_google_home_outside_portable:
+  sequence:
+    - service: input_select.select_option
+      data: 
+        entity_id: input_select.speakers_google_home
+        option: Outside and Portable
+speakers_google_home_kitchen_outside:
+  sequence:
+    - service: input_select.select_option
+      data: 
+        entity_id: input_select.speakers_google_home
+        option: Kitchen and Outside
+speakers_google_home_kitchen_outside_portable:
+  sequence:
+    - service: input_select.select_option
+      data: 
+        entity_id: input_select.speakers_google_home
+        option: Kitchen Outside Portable
+speakers_google_home_all:
+  sequence:
+    - service: input_select.select_option
+      data: 
+        entity_id: input_select.speakers_google_home
+        option: All

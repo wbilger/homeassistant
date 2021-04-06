@@ -1,0 +1,4 @@
+"switch.*light*":
+  icon: mdi:lightbulb
+"group.*light*":
+  icon: mdi:lightbulb-on

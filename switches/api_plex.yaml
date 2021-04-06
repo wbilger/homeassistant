@@ -1,0 +1,47 @@
+- platform: command_line
+  switches:
+    # Family Room Plex API **** Changed back to .101 and add plex_roku at .60 if works
+    family_room_plex_api_subscribe:
+      command_on: 'curl -H "X-Plex-Client-Identifier: 0123456789" -H "X-Plex-Device-Name: family_room_plex" "http://192.168.1.55:32433/player/timeline/subscribe?protocol=http&port=1234&commandID=1"'
+    family_room_plex_api_unsubscribe:
+      command_on: 'curl -H "X-Plex-Client-Identifier: 0123456789" -H "X-Plex-Device-Name: family_room_plex" "http://192.168.1.55:32433/player/timeline/unsubscribe"'
+    family_room_plex_api_home:
+      command_on: 'curl -H "X-Plex-Client-Identifier: 0123456789" -H "X-Plex-Device-Name: family_room_plex" "http://192.168.1.55:32433/player/timeline/subscribe?protocol=http&port=1234&commandID=1" && curl -H "X-Plex-Client-Identifier: 0123456789" -H "X-Plex-Device-Name: family_room_plex" "http://192.168.1.55:32433/player/navigation/home?type=video&protocol=http&port=1234&commandID=2"'
+    family_room_plex_api_up:
+      command_on: 'curl -H "X-Plex-Client-Identifier: 0123456789" -H "X-Plex-Device-Name: family_room_plex" "http://192.168.1.55:32433/player/timeline/subscribe?protocol=http&port=1234&commandID=1" && curl -H "X-Plex-Client-Identifier: 0123456789" -H "X-Plex-Device-Name: family_room_plex" "http://192.168.1.55:32433/player/navigation/moveUp?type=video&protocol=http&port=1234&commandID=2"'
+    family_room_plex_api_down:
+      command_on: 'curl -H "X-Plex-Client-Identifier: 0123456789" -H "X-Plex-Device-Name: family_room_plex" "http://192.168.1.55:32433/player/timeline/subscribe?protocol=http&port=1234&commandID=1" && curl -H "X-Plex-Client-Identifier: 0123456789" -H "X-Plex-Device-Name: family_room_plex" "http://192.168.1.55:32433/player/navigation/moveDown?type=video&protocol=http&port=1234&commandID=2"'
+    family_room_plex_api_left:
+      command_on: 'curl -H "X-Plex-Client-Identifier: 0123456789" -H "X-Plex-Device-Name: family_room_plex" "http://192.168.1.55:32433/player/timeline/subscribe?protocol=http&port=1234&commandID=1" && curl -H "X-Plex-Client-Identifier: 0123456789" -H "X-Plex-Device-Name: family_room_plex" "http://192.168.1.55:32433/player/navigation/moveLeft?type=video&protocol=http&port=1234&commandID=2"'
+    family_room_plex_api_right:
+      command_on: 'curl -H "X-Plex-Client-Identifier: 0123456789" -H "X-Plex-Device-Name: family_room_plex" "http://192.168.1.55:32433/player/timeline/subscribe?protocol=http&port=1234&commandID=1" && curl -H "X-Plex-Client-Identifier: 0123456789" -H "X-Plex-Device-Name: family_room_plex" "http://192.168.1.55:32433/player/navigation/moveRight?type=video&protocol=http&port=1234&commandID=2"'
+    family_room_plex_api_select:
+      command_on: 'curl -H "X-Plex-Client-Identifier: 0123456789" -H "X-Plex-Device-Name: family_room_plex" "http://192.168.1.55:32433/player/timeline/subscribe?protocol=http&port=1234&commandID=1" && curl -H "X-Plex-Client-Identifier: 0123456789" -H "X-Plex-Device-Name: family_room_plex" "http://192.168.1.55:32433/player/navigation/select?type=video&protocol=http&port=1234&commandID=2"'
+    family_room_plex_api_back:
+      command_on: 'curl -H "X-Plex-Client-Identifier: 0123456789" -H "X-Plex-Device-Name: family_room_plex" "http://192.168.1.55:32433/player/timeline/subscribe?protocol=http&port=1234&commandID=1" && curl -H "X-Plex-Client-Identifier: 0123456789" -H "X-Plex-Device-Name: family_room_plex" "http://192.168.1.55:32433/player/navigation/back?type=video&protocol=http&port=1234&commandID=2"'
+    family_room_plex_api_playmedia:
+      command_on: 'curl -H "X-Plex-Client-Identifier: 0123456789" -H "X-Plex-Device-Name: family_room_plex" "http://192.168.1.55:32433/player/timeline/subscribe?protocol=http&port=1234&commandID=1" && curl -H "X-Plex-Client-Identifier: 0123456789" -H "X-Plex-Device-Name: family_room_plex" "http://192.168.1.55:32433/player/playback/playMedia?type=video&protocol=http&port=1234&commandID=2"'
+    family_room_plex_api_play:
+      command_on: 'curl -H "X-Plex-Client-Identifier: 0123456789" -H "X-Plex-Device-Name: family_room_plex" "http://192.168.1.55:32433/player/timeline/subscribe?protocol=http&port=1234&commandID=1" && curl -H "X-Plex-Client-Identifier: 0123456789" -H "X-Plex-Device-Name: family_room_plex" "http://192.168.1.55:32433/player/playback/play?type=video&protocol=http&port=1234&commandID=2"'
+    family_room_plex_api_pause:
+      command_on: 'curl -H "X-Plex-Client-Identifier: 0123456789" -H "X-Plex-Device-Name: family_room_plex" "http://192.168.1.55:32433/player/timeline/subscribe?protocol=http&port=1234&commandID=1" && curl -H "X-Plex-Client-Identifier: 0123456789" -H "X-Plex-Device-Name: family_room_plex" "http://192.168.1.55:32433/player/playback/pause?type=video&protocol=http&port=1234&commandID=2"'
+    family_room_plex_api_stop:
+      command_on: 'curl -H "X-Plex-Client-Identifier: 0123456789" -H "X-Plex-Device-Name: family_room_plex" "http://192.168.1.55:32433/player/timeline/subscribe?protocol=http&port=1234&commandID=1" && curl -H "X-Plex-Client-Identifier: 0123456789" -H "X-Plex-Device-Name: family_room_plex" "http://192.168.1.55:32433/player/playback/stop?type=video&protocol=http&port=1234&commandID=2"'
+    family_room_plex_api_skipnext:
+      command_on: 'curl -H "X-Plex-Client-Identifier: 0123456789" -H "X-Plex-Device-Name: family_room_plex" "http://192.168.1.55:32433/player/timeline/subscribe?protocol=http&port=1234&commandID=1" && curl -H "X-Plex-Client-Identifier: 0123456789" -H "X-Plex-Device-Name: family_room_plex" "http://192.168.1.55:32433/player/playback/skipNext?type=video&protocol=http&port=1234&commandID=2"'
+    family_room_plex_api_skipback:
+      command_on: 'curl -H "X-Plex-Client-Identifier: 0123456789" -H "X-Plex-Device-Name: family_room_plex" "http://192.168.1.55:32433/player/timeline/subscribe?protocol=http&port=1234&commandID=1" && curl -H "X-Plex-Client-Identifier: 0123456789" -H "X-Plex-Device-Name: family_room_plex" "http://192.168.1.55:32433/player/playback/skipPrevious?type=video&protocol=http&port=1234&commandID=2"'
+    family_room_plex_api_stepforward:
+      command_on: 'curl -H "X-Plex-Client-Identifier: 0123456789" -H "X-Plex-Device-Name: family_room_plex" "http://192.168.1.55:32433/player/timeline/subscribe?protocol=http&port=1234&commandID=1" && curl -H "X-Plex-Client-Identifier: 0123456789" -H "X-Plex-Device-Name: family_room_plex" "http://192.168.1.55:32433/player/playback/stepForward?type=video&protocol=http&port=1234&commandID=2"'
+    family_room_plex_api_stepback:
+      command_on: 'curl -H "X-Plex-Client-Identifier: 0123456789" -H "X-Plex-Device-Name: family_room_plex" "http://192.168.1.55:32433/player/timeline/subscribe?protocol=http&port=1234&commandID=1" && curl -H "X-Plex-Client-Identifier: 0123456789" -H "X-Plex-Device-Name: family_room_plex" "http://192.168.1.55:32433/player/playback/stepBack?type=video&protocol=http&port=1234&commandID=2"'
+    # family_room_plex_api_volume_100:
+    #   command_on: 'curl -H "X-Plex-Client-Identifier: 0123456789" -H "X-Plex-Device-Name: family_room_plex" "http://192.168.1.55:32433/player/timeline/subscribe?protocol=http&port=1234&commandID=1" && curl -H "X-Plex-Client-Identifier: 0123456789" -H "X-Plex-Device-Name: family_room_plex" "http://192.168.1.55:32433/player/playback/setParameters?volume=100&shuffle=0&repeate=0?type=video&protocol=http&port=1234&commandID=2"'
+
+    #THESE COMMANDS DON"T SEEM TO WORK ON NEW API
+    family_room_plex_api_nextletter:
+      command_on: 'curl -H "X-Plex-Client-Identifier: 0123456789" -H "X-Plex-Device-Name: family_room_plex" "http://192.168.1.55:32433/player/timeline/subscribe?protocol=http&port=1234&commandID=1" && curl -H "X-Plex-Client-Identifier: 0123456789" -H "X-Plex-Device-Name: family_room_plex" "http://192.168.1.55:32433/player/navigation/nextLetter?type=video&protocol=http&port=1234&commandID=2"'
+    family_room_plex_api_previousletter:
+      command_on: 'curl -H "X-Plex-Client-Identifier: 0123456789" -H "X-Plex-Device-Name: family_room_plex" "http://192.168.1.55:32433/player/timeline/subscribe?protocol=http&port=1234&commandID=1" && curl -H "X-Plex-Client-Identifier: 0123456789" -H "X-Plex-Device-Name: family_room_plex" "http://192.168.1.55:32433/player/navigation/previousLetter?type=video&protocol=http&port=1234&commandID=2"'
+    family_room_plex_api_toggleosd:
+      command_on: 'curl -H "X-Plex-Client-Identifier: 0123456789" -H "X-Plex-Device-Name: family_room_plex" "http://192.168.1.55:32433/player/timeline/subscribe?protocol=http&port=1234&commandID=1" && curl -H "X-Plex-Client-Identifier: 0123456789" -H "X-Plex-Device-Name: family_room_plex" "http://192.168.1.55:32433/player/navigation/toggleOSD?type=video&protocol=http&port=1234&commandID=2"'

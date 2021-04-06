@@ -1,0 +1,28 @@
+- platform: template
+  sensors:
+    family_room_roku_app:
+      value_template: '{% if "Plex" in state_attr("media_player.family_room_roku", "app_name") %}Plex{% else %}{{ state_attr("media_player.family_room_roku", "app_name") }}{% endif %}'
+    family_room_plex_playing:
+      value_template: >
+        {% if state_attr('media_player.family_room_roku_plex', 'supported_features') == none %}unavailable{% else %}
+        {{ is_state("media_player.family_room_plex", "playing") or is_state("media_player.family_room_plex", "paused") }}{% endif %}
+    roku_4kstick_plex_playing:
+      value_template: >
+        {% if state_attr('media_player.roku_4kstick_plex', 'supported_features') == none %}unavailable{% else %}
+        {{ is_state("media_player.roku_4kstick_plex", "playing") or is_state("media_player.roku_4kstick_plex", "paused") }}{% endif %}
+    dining_room_plex_playing:
+      value_template: >
+        {% if state_attr('media_player.dining_room_plex', 'supported_features') == none %}unavailable{% else %}
+        {{ is_state("media_player.dining_room_plex", "playing") or is_state("media_player.dining_room_plex", "paused") }}{% endif %}
+    bedroom_plex_playing:
+      value_template: >
+        {% if state_attr('media_player.bedroom_plex', 'supported_features') == none %}unavailable{% else %}
+        {{ is_state("media_player.bedroom_plex", "playing") or is_state("media_player.bedroom_plex", "paused") }}{% endif %}
+    theatre_plex_playing:
+      value_template: >
+        {% if state_attr('media_player.theatre_plex', 'supported_features') == none %}unavailable{% else %}
+        {{ is_state("media_player.theatre_plex", "playing") or is_state("media_player.theatre_plex", "paused") }}{% endif %}
+    jalynne_plex_playing:
+      value_template: >
+        {% if state_attr('media_player.jalynne_plex', 'supported_features') == none %}unavailable{% else %}
+        {{ is_state("media_player.jalynne_plex", "playing") or is_state("media_player.jalynne_plex", "paused") }}{% endif %}

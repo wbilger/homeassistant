@@ -1,0 +1,24 @@
+switch.sonoff_basic_01:
+  icon: mdi:lightbulb
+  friendly_name: Kitchen Sink Light
+switch.sonoff_basic_02:
+  icon: mdi:fan
+  friendly_name: Bedroom Fan
+switch.sonoff_pow_01:
+  icon: mdi:washing-machine
+  friendly_name: Washing Machine
+sensor.sonoff_pow01_energy_today:
+  icon: power-plug
+  friendly_name: Today
+sensor.sonoff_pow01_energy_yesterday:
+  icon: power-plug
+  friendly_name: Yesterday
+sensor.sonoff_pow01_current:
+  icon: current-ac
+  friendly_name: Current
+sensor.sonoff_pow01_power:
+  icon: power-plug
+  friendly_name: Power
+sensor.sonoff_pow01_voltage:
+  icon: flash-circle
+  friendly_name: Voltage

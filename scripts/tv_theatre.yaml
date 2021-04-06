@@ -1,0 +1,333 @@
+theatre_surround_sound_tv:
+  sequence:
+    - service: switch.turn_on
+      entity_id: switch.theatre_surround_sound_tv
+    - condition: state
+      entity_id: switch.theatre_surround_sound
+      state: "off"
+    - service: switch.turn_on
+      entity_id: switch.theatre_surround_sound
+    - delay: 5
+    - service: switch.turn_on
+      entity_id: switch.theatre_surround_sound_tv
+
+theatre_surround_sound_radio:
+  sequence:
+    - service: switch.turn_on
+      entity_id: switch.theatre_surround_sound_radio
+    - condition: state
+      entity_id: switch.surround_theatre_sound
+      state: "off"
+    - service: switch.turn_on
+      entity_id: switch.surround_theatre_sound
+    - delay: 5
+    - service: switch.turn_on
+      entity_id: switch.theatre_surround_sound_pc
+
+theatre_surround_sound_chromecast:
+  sequence:
+    - service: switch.turn_on
+      entity_id: switch.theatre_surround_sound_chromecast
+    - condition: state
+      entity_id: switch.theatre_surround_sound
+      state: "off"
+    - service: switch.turn_on
+      entity_id: switch.theatre_surround_sound
+    - delay: 5
+    - service: switch.turn_on
+      entity_id: switch.theatre_surround_sound_chromecast
+
+theatre_movie_time:
+  alias: Theatre Movie Time
+  sequence:
+    - service: homeassistant.turn_on
+      entity_id: group.theatre_tv
+    - service: script.theatre_stop_lights #turn lights to normal media 'pause' state
+    - service: script.theatre_surround_sound_tv
+    - service: media_player.select_source
+      data:
+        entity_id: media_player.theatre_roku
+        source: "Plex - Stream for Free"
+    - delay: 20
+    - service: script.kitchen_lights_night_dim_auto
+
+theatre_watch_roku:
+  alias: Theatre Watch Roku
+  sequence:
+    - service: homeassistant.turn_on
+      entity_id: group.theatre_tv
+    - service: media_player.select_source
+      data:
+        entity_id: media_player.theatre_roku
+        source: "Plex - Stream for Free"
+    - delay: 5 #wait for surround sound receiver
+    - service: script.theatre_surround_sound_tv
+
+theatre_chromecast_time:
+  alias: Theatre Chromecast Time
+  sequence:
+    - service: homeassistant.turn_on
+      entity_id: group.theatre_tv
+    - service: script.theatre_stop_lights #turn lights to normal media 'pause' state
+    - delay: 5 #wait for surround sound receiver
+    - service: script.theatre_surround_sound_chromecast
+theatre_watch_chromecast:
+  alias: Theatre Watch Chromecast
+  sequence:
+    - service: homeassistant.turn_on
+      entity_id: group.theatre_tv
+    - service: media_player.media_pause
+      entity_id: media_player.theatre_roku #pause roku if running
+    - service: script.theatre_surround_sound_chromecast
+    - delay: 5 #wait for surround sound receiver if just turned on
+    - service: script.theatre_surround_sound_chromecast
+
+theatre_projector_off:
+  alias: Theatre Projector Off
+  sequence:
+    - service: switch.turn_off
+      entity_id: switch.theatre_projector
+    - service: switch.turn_off
+      entity_id: switch.theatre_projector
+
+theatre_off:
+  alias: Theatre Off
+  sequence:
+    - service: script.theatre_stop_lights
+    - service: remote.send_command
+      data:
+        entity_id: remote.theatre_roku
+        command:
+          - home
+    - service: homeassistant.turn_off
+      entity_id: group.theatre_tv
+    - service: script.theatre_projector_off
+    - delay: 120 #delay for 2 mins
+    - service: homeassistant.turn_off
+      entity_id: group.theatre_lights
+
+theatre_projector_16x9:
+  sequence:
+    - service: switch.turn_on
+      entity_id: switch.theatre_projector_menu
+    - delay:
+        milliseconds: 200
+    - service: switch.turn_on
+      entity_id: switch.theatre_projector_right
+    - delay:
+        milliseconds: 200
+    - service: switch.turn_on
+      entity_id: switch.theatre_projector_down
+    - delay:
+        milliseconds: 200
+    - service: switch.turn_on
+      entity_id: switch.theatre_projector_down
+    - delay:
+        milliseconds: 200
+    - service: switch.turn_on
+      entity_id: switch.theatre_projector_down
+    - delay:
+        milliseconds: 200
+    - service: switch.turn_on
+      entity_id: switch.theatre_projector_ok
+    - delay:
+        milliseconds: 200
+    - service: switch.turn_on
+      entity_id: switch.theatre_projector_left
+    - delay:
+        milliseconds: 200
+    - service: switch.turn_on
+      entity_id: switch.theatre_projector_left
+    - delay:
+        milliseconds: 200
+    - service: switch.turn_on
+      entity_id: switch.theatre_projector_left
+    - delay:
+        milliseconds: 200
+    - service: switch.turn_on
+      entity_id: switch.theatre_projector_left
+    - delay:
+        milliseconds: 200
+    - service: switch.turn_on
+      entity_id: switch.theatre_projector_left
+    - delay:
+        milliseconds: 200
+    - service: switch.turn_on
+      entity_id: switch.theatre_projector_left
+    - delay:
+        milliseconds: 200
+    - service: switch.turn_on
+      entity_id: switch.theatre_projector_left
+    - delay:
+        milliseconds: 200
+    - service: switch.turn_on
+      entity_id: switch.theatre_projector_menu
+
+theatre_projector_21x9:
+  sequence:
+    - service: switch.turn_on
+      entity_id: switch.theatre_projector_menu
+    - delay:
+        milliseconds: 200
+    - service: switch.turn_on
+      entity_id: switch.theatre_projector_right
+    - delay:
+        milliseconds: 200
+    - service: switch.turn_on
+      entity_id: switch.theatre_projector_down
+    - delay:
+        milliseconds: 200
+    - service: switch.turn_on
+      entity_id: switch.theatre_projector_down
+    - delay:
+        milliseconds: 200
+    - service: switch.turn_on
+      entity_id: switch.theatre_projector_down
+    - delay:
+        milliseconds: 200
+    - service: switch.turn_on
+      entity_id: switch.theatre_projector_ok
+    - delay:
+        milliseconds: 200
+    - service: switch.turn_on
+      entity_id: switch.theatre_projector_right
+    - delay:
+        milliseconds: 200
+    - service: switch.turn_on
+      entity_id: switch.theatre_projector_right
+    - delay:
+        milliseconds: 200
+    - service: switch.turn_on
+      entity_id: switch.theatre_projector_right
+    - delay:
+        milliseconds: 200
+    - service: switch.turn_on
+      entity_id: switch.theatre_projector_right
+    - delay:
+        milliseconds: 200
+    - service: switch.turn_on
+      entity_id: switch.theatre_projector_right
+    - delay:
+        milliseconds: 200
+    - service: switch.turn_on
+      entity_id: switch.theatre_projector_right
+    - delay:
+        milliseconds: 200
+    - service: switch.turn_on
+      entity_id: switch.theatre_projector_right
+    - delay:
+        milliseconds: 200
+    - service: switch.turn_on
+      entity_id: switch.theatre_projector_menu
+
+theatre_projector_3d:
+  sequence:
+    - service: switch.turn_on
+      entity_id: switch.theatre_projector_menu
+    - delay:
+        milliseconds: 200
+    - service: switch.turn_on
+      entity_id: switch.theatre_projector_right
+    - delay:
+        milliseconds: 200
+    - service: switch.turn_on
+      entity_id: switch.theatre_projector_up
+    - delay:
+        milliseconds: 200
+    - service: switch.turn_on
+      entity_id: switch.theatre_projector_ok
+    - delay:
+        milliseconds: 200
+    - service: switch.turn_on
+      entity_id: switch.theatre_projector_down
+    - delay:
+        milliseconds: 200
+    - service: switch.turn_on
+      entity_id: switch.theatre_projector_down
+    - delay:
+        milliseconds: 200
+    - service: switch.turn_on
+      entity_id: switch.theatre_projector_ok
+    - delay:
+        milliseconds: 200
+    - service: switch.turn_on
+      entity_id: switch.theatre_projector_right
+    - delay:
+        milliseconds: 200
+    - service: switch.turn_on
+      entity_id: switch.theatre_projector_ok
+
+theatre_projector_3d_off:
+  sequence:
+    - service: switch.turn_on
+      entity_id: switch.theatre_projector_menu
+    - delay:
+        milliseconds: 200
+    - service: switch.turn_on
+      entity_id: switch.theatre_projector_right
+    - delay:
+        milliseconds: 200
+    - service: switch.turn_on
+      entity_id: switch.theatre_projector_up
+    - delay:
+        milliseconds: 200
+    - service: switch.turn_on
+      entity_id: switch.theatre_projector_ok
+    - delay:
+        milliseconds: 200
+    - service: switch.turn_on
+      entity_id: switch.theatre_projector_down
+    - delay:
+        milliseconds: 200
+    - service: switch.turn_on
+      entity_id: switch.theatre_projector_down
+    - delay:
+        milliseconds: 200
+    - service: switch.turn_on
+      entity_id: switch.theatre_projector_ok
+    - delay:
+        milliseconds: 200
+    - service: switch.turn_on
+      entity_id: switch.theatre_projector_left
+    - delay:
+        milliseconds: 200
+    - service: switch.turn_on
+      entity_id: switch.theatre_projector_ok
+
+theatre_stop_lights:
+  sequence:
+    - condition: and
+      conditions:
+        - condition: state
+          entity_id: group.theatre_tv #Theatre TV equipment on
+          state: "on"
+        - condition: state
+          entity_id: light.theatre_lights
+          state: "off"
+    - service: light.turn_on
+      data:
+        entity_id: light.theatre_lights_rear
+        transition: 60
+        brightness_pct: 75
+    - delay: 1
+    - service: light.turn_on
+      data:
+        entity_id: light.theatre_lights_front
+        transition: 60
+        brightness_pct: 50
+
+theatre_play_lights:
+  sequence:
+    - condition: and
+      conditions:
+        - condition: state
+          entity_id: group.theatre_tv #Theatre TV equipment on
+          state: "on"
+        - condition: state
+          entity_id: light.theatre_lights
+          state: "on"
+    - service: light.turn_off
+      entity_id: light.theatre_lights_front
+    - delay: 1
+    - service: light.turn_off
+      entity_id: light.theatre_lights_rear

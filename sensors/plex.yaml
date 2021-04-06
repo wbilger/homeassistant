@@ -1,0 +1,42 @@
+- platform: plex_recently_added
+  token: !secret plex_media_server_token
+  host: 192.168.1.12
+  port: 32400
+  ssl: false
+  ssl_cert: false
+  download_images: false
+  max: 5
+  section_types:
+  - movie
+  - show
+
+# #Plex Webhooks mqtt sensors  
+# - platform: mqtt
+#   name: "Plex Family Room"
+#   state_topic: "plex/update/family_room"
+#   value_template: '{{ value_json.Event }}'
+#   json_attributes_topic: "plex/update/family_room"
+    
+# - platform: mqtt
+#   name: "Plex Theatre"
+#   state_topic: "plex/update/theatre"    
+#   value_template: '{{ value_json.Event }}'
+#   json_attributes_topic: "plex/update/theatre"      
+
+# - platform: mqtt
+#   name: "Plex Dining Room"
+#   state_topic: "plex/update/dining_room"    
+#   value_template: '{{ value_json.Event }}'
+#   json_attributes_topic: "plex/update/dining_room"      
+
+# - platform: mqtt
+#   name: "Plex Bedroom"
+#   state_topic: "plex/update/bedroom"    
+#   value_template: '{{ value_json.Event }}'
+#   json_attributes_topic: "plex/update/bedroom"      
+
+# - platform: mqtt
+#   name: "Plex Jalynne"
+#   state_topic: "plex/update/jalynne"    
+#   value_template: '{{ value_json.Event }}'
+#   json_attributes_topic: "plex/update/jalynne"      

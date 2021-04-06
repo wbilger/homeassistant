@@ -1,0 +1,18 @@
+switch.wayne_fr:
+  icon: mdi:desktop-classic
+  friendly_name: Computer
+switch.family_room_tv:
+  icon: mdi:television
+switch.family_room_plex:
+  icon: mdi:plex
+switch.family_room_surround_sound:
+  hidden: true
+  icon: mdi:surround-sound
+  assumed_state: false
+switch.family_room_kodi:
+  icon: mdi:kodi
+switch.family_room_bell:
+  icon: mdi:television-classic
+switch.deck_fan:
+  icon: mdi:fan
+  friendly_name: Deck TV Fan

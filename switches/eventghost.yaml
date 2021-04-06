@@ -1,0 +1,251 @@
+- platform: command_line
+  switches:
+    # PC commands  
+    family_room_monitor_on_off:
+      command_on: "/usr/bin/curl -k http://192.168.1.101:8099/?monitor_on_off"
+    family_room_chromecast:
+      friendly_name: Chromecast
+      command_on: "/usr/bin/curl -k http://192.168.1.101:8099/?chromecast_start"
+    #Keyboard Commands
+    family_room_pc_direction_up:
+      command_on: "/usr/bin/curl -k http://192.168.1.101:8099/?up"
+    family_room_pc_direction_down:
+      command_on: "/usr/bin/curl -k http://192.168.1.101:8099/?down"
+    family_room_pc_direction_left:
+      command_on: "/usr/bin/curl -k http://192.168.1.101:8099/?left"
+    family_room_pc_direction_right:
+      command_on: "/usr/bin/curl -k http://192.168.1.101:8099/?right"
+    family_room_pc_page_up:
+      command_on: "/usr/bin/curl -k http://192.168.1.101:8099/?page_up"
+    family_room_pc_page_down:
+      command_on: "/usr/bin/curl -k http://192.168.1.101:8099/?page_down"
+    family_room_pc_home:
+      command_on: "/usr/bin/curl -k http://192.168.1.101:8099/?home"
+    family_room_pc_end:
+      command_on: "/usr/bin/curl -k http://192.168.1.101:8099/?end"
+    family_room_pc_enter:
+      command_on: "/usr/bin/curl -k http://192.168.1.101:8099/?enter"
+    family_room_pc_escape:
+      command_on: "/usr/bin/curl -k http://192.168.1.101:8099/?escape"
+    family_room_pc_tab:
+      command_on: "/usr/bin/curl -k http://192.168.1.101:8099/?tab"
+    #Mouse Commands    
+    family_room_mouse_up:
+      command_on: "/usr/bin/curl -k http://192.168.1.101:8099/?mouse_up"
+    family_room_mouse_down:
+      command_on: "/usr/bin/curl -k http://192.168.1.101:8099/?mouse_down"
+    family_room_mouse_left:
+      command_on: "/usr/bin/curl -k http://192.168.1.101:8099/?mouse_left"
+    family_room_mouse_right:
+      command_on: "/usr/bin/curl -k http://192.168.1.101:8099/?mouse_right"
+    family_room_mouse_up_move:
+      command_on: "/usr/bin/curl -k http://192.168.1.101:8099/?mouse_up_move"
+    family_room_mouse_down_move:
+      command_on: "/usr/bin/curl -k http://192.168.1.101:8099/?mouse_down_move"
+    family_room_mouse_left_move:
+      command_on: "/usr/bin/curl -k http://192.168.1.101:8099/?mouse_left_move"
+    family_room_mouse_right_move:
+      command_on: "/usr/bin/curl -k http://192.168.1.101:8099/?mouse_right_move"
+    family_room_mouse_scroll_up:
+      command_on: "/usr/bin/curl -k http://192.168.1.101:8099/?mouse_scroll_up"
+    family_room_mouse_scroll_down:
+      command_on: "/usr/bin/curl -k http://192.168.1.101:8099/?mouse_scroll_down"
+    family_room_mouse_scroll_up_page:
+      command_on: "/usr/bin/curl -k http://192.168.1.101:8099/?mouse_scroll_up_page"
+    family_room_mouse_scroll_down_page:
+      command_on: "/usr/bin/curl -k http://192.168.1.101:8099/?mouse_scroll_down_page"
+    family_room_mouse_click:
+      command_on: "/usr/bin/curl -k http://192.168.1.101:8099/?mouse_click"
+    #Plex Commands
+    # Plex/Kodi PC commands  
+    family_room_kodi:
+      friendly_name: Kodi
+      command_on: "/usr/bin/curl -k http://192.168.1.101:8099/?kodi_start"
+      command_off: "/usr/bin/curl -k http://192.168.1.101:8099/?kodi_quit"
+    family_room_kodi_change_monitor:
+      friendly_name: Kodi Change Monitor
+      command_on: "/usr/bin/curl -k http://192.168.1.101:8099/?kodi_to_pc"
+      command_off: "/usr/bin/curl -k http://192.168.1.101:8099/?kodi_to_tv"
+    family_room_kodi_active:
+      command_on: "/usr/bin/curl -k http://192.168.1.101:8099/?kodi_active"
+    family_room_kodi_rewind:
+      command_on: "/usr/bin/curl -k http://192.168.1.101:8099/?kodi_rewind"
+    family_room_kodi_fastforward:
+      command_on: "/usr/bin/curl -k http://192.168.1.101:8099/?kodi_fastforward"
+    family_room_kodi_mute:
+      command_on: "/usr/bin/curl -k http://192.168.1.101:8099/?kodi_mute"
+    family_room_plex:
+      friendly_name: Plex
+      command_on: "/usr/bin/curl -k http://192.168.1.101:8099/?plex_start"
+      command_off: "/usr/bin/curl -k http://192.168.1.101:8099/?plex_quit"
+    family_room_plex_active:
+      command_on: "/usr/bin/curl -k http://192.168.1.101:8099/?plex_active"
+    family_room_plex_fullscreen:
+      command_on: "/usr/bin/curl -k http://192.168.1.101:8099/?plex_fullscreen"
+    family_room_plex_home:
+      command_on: "/usr/bin/curl -k http://192.168.1.101:8099/?plex_home"
+    family_room_plex_home_back:
+      command_on: "/usr/bin/curl -k http://192.168.1.101:8099/?plex_home_back"
+    family_room_plex_info:
+      command_on: "/usr/bin/curl -k http://192.168.1.101:8099/?plex_info"
+    family_room_plex_search:
+      command_on: "/usr/bin/curl -k http://192.168.1.101:8099/?plex_search"
+    family_room_plex_play:
+      command_on: "/usr/bin/curl -k http://192.168.1.101:8099/?plex_play"
+    family_room_plex_stop:
+      command_on: "/usr/bin/curl -k http://192.168.1.101:8099/?plex_stop"
+    family_room_plex_pause:
+      command_on: "/usr/bin/curl -k http://192.168.1.101:8099/?plex_pause"
+    family_room_plex_fastforward:
+      command_on: "/usr/bin/curl -k http://192.168.1.101:8099/?plex_fastforward"
+    family_room_plex_rewind:
+      command_on: "/usr/bin/curl -k http://192.168.1.101:8099/?plex_rewind"
+    family_room_plex_menu:
+      command_on: "/usr/bin/curl -k http://192.168.1.101:8099/?plex_menu"
+    family_room_plex_context_menu:
+      command_on: "/usr/bin/curl -k http://192.168.1.101:8099/?plex_context_menu"
+    family_room_plex_subtitles:
+      command_on: "/usr/bin/curl -k http://192.168.1.101:8099/?plex_subtitles"
+    family_room_plex_subtitles_next:
+      command_on: "/usr/bin/curl -k http://192.168.1.101:8099/?plex_subtitles_next"
+    #Bell Commands
+    family_room_bell:
+      friendly_name: Bell
+      command_on: "/usr/bin/curl -k http://192.168.1.101:8099/?bell_start"
+      command_off: "/usr/bin/curl -k http://192.168.1.101:8099/?bell_quit"
+    family_room_bell_active:
+      command_on: "/usr/bin/curl -k http://192.168.1.101:8099/?bell_active"
+    family_room_bell_channel0:
+      command_on: "/usr/bin/curl -k http://192.168.1.101:8099/?bell_channel0"
+    family_room_bell_channel1:
+      command_on: "/usr/bin/curl -k http://192.168.1.101:8099/?bell_channel1"
+    family_room_bell_channel2:
+      command_on: "/usr/bin/curl -k http://192.168.1.101:8099/?bell_channel2"
+    family_room_bell_channel3:
+      command_on: "/usr/bin/curl -k http://192.168.1.101:8099/?bell_channel3"
+    family_room_bell_channel4:
+      command_on: "/usr/bin/curl -k http://192.168.1.101:8099/?bell_channel4"
+    family_room_bell_channel5:
+      command_on: "/usr/bin/curl -k http://192.168.1.101:8099/?bell_channel5"
+    family_room_bell_channel6:
+      command_on: "/usr/bin/curl -k http://192.168.1.101:8099/?bell_channel6"
+    family_room_bell_channel7:
+      command_on: "/usr/bin/curl -k http://192.168.1.101:8099/?bell_channel7"
+    family_room_bell_channel8:
+      command_on: "/usr/bin/curl -k http://192.168.1.101:8099/?bell_channel8"
+    family_room_bell_channel9:
+      command_on: "/usr/bin/curl -k http://192.168.1.101:8099/?bell_channel9"
+    family_room_bell_command0:
+      command_on: "/usr/bin/curl -k http://192.168.1.101:8099/?bell_command0"
+    family_room_bell_command1:
+      command_on: "/usr/bin/curl -k http://192.168.1.101:8099/?bell_command1"
+    family_room_bell_command2:
+      command_on: "/usr/bin/curl -k http://192.168.1.101:8099/?bell_command2"
+    family_room_bell_command3:
+      command_on: "/usr/bin/curl -k http://192.168.1.101:8099/?bell_command3"
+    family_room_bell_command4:
+      command_on: "/usr/bin/curl -k http://192.168.1.101:8099/?bell_command4"
+    family_room_bell_command5:
+      command_on: "/usr/bin/curl -k http://192.168.1.101:8099/?bell_command5"
+    family_room_bell_command6:
+      command_on: "/usr/bin/curl -k http://192.168.1.101:8099/?bell_command6"
+    family_room_bell_command7:
+      command_on: "/usr/bin/curl -k http://192.168.1.101:8099/?bell_command7"
+    family_room_bell_command8:
+      command_on: "/usr/bin/curl -k http://192.168.1.101:8099/?bell_command8"
+    family_room_bell_command9:
+      command_on: "/usr/bin/curl -k http://192.168.1.101:8099/?bell_command9"
+      
+    #Jalynne Laptop Keyboard Commands
+    jalynne_laptop_volume_up:
+      command_on: "/usr/bin/curl -k http://192.168.1.105:8099/?volume_up"
+    jalynne_laptop_volume_down:
+      command_on: "/usr/bin/curl -k http://192.168.1.105:8099/?volume_down"
+    jalynne_laptop_volume_mute:
+      command_on: "/usr/bin/curl -k http://192.168.1.105:8099/?volume_mute"
+    jalynne_laptop_up:
+      command_on: "/usr/bin/curl -k http://192.168.1.105:8099/?up"
+    jalynne_laptop_down:
+      command_on: "/usr/bin/curl -k http://192.168.1.105:8099/?down"
+    jalynne_laptop_left:
+      command_on: "/usr/bin/curl -k http://192.168.1.105:8099/?left"
+    jalynne_laptop_right:
+      command_on: "/usr/bin/curl -k http://192.168.1.105:8099/?right"
+    jalynne_laptop_back:
+      command_on: "/usr/bin/curl -k http://192.168.1.105:8099/?back"
+    jalynne_laptop_page_up:
+      command_on: "/usr/bin/curl -k http://192.168.1.105:8099/?page_up"
+    jalynne_laptop_page_down:
+      command_on: "/usr/bin/curl -k http://192.168.1.105:8099/?page_down"
+    jalynne_laptop_home:
+      command_on: "/usr/bin/curl -k http://192.168.1.105:8099/?home"
+    jalynne_laptop_end:
+      command_on: "/usr/bin/curl -k http://192.168.1.105:8099/?end"
+    jalynne_laptop_enter:
+      command_on: "/usr/bin/curl -k http://192.168.1.105:8099/?enter"
+    jalynne_laptop_space:
+      command_on: "/usr/bin/curl -k http://192.168.1.105:8099/?space"
+    jalynne_laptop_escape:
+      command_on: "/usr/bin/curl -k http://192.168.1.105:8099/?escape"
+    jalynne_laptop_tab:
+      command_on: "/usr/bin/curl -k http://192.168.1.105:8099/?tab"
+    # Jalynne Laptop Plex/Kodi PC commands  
+    jalynne_plex:
+      friendly_name: Jalynne Plex
+      command_on: "/usr/bin/curl -k http://192.168.1.105:8099/?plex_start"
+      command_off: "/usr/bin/curl -k http://192.168.1.105:8099/?plex_quit"
+    jalynne_plex_minimize:
+      command_on: "/usr/bin/curl -k http://192.168.1.105:8099/?plex_minimize"
+    jalynne_plex_home:
+      command_on: "/usr/bin/curl -k http://192.168.1.105:8099/?plex_home"
+    jalynne_plex_home_back:
+      command_on: "/usr/bin/curl -k http://192.168.1.105:8099/?plex_home_back"
+    jalynne_plex_info:
+      command_on: "/usr/bin/curl -k http://192.168.1.105:8099/?plex_info"
+    jalynne_plex_search:
+      command_on: "/usr/bin/curl -k http://192.168.1.105:8099/?plex_search"
+    jalynne_plex_play:
+      command_on: "/usr/bin/curl -k http://192.168.1.105:8099/?plex_play"
+    jalynne_plex_stop:
+      command_on: "/usr/bin/curl -k http://192.168.1.105:8099/?plex_stop"
+    jalynne_plex_pause:
+      command_on: "/usr/bin/curl -k http://192.168.1.105:8099/?plex_pause"
+    jalynne_plex_fastforward:
+      command_on: "/usr/bin/curl -k http://192.168.1.105:8099/?plex_fastforward"
+    jalynne_plex_rewind:
+      command_on: "/usr/bin/curl -k http://192.168.1.105:8099/?plex_rewind"
+    jalynne_plex_menu:
+      command_on: "/usr/bin/curl -k http://192.168.1.105:8099/?plex_menu"
+    jalynne_plex_context_menu:
+      command_on: "/usr/bin/curl -k http://192.168.1.105:8099/?plex_context_menu"
+    jalynne_plex_subtitles:
+      command_on: "/usr/bin/curl -k http://192.168.1.105:8099/?plex_subtitles"
+    jalynne_plex_subtitles_next:
+      command_on: "/usr/bin/curl -k http://192.168.1.105:8099/?plex_subtitles_next"
+    jalynne_plex_volume_up:
+      command_on: "/usr/bin/curl -k http://192.168.1.105:8099/?plex_volume_up"
+    jalynne_plex_volume_down:
+      command_on: "/usr/bin/curl -k http://192.168.1.105:8099/?plex_volume_down"
+    jalynne_netflix:
+      friendly_name: Jalynne Netflix
+      command_on: "/usr/bin/curl -k http://192.168.1.105:8099/?netflix_start"
+      command_off: "/usr/bin/curl -k http://192.168.1.105:8099/?netflix_quit"
+    jalynne_netflix_minimize:
+      command_on: "/usr/bin/curl -k http://192.168.1.105:8099/?netflix_minimize"
+    jalynne_netflix_stop:
+      command_on: "/usr/bin/curl -k http://192.168.1.105:8099/?netflix_stop"
+    jalynne_netflix_fastforward:
+      command_on: "/usr/bin/curl -k http://192.168.1.105:8099/?netflix_fastforward"
+    jalynne_netflix_rewind:
+      command_on: "/usr/bin/curl -k http://192.168.1.105:8099/?netflix_rewind"
+    jalynne_netflix_fastforward_big:
+      command_on: "/usr/bin/curl -k http://192.168.1.105:8099/?netflix_fastforward_bit"
+    jalynne_netflix_rewind_big:
+      command_on: "/usr/bin/curl -k http://192.168.1.105:8099/?netflix_rewind_big"
+    jalynne_netflix_rewind_beginning:
+      command_on: "/usr/bin/curl -k http://192.168.1.105:8099/?netflix_rewind_beginning"
+    jalynne_netflix_navmenu:
+      command_on: "/usr/bin/curl -k http://192.168.1.105:8099/?netflix_navmenu"
+    jalynne_netflix_search:
+      command_on: "/usr/bin/curl -k http://192.168.1.105:8099/?netflix_search"
+      

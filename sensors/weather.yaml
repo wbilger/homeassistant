@@ -1,0 +1,48 @@
+# Weather prediction
+- platform: darksky
+  api_key: !secret darksky_api  
+  forecast:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+  monitored_conditions:
+    - icon
+    - summary
+    - temperature
+    - nearest_storm_distance
+    - nearest_storm_bearing
+    - humidity
+    - temperature
+    - temperature_low
+    - temperature_high
+    - apparent_temperature
+    - apparent_temperature_low
+    - apparent_temperature_high
+    - cloud_cover
+    - wind_speed
+    - wind_bearing
+    - precip_type
+    - precip_probability
+    - precip_accumulation
+    - precip_intensity
+    - precip_intensity_max
+    - uv_index
+    - daily_summary
+    - hourly_summary
+    - minutely_summary
+    - pressure
+    - visibility
+
+- platform: template
+  sensors:
+    dark_sky_wind_speed_kmh:
+      friendly_name: 'Wind Speed'
+      unit_of_measurement: 'km/h'
+      value_template: '{{ states("sensor.dark_sky_wind_speed") | float * 18 / 5 }}'  #convert to km/h
+    sun_elevation:
+      friendly_name: 'Sun Elevation'
+      unit_of_measurement: '°'
+      value_template: '{{ "%+.1f"|format(state_attr("sun.sun", "elevation")) }}'

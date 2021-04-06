@@ -1,0 +1,36 @@
+light.entrance_light:
+  icon: mdi:ceiling-light
+light.desk_lamp:
+  icon: mdi:lamp
+light.kitchen_sink_light:
+  icon: mdi:ceiling-light
+light.kitchen_island_lights:
+  icon: mdi:spotlight-beam
+light.family_room_light:
+  icon: mdi:ceiling-light
+light.theatre_lights:
+  icon: mdi:spotlight-beam
+light.theatre_lights_front:
+  icon: mdi:spotlight-beam
+light.theatre_lights_back:
+  icon: mdi:spotlight-beam
+light.bedroom_light:
+  icon: mdi:ceiling-light
+light.dining_room_light:
+  icon: mdi:ceiling-light
+switch.dining_room_fan:
+  icon: mdi:fan
+light.kales_lamp:
+  icon: mdi:lamp
+  supported_features: 63
+light.jalynnes_lamp:
+  icon: mdi:lamp
+  supported_features: 63
+switch.jalynne_bedroom_fan:
+  icon: mdi:fan
+light.christmas_tree:
+  icon: mdi:pine-tree
+script.kitchen_lights_night_dim:
+  icon: mdi:weather-night
+script.bedtime:
+  icon: mdi:bed

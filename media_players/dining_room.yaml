@@ -1,0 +1,14 @@
+# - platform: androidtv
+#   name: Dining Room AFTT
+#   host: 192.168.1.55
+- platform: androidtv
+  name: Dining Room Chromecast
+  host: 192.168.1.67
+
+- platform: universal
+  name: Dining Room Plex
+  children:
+    - media_player.dining_room_chromecast_plex
+    - media_player.dining_room_aftt_plex
+    - media_player.dining_room_roku_plex
+    - media_player.dining_room_tv_plex

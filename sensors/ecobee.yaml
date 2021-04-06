@@ -1,0 +1,160 @@
+#ecobee_api: QZrzuOmRXsdXfjlRa13gYQS6E8LrobSe
+# - platform: broadlink
+#   name: bedroom
+#   scan_interval: 60
+#   host: 192.168.1.80
+#   mac: '34:EA:34:D0:AB:B1'
+#   monitored_conditions:
+#     - temperature
+# - platform: broadlink
+#   name: bedroom_kale
+#   scan_interval: 60
+#   host: 192.168.1.83
+#   mac: '34:EA:34:C7:CC:BE'
+#   monitored_conditions:
+#     - temperature
+
+- platform: min_max
+  name: Bilger Home Temperature Avg
+  type: mean
+  round_digits: 1
+  entity_ids:
+    - sensor.bilger_home_temperature
+    - sensor.kitchen_temperature
+    - sensor.bedroom_temperature
+    - sensor.family_room_temperature
+    - sensor.bedroom_kale_temperature
+- platform: min_max
+  name: Dining Room Temperature
+  type: mean
+  round_digits: 1
+  entity_ids:
+    - sensor.kitchen_temperature
+    - sensor.rm_pro_dr_temperature
+
+- platform: template
+  sensors:
+    rtemperature_ecobee:
+      friendly_name: 'Ecobee Temperature'
+      unit_of_measurement: '°C'
+      value_template: '{{ states("sensor.ecobee_temperature") | round }}'
+    rtemperature_diningroom:
+      friendly_name: 'Dining Room Temperature'
+      unit_of_measurement: '°C'
+      value_template: '{{ states("sensor.dining_room_temperature") | round }}'
+    rtemperature_family_room:
+      friendly_name: 'Family Room Temperature'
+      unit_of_measurement: '°C'
+      value_template: '{{ states("sensor.family_room_temperature") | round }}'
+    rtemperature_bedroom:
+      friendly_name: 'Bedroom Temperature'
+      unit_of_measurement: '°C'
+      value_template: '{{ states("sensor.rm_pro_br_temperature") | round }}'
+    rtemperature_home_avg:
+      friendly_name: 'Bilger Home Temperature Average'
+      unit_of_measurement: '°C'
+      value_template: '{{ states("sensor.bilger_home_temperature_avg") | round }}'
+    ecobee_temperature_target_real:
+      friendly_name: 'Ecobee Target Temperature '
+      value_template: >-
+          {% if states("sensor.ecobee_temperature_target") != "None" and states("sensor.ecobee_temperature_target") != "unknown" %}
+            {{ states("sensor.ecobee_temperature_target") }}
+          {% endif %}
+    ecobee_mode_operation:
+      friendly_name: 'Ecobee Mode'
+      value_template: >-
+          {% if is_state_attr("climate.bilger_home", "fan", "on") %}
+            Fan
+          {% elif is_state_attr("climate.bilger_home", "hvac_mode", "heat") %}
+            Heat
+          {% elif is_state_attr("climate.bilger_home", "hvac_mode", "cool") %}
+            Cool
+          {% elif is_state_attr("climate.bilger_home", "hvac_mode", "auto") %}            
+            Auto
+          {% elif is_state_attr("climate.bilger_home", "hvac_mode", "off") %}            
+            Off
+          {% elif state_attr("climate.bilger_home", "hvac_mode") is defined %}
+            ?
+          {% endif %}
+    ecobee_operation:
+      friendly_name: 'Operation'
+      value_template: >-
+          {% if is_state_attr("climate.bilger_home", "hvac_action", "heating") %}
+            Heat
+          {% elif is_state_attr("climate.bilger_home", "hvac_action", "cooling") %}
+            Cool
+          {% elif is_state_attr("climate.bilger_home", "hvac_action", "fan") %}            
+            Fan
+          {% elif is_state_attr("climate.bilger_home", "hvac_action", "off") %}            
+            Idle
+          {% else %}
+            {{ state_attr("climate.bilger_home", "hvac_action") }}
+          {% endif %}
+    ecobee_mode_hold:
+      friendly_name: 'Hold Mode'
+      value_template: >-
+          {% if is_state_attr("climate.bilger_home", "hold_mode", "temp") %}
+            Manual
+          {% elif is_state_attr("climate.bilger_home", "hold_mode", "home") %}
+            Home
+          {% elif is_state_attr("climate.bilger_home", "hold_mode", "away") %}
+            Away
+          {% elif is_state_attr("climate.bilger_home", "hold_mode", "off") or is_state_attr("climate.bilger_home", "hold_mode", "None") %}
+            'Off'
+          {% else %}
+            {{ state_attr("climate.bilger_home", "hold_mode") }}
+          {% endif %}
+    ecobee_mode_status:
+      friendly_name: 'Preset Mode'
+      value_template: '{{ states("sensor.ecobee_mode_home") }}'
+    #   value_template: >-
+    #       {% if is_state_attr("climate.bilger_home", "preset_mode", "temp") %}
+    #         Manual
+    #       {% elif is_state_attr("climate.bilger_home", "preset_mode", "home") %}
+    #         Home
+    #       {% elif is_state_attr("climate.bilger_home", "preset_mode", "away") %}
+    #         Away
+    #       {% elif is_state_attr("climate.bilger_home", "preset_mode", "vacation") %}
+    #         Vacation            
+    #       {% elif state_attr("climate.bilger_home", "preset_mode") | string == "off' or state_attr("climate.bilger_home", "preset_mode") | string == "None") %}
+    #         {{ states("sensor.ecobee_mode_home") }}
+    #       {% elif state_attr("climate.bilger_home", "preset_mode") is defined %}
+    #         ?
+    #       {% endif %}
+    ecobee_fan:
+      friendly_name: 'Fan'
+      value_template: >-
+          {% if is_state_attr("climate.bilger_home", "fan", "on") %}
+            On
+          {% elif is_state_attr("climate.bilger_home", "fan", "off") %}
+            Off
+          {% else %}
+            {{ state_attr("climate.bilger_home", "fan") }}
+          {% endif %}
+    ecobee_temperature_avg:
+      friendly_name: 'Average Temperature (Ecobee)'
+      unit_of_measurement: '°C'
+      value_template: '{{ state_attr("climate.bilger_home", "current_temperature") }}'
+    ecobee_temperature:
+      friendly_name: 'Ecobee Temperature'
+      unit_of_measurement: '°C'
+      value_template: '{{ states("sensor.bilger_home_temperature") }}'
+    ecobee_mode_home:
+      friendly_name: 'House Mode'
+      value_template: '{{ state_attr("climate.bilger_home", "climate_mode") }}'
+    ecobee_temperature_target:
+      friendly_name: 'Target Temperature'
+      unit_of_measurement: '°C'
+      value_template: '{{ state_attr("climate.bilger_home", "temperature") }}'
+    ecobee_temperature_target_low:
+      friendly_name: 'Target Temperature Low'
+      unit_of_measurement: '°C'
+      value_template: '{{ state_attr("climate.bilger_home", "min_temp") }}'
+    ecobee_temperature_target_high:
+      friendly_name: 'Target Temperature High'
+      unit_of_measurement: '°C'
+      value_template: '{{ state_attr("climate.bilger_home", "max_temp") }}'
+    ecobee_humidity:
+      unit_of_measurement: '%'
+      friendly_name: 'Humidity'
+      value_template: '{{ state_attr("climate.bilger_home", "current_humidity") }}'

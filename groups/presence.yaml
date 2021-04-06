@@ -1,0 +1,74 @@
+bilger_home_motion:
+  name: Bilger Home Motion
+  entities:
+    - binary_sensor.fully_kitchen_dashboard
+    - binary_sensor.kitchen
+    - binary_sensor.kitchen_occupancy
+    - binary_sensor.remote_family_room_motion
+    - binary_sensor.remote_theatre_motion
+    - binary_sensor.family_room_occupancy
+bilger_home:
+  name: Bilger Family Presence
+  entities:
+    - input_select.bilger_home_override
+    - input_select.bilger_home_motion
+    - person.wayne
+    - person.jenn
+    - person.kale
+    - person.jalynne
+bilger_home_phones:
+  name: Bilger Family Phones Presence
+  entities:
+    - person.wayne
+    - person.jenn
+    - person.kale
+    - person.jalynne
+bilger_parents:
+  name: Bilger Parents Presence
+  entities:
+    - person.wayne
+    - person.jenn
+
+chromecast_family_room:
+  name: Chromecast Family Room
+  entities:
+    - device_tracker.chromecast_family_room
+    - device_tracker.chromecast_family_room_ping
+tv_dining_room:
+  name: TV Dining Room
+  entities:
+    - device_tracker.tv_dining_room
+    - device_tracker.tv_dining_room_ping
+    - device_tracker.tv_dining_room_wireless
+    - device_tracker.tv_dining_room_wireless_ping
+chromecast_dining_room:
+  name: Chromecast Dining Room
+  entities:
+    - device_tracker.chromecast_dining_room
+    - device_tracker.chromecast_dining_room_ping
+tv_bedroom:
+  name: TV Bedroom
+  entities:
+    - device_tracker.chromecast_bedroom
+    - device_tracker.chromecast_bedroom_ping    
+chromecast_bedroom:
+  name: Chromecast Bedroom
+  entities:
+    - device_tracker.chromecast_bedroom
+    - device_tracker.chromecast_bedroom_ping    
+tv_theatre:
+  name: TV Theatre
+  entities:
+    - device_tracker.chromecast_theatre
+    - device_tracker.chromecast_theatre_ping        
+chromecast_theatre:
+  name: Chromecast Theatre
+  entities:
+    - device_tracker.chromecast_theatre
+    - device_tracker.chromecast_theatre_ping        
+
+ikea_tradfri_gateway:
+  name: IKEA Tradfri Gateway
+  entities:
+    - device_tracker.ikea_tradfri_gateway_nmap
+    - device_tracker.ikea_tradfri_gateway_ping            

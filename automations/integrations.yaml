@@ -1,0 +1,81 @@
+- alias: "IKEA Tradfri Missing"
+  initial_state: "on"
+  trigger:
+    - platform: state
+      entity_id: group.ikea_tradfri_gateway
+      from: "home"
+      to: "not_home"
+  action:
+    - service: switch.turn_off #turn off smart switch for Ikea Tradfri Gateway
+      entity_id: switch.ikea_tradfri_gateway
+    - delay: 2
+    - service: switch.turn_on #turn on smart switch for Ikea Tradfri Gateway
+      entity_id: switch.ikea_tradfri_gateway
+
+- alias: "IKEA Tradfri On"
+  initial_state: "on"
+  trigger:
+    - platform: state
+      entity_id: group.ikea_tradfri_gateway
+      from: "not_home"
+      to: "home"
+  condition:
+    - condition: state
+      entity_id: group.ikea_lights
+      state: "unavailable"
+  action:
+    - service: rest_command.reload_ikea
+      data: {}
+
+#SHOULDN"T NEED - alias: "IKEA Tradfri reload hourly"
+#   initial_state: "on"
+#   trigger:
+#     - platform: time_pattern
+#       hours: "/1" #every hour at top of hour
+#       minutes: 0
+#       seconds: 0
+#   condition:
+#     - condition: state
+#       entity_id: group.ikea_lights
+#       state: 'unavailable'
+#   action:
+#     - service: rest_command.reload_ikea
+#       data: {}
+
+- alias: "IKEA Tradfri reload unavailable"
+  initial_state: "on"
+  mode: single
+  trigger:
+    - platform: state
+      entity_id: group.ikea_lights
+      to: "unavailable"
+  action:
+    - service: rest_command.reload_ikea
+      data: {}
+
+- alias: "Plex reload unavailable"
+  initial_state: "on"
+  mode: single
+  trigger:
+    - platform: state
+      entity_id: media_player.family_room_roku_plex
+      to: "unavailable"
+      for: "00:02:00"
+  action:
+    - service: rest_command.reload_plex
+      data: {}
+
+- alias: "Plex Family Room reload unavailable"
+  initial_state: "on"
+  mode: single
+  trigger:
+    - platform: state
+      entity_id: sensor.family_room_roku_app
+      to: "Plex"
+  condition:
+    - condition: state
+      entity_id: media_player.family_room_roku_plex
+      state: "unavailable"
+  action:
+    - service: rest_command.reload_plex
+      data: {}

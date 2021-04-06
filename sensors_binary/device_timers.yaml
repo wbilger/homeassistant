@@ -1,0 +1,87 @@
+- platform: template
+  sensors:
+    device_timer_1:
+      value_template: >
+        {% if states("input_boolean.device_timer_1_enabled_on") == "on" or states("input_boolean.device_timer_1_enabled_off") == "on" %}true{% else %}false{% endif %}
+    device_timer_1_on_time:
+      friendly_name: 'Device 1 On Time'
+      value_template: >- 
+        {% if is_state("input_boolean.device_timer_1_on_time_sun", "on") %}
+          {% if (state_attr("sun.sun", "elevation") < states("input_number.device_timer_1_on_time_sun") | float) and (now().hour > 12)
+          and ((now().hour*60*60 + now().minute*60 + now().second) < state_attr("input_datetime.device_timer_1_off_time", "timestamp")) %} true
+          {% else %} false
+          {% endif %}
+        {% elif ((now().hour*60*60 + now().minute*60 + now().second) > state_attr("input_datetime.device_timer_1_on_time", "timestamp")) 
+          and ((now().hour*60*60 + now().minute*60 + now().second) < state_attr("input_datetime.device_timer_1_off_time", "timestamp")) %} true
+        {% else %} false
+        {% endif %}
+    device_timer_2:
+      value_template: '{% if states("input_boolean.device_timer_2_enabled_on") == "on" or states("input_boolean.device_timer_2_enabled_off") == "on" %}true{% else %}false{% endif %}'
+    device_timer_2_on_time:
+      friendly_name: 'Device 2 On Time'
+      value_template: >-
+        {% if is_state("input_boolean.device_timer_2_on_time_sun", "on") %}
+          {% if (state_attr("sun.sun", "elevation") < states("input_number.device_timer_2_on_time_sun") | float) and (now().hour > 12)
+          and ((now().hour*60*60 + now().minute*60 + now().second) < state_attr("input_datetime.device_timer_2_off_time", "timestamp")) %} true
+          {% else %} false
+          {% endif %}
+        {% elif ((now().hour*60*60 + now().minute*60 + now().second) > state_attr("input_datetime.device_timer_2_on_time", "timestamp"))
+          and ((now().hour*60*60 + now().minute*60 + now().second) < state_attr("input_datetime.device_timer_2_off_time", "timestamp")) %} true
+        {% else %} false
+        {% endif %}
+    device_timer_3:
+      value_template: '{% if states("input_boolean.device_timer_3_enabled_on") == "on" or states("input_boolean.device_timer_3_enabled_off") == "on" %}true{% else %}false{% endif %}'
+    device_timer_3_on_time:
+      friendly_name: 'Device 3 On Time'
+      value_template: >-
+        {% if is_state("input_boolean.device_timer_3_on_time_sun", "on") %}
+          {% if (state_attr("sun.sun", "elevation") < states("input_number.device_timer_3_on_time_sun") | float) and (now().hour > 12)
+          and ((now().hour*60*60 + now().minute*60 + now().second) < state_attr("input_datetime.device_timer_3_off_time", "timestamp")) %} true
+          {% else %} false
+          {% endif %}
+        {% elif ((now().hour*60*60 + now().minute*60 + now().second) > state_attr("input_datetime.device_timer_3_on_time", "timestamp"))
+          and ((now().hour*60*60 + now().minute*60 + now().second) < state_attr("input_datetime.device_timer_3_off_time", "timestamp")) %} true
+        {% else %} false
+        {% endif %}
+    device_timer_xmas_tree:
+      value_template: >
+        {% if states("input_boolean.device_timer_xmas_tree_manual") == "on" or
+        states("input_boolean.device_timer_xmas_tree_enabled_on") == "on" or
+        states("input_boolean.device_timer_xmas_tree_enabled_off") == "on" %}true{% else %}false{% endif %}
+    device_timer_xmas_tree_on_time:
+      friendly_name: 'Device Xmas Tree On Time'
+      value_template: >-
+        {% if is_state("input_boolean.device_timer_xmas_tree_on_time_sun", "on") %}
+          {% if (state_attr("sun.sun", "elevation") < states("input_number.device_timer_xmas_tree_on_time_sun") | float) and (now().hour > 12)
+          and ((now().hour*60*60 + now().minute*60 + now().second) < state_attr("input_datetime.device_timer_xmas_tree_off_time", "timestamp")) %} true
+          {% else %} false
+          {% endif %}
+        {% elif ((now().hour*60*60 + now().minute*60 + now().second) > state_attr("input_datetime.device_timer_xmas_tree_on_time", "timestamp"))
+          and ((now().hour*60*60 + now().minute*60 + now().second) < state_attr("input_datetime.device_timer_xmas_tree_off_time", "timestamp")) %} true
+        {% else %} false
+        {% endif %}
+        
+# binary_sensor:
+#   - platform: template
+#     sensors:
+#       kale_home:
+#           - person.kale
+#       value_template: >-
+#           {{ is_state("person.wayne", "home")
+#       kale_home:
+#           - person.kale
+#       value_template: >-
+#           {{ is_state("person.kale", "home")
+        
+#       bilgers_home:
+#           - person.kale
+#           - person.jalynne
+#           - binary_sensor.kitchen
+#         value_template: >-
+#           {{ is_state("device_tracker.sean", "home")
+#             or is_state("device_tracker.susan", "home")
+#             or is_state("binary_sensor.office_124", "on")
+#             or is_state("binary_sensor.hallway_134", "on")
+#             or is_state("binary_sensor.living_room_139", "on")
+#             or is_state("binary_sensor.porch_ms6_1_129", "on")
+#             or is_state("binary_sensor.family_room_144", "on") }}

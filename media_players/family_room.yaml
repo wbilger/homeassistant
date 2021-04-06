@@ -1,0 +1,99 @@
+- platform: universal
+  name: Family Room Plex
+  children:
+    - media_player.family_room_roku_plex
+    - media_player.family_room_pc_plex
+  commands:
+    volume_up:
+      service: switch.turn_on
+      data:
+        entity_id: switch.family_room_surround_sound_volume_up
+    volume_down:
+      service: switch.turn_on
+      data:
+        entity_id: switch.family_room_surround_sound_volume_down
+    volume_mute:
+      service: switch.turn_on
+      data:
+        entity_id: switch.family_room_surround_sound_volume_mute
+
+- platform: universal
+  name: Family Room Roku TV
+  children:
+    - media_player.family_room_roku
+  commands:
+    turn_on:
+      service: switch.turn_on
+      data:
+        entity_id: switch.family_room_plex
+    turn_off:
+      service: switch.turn_off
+      data:
+        entity_id: switch.family_room_plex
+    volume_up:
+      service: remote.send_command
+      target:
+        entity_id: remote.roku
+      data:
+        command:
+          - volume_up
+    volume_down:
+      service: remote.send_command
+      target:
+        entity_id: remote.roku
+      data:
+        command:
+          - volume_down
+    volume_mute:
+      service: remote.send_command
+      target:
+        entity_id: remote.roku
+      data:
+        command:
+          - volume_mute
+
+- platform: universal
+  name: Family Room Universal
+  children:
+    - media_player.family_room_plex
+    - media_player.family_room_pc_plex
+    - media_player.family_room_kodi
+    - media_player.family_room_chromecast
+    - media_player.family_room_roku
+  commands:
+    # turn_on:
+    #   service: switch.turn_on
+    #   data:
+    #     entity_id: switch.living_room_tv
+    # turn_off:
+    #   service: switch.turn_off
+    #   data:
+    #     entity_id: switch.living_room_tv
+    volume_up:
+      service: switch.turn_on
+      data:
+        entity_id: switch.family_room_surround_sound_volume_up
+    volume_down:
+      service: switch.turn_on
+      data:
+        entity_id: switch.family_room_surround_sound_volume_down
+    volume_mute:
+      service: switch.turn_on
+      data:
+        entity_id: switch.family_room_surround_sound_volume_mute
+  #   select_source:
+  #     service: media_player.select_source
+  #     data_template:
+  #       entity_id: media_player.receiver
+  #       source: '{{ source }}'
+  #   volume_set:
+  #     service: media_player.volume_set
+  #     data_template:
+  #       entity_id: media_player.receiver
+  #       volume_level: '{{ volume_level }}'
+  # attributes:
+  #   state: switch.living_room_tv
+  #   is_volume_muted: switch.living_room_mute
+  #   volume_level: media_player.receiver|volume_level
+  #   source: media_player.receiver|source
+  #   source_list: media_player.receiver|source_list

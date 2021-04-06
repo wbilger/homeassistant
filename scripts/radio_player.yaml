@@ -1,0 +1,7 @@
+radio_presets_popup_press:    #Preset button pressed on popup
+  sequence:
+    - service: notify.google_assistant_command
+      data_template:
+        message: '{{ var_message }}'
+    - delay: 1    
+    - service: browser_mod.close_popup    

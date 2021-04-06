@@ -1,0 +1,23 @@
+bedtime:
+  alias: Bedtime
+  sequence:
+    - service: homeassistant.turn_off
+      data:
+        entity_id: group.theatre
+    - service: homeassistant.turn_off
+      data:
+        entity_id: group.family_room
+    - service: light.turn_off
+      data:
+        entity_id: group.entrance_way_lights
+    - service: light.turn_off
+      data:
+        entity_id: group.dining_room_lights
+    - delay: 10
+    - service: light.turn_on
+      data:
+        entity_id: light.jenn_bedroom
+    - delay: 30
+    - service: light.turn_off
+      data:
+        entity_id: group.kitchen_island_lights

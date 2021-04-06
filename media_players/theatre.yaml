@@ -1,0 +1,19 @@
+- platform: universal
+  name: Theatre Universal
+  children:
+    - media_player.theatre_plex
+    - media_player.theatre_roku
+    - media_player.theatre_chromecast
+  commands:
+    volume_up:
+      service: switch.turn_on
+      data:
+        entity_id: switch.theatre_surround_sound_volume_up
+    volume_down:
+      service: switch.turn_on
+      data:
+        entity_id: switch.theatre_surround_sound_volume_down
+    volume_mute:
+      service: switch.turn_on
+      data:
+        entity_id: switch.theatre_surround_sound_volume_mute

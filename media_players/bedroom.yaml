@@ -1,0 +1,34 @@
+- platform: androidtv
+  name: Deck AFTT
+  host: 192.168.1.56
+
+- platform: androidtv
+  name: Jalynne AFTT
+  host: 192.168.1.57
+
+- platform: universal
+  name: Bedroom Universal
+  children:
+    - media_player.bedroom_plex
+    - media_player.bedroom_chromecast
+    - media_player.bedroom_roku
+  commands:
+    volume_up:
+      service: switch.turn_on
+      data:
+        entity_id: switch.bedroom_tv_volume_up
+    volume_down:
+      service: switch.turn_on
+      data:
+        entity_id: switch.bedroom_tv_volume_down
+    volume_mute:
+      service: switch.turn_on
+      data:
+        entity_id: switch.bedroom_tv_volume_mute
+
+- platform: universal
+  name: Jalynne Plex
+  children:
+    - media_player.jalynne_aftt_plex
+    - media_player.jalynne_roku_plex
+    - media_player.jalynne_laptop_plex

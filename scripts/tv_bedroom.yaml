@@ -1,0 +1,204 @@
+bedroom_watch_roku:
+  sequence:
+    - service: script.bedroom_watch_hdmi1
+bedroom_watch_firetv:
+  sequence:
+    - service: script.bedroom_watch_hdmi1
+bedroom_watch_plex:
+  sequence:
+    - service: script.bedroom_watch_hdmi1
+bedroom_watch_kodi:
+  sequence:
+    - service: script.bedroom_watch_hdmi1
+bedroom_watch_hdmi1:
+  sequence:
+    - service: switch.turn_on
+      entity_id: switch.bedroom_tv_input_hdmi1
+    - condition: state
+      entity_id: switch.bedroom_tv
+      state: 'off'
+    - service: switch.turn_on
+      entity_id: switch.bedroom_tv
+    - delay: 10    #wait at least 10 seconds in case group.tv_bedroom is still 'home' if tv just shut off    
+    - wait_template: '{{ is_state("group.tv_bedroom", "home") }}'
+      timeout: '00:00:25'           #delay for TV to start before changing inputs (if on wrong input)
+      continue_on_timeout: 'true'    
+    - service: switch.turn_on
+      entity_id: switch.bedroom_tv_input_hdmi1
+bedroom_watch_chromecast:
+  sequence:
+    - service: switch.turn_on
+      entity_id: switch.bedroom_tv_input_hdmi2
+    - condition: state
+      entity_id: switch.bedroom_tv
+      state: 'off'
+    - service: switch.turn_on
+      entity_id: switch.bedroom_tv
+    - delay: 10    #wait at least 10 seconds in case group.tv_bedroom is still 'home' if tv just shut off    
+    - wait_template: '{{ is_state("group.tv_bedroom", "home") }}'
+      timeout: '00:00:25'           #delay for TV to start before changing inputs (if on wrong input)
+      continue_on_timeout: 'true'    
+    - service: switch.turn_on
+      entity_id: switch.bedroom_tv_input_hdmi1
+bedroom_watch_tv:
+  sequence:
+    - service: switch.turn_on
+      entity_id: switch.bedroom_tv_input_tv
+    - condition: state
+      entity_id: switch.bedroom_tv
+      state: 'off'
+    - service: switch.turn_on
+      entity_id: switch.bedroom_tv
+    - delay: 10    #wait at least 10 seconds in case group.tv_bedroom is still 'home' if tv just shut off    
+    - wait_template: '{{ is_state("group.tv_bedroom", "home") }}'
+      timeout: '00:00:25'           #delay for TV to start before changing inputs (if on wrong input)
+      continue_on_timeout: 'true'    
+    - service: switch.turn_on
+      entity_id: switch.bedroom_tv_input_hdmi1
+bedroom_tv_off:
+  sequence:
+    - service: media_player.turn_off
+      entity_id: media_player.bedroom_chromecast      #stop anything playing on chromecast
+    - service: switch.turn_off
+      entity_id: switch.bedroom_tv
+
+bedroom_tv_input_tv:
+  sequence:
+    - condition: template
+      value_template: '{{ states("input_select.remote_bedroom") != "TV" }}'
+    - service: script.turn_on
+      data_template:
+        entity_id: >
+          {% if is_state("input_select.remote_bedroom", "FireTV") %}
+            script.bedroom_tv_input_down_3
+          {% elif is_state("input_select.remote_bedroom", "Chromecast") %}
+            script.bedroom_tv_input_down_4
+          {% endif %}
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.remote_bedroom
+        option: TV
+bedroom_tv_input_chromecast:
+  sequence:
+    - condition: template
+      value_template: '{{ states("input_select.remote_bedroom") != "Chromecast" }}'
+    - service: script.turn_on
+      data_template:
+        entity_id: >
+          {% if is_state("input_select.remote_bedroom", "TV") %}
+            script.bedroom_tv_input_down_4
+          {% elif is_state("input_select.remote_bedroom", "FireTV") %}
+            script.bedroom_tv_input_up_1
+          {% endif %}
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.remote_bedroom
+        option: Chromecast
+bedroom_tv_input_roku:
+  sequence:
+    - condition: template
+      value_template: '{{ states("input_select.remote_bedroom") != "Roku" }}'
+    - service: script.turn_on
+      data_template:
+        entity_id: >
+          {% if is_state("input_select.remote_bedroom", "TV") %}
+            script.bedroom_tv_input_up_3
+          {% elif is_state("input_select.remote_bedroom", "Chromecast") %}
+            script.bedroom_tv_input_down_1
+          {% endif %}
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.remote_bedroom
+        option: Roku
+bedroom_tv_input_firetv:
+  sequence:
+    - condition: template
+      value_template: '{{ states("input_select.remote_bedroom") != "FireTV" }}'
+    - service: script.turn_on
+      data_template:
+        entity_id: >
+          {% if is_state("input_select.remote_bedroom", "TV") %}
+            script.bedroom_tv_input_up_3
+          {% elif is_state("input_select.remote_bedroom", "Chromecast") %}
+            script.bedroom_tv_input_down_1
+          {% endif %}
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.remote_bedroom
+        option: FireTV
+
+bedroom_tv_input_up_1:
+  sequence:
+    - service: switch.turn_on
+      entity_id: switch.bedroom_tv_input
+    - delay:
+        milliseconds: 5    
+    - service: script.bedroom_tv_up_1_ok
+bedroom_tv_input_up_3:
+  sequence:
+    - service: switch.turn_on
+      entity_id: switch.bedroom_tv_input
+    - delay:
+        milliseconds: 5
+    - service: switch.turn_on
+      entity_id: switch.bedroom_tv_up
+    - delay:
+        milliseconds: 5
+    - service: switch.turn_on
+      entity_id: switch.bedroom_tv_up
+    - delay:
+        milliseconds: 5
+    - service: script.bedroom_tv_up_1_ok
+bedroom_tv_input_down_1:
+  sequence:
+    - service: switch.turn_on
+      entity_id: switch.bedroom_tv_input
+    - delay:
+        milliseconds: 5
+    - service: script.bedroom_tv_down_1_ok
+bedroom_tv_input_down_3:
+  sequence:
+    - service: switch.turn_on
+      entity_id: switch.bedroom_tv_input
+    - delay:
+        milliseconds: 5
+    - service: script.bedroom_tv_down_3_ok
+bedroom_tv_input_down_4:
+  sequence:
+    - service: switch.turn_on
+      entity_id: switch.bedroom_tv_input
+    - delay:
+        milliseconds: 5
+    - service: switch.turn_on
+      entity_id: switch.bedroom_tv_down
+    - delay:
+        milliseconds: 5
+    - service: script.bedroom_tv_down_3_ok
+
+bedroom_tv_up_1_ok:
+  sequence:
+    - service: switch.turn_on
+      entity_id: switch.bedroom_tv_up
+    - delay:
+        milliseconds: 5
+    - service: switch.turn_on
+      entity_id: switch.bedroom_tv_ok
+bedroom_tv_down_1_ok:
+  sequence:
+    - service: switch.turn_on
+      entity_id: switch.bedroom_tv_down
+    - delay:
+        milliseconds: 5
+    - service: switch.turn_on
+      entity_id: switch.bedroom_tv_ok
+bedroom_tv_down_3_ok:
+  sequence:
+    - service: switch.turn_on
+      entity_id: switch.bedroom_tv_down
+    - delay:
+        milliseconds: 5
+    - service: switch.turn_on
+      entity_id: switch.bedroom_tv_down
+    - delay:
+        milliseconds: 5
+    - service: script.bedroom_tv_down_1_ok        

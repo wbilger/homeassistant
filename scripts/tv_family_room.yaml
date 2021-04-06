@@ -1,0 +1,178 @@
+family_room_tv:
+  sequence:
+    - service: switch.turn_on
+      entity_id: switch.family_room_surround_sound #always want surround sound on anyway, turn on early
+    - service: switch.turn_on
+      entity_id: switch.family_room_tv
+family_room_tv_plex:
+  sequence:
+    - service: script.family_room_tv
+    - service: media_player.select_source
+      data:
+        entity_id: media_player.family_room_roku
+        source: "Plex - Stream for Free"
+    - service: script.family_room_surround_sound_tv
+family_room_tv_chromecast:
+  sequence:
+    - service: script.family_room_tv
+    - service: switch.turn_on
+      entity_id: switch.family_room_surround_sound #always want surround sound on anyway, turn on early
+    - service: media_player.select_source
+      data:
+        entity_id: media_player.family_room_roku
+        source: "Chromecast"
+    - service: switch.turn_on
+      entity_id: switch.family_room_surround_sound_tv
+family_room_tv_pc:
+  sequence:
+    - service: switch.turn_on
+      entity_id: switch.wayne_fr
+    - service: script.family_room_tv
+    - service: media_player.select_source
+      data:
+        entity_id: media_player.family_room_roku
+        source: "Computer"
+    - service: switch.turn_on
+      entity_id: switch.family_room_surround_sound_tv
+family_room_tv_surround_sound:
+  sequence:
+    - service: script.family_room_tv
+    - service: media_player.select_source
+      data:
+        entity_id: media_player.family_room_roku
+        source: "Surround Sound"
+    - service: switch.turn_on
+      entity_id: switch.family_room_surround_sound_hdmi1
+
+family_room_surround_sound_tv:
+  sequence:
+    - service: switch.turn_on
+      entity_id: switch.family_room_surround_sound_tv
+    - condition: state
+      entity_id: switch.family_room_surround_sound
+      state: "off"
+    - service: switch.turn_on
+      entity_id: switch.family_room_surround_sound
+    - delay: 1
+    - service: switch.turn_on
+      entity_id: switch.family_room_surround_sound_tv
+
+family_room_watch_bell:
+  alias: Family Room Watch Bell
+  sequence:
+    - service: script.family_room_tv_pc
+    - service: switch.turn_on
+      entity_id: switch.family_room_bell
+    - delay: 10 #give extra time in case PC was asleep
+    - service: switch.turn_on
+      entity_id: switch.family_room_bell
+family_room_bell_time:
+  alias: Stream TV Time
+  sequence:
+    - service: script.family_room_tv_time_lights
+    - service: script.family_room_watch_bell
+    - delay: 10
+    - service: script.kitchen_lights_night_dim_auto
+
+family_room_tv_time_lights:
+  alias: Family Room TV Time Lights
+  sequence:
+    - service: light.turn_on
+      data:
+        entity_id: light.couch_lamp #couch light
+        transition: 60
+        brightness_pct: 50
+
+family_room_watch_plex:
+  alias: Family Room Watch Plex
+  sequence:
+    - service: script.family_room_bell_stop #BellTV goto guide in case was on
+    - service: script.family_room_tv_plex
+family_room_plex_time:
+  alias: Family Room Plex Time
+  sequence:
+    - service: script.family_room_bell_stop #BellTV goto guide in case was on
+    - service: script.family_room_watch_plex
+    - delay: 10
+    - service: script.kitchen_lights_night_dim_auto
+
+family_room_watch_kodi:
+  alias: Family Room Watch Kodi
+  sequence:
+    - service: script.family_room_bell_stop #BellTV goto guide in case was on
+    - service: script.family_room_tv_pc
+    - service: switch.turn_on
+      entity_id: switch.family_room_kodi
+    - delay: 10 #give extra time in case PC was asleep
+    - service: switch.turn_on
+      entity_id: switch.family_room_kodi
+
+family_room_watch_tv:
+  alias: Family Room Watch TV
+  sequence:
+    - service: switch.turn_off
+      entity_id: switch.family_room_bell #turn off BellTV in case was on
+    - service: script.family_room_tv
+
+family_room_watch_chromecast:
+  alias: Family Room Watch Chromecast
+  sequence:
+    - service: switch.turn_off
+      entity_id: switch.family_room_bell #turn off BellTV in case was on
+    - service: switch.turn_on
+      entity_id: switch.family_room_chromecast
+    - service: script.family_room_tv_chromecast
+    - service: script.family_room_surround_sound_tv
+
+family_room_bell_stop:
+  alias: Family Room Bell Stop
+  sequence:
+    - condition: state
+      entity_id: switch.family_room_bell
+      state: "on"
+    - service: switch.turn_on
+      entity_id: switch.family_room_bell_command0 #BellTV goto guide if on
+
+family_room_off:
+  alias: Family Room Off
+  sequence:
+    - service: light.turn_off
+      entity_id: light.family_room_light
+    - service: script.family_room_off_not_fan_light
+family_room_off_not_fan_light: #separate script so that don't turn off fan light just to turn back on in script.family_room_off_lights_delay
+  sequence:
+    - service: switch.turn_off
+      entity_id: switch.family_room_surround_sound
+    - service: switch.turn_on
+      entity_id: switch.family_room_roku_stop
+    - service: switch.turn_off
+      entity_id: switch.family_room_tv
+    - service: light.turn_off
+      entity_id: light.couch_lamp
+    - service: light.turn_off
+      entity_id: light.desk_lamp
+    - service: switch.turn_off
+      entity_id: switch.family_room_kodi
+    - service: switch.turn_off
+      entity_id: switch.family_room_bell
+    - service: switch.turn_off
+      entity_id: switch.wayne_fr
+
+family_room_off_lights_delay:
+  sequence:
+    - service: script.family_room_fan_light_on
+    - service: script.family_room_off_not_fan_light
+    - delay: 30
+    - service: light.turn_off
+      data:
+        entity_id: light.family_room_light
+        transition: 60
+family_room_fan_light_on:
+  sequence:
+    - condition: template
+      value_template: '{{ state_attr("sun.sun", "elevation") < 3.5 }}'
+    - service: light.turn_on
+      data:
+        entity_id: light.family_room_light
+        transition: 10
+        brightness_pct: 75

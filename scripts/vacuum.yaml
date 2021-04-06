@@ -1,0 +1,25 @@
+vacuum_home:
+  sequence:
+    - service: vacuum.stop
+      entity_id: vacuum.boomba
+    # - delay: 10  
+    - service: vacuum.return_to_base
+      entity_id: vacuum.boomba
+
+vacuum_automation:
+  sequence:
+    - condition: state
+      entity_id: binary_sensor.work_day
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean.vacuum_today
+      state: 'off'
+    - service: vacuum.turn_on
+      entity_id: vacuum.boomba
+    - delay: 2 
+    - service: vacuum.start
+      entity_id: vacuum.boomba
+    - service: input_boolean.turn_on
+      entity_id: input_boolean.vacuum_today
+
+    

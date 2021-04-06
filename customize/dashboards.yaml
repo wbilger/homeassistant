@@ -1,0 +1,6 @@
+binary_sensor.fully_kitchen_dashboard:
+  friendly_name: Kitchen Dashboard
+binary_sensor.fully_family_room_remote:
+  friendly_name: Family Room Remote
+binary_sensor.fully_theatre_remote:
+  friendly_name: Theatre Remote

@@ -1,0 +1,51 @@
+- platform: uptime
+  name: Uptime in Minutes
+  unit_of_measurement: minutes
+- platform: time_date
+  display_options:
+    - 'time'
+    - 'date'
+    - 'date_time'       #for schlage from frontdoor_lock_manager_common.yaml
+    - 'date_time_iso'   #for schlage from frontdoor_lock_manager_common.yaml
+    - 'time_date'       #for schlage from frontdoor_lock_manager_common.yaml
+    - 'time_utc'        #for schlage from frontdoor_lock_manager_common.yaml
+    - 'beat'            #for schlage from frontdoor_lock_manager_common.yaml
+- platform: template
+  sensors:
+    # now_time: 
+    #   value_template: '{{ now().strftime("%s") }}'
+    # time_now:
+    #   friendly_name: "Time Now"
+    #   value_template: '{{ states("sensor.now_time") | int | timestamp_custom("%H:%M") }}'
+    time_friendly:
+      friendly_name: "Time"
+      value_template: >
+        {% set t = states('sensor.time') %}
+        {{ as_timestamp(now()) | timestamp_custom("%-I:%M %p") }}
+    time_friendly_12:
+      friendly_name: "Time"
+      value_template: >
+        {% set t = states('sensor.time') %}
+        {{ as_timestamp(now()) | timestamp_custom("%-I:%M") }}
+    now_date:
+      value_template: '{{ now().strftime("%s") }}'
+    date_friendly:
+      friendly_name: "Date"
+      value_template: >
+        {% set d = states('sensor.date') %}
+        {{ as_timestamp(now()) | timestamp_custom("%B %-d") }}
+    date_friendly_short:
+      friendly_name: "Short Date"
+      value_template: >
+        {% set d = states('sensor.date') %}
+        {{ as_timestamp(now()) | timestamp_custom("%a %b %-d") }}
+    date_friendly_day_short:
+      friendly_name: "Short Date"
+      value_template: >
+        {% set d = states('sensor.date') %}
+        {{ as_timestamp(now()) | timestamp_custom("%a %B %-d") }}
+    date_friendly_day:
+      friendly_name: "Day of Week"
+      value_template: >
+        {% set d = states('sensor.date') %}
+        {{ as_timestamp(now()) | timestamp_custom("%A %B %-d") }}

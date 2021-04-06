@@ -1,0 +1,17 @@
+- platform: template
+  sensors:
+    vacuum_status:
+      friendly_name: 'Boomba Status'
+      value_template: '{{ state_attr("vacuum.boomba", "status") }}'
+    vacuum_battery_level:
+      friendly_name: 'Boomba Battery Level'
+      value_template: '{{ state_attr("vacuum.boomba", "battery_level") }}'
+    vacuum_battery_icon:
+      friendly_name: 'Boomba Battery Icon'
+      value_template: '{{ state_attr("vacuum.boomba", "battery_icon") }}'
+    vacuum_bin_full:
+      friendly_name: 'Boomba Bin Full'
+      value_template: '{{ state_attr("vacuum.boomba", "bin_full") }}'
+    vacuum_bin_status:
+      friendly_name: 'Boomba Bin Status'
+      value_template: '{% if is_state_attr("vacuum.boomba", "bin_full", "True")%}Bin Full{% endif %}'

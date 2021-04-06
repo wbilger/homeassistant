@@ -1,0 +1,95 @@
+- platform: command_line
+  switches:
+    # Family Room Kodi
+    family_room_kodi_api_home:
+      command_on: 'curl -u "kodi:kodi" --header "Content-Type: application/json" --data "{\"jsonrpc\":\"2.0\",\"method\":\"Input.Home\"}" "http://192.168.1.101:8080/jsonrpc"'
+    family_room_kodi_api_playpause:
+      command_on: 'curl -u "kodi:kodi" --header "Content-Type: application/json" --data "{\"jsonrpc\":\"2.0\",\"method\":\"Player.PlayPause\",\"params\": {\"playerid\":1}}" "http://192.168.1.101:8080/jsonrpc"'
+    family_room_kodi_api_play:
+      command_on: 'curl -u "kodi:kodi" --header "Content-Type: application/json" --data "{\"jsonrpc\":\"2.0\",\"method\":\"Player.PlayPause\",\"params\": {\"playerid\":1,\"play\":true}}" "http://192.168.1.101:8080/jsonrpc"'
+    family_room_kodi_api_pause:
+      command_on: 'curl -u "kodi:kodi" --header "Content-Type: application/json" --data "{\"jsonrpc\":\"2.0\",\"method\":\"Player.PlayPause\",\"params\": {\"playerid\":1,\"play\":false}}" "http://192.168.1.101:8080/jsonrpc"'
+    family_room_kodi_api_stop:
+      command_on: 'curl -u "kodi:kodi" --header "Content-Type: application/json" --data "{\"jsonrpc\":\"2.0\",\"method\":\"Player.Stop\",\"params\": {\"playerid\":1}}" "http://192.168.1.101:8080/jsonrpc"'
+    family_room_kodi_api_stepback:
+      command_on: 'curl -u "kodi:kodi" --header "Content-Type: application/json" --data "{\"jsonrpc\":\"2.0\",\"method\":\"Player.Seek\",\"params\": { \"playerid\":1,\"value\":\"smallbackward\"}}" "http://192.168.1.101:8080/jsonrpc"'
+    family_room_kodi_api_stepforward:
+      command_on: 'curl -u "kodi:kodi" --header "Content-Type: application/json" --data "{\"jsonrpc\":\"2.0\",\"method\":\"Player.Seek\",\"params\": { \"playerid\":1,\"value\":\"smallforward\"}}" "http://192.168.1.101:8080/jsonrpc"'
+    family_room_kodi_api_rewind:
+      command_on: 'curl -u "kodi:kodi" --header "Content-Type: application/json" --data "{\"jsonrpc\":\"2.0\",\"method\":\"Player.SetSpeed\",\"params\": { \"playerid\":1,\"speed\":-2}}" "http://192.168.1.101:8080/jsonrpc"'
+    family_room_kodi_api_rewind2:
+      command_on: 'curl -u "kodi:kodi" --header "Content-Type: application/json" --data "{\"jsonrpc\":\"2.0\",\"method\":\"Player.SetSpeed\",\"params\": { \"playerid\":1,\"speed\":-4}}" "http://192.168.1.101:8080/jsonrpc"'
+    family_room_kodi_api_fastforward:
+      command_on: 'curl -u "kodi:kodi" --header "Content-Type: application/json" --data "{\"jsonrpc\":\"2.0\",\"method\":\"Player.SetSpeed\",\"params\": { \"playerid\":1,\"speed\":2}}" "http://192.168.1.101:8080/jsonrpc"'
+    family_room_kodi_api_fastforward2:
+      command_on: 'curl -u "kodi:kodi" --header "Content-Type: application/json" --data "{\"jsonrpc\":\"2.0\",\"method\":\"Player.SetSpeed\",\"params\": { \"playerid\":1,\"speed\":4}}" "http://192.168.1.101:8080/jsonrpc"'
+    family_room_kodi_api_back:
+      command_on: 'curl -u "kodi:kodi" --header "Content-Type: application/json" --data "{\"jsonrpc\":\"2.0\",\"method\":\"Input.Back\"}" "http://192.168.1.101:8080/jsonrpc"'
+    family_room_kodi_api_up:
+      command_on: 'curl -u "kodi:kodi" --header "Content-Type: application/json" --data "{\"jsonrpc\":\"2.0\",\"method\":\"Input.Up\"}" "http://192.168.1.101:8080/jsonrpc"'
+    family_room_kodi_api_down:
+      command_on: 'curl -u "kodi:kodi" --header "Content-Type: application/json" --data "{\"jsonrpc\":\"2.0\",\"method\":\"Input.Down\"}" "http://192.168.1.101:8080/jsonrpc"'
+    family_room_kodi_api_left:
+      command_on: 'curl -u "kodi:kodi" --header "Content-Type: application/json" --data "{\"jsonrpc\":\"2.0\",\"method\":\"Input.Left\"}" "http://192.168.1.101:8080/jsonrpc"'
+    family_room_kodi_api_right:
+      command_on: 'curl -u "kodi:kodi" --header "Content-Type: application/json" --data "{\"jsonrpc\":\"2.0\",\"method\":\"Input.Right\"}" "http://192.168.1.101:8080/jsonrpc"'
+    family_room_kodi_api_select:
+      command_on: 'curl -u "kodi:kodi" --header "Content-Type: application/json" --data "{\"jsonrpc\":\"2.0\",\"method\":\"Input.Select\"}" "http://192.168.1.101:8080/jsonrpc"'
+    family_room_kodi_api_info:
+      command_on: 'curl -u "kodi:kodi" --header "Content-Type: application/json" --data "{\"jsonrpc\":\"2.0\",\"method\":\"Input.Info\"}" "http://192.168.1.101:8080/jsonrpc"'
+    family_room_kodi_api_mute:
+      command_on: 'curl -u "kodi:kodi" --header "Content-Type: application/json" --data "{\"jsonrpc\":\"2.0\",\"method\":\"Application.SetMute\",\"params\": {\"mute\":\"toggle\"}}" "http://192.168.1.101:8080/jsonrpc"'
+    family_room_kodi_api_plex:
+      command_on: 'curl -u "kodi:kodi" --header "Content-Type: application/json" --data "{\"jsonrpc\":\"2.0\",\"method\":\"Addons.ExecuteAddon\",\"params\": { \"addonid\":\"script.plex\"}}" "http://192.168.1.101:8080/jsonrpc"'
+    family_room_kodi_api_mlb:
+      command_on: 'curl -u "kodi:kodi" --header "Content-Type: application/json" --data "{\"jsonrpc\":\"2.0\",\"method\":\"Addons.ExecuteAddon\",\"params\": { \"addonid\":\"plugin.video.mlbtv\"}}" "http://192.168.1.101:8080/jsonrpc"'
+    family_room_kodi_api_sports:
+      command_on: 'curl -u "kodi:kodi" --header "Content-Type: application/json" --data "{\"jsonrpc\":\"2.0\",\"method\":\"Addons.ExecuteAddon\",\"params\": { \"addonid\":\"video.lazyman.nhl.tv\"}}" "http://192.168.1.101:8080/jsonrpc"'
+    family_room_kodi_api_hgtv:
+      command_on: 'curl -u "kodi:kodi" --header "Content-Type: application/json" --data "{\"jsonrpc\":\"2.0\",\"method\":\"Addons.ExecuteAddon\",\"params\": { \"addonid\":\"plugin.video.hgtv.canada\"}}" "http://192.168.1.101:8080/jsonrpc"'
+    family_room_kodi_api_cbcnews:
+      command_on: 'curl -u "kodi:kodi" --header "Content-Type: application/json" --data "{\"jsonrpc\":\"2.0\",\"method\":\"Addons.ExecuteAddon\",\"params\": { \"addonid\":\"plugin.video.cbcnews\"}}" "http://192.168.1.101:8080/jsonrpc"'
+
+    # Bedroom Kodi (libreelec)
+    # bedroom_kodi_api_home:
+    #   command_on: 'curl -u "kodi:kodi" --header "Content-Type: application/json" --data "{\"jsonrpc\":\"2.0\",\"method\":\"Input.Home\"}" "http://192.168.1.55:8080/jsonrpc"'
+    # bedroom_kodi_api_playpause:
+    #   command_on: 'curl -u "kodi:kodi" --header "Content-Type: application/json" --data "{\"jsonrpc\":\"2.0\",\"method\":\"Player.PlayPause\",\"params\": {\"playerid\":1}}" "http://192.168.1.55:8080/jsonrpc"'
+    # bedroom_kodi_api_play:
+    #   command_on: 'curl -u "kodi:kodi" --header "Content-Type: application/json" --data "{\"jsonrpc\":\"2.0\",\"method\":\"Player.PlayPause\",\"params\": {\"playerid\":1,\"play\":true}}" "http://192.168.1.55:8080/jsonrpc"'
+    # bedroom_kodi_api_pause:
+    #   command_on: 'curl -u "kodi:kodi" --header "Content-Type: application/json" --data "{\"jsonrpc\":\"2.0\",\"method\":\"Player.PlayPause\",\"params\": {\"playerid\":1,\"play\":false}}" "http://192.168.1.55:8080/jsonrpc"'
+    # bedroom_kodi_api_stop:
+    #   command_on: 'curl -u "kodi:kodi" --header "Content-Type: application/json" --data "{\"jsonrpc\":\"2.0\",\"method\":\"Player.Stop\",\"params\": {\"playerid\":1}}" "http://192.168.1.55:8080/jsonrpc"'
+    # bedroom_kodi_api_skipback:
+    #   command_on: 'curl -u "kodi:kodi" --header "Content-Type: application/json" --data "{\"jsonrpc\":\"2.0\",\"method\":\"Player.Seek\",\"params\": { \"playerid\":1,\"value\":\"smallbackward\"}}" "http://192.168.1.55:8080/jsonrpc"'
+    # bedroom_kodi_api_skipforward:
+    #   command_on: 'curl -u "kodi:kodi" --header "Content-Type: application/json" --data "{\"jsonrpc\":\"2.0\",\"method\":\"Player.Seek\",\"params\": { \"playerid\":1,\"value\":\"smallforward\"}}" "http://192.168.1.55:8080/jsonrpc"'
+    # bedroom_kodi_api_rewind:
+    #   command_on: 'curl -u "kodi:kodi" --header "Content-Type: application/json" --data "{\"jsonrpc\":\"2.0\",\"method\":\"Player.SetSpeed\",\"params\": { \"playerid\":1,\"speed\":-2}}" "http://192.168.1.55:8080/jsonrpc"'
+    # bedroom_kodi_api_rewind2:
+    #   command_on: 'curl -u "kodi:kodi" --header "Content-Type: application/json" --data "{\"jsonrpc\":\"2.0\",\"method\":\"Player.SetSpeed\",\"params\": { \"playerid\":1,\"speed\":-4}}" "http://192.168.1.55:8080/jsonrpc"'
+    # bedroom_kodi_api_fastforward:
+    #   command_on: 'curl -u "kodi:kodi" --header "Content-Type: application/json" --data "{\"jsonrpc\":\"2.0\",\"method\":\"Player.SetSpeed\",\"params\": { \"playerid\":1,\"speed\":2}}" "http://192.168.1.55:8080/jsonrpc"'
+    # bedroom_kodi_api_fastforward2:
+    #   command_on: 'curl -u "kodi:kodi" --header "Content-Type: application/json" --data "{\"jsonrpc\":\"2.0\",\"method\":\"Player.SetSpeed\",\"params\": { \"playerid\":1,\"speed\":4}}" "http://192.168.1.55:8080/jsonrpc"'
+    # bedroom_kodi_api_back:
+    #   command_on: 'curl -u "kodi:kodi" --header "Content-Type: application/json" --data "{\"jsonrpc\":\"2.0\",\"method\":\"Input.Back\"}" "http://192.168.1.55:8080/jsonrpc"'
+    # bedroom_kodi_api_up:
+    #   command_on: 'curl -u "kodi:kodi" --header "Content-Type: application/json" --data "{\"jsonrpc\":\"2.0\",\"method\":\"Input.Up\"}" "http://192.168.1.55:8080/jsonrpc"'
+    # bedroom_kodi_api_down:
+    #   command_on: 'curl -u "kodi:kodi" --header "Content-Type: application/json" --data "{\"jsonrpc\":\"2.0\",\"method\":\"Input.Down\"}" "http://192.168.1.55:8080/jsonrpc"'
+    # bedroom_kodi_api_left:
+    #   command_on: 'curl -u "kodi:kodi" --header "Content-Type: application/json" --data "{\"jsonrpc\":\"2.0\",\"method\":\"Input.Left\"}" "http://192.168.1.55:8080/jsonrpc"'
+    # bedroom_kodi_api_right:
+    #   command_on: 'curl -u "kodi:kodi" --header "Content-Type: application/json" --data "{\"jsonrpc\":\"2.0\",\"method\":\"Input.Right\"}" "http://192.168.1.55:8080/jsonrpc"'
+    # bedroom_kodi_api_select:
+    #   command_on: 'curl -u "kodi:kodi" --header "Content-Type: application/json" --data "{\"jsonrpc\":\"2.0\",\"method\":\"Input.Select\"}" "http://192.168.1.55:8080/jsonrpc"'
+    # bedroom_kodi_api_plex:
+    #   command_on: 'curl -u "kodi:kodi" --header "Content-Type: application/json" --data "{\"jsonrpc\":\"2.0\",\"method\":\"Addons.ExecuteAddon\",\"params\": { \"addonid\":\"script.plex\"}}" "http://192.168.1.55:8080/jsonrpc"'
+    # bedroom_kodi_api_mlb:
+    #   command_on: 'curl -u "kodi:kodi" --header "Content-Type: application/json" --data "{\"jsonrpc\":\"2.0\",\"method\":\"Addons.ExecuteAddon\",\"params\": { \"addonid\":\"plugin.video.mlbtv\"}}" "http://192.168.1.55:8080/jsonrpc"'
+    # bedroom_kodi_api_sports:
+    #   command_on: 'curl -u "kodi:kodi" --header "Content-Type: application/json" --data "{\"jsonrpc\":\"2.0\",\"method\":\"Addons.ExecuteAddon\",\"params\": { \"addonid\":\"video.lazyman.nhl.tv\"}}" "http://192.168.1.55:8080/jsonrpc"'
+    # bedroom_kodi_api_hgtv:
+    #   command_on: 'curl -u "kodi:kodi" --header "Content-Type: application/json" --data "{\"jsonrpc\":\"2.0\",\"method\":\"Addons.ExecuteAddon\",\"params\": { \"addonid\":\"plugin.video.hgtv.canada\"}}" "http://192.168.1.55:8080/jsonrpc"'

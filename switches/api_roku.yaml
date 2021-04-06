@@ -1,0 +1,72 @@
+- platform: command_line
+  switches:
+    family_room_tv: #toggles Roku TV
+      command_on: "curl -X POST http://192.168.1.60:8060/keypress/PowerOn"
+      command_off: "curl -X POST http://192.168.1.60:8060/keypress/PowerOff"
+      command_state: 'curl -s GET http://192.168.1.60:8060/query/device-info | grep power-mode | sed -e "s:<power-mode>DisplayOff</power-mode>:OFF:" -e "s:<power-mode>PowerOn</power-mode>:ON:"'
+      value_template: '{{ value == "ON" }}'
+      friendly_name: Family Room TV
+#
+### Don't need to use Roku API anymore - use Roku integration
+# family_room_roku_volume_up:
+#   command_on: "/usr/bin/curl -X POST http://192.168.1.60:8060/keypress/VolumeUp -H 'content-type: application/json'"
+# family_room_roku_volume_down:
+#   command_on: "/usr/bin/curl -X POST http://192.168.1.60:8060/keypress/VolumeDown -H 'content-type: application/json'"
+# family_room_roku_volume_mute:
+#   command_on: "/usr/bin/curl -X POST http://192.168.1.60:8060/keypress/VolumeMute -H 'content-type: application/json'"
+# family_room_roku_surround_sound:
+#   command_on: "/usr/bin/curl -X POST http://192.168.1.60:8060/launch/tvinput.hdmi1 -H 'content-type: application/json'"
+# family_room_roku_hdmi1:
+#   command_on: "/usr/bin/curl -X POST http://192.168.1.60:8060/launch/tvinput.hdmi1 -H 'content-type: application/json'"
+# family_room_roku_hdmi2:
+#   command_on: "/usr/bin/curl -X POST http://192.168.1.60:8060/launch/tvinput.hdmi2 -H 'content-type: application/json'"
+# family_room_roku_chromecast:
+#   command_on: "/usr/bin/curl -X POST http://192.168.1.60:8060/launch/tvinput.hdmi2 -H 'content-type: application/json'"
+# family_room_roku_hdmi3:
+#   command_on: "/usr/bin/curl -X POST http://192.168.1.60:8060/launch/tvinput.hdmi3 -H 'content-type: application/json'"
+# family_room_roku_pc:
+#   command_on: "/usr/bin/curl -X POST http://192.168.1.60:8060/launch/tvinput.hdmi3 -H 'content-type: application/json'"
+# family_room_roku_tv:
+#   command_on: "/usr/bin/curl -X POST http://192.168.1.60:8060/launch/tvinput.dtv -H 'content-type: application/json'"
+# family_room_roku_home:
+#   command_on: "/usr/bin/curl -X POST http://192.168.1.60:8060/keypress/Home -H 'content-type: application/json'"
+# family_room_roku_plex:
+#   command_on: "/usr/bin/curl -X POST http://192.168.1.60:8060/launch/13535 -H 'content-type: application/json'"
+# family_room_roku_netflix:
+#   command_on: "/usr/bin/curl -X POST http://192.168.1.60:8060/launch/12 -H 'content-type: application/json'"
+# family_room_roku_youtube:
+#   command_on: "/usr/bin/curl -X POST http://192.168.1.60:8060/launch/837 -H 'content-type: application/json'"
+# family_room_roku_dazn:
+#   command_on: "/usr/bin/curl -X POST http://192.168.1.60:8060/launch/158987 -H 'content-type: application/json'"
+# family_room_roku_mlb:
+#   command_on: "/usr/bin/curl -X POST http://192.168.1.60:8060/launch/14 -H 'content-type: application/json'"
+# family_room_roku_play:
+#   command_on: "/usr/bin/curl -X POST http://192.168.1.60:8060/keypress/Play -H 'content-type: application/json'"
+# family_room_roku_playpause:
+#   command_on: "/usr/bin/curl -X POST http://192.168.1.60:8060/keypress/Pause -H 'content-type: application/json'"
+# family_room_roku_stop:
+#   command_on: "/usr/bin/curl -X POST http://192.168.1.60:8060/keypress/Back -H 'content-type: application/json'"
+# family_room_roku_replay:
+#   command_on: "/usr/bin/curl -X POST http://192.168.1.60:8060/keypress/InstantReplay -H 'content-type: application/json'"
+# family_room_roku_rev:
+#   command_on: "/usr/bin/curl -X POST http://192.168.1.60:8060/keypress/Rev -H 'content-type: application/json'"
+# family_room_roku_fwd:
+#   command_on: "/usr/bin/curl -X POST http://192.168.1.60:8060/keypress/Fwd -H 'content-type: application/json'"
+# family_room_roku_back:
+#   command_on: "/usr/bin/curl -X POST http://192.168.1.60:8060/keypress/Back -H 'content-type: application/json'"
+# family_room_roku_info:
+#   command_on: "/usr/bin/curl -X POST http://192.168.1.60:8060/keypress/Info -H 'content-type: application/json'"
+# family_room_roku_up:
+#   command_on: "/usr/bin/curl -X POST http://192.168.1.60:8060/keypress/Up -H 'content-type: application/json'"
+# family_room_roku_down:
+#   command_on: "/usr/bin/curl -X POST http://192.168.1.60:8060/keypress/Down -H 'content-type: application/json'"
+# family_room_roku_left:
+#   command_on: "/usr/bin/curl -X POST http://192.168.1.60:8060/keypress/Left -H 'content-type: application/json'"
+# family_room_roku_right:
+#   command_on: "/usr/bin/curl -X POST http://192.168.1.60:8060/keypress/Right -H 'content-type: application/json'"
+# family_room_roku_select:
+#   command_on: "/usr/bin/curl -X POST http://192.168.1.60:8060/keypress/Select -H 'content-type: application/json'"
+# family_room_roku_enter:
+#   command_on: "/usr/bin/curl -X POST http://192.168.1.60:8060/keypress/Enter -H 'content-type: application/json'"
+# family_room_roku_search:
+#   command_on: "/usr/bin/curl -X POST http://192.168.1.60:8060/keypress/Search -H 'content-type: application/json'"
