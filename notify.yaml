@@ -1,7 +1,3 @@
-- name: fbmessenger
-  platform: facebook
-  page_access_token: EAACZAiqneUusBANk7F9WPljELinFpP9bSn4HRZAcQPW37C411rZAiOatAY4AgubyeiR4F9ZB6P4eOvRPkqxp9oHACHZAyFUE5PV4V63mnwm7LC4pcUZAzxbDquQxgrnkhKsXEbwOB6O5Our0gUjnZBcDBKwYzIdsBDTIsgRcaL1KTFUFKUdqmzOMzqOD6SKGZAAZD
-
 # HTML5 browser notifications
 # - name: google
 #   platform: html5
