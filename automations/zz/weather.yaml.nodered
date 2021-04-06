@@ -1,0 +1,8 @@
+## Weather Sensor updates
+- alias: 'Toggle Dark Sky Summaries'
+  initial_state: 'on'
+  trigger:
+    platform: time_pattern
+    seconds: '/10'
+  action:
+    - service: script.dark_sky_summaries

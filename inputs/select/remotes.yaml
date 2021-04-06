@@ -1,0 +1,48 @@
+remote_family_room:
+  name: Family Room Remote
+  icon: mdi:remote
+  options:
+    - Plex
+    - Kodi
+    - Bell
+    - Chromecast
+    - TV
+
+remote_dining_room:
+  name: Dining Room Remote
+  icon: mdi:remote
+  options:
+    - Plex
+    - FireTV
+    - Roku
+    - Chromecast
+    - TV
+
+remote_theatre:
+  name: Theatre Remote
+  icon: mdi:remote
+  options:
+    - Plex
+    - Roku
+    - Chromecast
+    - Projector
+    - Stereo
+
+remote_bedroom:
+  name: Bedroom Remote
+  icon: mdi:remote
+  options:
+    - Plex
+    - Roku
+    - FireTV
+    - Kodi
+    - Chromecast
+    - TV
+
+remote_jalynne:
+  name: Jalynne Remote
+  icon: mdi:remote
+  options:
+    - Plex
+    - Roku
+    - Netflix

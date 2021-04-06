@@ -1,0 +1,25 @@
+## input_numbers for Settings
+device_timer_1_on_time_sun:
+  name: Offset (deg)
+  min: -5
+  max: 5
+  step: 1
+  mode: box
+device_timer_2_on_time_sun:
+  name: Offset (deg)
+  min: -5
+  max: 5
+  step: 1
+  mode: box
+device_timer_3_on_time_sun:
+  name: Offset (deg)
+  min: -5
+  max: 5
+  step: 1
+  mode: box
+device_timer_xmas_tree_on_time_sun:
+  name: Offset (deg)
+  min: -5
+  max: 5
+  step: 1
+  mode: box

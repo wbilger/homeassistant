@@ -1,0 +1,100 @@
+#################################################################
+# VIEW: settings_admin                                          #
+#   Admin Settings                                              #
+################################################################# 
+title: Admin Settings
+path: settings_admin
+icon: mdi:cog-box
+cards:
+  - type: vertical-stack
+    cards:
+      - !include /config/lovelace/cards/navigation.yaml
+      - type: custom:vertical-stack-in-card
+        cards:
+          - type: conditional
+            conditions: 
+              - entity: input_boolean.kiosk_mode
+                state: 'on'
+            card:    
+              type: entities
+              entities:
+                - entity: input_boolean.kiosk_mode
+                  tap_action:
+                    action: none
+          - type: conditional
+            conditions: 
+              - entity: input_boolean.kiosk_mode
+                state: 'off'
+            card:    
+              type: entities
+              show_header_toggle: false
+              entities:
+                - entity: input_boolean.kiosk_mode
+                  tap_action:
+                    action: none
+                - entity: input_boolean.kiosk_mode_hide_header
+                  tap_action:
+                    action: none
+                - entity: input_boolean.kiosk_mode_hide_sidebar
+                  tap_action:
+                    action: none
+          - type: custom:search-card
+            max_results: 10
+          - type: entities
+            entities:
+              - input_select.ha_themes
+              - type: weblink
+                name: User Profile
+                url: /profile
+                icon: mdi:account
+              - type: weblink
+                name: Configuration
+                url: /config/dashboard
+                icon: mdi:settings
+              - type: weblink
+                name: Info
+                url: /developer-tools/info
+                icon: mdi:information-variant
+              - type: weblink
+                name: Services
+                url: /developer-tools/service
+                icon: mdi:access-point-network
+              - type: weblink
+                name: Device States
+                url: /developer-tools/state
+                icon: mdi:home-assistant
+              - type: weblink
+                name: Community Store
+                url: /hacs
+                icon: mdi:alpha-c-box
+              - type: weblink
+                name: Cameras
+                url: /lovelace/cameras
+                icon: mdi:video
+              - type: call-service              
+                name: Reload Ikea
+                service: rest_command.reload_ikea
+                icon: mdi:lightbulb-group
+              - type: call-service              
+                name: Reload Plex
+                service: rest_command.reload_plex
+                icon: mdi:plex
+              - type: call-service              
+                name: Get Browser DeviceID
+                service: browser_mod.debug
+                icon: mdi:android-debug-bridge
+
+  - type: vertical-stack
+    cards:
+      - type: entities
+        title: Presence
+        show_header_toggle: false
+        entities:
+          - sensor.presence_wayne_status
+          - input_select.presence_wayne_status
+          - sensor.presence_jenn_status
+          - input_select.presence_jenn_status
+          - sensor.presence_kale_status
+          - input_select.presence_kale_status
+          - sensor.presence_jalynne_status
+          - input_select.presence_jalynne_status

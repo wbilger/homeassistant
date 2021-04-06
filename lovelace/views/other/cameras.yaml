@@ -1,0 +1,76 @@
+#################################################################
+# VIEW: cameras                                                 #
+#                                                               #
+################################################################# 
+title: Cameras
+path: cameras
+icon: mdi:video
+cards:
+  - type: custom:vertical-stack-in-card
+    cards:
+      - !include /config/lovelace/cards/navigation.yaml
+      - type: picture-elements
+        image: /local/photos/transparent.png
+        aspect_ratio: 122.2%      
+        elements:
+          - type: image
+            entity: camera.kitchen_dashboard_camera
+            camera_image: camera.kitchen_dashboard_camera
+            style:
+              left: 50%
+              top: 50%
+              width: 100%
+              height: 100%
+          - type: custom:battery-entity-row
+            entity: sensor.kitchen_dashboard_battery_level
+            name: Kitchen Dashboard
+            charging: 
+              entity: sensor.kitchen_dashboard_battery_charging
+            style:
+              left: 2%
+              top: 1%   
+              width: 55%
+              font-size: larger     
+              transform: none         
+          - type: image
+            image: /local/photos/icon_motion-sensor-on.png
+            entity: sensor.kitchen_dashboard_motion
+            state_filter:
+              "False": opacity(15%)
+            style:
+              width: 6%
+              top: 5%
+              left: 95%
+
+  - type: picture-elements
+    image: /local/photos/transparent.png
+    aspect_ratio: 122.2%      
+    elements:
+      - type: image
+        entity: camera.family_room_remote_camera
+        camera_image: camera.family_room_remote_camera
+        style:
+          left: 50%
+          top: 50%
+          width: 100%
+          height: 100%
+      - type: custom:battery-entity-row
+        entity: sensor.family_room_remote_battery_level
+        name: Family Room Remote
+        charging: 
+          entity: sensor.family_room_remote_battery_charging
+        style:
+          left: 2%
+          top: 1%   
+          width: 55%
+          font-size: larger     
+          transform: none         
+      - type: image
+        image: /local/photos/icon_motion-sensor-on.png
+        entity: binary_sensor.remote_family_room_motion
+        state_filter:
+          "off": opacity(15%)
+        style:
+          width: 6%
+          top: 5%
+          left: 95%

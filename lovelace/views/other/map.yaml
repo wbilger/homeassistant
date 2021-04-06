@@ -1,0 +1,33 @@
+#################################################################
+# VIEW: map                                                     #
+#                                                               #
+################################################################# 
+title: Map
+path: map
+icon: mdi:map-marker
+panel: true
+cards:
+  - type: custom:vertical-stack-in-card
+    cards:
+      - !include /config/lovelace/cards/navigation_home.yaml
+      - type: map
+        aspect_ratio: 150%
+        entities:
+          - device_tracker.phone_wayne_gps
+          - device_tracker.phone_jenn_gps
+          - device_tracker.phone_kale_gps
+          - device_tracker.phone_jalynne_gps
+          - zone.argyle
+          - zone.batters_box
+          - zone.bostwick
+          - zone.clarke
+          - zone.cottage
+          - zone.dq
+          - zone.fair
+          - zone.fanshawe
+          - zone.home
+          - zone.jenn_work
+          - zone.masquerade_salon
+          - zone.nichols
+          - zone.stronach
+          - zone.wayne_work

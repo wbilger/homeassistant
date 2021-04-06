@@ -1,0 +1,64 @@
+device_timer_1_list:
+  name: Timer 1 Device
+  options:
+    - switch.rf_etekcity_1
+    - switch.rf_etekcity_2
+    - switch.rf_etekcity_3
+    - switch.rf_etekcity_4
+    - switch.rf_etekcity_5
+    - group.entrance_way_lights
+    - light.front_porch_light
+    - light.entrance_light
+    - light.front_window
+    - group.kitchen_island_lights
+    - light.kitchen_island_1
+    - light.kitchen_island_2
+    - light.kitchen_island_3"]
+device_timer_2_list:
+  name: Timer 2 Device
+  options:
+    - switch.rf_etekcity_1
+    - switch.rf_etekcity_2
+    - switch.rf_etekcity_3
+    - switch.rf_etekcity_4
+    - switch.rf_etekcity_5
+    - group.entrance_way_lights
+    - light.front_porch_light
+    - light.entrance_light
+    - light.front_window
+    - group.kitchen_island_lights
+    - light.kitchen_island_1
+    - light.kitchen_island_2
+    - light.kitchen_island_3"]
+device_timer_3_list:
+  name: Timer 3 Device
+  options:
+    - switch.rf_etekcity_1
+    - switch.rf_etekcity_2
+    - switch.rf_etekcity_3
+    - switch.rf_etekcity_4
+    - switch.rf_etekcity_5
+    - group.entrance_way_lights
+    - light.front_porch_light
+    - light.entrance_light
+    - light.front_window
+    - group.kitchen_island_lights
+    - light.kitchen_island_1
+    - light.kitchen_island_2
+    - light.kitchen_island_3"]
+device_timer_xmas_tree_list:
+  name: Xmas Tree Timer Device
+  options:
+    - switch.rf_etekcity_1
+    - switch.rf_etekcity_2
+    - switch.rf_etekcity_3
+    - switch.rf_etekcity_4
+    - switch.rf_etekcity_5
+    - group.entrance_way_lights
+    - light.front_porch_light
+    - light.entrance_light
+    - light.front_window
+    - group.kitchen_island_lights
+    - light.kitchen_island_1
+    - light.kitchen_island_2
+    - light.kitchen_island_3"]

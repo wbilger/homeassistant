@@ -1,0 +1,278 @@
+#################################################################
+# VIEW: family_room
+#   Family Room
+################################################################# 
+title: Family Room
+path: family_room
+icon: mdi:sofa
+cards:
+  - type: vertical-stack
+    cards:
+      - !include /config/lovelace/cards/navigation.yaml
+      - type: picture-elements
+        image: /local/photos/transparent.png
+        aspect_ratio: 12%
+        elements:
+          - type: custom:text-element
+            text: Family Room
+            style:
+              color: var(--primary-text-color)
+              font-size: larger
+              font-weight: bold
+              top: 50%
+              left: 20%
+          - type: image
+            image: /local/photos/icon_remote.png
+            tap_action:
+              action: navigate
+              navigation_path: /lovelace/r.family_room
+            style:
+              width: 10%
+              top: 50%
+              left: 50%
+          - type: image
+            image: /local/photos/icon_monitor-off.png
+            tap_action:
+              action: call-service
+              service: switch.turn_on
+              service_data:
+                entity_id: switch.family_room_monitor_on_off
+            style:
+              width: 6%
+              top: 50%
+              left: 94%
+
+      - type: custom:vertical-stack-in-card
+        cards:
+          - type: picture-elements
+            image: /local/photos/transparent.png
+            aspect_ratio: 11%
+            elements:
+              - type: image
+                image: /local/photos/yellow.png
+                aspect_ratio: 11% 
+                entity: switch.family_room_lights
+                tap_action:
+                  action: toggle
+                state_filter:
+                  "off": opacity(10%) hue-rotate(170deg) brightness(200%)
+                  "on": opacity(50%)
+                  "unavailable": opacity(20%) hue-rotate(180deg)
+                style:
+                  width: 100%
+                  top: 50%
+                  left: 50%
+              - type: custom:text-action-element
+                text: Lights
+                entity: switch.family_room_lights
+                tap_action: 
+                  action: toggle
+                style:
+                  color: var(--primary-text-color)
+                  top: 50%
+                  left: 50%
+              
+          - type: entities
+            show_header_toggle: false
+            entities:
+              - type: custom:slider-entity-row
+                entity: light.couch_lamp
+                name: Couch
+                icon: mdi:lamp
+                toggle: true
+              - type: custom:fold-entity-row
+                head:
+                  type: custom:slider-entity-row
+                  entity: light.family_room_light
+                  name: Fan Light
+                  toggle: true
+                items:
+                  - type: custom:slider-entity-row
+                    entity: light.family_room_1
+                    name: Light 1
+                    toggle: true
+                  - type: custom:slider-entity-row
+                    entity: light.family_room_2
+                    name: Light 2
+                    toggle: true
+              - light.desk_lamp
+
+      - type: custom:vertical-stack-in-card
+        cards:
+          - type: picture-elements
+            image: /local/photos/transparent.png
+            aspect_ratio: 11%
+            elements:
+              - type: image
+                image: /local/photos/yellow.png
+                aspect_ratio: 11% 
+                entity: group.family_room_tv
+                tap_action:
+                  action: toggle
+                state_filter:
+                  "off": opacity(10%) hue-rotate(170deg) brightness(200%)
+                  "on": opacity(50%)
+                  "unavailable": opacity(20%) hue-rotate(180deg)
+                style:
+                  width: 100%
+                  top: 50%
+                  left: 50%
+              - type: custom:text-action-element
+                text: TV
+                entity: group.family_room_tv
+                tap_action: 
+                  action: toggle
+                style:
+                  color: var(--primary-text-color)
+                  top: 50%
+                  left: 50%
+                  
+          - type: entities
+            show_header_toggle: false
+            entities:
+              - switch.family_room_tv
+              - switch.family_room_surround_sound
+
+          - type: picture-elements
+            image: /local/photos/transparent.png
+            aspect_ratio: 16.5%
+            elements:
+              - type: custom:text-element
+                text: PC
+                style:
+                  top: 45%
+                  left: 10%                  
+              - type: image
+                image: /local/photos/icon_pc.png
+                entity: switch.wayne_fr
+                tap_action:
+                  action: toggle
+                hold_action: 
+                  action: call-service
+                  service: switch.turn_on
+                  service_data:
+                    entity_id: switch.wayne_fr
+                state_filter:
+                  "off": opacity(20%)
+                style:
+                  width: 7%
+                  top: 45%
+                  left: 27%
+              - type: image
+                image: /local/photos/icon_plex.png
+                entity: switch.family_room_plex
+                tap_action:
+                  action: toggle
+                state_filter:
+                  "off": opacity(20%)
+                style:
+                  width: 7%
+                  top: 45%
+                  left: 48%
+              - type: image
+                image: /local/photos/icon_kodi.png
+                entity: switch.family_room_kodi
+                tap_action:
+                  action: toggle
+                state_filter:
+                  "off": opacity(20%)
+                style:
+                  width: 7%
+                  top: 45%
+                  left: 68%
+              - type: image
+                image: /local/photos/icon_bell.png
+                entity: switch.family_room_bell
+                tap_action:
+                  action: toggle
+                state_filter:
+                  "off": opacity(20%)
+                style:
+                  width: 7%
+                  top: 45%
+                  left: 88%
+
+#################################################################
+# VIEW: family_room
+#   Family Room - Media Start Bottom Bar
+################################################################# 
+      - type: picture-elements
+        image: /local/photos/transparent.png
+        aspect_ratio: 12%
+        elements:
+          - type: image
+            image: /local/photos/icon_plex.png
+            tap_action:
+              action: call-service
+              service: script.family_room_watch_plex
+            hold_action:
+              action: call-service
+              service: script.family_room_watch_plex
+            style:
+              width: 8%
+              top: 50%
+              left: 7%
+          - type: image
+            image: /local/photos/icon_roku_tv.png
+            tap_action:
+              action: call-service
+              service: script.family_room_watch_tv
+            hold_action:
+              action: call-service
+              service: script.family_room_watch_tv
+            style:
+              width: 8%
+              top: 50%
+              left: 22%
+          - type: image
+            image: /local/photos/icon_chrome.png
+            tap_action:
+              action: call-service
+              service: script.family_room_watch_chromecast
+            hold_action:
+              action: call-service
+              service: script.family_room_watch_chromecast
+            style:
+              width: 8%
+              top: 50%
+              left: 37%
+          - type: image
+            image: /local/photos/icon_bell.png
+            tap_action:
+              action: call-service
+              service: script.family_room_watch_bell
+            hold_action:
+              action: call-service
+              service: script.family_room_watch_bell
+            style:
+              width: 8%
+              top: 50%
+              left: 52%
+          - type: image
+            image: /local/photos/icon_kodi.png
+            tap_action:
+              action: call-service
+              service: script.family_room_watch_kodi
+            hold_action:
+              action: call-service
+              service: script.family_room_watch_kodi
+            style:
+              width: 8%
+              top: 50%
+              left: 67%
+          - type: image
+            image: /local/photos/icon_power.png
+            entity: group.family_room_tv
+            tap_action:
+              action: call-service
+              service: script.family_room_off_lights_delay
+            hold_action:
+              action: call-service
+              service: script.family_room_off_lights_delay
+            state_filter:
+              "on": opacity(75%)
+              "off": opacity(20%)
+            style:
+              width: 8%
+              top: 50%
+              left: 90%

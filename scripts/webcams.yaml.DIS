@@ -1,0 +1,119 @@
+record_webcam_g3:
+  alias: 'Record Webcam G3'
+  sequence:
+    - condition: and
+      conditions:
+      - condition: state
+        entity_id: switch.webcam_g3_video_recording
+        state: 'off'
+      - condition: or
+        conditions:
+        - condition: state
+          entity_id: group.bilger_home
+          state: 'not_home'
+        - condition: time
+          after: '20:30'
+        - condition: time
+          before: '6:30'
+    - service: switch.turn_on
+      data:
+        entity_id: switch.webcam_g3_video_recording
+
+## Tasker notification from any webcam_nexus5 motion            
+record_webcam_nexus5:
+  alias: 'Record Webcam Nexus 5'
+  sequence:
+    - condition: and
+      conditions:
+      - condition: state
+        entity_id: switch.webcam_nexus5_video_recording
+        state: 'off'
+      - condition: or
+        conditions:
+        - condition: state
+          entity_id: group.bilger_home
+          state: 'not_home'
+        - condition: time
+          after: '20:30'
+        - condition: time
+          before: '6:30'
+    - service: switch.turn_on
+      data:
+        entity_id: switch.webcam_nexus5_video_recording
+
+## Tasker notification to turn off Record on Webcam1 if motion sensor clears
+record_off_webcam_g3:
+  alias: 'Record Off Webcam G3'
+  sequence: 
+    - service: switch.turn_off
+      data:
+        entity_id: switch.webcam_g3_video_recording
+
+## Tasker notification to turn off Record on Webcam2 if motion sensor clears
+record_off_webcam_nexus5:
+  alias: 'Record Off Webcam Nexus 5'
+  sequence: 
+    - service: switch.turn_off
+      data:
+        entity_id: switch.webcam_nexus5_video_recording
+        
+# Tasker notification to take picture on Webcam1 if sound detected
+picture_webcam_g3:
+  alias: 'Take Picture Webcam G3'
+  sequence: 
+    - condition: state
+      entity_id: group.all_devices
+      state: 'not_home'
+    - delay:
+        seconds: 3
+    - service: notify.telegram
+      data:
+        title: 'Sound Detected on G3 Webcam'
+        message: 'Sound Detected on G3 Webcam'
+        data:
+          photo:
+            url: http://192.168.1.70:8080/photo.jpg
+            caption: 'Sound Detected on G3 Webcam'
+    - delay:
+        seconds: 5
+    - service: notify.telegram
+      data:
+        title: 'Sound Detected on G3 Webcam'
+        message: 'Sound Detected on G3 Webcam'
+        data:
+          photo:
+            url: http://192.168.1.70:8080/photo.jpg
+            caption: 'Sound Detected on G3 Webcam (pic 2)'
+    - delay:
+        seconds: 30
+
+# Tasker notification to take picture on Webcam1 if sound detected
+picture_webcam_nexus5:
+  alias: 'Take Picture Webcam Nexus 5'
+  sequence: 
+    - condition: state
+      entity_id: group.all_devices
+      state: 'not_home'
+    - delay:
+        seconds: 3
+    - service: notify.telegram
+      data:
+        title: Sound Detected on Nexus 5 Webcam
+        message: 'Sound Detected on Nexus 5 Webcam'
+        data:
+          photo:
+            url: http://192.168.1.71:8080/photo.jpg
+            caption: 'Sound Detected on Nexus 5 Webcam'
+    - delay:
+        seconds: 5
+    - service: notify.telegram
+      data:
+        title: Sound Detected on Nexus 5 Webcam
+        message: 'Sound Detected on Nexus 5 Webcam'
+        data:
+          photo:
+            url: http://192.168.1.71:8080/photo.jpg
+            caption: 'Sound Detected on Nexus 5 Webcam (pic 2)'
+    - delay:
+        seconds: 30
+

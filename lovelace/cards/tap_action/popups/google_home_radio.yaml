@@ -1,0 +1,10 @@
+action: fire-dom-event
+browser_mod:
+  command: call-service
+  service: browser_mod.popup
+  service_data:
+    deviceID: this
+    title: Google Home Radio
+    card: 
+      !include /config/lovelace/cards/radio_player.yaml
+             

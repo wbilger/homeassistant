@@ -1,0 +1,82 @@
+- alias: 'Kitchen Dashboard Motion Screen On Day'
+  initial_state: 'on'
+  trigger: 
+    platform: state
+    entity_id: sensor.kitchen_dashboard_motion
+    to: 'True'
+  condition:
+    condition: state
+    entity_id: sun.sun
+    state: 'above_horizon'  
+  action:
+    - service: browser_mod.no_blackout
+      data:
+        deviceID: fully_kitchen_dashboard
+        brightness: 255
+    - service: light.turn_on
+      data:
+        entity_id: light.dashboard_screen_kitchen       #turn on Kitchen Tablet Screen
+        #brightness: 255
+
+- alias: 'Kitchen Dashboard Motion Screen On Night'
+  initial_state: 'on'
+  trigger: 
+    platform: state
+    entity_id: sensor.kitchen_dashboard_motion
+    to: 'True'
+  condition:
+    condition: state
+    entity_id: sun.sun
+    state: 'below_horizon'  
+  action:
+    - service: browser_mod.no_blackout
+      data:
+        deviceID: fully_kitchen_dashboard
+        brightness: 150
+    - service: light.turn_on
+      data:
+        entity_id: light.dashboard_screen_kitchen       #turn on Kitchen Tablet Screen
+
+
+#had_home:        
+#   alias: Navigate
+#   initial_state: 'on'
+#   sequence:
+#   - event: hadashboard
+#     event_data:
+#       command: navigate
+#       timeout: 10
+#       target: Panel_Weather
+#       sticky: 20
+# - alias: 'WallPanel Kitchen Clear Cache'
+#   initial_state: 'on'
+#   trigger: 
+#     platform: time_pattern
+#     minutes: '/60'
+#     seconds: 0
+#   condition:     
+#     - condition: state
+#       entity_id: sensor.wallpanel_kitchen_screen_on
+#       state: 'False'
+#   action:
+#     - service: switch.turn_on
+#       entity_id: switch.wallpanel_kitchen_clear_cache #Clear Cache on WallPanel browser
+#     - delay: 10
+#     - service: switch.turn_on
+#       entity_id: switch.wallpanel_kitchen_relaunch    #Relaunch WallPanel browser to home page
+
+    
+# - alias: 'WallPanel Kitchen Home'
+#   initial_state: 'on'
+#   trigger: 
+#     - platform: state
+#       entity_id: sensor.wallpanel_kitchen_screen_on
+#       to: 'False'
+#       for: 
+#         hours: "0"
+#         minutes: "15"
+#         seconds: "0"
+#   action:
+#     - service: switch.turn_on
+#       data:
+#         entity_id: switch.wallpanel_kitchen_relaunch    #relaunch to WallPanel home screen (configured launchUrl)

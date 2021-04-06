@@ -1,0 +1,10 @@
+action: fire-dom-event
+browser_mod:
+  command: call-service
+  service: browser_mod.popup
+  service_data:
+    deviceID: this
+    title: Boomba the Roomba
+    card: 
+      !include /config/lovelace/cards/vacuum_cleaner.yaml      
+             

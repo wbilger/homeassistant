@@ -1,0 +1,115 @@
+# - alias: 'Not Home Notification Wayne'
+#   initial_state: 'on'
+#   trigger: 
+#     - platform: state
+#       entity_id: input_select.presence_wayne_status
+#       from: 'Just Left'
+#       to: 'Away'
+#   action:
+#     - service: notify.mobile_app_phone_wayne
+#       data:
+#         message: 'Wayne has Left the building!'
+#         data: 
+#           color: 'red'
+#           image: local/photos/wayne_badge_away
+- alias: 'Not Home Notification Jenn'
+  initial_state: 'on'
+  trigger: 
+    - platform: state
+      entity_id: input_select.presence_jenn_status
+      from: 'Just Left'
+      to: 'Away'
+  action:
+    - service: notify.mobile_app_phone_wayne
+      data:
+        message: 'Jenn has Left the building!'
+        data: 
+          color: 'red'
+          image: local/photos/jenn_badge_away
+
+- alias: 'Not Home Notification Kale'
+  initial_state: 'on'
+  trigger: 
+    - platform: state
+      entity_id: input_select.presence_kale_status
+      from: 'Just Left'
+      to: 'Away'
+  action:
+    - service: notify.mobile_app_phone_wayne
+      data:
+        message: 'Kale has Left the building!'
+        data: 
+          color: 'red'
+          image: local/photos/kale_badge_away
+- alias: 'Not Home Notification Jalynne'
+  initial_state: 'on'
+  trigger: 
+    - platform: state
+      entity_id: input_select.presence_jalynne_status
+      from: 'Just Left'
+      to: 'Away'
+  action:
+    - service: notify.mobile_app_phone_wayne
+      data:
+        message: 'Jalynne has Left the building!'
+        data: 
+          color: 'red'
+          image: local/photos/jalynne_badge_away
+
+
+# - alias: 'Home Notification Wayne'
+#   initial_state: 'on'
+#   trigger: 
+#     - platform: state
+#       entity_id: input_select.presence_wayne_status
+#       from: 'Away'
+#       to: 'Just Arrived'
+#   action:
+#     - service: notify.mobile_app_phone_wayne
+#       data: 
+#         message: 'Wayne has arrived home.'
+#         data:
+#           color: 'green'
+#           image: local/photos/wayne_badge_home
+- alias: 'Home Notification Jenn'
+  initial_state: 'on'
+  trigger: 
+    - platform: state
+      entity_id: input_select.presence_jenn_status
+      from: 'Away'
+      to: 'Just Arrived'
+  action:
+    - service: notify.mobile_app_phone_wayne
+      data: 
+        message: 'Jenn has arrived home.'
+        data:
+          color: 'green'
+          image: local/photos/jenn_badge_home
+- alias: 'Home Notification Kale'
+  initial_state: 'on'
+  trigger: 
+    - platform: state
+      entity_id: input_select.presence_kale_status
+      from: 'Away'
+      to: 'Just Arrived'
+  action:
+    - service: notify.mobile_app_phone_wayne
+      data: 
+        message: 'Kale has arrived home.'
+        data:
+          color: 'green'
+          image: local/photos/kale_badge_home
+- alias: 'Home Notification Jalynne'
+  initial_state: 'on'
+  trigger: 
+    - platform: state
+      entity_id: input_select.presence_jalynne_status
+      from: 'Away'
+      to: 'Just Arrived'
+  action:
+    - service: notify.mobile_app_phone_wayne
+      data: 
+        message: 'Jalynne has arrived home.'
+        data:
+          color: 'green'
+          image: local/photos/jalynne_badge_home

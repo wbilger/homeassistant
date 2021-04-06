@@ -1,0 +1,225 @@
+#################################################################
+# VIEW: thermostat                                              #
+#   Ecobee Thermostat                                           #
+################################################################# 
+title: Ecobee Thermostat 
+path: thermostat
+icon: mdi:thermometer
+cards:
+  - !include /config/lovelace/cards/navigation.yaml
+  - type: custom:vertical-stack-in-card
+    cards:
+      - type: thermostat
+        entity: climate.bilger_home
+      - type: horizontal-stack
+        cards:
+          - type: 'custom:flex-horseshoe-card'
+            entities:
+              - entity: sensor.rtemperature_home_avg
+                attribute: temperature
+                decimals: 0
+                unit: '°C'
+                area: Home
+                tap_action:
+                  action: more-info
+              - entity: sensor.ecobee_humidity
+                attribute: humidity
+                decimals: 0
+                unit: '%'  
+                icon: mdi:water-percent
+                tap_action:
+                  action: more-info
+            show:
+              horseshoe_style: 'lineargradient'
+            layout:
+              states:
+                - id: 0
+                  entity_index: 0
+                  xpos: 50
+                  ypos: 60
+                  styles:
+                    - font-size: 4.5em;
+                - id: 1
+                  entity_index: 1
+                  xpos: 50
+                  ypos: 75
+                  styles:
+                    - font-size: 3em;
+              areas:
+                - id: 0
+                  entity_index: 0
+                  xpos: 50
+                  ypos: 35
+                  styles:
+                    - font-size: 2em;
+                    - opacity: 0.8;
+                - id: 1
+                  entity_index: 1
+                  xpos: 50
+                  ypos: 60
+                  styles:
+                    - font-size: 1.5em;
+                    - opacity: 0.8;
+          
+            horseshoe_scale:
+              min: 0
+              max: 40
+            color_stops:
+              10: 'blue'
+              18: 'orange'        
+              24: 'red'
+        
+          - type: 'custom:flex-horseshoe-card'
+            entities:
+              - entity: sensor.rtemperature_ecobee
+                attribute: temperature
+                decimals: 0
+                unit: '°C'
+                area: Kitchen
+                tap_action:
+                  action: more-info
+            show:
+              horseshoe_style: 'lineargradient'
+            layout:
+              states:
+                - id: 0
+                  entity_index: 0
+                  xpos: 50
+                  ypos: 60
+                  styles:
+                    - font-size: 3.5em;
+              areas:
+                - id: 0
+                  entity_index: 0
+                  xpos: 50
+                  ypos: 35
+                  styles:
+                    - font-size: 1.5em;
+                    - opacity: 0.8;
+          
+            horseshoe_scale:
+              min: 0
+              max: 40
+            color_stops:
+              10: 'blue'
+              18: 'orange'        
+              24: 'red'
+
+          - type: 'custom:flex-horseshoe-card'
+            entities:
+              - entity: sensor.rtemperature_diningroom
+                attribute: temperature
+                decimals: 0
+                unit: '°C'
+                area: Dining Room
+                tap_action:
+                  action: more-info
+            show:
+              horseshoe_style: 'lineargradient'
+            layout:
+              states:
+                - id: 0
+                  entity_index: 0
+                  xpos: 50
+                  ypos: 60
+                  styles:
+                    - font-size: 3.5em;
+              areas:
+                - id: 0
+                  entity_index: 0
+                  xpos: 50
+                  ypos: 35
+                  styles:
+                    - font-size: 1.5em;
+                    - opacity: 0.8;
+          
+            horseshoe_scale:
+              min: 0
+              max: 40
+            color_stops:
+              10: 'blue'
+              18: 'orange'        
+              24: 'red'
+        
+          - type: 'custom:flex-horseshoe-card'
+            entities:
+              - entity: sensor.rtemperature_family_room
+                attribute: temperature
+                decimals: 0
+                unit: '°C'
+                area: Family Room
+                tap_action:
+                  action: more-info
+            show:
+              horseshoe_style: 'lineargradient'
+            layout:
+              states:
+                - id: 0
+                  entity_index: 0
+                  xpos: 50
+                  ypos: 60
+                  styles:
+                    - font-size: 3.5em;
+              areas:
+                - id: 0
+                  entity_index: 0
+                  xpos: 50
+                  ypos: 35
+                  styles:
+                    - font-size: 1.5em;
+                    - opacity: 0.8;
+          
+            horseshoe_scale:
+              min: 0
+              max: 40
+            color_stops:
+              10: 'blue'
+              18: 'orange'        
+              24: 'red'
+
+          - type: 'custom:flex-horseshoe-card'
+            entities:
+              - entity: sensor.rtemperature_bedroom
+                attribute: temperature
+                decimals: 0
+                unit: '°C'
+                area: Bedroom
+                tap_action:
+                  action: more-info
+            show:
+              horseshoe_style: 'lineargradient'
+            layout:
+              states:
+                - id: 0
+                  entity_index: 0
+                  xpos: 50
+                  ypos: 60
+                  styles:
+                    - font-size: 3.5em;
+              areas:
+                - id: 0
+                  entity_index: 0
+                  xpos: 50
+                  ypos: 35
+                  styles:
+                    - font-size: 1.5em;
+                    - opacity: 0.8;
+          
+            horseshoe_scale:
+              min: 0
+              max: 40
+            color_stops:
+              10: 'blue'
+              18: 'orange'        
+              24: 'red'
+
+      - type: entities
+        entities:
+          - entity: sensor.ecobee_mode_home
+            icon: mdi:home
+          - entity: sensor.ecobee_operation
+            icon: mdi:leaf
+          - entity: sensor.ecobee_fan
+            icon: mdi:fan
+          - entity: sensor.ecobee_mode_hold
+            icon: mdi:hand-pointing-up

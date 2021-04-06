@@ -1,0 +1,288 @@
+- alias: 'New Day'    #enable things at beginning of new day
+  trigger: 
+    - platform: time
+      at: '12:01:00'
+  action:
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.vacuum_today
+
+- alias: 'Work Day Home Arrival Time'    #enable certain things when Work Day home arrival time starts
+  initial_state: on
+  trigger: 
+    - platform: time
+      at: '15:00:00'
+  condition:
+    - condition: state
+      entity_id: binary_sensor.work_day
+      state: 'on'
+  action:
+    - service: homeassistant.turn_on
+      entity_id: group.notification_home_arrival  
+
+- alias: 'Person Awake Message Enable'    #enable person awake message at 6am 
+  #initial_state: on  ** NOT ENABLED so can disable in settings and will stay disabled
+  trigger: 
+    - platform: time
+      at: '06:20:00'
+  action:
+    - service: automation.turn_on
+      entity_id: automation.person_awake_message
+
+- alias: 'Person Awake Message Disable'    #disable person awake message 
+  initial_state: 'on' 
+  trigger: 
+    - platform: state
+      entity_id: automation.person_awake_message_enable
+      from: 'on'
+      to: 'off'
+  action:
+    - service: automation.turn_off
+      entity_id: automation.person_awake_message
+
+- alias: 'Person Awake Message'
+  initial_state: 'off'
+  trigger: 
+    - platform: state
+      entity_id: sensor.kitchen_dashboard_motion          #motion on kitchen dashboard
+      to: 'True'
+    - platform: state
+      entity_id: binary_sensor.fully_kitchen_dashboard    #motion on kitchen dashboard      
+      to: 'on'
+    - platform: state
+      entity_id: binary_sensor.kitchen_occupancy          #motion on dining room ecobee sensor
+      to: 'on'
+    - platform: state
+      entity_id: light.kitchen_sink_light                 #if no motion, person turned sink light on manually
+      to: 'on'
+    - platform: state
+      entity_id: light.kitchen_island_lights              #if no motion, person turned island lights on manually
+      to: 'on'
+  condition:
+    - condition: state
+      entity_id: automation.person_awake_message_enable
+      state: 'on'
+  action:      
+    - service: automation.turn_off    
+      data:
+        entity_id: automation.person_awake_message  #disable this automation, re-enable at 6am so only done once per day, after 6am
+        stop_actions: false
+    - condition: time
+      before: '10:00:00'    
+    - service: script.lights_kitchen_morning        #turn on morning kitchen lights
+    - service: media_player.media_pause             #pause in case playing anything before turning volume up/down
+      entity_id: media_player.kitchen_speaker
+    - wait_template: '{{ states("media_player.kitchen_speaker") != "playing" }}'   #wait for any media to stop playing
+      timeout: '00:00:02'           #wait for 2 seconds at most, otherwise something wrong
+    - service: media_player.volume_set   #here set kitchen speaker to favorite volume
+      data_template:
+        entity_id: media_player.kitchen_speaker
+        volume_level: '{{ states("input_number.kitchen_speaker_volume_announcements_morning") | float /100 }}'      #set to announcements volume level (0-1)
+    - service: tts.google_say
+      entity_id: media_player.kitchen_speaker
+      data_template:
+        message: >
+          Good Morning!
+          It is currently {{states("sensor.dark_sky_temperature")|round}} degrees outside,{% if states("sensor.dark_sky_apparent_temperature")|round != states("sensor.dark_sky_apparent_temperature")|round %}
+          but feels like {{states("sensor.dark_sky_apparent_temperature")|round}}{% endif %}
+          {% if states("sensor.dark_sky_apparent_temperature")|round < 2 %}, Brrrrr. But,{% else %}and{% endif %} it is {{states("sensor.bilger_home_temperature_avg")|round}} degrees in the house. 
+          The weather forecast for London today is {{states("sensor.dark_sky_hourly_summary")}}.
+          {% if states("sensor.calendar_bilger") != "" %}On your calendar today, {{ states("sensor.calendar_bilger") }}{% else %}You have nothing on your calendar for today, should be an easy day!{% endif %}
+          {% if is_state("sensor.calendar_garbage_day", "Garbage Day (Today)") %}Also, London curb side pickup is this morning, be sure all the garbage and recycling is gathered and out to the curb soon!{% endif %}
+    - wait_template: '{{ is_state("media_player.kitchen_speaker", "playing") }}'   #wait for message to start playing
+      timeout: '00:00:02'           #wait for 2 seconds at most, otherwise something wrong with tts
+    - wait_for_trigger:
+      - platform: state
+        entity_id: media_player.kitchen_speaker
+        from: "playing"
+        to: "idle"
+    - condition: template
+      value_template: '{{ states("input_text.radio_station_person_awake_automation") != "" }}'                  #don't continue to change volume if preset not set
+    - service: media_player.volume_set
+      data_template:
+        entity_id: media_player.kitchen_speaker
+        volume_level: '{{ states("input_number.kitchen_speaker_volume_favourite_morning") | float /100 }}'      
+    - service: notify.google_assistant_command
+      data_template:
+        message: 'Play {{ states("input_text.radio_station_person_awake_automation") }} on Kitchen{% if is_state("input_boolean.person_awake_bathroom_speaker", "on") and is_state("binary_sensor.work_day", "on") %} and Bathroom{% endif %}'     #play Person Awake Automation preset
+    - condition: template
+      value_template: '{{ is_state("input_boolean.person_awake_bathroom_speaker", "on") and is_state("binary_sensor.work_day", "on") }}'                  #don't continue to not also playing on bathroom speakre
+    - service: media_player.volume_set
+      data_template:
+        entity_id: media_player.bathroom_speaker
+        volume_level: '{{ states("input_number.bathroom_speaker_volume_favourite_morning") | float /100 }}'      
+              
+- alias: 'Person Home Message'
+  #initial_state: on  ** NOT ENABLED so can disable in settings and will stay disabled
+  trigger: 
+    - platform: state
+      entity_id: input_select.presence_wayne_status
+      from: 'Away'
+      to: 'Just Arrived'
+    - platform: state
+      entity_id: input_select.presence_jenn_status
+      from: 'Away'
+      to: 'Just Arrived'
+  condition:
+    - condition: state
+      entity_id: binary_sensor.work_day
+      state: 'on'
+    - condition: time
+      after: '15:00:00'
+      before: '18:00:00'    
+    - condition: template
+      value_template: >-
+        {%- if trigger.entity_id == "input_select.presence_wayne_status" -%}
+          {{is_state("input_boolean.notification_home_arrival_wayne", "on")}}
+        {%- else -%}
+          {{is_state("input_boolean.notification_home_arrival_jenn", "on")}}
+        {%- endif -%}
+  variables:
+    kitchen_speaker_status: '{{ states("media_player.kitchen_speaker") }}'
+    kitchen_speaker_media_content_id: '{{ state_attr("media_player.kitchen_speaker", "media_content_id") }}'
+    kitchen_speaker_media_content_type: '{{ state_attr("media_player.kitchen_speaker", "media_content_type") }}'
+    kitchen_speaker_app_name: '{{ state_attr("media_player.kitchen_speaker", "app_name") }}'
+    kitchen_speaker_volume_level: '{{ state_attr("media_player.kitchen_speaker", "volume_level") }}'
+  action:      
+    - service: automation.turn_off    
+      data:
+        entity_id: automation.person_home_message  #disable this automation to not play both Wayne/Jenn messages when both home same time, re-enable with timer
+        stop_actions: false
+    - delay: 15                                 # wait before making announcement
+    - service: media_player.media_pause         #pause in case playing anything before turning volume up/down
+      entity_id: media_player.kitchen_speaker
+    - wait_template: '{{ states("media_player.kitchen_speaker") != "playing" }}'   #wait for any media to stop playing
+      timeout: '00:00:02'           #wait for 2 seconds at most, otherwise something wrong
+    - service: media_player.volume_set   #here set kitchen speaker to favorite volume
+      data_template:
+        entity_id: media_player.kitchen_speaker
+        volume_level: '{{ states("input_number.kitchen_speaker_volume_announcements") | float /100 }}'      #set to announcements volume level (0-1)
+    - service: tts.google_say
+      entity_id: media_player.kitchen_speaker
+      data_template:
+        message: >
+          Welcome home {% if trigger.entity_id == 'input_select.presence_wayne_status' %}Wayne I hope you had a great day at work today!{% else %}Jennifer I hope you had a great {% if now().month | int < 7 or now().month | int > 8 %}day at work today!{% else %}time going out and enjoying your summer vacation today!{% endif %}{% endif %}
+          It is currently {{states("sensor.dark_sky_temperature")|round}} degrees outside,{% if states("sensor.dark_sky_apparent_temperature")|round != states("sensor.dark_sky_apparent_temperature")|round %}
+          but feels like {{states("sensor.dark_sky_apparent_temperature")|round}}{% endif %}
+          {% if states("sensor.dark_sky_apparent_temperature")|round < 2 %}, Brrrrr. But,{% else %}and{% endif %} it is {{states("sensor.bilger_home_temperature_avg")|round}} degrees in the house. 
+          The weather forecast for London is {{states("sensor.dark_sky_hourly_summary")}}.
+          {% if states("sensor.calendar_bilger") != "" %}On your calendar today, {{ states("sensor.calendar_bilger") }}{% else %}You have nothing on your calendar for tonight, take some time to relax!{% endif %}
+          {% if is_state("sensor.calendar_garbage_day", "Garbage Day (Tomorrow)") %}Also, as a reminder, London curb side pickup is tomorrow morning, be sure to gather up all the garbage and recycling tonight!{% endif %}
+    - service_template: input_boolean.turn_off    #only say message once per day (turn back on at start of work day arrival time)
+      data_template:
+        entity_id: >
+          {% if trigger.entity_id == 'input_select.presence_wayne_status' %}
+            input_boolean.notification_home_arrival_wayne
+          {% else %}  
+            input_boolean.notification_home_arrival_jenn
+          {% endif %}
+    - service: timer.start
+      entity_id: timer.person_home_message  #start timer to re-enamble this automation
+    - wait_template: '{{ is_state("media_player.kitchen_speaker", "playing") }}'   #wait for message to start playing
+      timeout: '00:00:02'           #wait for 2 seconds at most, otherwise something wrong with tts
+    - wait_for_trigger:
+      - platform: state
+        entity_id: media_player.kitchen_speaker
+        from: "playing"
+        to: "idle"
+    - choose:
+      - conditions:
+        - condition: template
+          value_template: '{{ kitchen_speaker_status == "playing" and kitchen_speaker_app_name != "Spotify"}}' #tmp, doesn't work for Spotify
+        sequence:
+          - service: media_player.volume_set
+            data_template:
+              entity_id: media_player.kitchen_speaker
+              volume_level: '{{ kitchen_speaker_volume_level }}'                #restore previous volume_level
+          - service: media_player.play_media   #here set kitchen speaker to favorite volume
+            data_template:
+              entity_id: media_player.kitchen_speaker
+              media_content_type: '{{ kitchen_speaker_media_content_type }}'  #restore previous media_content_type
+              media_content_id: '{{ kitchen_speaker_media_content_id }}'      #restore previous media_content_id
+      default:        
+        - condition: template
+          value_template: '{{ states("input_text.radio_station_person_home_automation") != "" }}'                  #don't continue to change volume if preset not set
+        - service: media_player.volume_set
+          data_template:
+            entity_id: media_player.kitchen_speaker
+            volume_level: '{{ states("input_number.kitchen_speaker_volume_favourite") | float /100 }}'      
+        - service: notify.google_assistant_command
+          data_template:
+            message: 'Play {{ states("input_text.radio_station_person_home_automation") }} on Kitchen'     #play Person Awake Automation preset 
+
+- alias: 'Person Home Message Timeout'
+  initial_state: 'on'
+  trigger: 
+    - platform: event
+      event_type: timer.finished
+      event_data: 
+        entity_id: timer.person_home_message
+  action:
+    - service: automation.turn_on             #re-enable Person Home message
+      entity_id: automation.person_home_message
+
+- alias: 'No one is home'
+  initial_state: 'on'
+  trigger: 
+    - platform: state
+      entity_id: group.bilger_home
+      to: 'not_home'
+      for: 
+        hours: "0"
+        minutes: "15"
+        seconds: "0"
+  action:
+    - service: lock.lock
+      entity_id: lock.schlage_allegion_be469_touchscreen_deadbolt_locked_frontdoor
+    - service: light.turn_off
+      data_template:
+        entity_id: "{{ states.light | map(attribute='entity_id') | list | join(', ') }}"   #turn off all lights (replaces group.all_lights)  
+    - service: switch.turn_off
+      entity_id: switch.bedroom_tv
+    - service: switch.turn_off
+      entity_id: switch.dining_room_tv
+    - service: homeassistant.turn_off
+      entity_id: group.family_room_tv_pc    #include PC in case on
+    - service: homeassistant.turn_off
+      entity_id: group.theatre
+    - service: script.theatre_projector_off      #in case left on, needs double power off so not turned off with group
+    - service: notify.mobile_app_phone_wayne
+      data:
+        message: 'Bilger home is empty, except maybe the dog!'
+
+- alias: 'Bilger Parents are not home on work day'
+  #initial_state: on  ** NOT ENABLED so can disable in settings and will stay disabled
+  trigger: 
+    - platform: state
+      entity_id: group.bilger_parents
+      to: 'not_home'
+      for: 
+        hours: "0"
+        minutes: "15"
+        seconds: "0"        
+  condition:
+    - condition: state
+      entity_id: binary_sensor.work_day
+      state: 'on'
+    - condition: time
+      after: '07:30:00'
+      before: '16:00:00'    
+  action:
+    - service: homeassistant.turn_off
+      entity_id: group.bedroom_lights
+    - service: homeassistant.turn_off
+      entity_id: group.main_floor_lights
+    - service: switch.turn_off
+      entity_id: switch.wayne_pc            #turn off Wayne-PC in case on    
+    - service: switch.turn_off
+      entity_id: switch.wayne_fr            #turn off Wayne-FR in case on    
+    - condition: template
+      value_template: '{{ states("input_text.radio_station_pdog") != "" }}'               #don't execute if preset not set, as called from automations
+    - service: media_player.volume_set
+      data_template:
+        entity_id: media_player.kitchen_speaker
+        volume_level: '{{ states("input_number.kitchen_speaker_volume_dog") | float /100 }}'      
+    - service: notify.google_assistant_command
+      data_template:
+        message: 'Play {{ states("input_text.radio_station_pdog") }} on Kitchen'   #play kitchen dog preset
+    - service: script.lock_front_door_lock
+    - service: script.vacuum_automation

@@ -1,0 +1,146 @@
+#################################################################
+# VIEW: sensors                                                 #
+#                                                               #
+################################################################# 
+title: Sensors
+path: sensors
+icon: mdi:gauge
+cards:
+  - !include /config/lovelace/cards/navigation.yaml
+  - type: vertical-stack
+    cards:
+      - type: glance
+        entities:
+          - sun.sun
+          - entity: sensor.sun_elevation      
+            icon: mdi:weather-sunset
+          - entity: binary_sensor.work_day
+            icon: mdi:calendar-star
+      - type: custom:auto-entities
+        card:
+          title: Last Motion Detected
+          type: entities    
+        filter:
+          include:
+            - domain: binary_sensor
+              attributes:
+                device_class: motion
+              options:
+                secondary_info: last-changed
+            - entity_id: sensor.kitchen_dashboard_motion
+              name: toosensor
+              options:
+                secondary_info: last-changed
+            - entity_id: sensor.remote_family_room_motion
+              options:
+                secondary_info: last-changed
+            - entity_id: sensor.remote_theatre_motion
+              options:
+                secondary_info: last-changed
+          exclude:
+            - state: unavailable                
+        sort:
+          method: last_changed
+          count: 1
+      - type: custom:auto-entities
+        card:
+          title: Last Automation
+          type: entities    
+        filter:
+          include:
+            - domain: automation
+              options:
+                secondary_info: last-triggered
+        sort:
+          method: last_triggered
+          count: 5
+      - type: custom:auto-entities
+        card:
+          title: Last Script
+          type: entities    
+        filter:
+          include:
+            - domain: script
+              options:
+                secondary_info: last-changed
+          exclude:
+            - entity_id: "*dark_sky*"
+        sort:
+          method: last_changed
+          count: 5
+
+  - type: vertical-stack
+    cards:
+      - type: custom:vertical-stack-in-card
+        title: Washing Machine      #stack to get title
+        cards:
+          - !include /config/lovelace/cards/washing_machine.yaml   
+      # - type: entities
+      #   title: Front Door Lock
+      #   show_header_toggle: false
+      #   entities:
+      #     - entity_id: sensor.schlage_front_door_battery
+      #       name: Battery Level
+      #       options:
+      #         type: custom:battery-entity-row
+      #         charging: 
+      #           entity: sensor.kitchen_dashboard_battery_charging
+      #     - entity: sensor.schlage_front_door_lock_notification
+      #       name: Notification
+      #     - entity: sensor.schlage_front_door_lock_status
+      #       name: Lock Status
+
+      - type: custom:auto-entities
+        card:
+          type: entities
+          title: Dashboards and Remotes
+        filter:
+          include:
+            - entity_id: sensor.kitchen_dashboard_battery_level
+              options:
+                type: custom:battery-entity-row
+                charging: 
+                  entity: sensor.kitchen_dashboard_battery_charging
+            - entity_id: sensor.kitchen_dashboard_motion
+              options:
+                secondary_info: last-changed
+            - entity_id: sensor.remote_*_battery_level
+              options:
+                type: custom:battery-entity-row
+                charging: 
+                  entity: sensor.remote_*_charging
+            - entity: sensor.remote_*_motion
+              options:
+                secondary_info: last-changed
+
+      - type: custom:auto-entities
+        card:
+          type: entities
+          title: Ikea Dimmer Batteries
+        filter:
+          include:
+            - entity_id: sensor.*dimmer*
+              options:
+                type: custom:battery-entity-row
+
+  - type: vertical-stack
+    cards:                
+      - type: custom:auto-entities
+        card:
+          type: glance
+          title: System Resources 2
+        # entities:
+        #   - <entity>
+        filter:
+          include:
+            - entity_id: sensor.glances_*
+          # exclude:
+          #   - <filter>
+        #sort: <sort_method>
+      - type: custom:auto-entities
+        card:
+          type: entities
+          title: System Resources
+        filter:
+          include:
+            - entity_id: sensor.glances_*

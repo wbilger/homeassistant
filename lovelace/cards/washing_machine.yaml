@@ -1,0 +1,52 @@
+type: custom:vertical-stack-in-card
+cards:
+  - type: picture-elements
+    image: /local/photos/transparent.png
+    aspect_ratio: 33%
+    elements:
+      - type: image
+        image: /local/photos/switch-on.png
+        entity: automation.notify_washing_machine_stop
+        state_image:
+          "off": /local/photos/switch-off.png
+        state_filter:
+          "off": opacity(40%)
+        tap_action:
+          action: none  
+        hold_action:
+          service: browser_mod.more_info
+          service_data:
+            entity_id: switch.sonoff_pow_01    #washing machine Sonoff POW switch
+            deviceID: this
+        style:
+          width: 10%
+          top: 50%
+          left: 10%
+      - type: state-badge
+        entity: sensor.sonoff_pow01_energy_today
+        style:
+          top: 50%
+          left: 30%
+      - type: state-badge
+        entity: sensor.sonoff_pow01_energy_yesterday
+        style:
+          top: 50%
+          left: 50%
+      - type: state-badge
+        entity: sensor.sonoff_pow01_power
+        style:
+          top: 50%
+          left: 70%
+      - type: state-badge
+        entity: sensor.sonoff_pow01_current
+        style:
+          top: 50%
+          left: 90%
+  - type: history-graph
+    name: Power
+    entities: 
+      - sensor.sonoff_pow01_power
+  - type: history-graph
+    name: Current
+    entities: 
+      - sensor.sonoff_pow01_current

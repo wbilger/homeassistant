@@ -1,0 +1,75 @@
+## input_numbers for Google Home devices
+kitchen_speaker_volume_favourite:
+  name: Kitchen Favourite Volume
+  icon: mdi:music
+  min: 0
+  max: 100
+  step: 5
+kitchen_speaker_volume_favourite_morning:
+  name: Kitchen Morning Favourite Volume
+  icon: mdi:music
+  min: 0
+  max: 100
+  step: 5
+kitchen_speaker_volume_announcements:
+  name: Kitchen Announcements Volume
+  icon: mdi:voice
+  min: 0
+  max: 100
+  step: 5
+kitchen_speaker_volume_announcements_morning:
+  name: Kitchen Morning Announcements Volume
+  icon: mdi:voice
+  min: 0
+  max: 100
+  step: 5
+kitchen_speaker_volume_dog:
+  name: Kitchen Volume for Dog
+  icon: mdi:music
+  min: 0
+  max: 100
+  step: 5
+bathroom_speaker_volume_favourite_morning:
+  name: Bathroom Morning Favourite Volume
+  icon: mdi:music
+  min: 0
+  max: 100
+  step: 5
+bedroom_speaker_volume_favourite:
+  name: Bedroom Favourite Volume
+  icon: mdi:music
+  min: 0
+  max: 100
+  step: 5
+bedroom_speaker_volume_favourite_morning:
+  name: Bedroom Morning Favourite Volume
+  icon: mdi:music
+  min: 0
+  max: 100
+  step: 5
+bedroom_speaker_volume_announcements:
+  name: Bedroom Announcements Volume
+  icon: mdi:voice
+  min: 0
+  max: 100
+  step: 5
+bedroom_speaker_volume_announcements_morning:
+  name: Bedroom Morning Announcements Volume
+  icon: mdi:voice
+  min: 0
+  max: 100
+  step: 5
+  
+family_room_plex_volume:
+  name: Family Room Plex Volume
+  icon: mdi:volume-high
+  min: 0
+  max: 100
+  step: 5
+jalynne_plex_volume:
+  name: Jalynne Plex Volume
+  icon: mdi:volume-high
+  min: 0
+  max: 100
+  step: 5
+    

@@ -1,0 +1,76 @@
+bilger_home_motion:
+  name: Bilger Home Motion
+  initial: not_home
+  options:
+    - not_home
+    - home
+bilger_home_override:
+  name: Bilger Home Override
+  options:
+    - not_home
+    - home
+    
+presence_wayne_status:
+  name: Wayne
+  options:
+    - Home
+    - Just Arrived
+    - Just Left
+    - Away
+    - Extended Away
+  #initial: Away    #use this to force status when wrong on restarts
+presence_wayne_room_location:
+    name: Wayne Room Location
+    options:
+      - Kitchen
+      - Bedroom
+      - Away
+      - Home
+      
+presence_jenn_status:
+  name: Jenn
+  options:
+    - Home
+    - Just Arrived
+    - Just Left
+    - Away
+    - Extended Away
+presence_jenn_room_location:
+    name: Jenn Room Location
+    options:
+      - Kitchen
+      - Bedroom
+      - Away
+      - Home
+      
+presence_kale_status:
+  name: Kale
+  options:
+    - Home
+    - Just Arrived
+    - Just Left
+    - Away
+    - Extended Away
+presence_kale_room_location:
+    name: Kale Room Location
+    options:
+      - Kitchen
+      - Bedroom
+      - Away
+      - Home
+
+presence_jalynne_status:
+  name: Jalynne
+  options:
+    - Home
+    - Just Arrived
+    - Just Left
+    - Away
+    - Extended Away
+presence_jalynne_room_location:
+    name: Jalynne Room Location
+    options:
+      - Kitchen
+      - Bedroom
+      - Away
+      - Home

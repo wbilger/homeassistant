@@ -1,0 +1,180 @@
+## Device Timers on/off
+- alias: 'Device Timer Xmas Tree On Enabled'
+  trigger:
+    - platform: time_pattern
+      minutes: '*'
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: binary_sensor.device_timer_xmas_tree_on_time
+        state: 'on'
+      - condition: or        
+        conditions:
+          - condition: state
+            entity_id: input_boolean.device_timer_xmas_tree_on_bilger_home
+            state: 'off'
+          - condition: state
+            entity_id: group.bilger_home
+            state: 'home'
+  action:
+    - service: homeassistant.turn_on
+      data_template:
+        entity_id: '{{ states("input_select.device_timer_xmas_tree_list") }}'
+- alias: 'Device Timer Xmas Tree Off Enabled'
+  trigger:
+    - platform: time_pattern
+      minutes: '*'
+  condition:
+    condition: or
+    conditions:
+      - condition: state
+        entity_id: binary_sensor.device_timer_xmas_tree_on_time
+        state: 'off'
+      - condition: and
+        conditions:
+          - condition: state
+            entity_id: input_boolean.device_timer_xmas_tree_off_bilger_home
+            state: 'on'
+          - condition: state
+            entity_id:  group.bilger_home
+            state: 'not_home'
+  action:
+    - service: homeassistant.turn_off
+      data_template:
+        entity_id: '{{ states("input_select.device_timer_xmas_tree_list") }}'
+
+- alias: 'Device Timer 1 On Enabled'
+  trigger:
+    - platform: time_pattern
+      minutes: '*'
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: binary_sensor.device_timer_1_on_time
+        state: 'on'
+      - condition: or        
+        conditions:
+          - condition: state
+            entity_id: input_boolean.device_timer_1_on_bilger_home
+            state: 'off'
+          - condition: state
+            entity_id: group.bilger_home
+            state: 'home'
+  action:
+    - service: homeassistant.turn_on
+      data_template:
+        entity_id: '{{ states("input_select.device_timer_1_list") }}'
+- alias: 'Device Timer 1 Off Enabled'
+  trigger:
+    - platform: time_pattern
+      minutes: '*'
+  condition:
+    condition: or
+    conditions:
+      - condition: state
+        entity_id: binary_sensor.device_timer_1_on_time
+        state: 'off'
+      - condition: and
+        conditions:
+          - condition: state
+            entity_id: input_boolean.device_timer_1_off_bilger_home
+            state: 'on'
+          - condition: state
+            entity_id:  group.bilger_home
+            state: 'not_home'
+  action:
+    - service: homeassistant.turn_off
+      data_template:
+        entity_id: '{{ states("input_select.device_timer_1_list") }}'
+        
+- alias: 'Device Timer 2 On Enabled'
+  trigger:
+    - platform: time_pattern
+      minutes: '*'
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: binary_sensor.device_timer_2_on_time
+        state: 'on'
+      - condition: or        
+        conditions:
+          - condition: state
+            entity_id: input_boolean.device_timer_2_on_bilger_home
+            state: 'off'
+          - condition: state
+            entity_id: group.bilger_home
+            state: 'home'
+  action:
+    - service: homeassistant.turn_on
+      data_template:
+        entity_id: '{{ states("input_select.device_timer_2_list") }}'
+- alias: 'Device Timer 2 Off Enabled'
+  trigger:
+    - platform: time_pattern
+      minutes: '*'
+  condition:
+    condition: or
+    conditions:
+      - condition: state
+        entity_id: binary_sensor.device_timer_2_on_time
+        state: 'off'
+      - condition: and
+        conditions:
+          - condition: state
+            entity_id: input_boolean.device_timer_1_off_bilger_home
+            state: 'on'
+          - condition: state
+            entity_id:  group.bilger_home
+            state: 'not_home'
+  action:
+    - service: homeassistant.turn_off
+      data_template:
+        entity_id: '{{ states("input_select.device_timer_2_list") }}'
+        
+- alias: 'Device Timer 3 On Enabled'
+  trigger:
+    - platform: time_pattern
+      minutes: '*'
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: binary_sensor.device_timer_3_on_time
+        state: 'on'
+      - condition: or        
+        conditions:
+          - condition: state
+            entity_id: input_boolean.device_timer_3_on_bilger_home
+            state: 'off'
+          - condition: state
+            entity_id: group.bilger_home
+            state: 'home'
+  action:
+    - service: homeassistant.turn_on
+      data_template:
+        entity_id: '{{ states("input_select.device_timer_3_list") }}'
+- alias: 'Device Timer 3 Off Enabled'
+  trigger:
+    - platform: time_pattern
+      minutes: '*'
+  condition:
+    condition: or
+    conditions:
+      - condition: state
+        entity_id: binary_sensor.device_timer_3_on_time
+        state: 'off'
+      - condition: and
+        conditions:
+          - condition: state
+            entity_id: input_boolean.device_timer_3_off_bilger_home
+            state: 'on'
+          - condition: state
+            entity_id:  group.bilger_home
+            state: 'not_home'
+  action:
+    - service: homeassistant.turn_off
+      data_template:
+        entity_id: '{{ states("input_select.device_timer_3_list") }}'

@@ -1,0 +1,37 @@
+speakers_google_home:
+  name: Speaker Select
+  icon: mdi:google-home
+  options:
+    - Kitchen
+    - Portable
+    - Kitchen and Portable
+    - Bedroom
+    - Kitchen and Bedroom
+    - Kitchen Bedroom Bathroom
+    - Kitchen and Bathroom
+    - Outside
+    - Outside and Portable
+    - Kitchen and Outside
+    - Kitchen Outside Portable
+    - All
+
+radio_station_p1:
+  name: Radio Preset 1
+  icon: mdi:numeric-1-box
+  options:
+    - default
+radio_station_p2:
+  name: Radio Preset 2
+  icon: mdi:numeric-2-box
+  options:
+    - default
+radio_station_p3:
+  name: Radio Preset 3
+  icon: mdi:numeric-3-box
+  options:
+    - default
+radio_station_p4:
+  name: Radio Preset 4
+  icon: mdi:numeric-4-box
+  options:
+    - default

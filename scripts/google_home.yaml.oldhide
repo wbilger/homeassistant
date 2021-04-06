@@ -1,0 +1,236 @@
+# radio_play_kitchen_multi:
+#   alias: Play Radio with Kitchen Multi Player
+#   sequence:  
+#     - service: input_text.set_value
+#       data_template:
+#         entity_id: input_text.radio_player
+#         value: >
+#           {{% if is_state("input_select.speakers_google_home", "Outside") %} media_player.outside_speakers
+#           {{% elif is_state("input_select.speakers_google_home", "Portable") %} media_player.jbl_link_20
+#           {{% elif is_state("input_select.speakers_google_home", "Outside and Portable") %} media_player.outside_and_portable
+#           {{% elif is_state("input_select.speakers_google_home", "Kitchen and Portable") %} media_player.kitchen_and_portable
+#           {{% elif is_state("input_select.speakers_google_home", "Kitchen and Outside") %} media_player.kitchen_and_outside
+#           {{% elif is_state("input_select.speakers_google_home", "Kitchen and Outside and Portable") %} media_player.kitchen_outside_and_portable
+#           {{% elif is_state("input_select.speakers_google_home", "Kitchen and Bedroom") %} media_player.kitchen_and_bedroom
+#           {{% elif is_state("input_select.speakers_google_home", "Bedroom") %} media_player.bedroom_speaker
+#           {{% elif is_state("input_select.speakers_google_home", "All") %} media_player.all_speakers
+#           {{% else %} media_player.kitchen_speaker 
+#           {{% endif %}
+#     - service: input_text.set_value
+#       data_template:
+#         entity_id: input_text.radio_station
+#         value: '{{ states("input_select.radio_station") }}' #pass to script.radio_play
+#     - service: script.radio_play
+# radio_play_kitchen:
+#   alias: Play Radio with Kitchen Player
+#   sequence:  
+#     - service: input_text.set_value
+#       data:
+#         entity_id: input_text.radio_player
+#         value: media_player.kitchen_speaker
+#     - service: input_text.set_value
+#       data_template:
+#         entity_id: input_text.radio_station
+#         value: '{{ states("input_select.radio_station") }}' #pass to script.radio_play
+#     - service: script.radio_play
+# radio_play_bedroom:
+#   alias: Play Radio with Bedroom Player
+#   sequence:  
+#     - service: input_text.set_value
+#       data:
+#         entity_id: input_text.radio_player
+#         value: media_player.bedroom_speaker
+#     - service: input_text.set_value
+#       data_template:
+#         entity_id: input_text.radio_station
+#         value: '{{ states("input_select.bedroom_radio_station") }}' #pass to script.radio_play
+#     - service: script.radio_play
+# radio_play:
+#   alias: Play Radio on Chromecast Audio
+#   sequence:
+#     - service: script.radio_get_preset_station    
+#     - service: media_player.play_media
+#       data_template:
+#         entity_id: '{{ states("input_text.radio_player") }}'
+#         media_content_id: '{{ states("input_text.radio_station") }}'
+#         media_content_type: 'audio/mp4'    
+#
+# radio_get_preset_station:
+#   sequence:
+#     - service: input_text.set_value
+#       data_template:
+#         entity_id: input_text.radio_station
+#         value: >
+#           {{% if is_state("input_text.radio_station", "Country 93") %} http://18223.live.streamtheworld.com:3690/CJBXFMAAC_SC
+#           {{% elif is_state("input_text.radio_station", "Country 104") %} https://live.leanstream.co/CKDKFM-MP3
+#           {{% elif is_state("input_text.radio_station", "Rock 98.1") %} http://live.leanstream.co/CKLOFM
+#           {{% elif is_state("input_text.radio_station", "Jack 102.3") %} https://rogers-hls.leanstream.co/rogers/lon1023.stream/playlist.m3u8
+#           {{% elif is_state("input_text.radio_station", "FM 96") %} http://live.leanstream.co/CFPLFM-MP3
+#           {{% elif is_state("input_text.radio_station", "Fresh FM 103.1") %} http://live.leanstream.co/CFHKFM-MP3
+#           {{% elif is_state("input_text.radio_station", "Virgin 97.5") %} http://16923.live.streamtheworld.com/CIQMFM_SC
+#           {{% elif is_state("input_text.radio_station", "Newstalk 1290") %} http://18223.live.streamtheworld.com:3690/CJBKAM_SC
+#           {{% elif is_state("input_text.radio_station", "AM 980") %} http://live.leanstream.co/CFPLAM-MP3
+#           {{% elif is_state("input_text.radio_station", "1240 Oldies") %} http://s1.hotdogradio.com/CJCS
+#           {{% elif is_state("input_text.radio_station", "101.5 The Wolf") %} http://live.leanstream.co/CKWFFM-MP3?tunein
+#           {{% elif is_state("input_text.radio_station", "97.7 HTZ FM") %} http://17633.live.streamtheworld.com:3690/CHTZFM_SC
+#           {{% elif is_state("input_text.radio_station", "Q107 Toronto") %} http://live.leanstream.co/CILQFM-MP3?tunein
+#           {{% elif is_state("input_text.radio_station", "Country Roads") %} http://rfcmedia.streamguys1.com/countryroads.mp3
+#           {{% elif is_state("input_text.radio_station", "Country Hits") %} http://rfcmedia.streamguys1.com/countryhits.mp3
+#           {{% elif is_state("input_text.radio_station", "Today's Hits") %} http://rfcmedia.streamguys1.com/MusicPulse.mp3
+#           {{% elif is_state("input_text.radio_station", "New Pop Hits") %} http://rfcmedia.streamguys1.com/newpophits.mp3
+#           {{% elif is_state("input_text.radio_station", "Mix Lite") %} http://rfcmedia.streamguys1.com/mixlite.mp3
+#           {{% elif is_state("input_text.radio_station", "Soft Rock Hits") %} http://rfcmedia.streamguys1.com/softrockhits.mp3
+#           {{% elif is_state("input_text.radio_station", "Classic Rock Hits") %} http://rfcmedia.streamguys1.com/classicrock.mp3
+#           {{% elif is_state("input_text.radio_station", "Classic Rock") %} http://strm112.1.fm/x_mobile_mp3
+#           {{% elif is_state("input_text.radio_station", "Classic Hits") %} http://rfcmedia.streamguys1.com/classicoldies.mp3
+#           {{% elif is_state("input_text.radio_station", "70's Hits") %} http://rfcmedia.streamguys1.com/70hits.mp3
+#           {{% elif is_state("input_text.radio_station", "80's Hits") %} http://rfcmedia.streamguys1.com/80hits.mp3
+#           {{% elif is_state("input_text.radio_station", "90's Hits") %} http://rfcmedia.streamguys1.com/90hits.mp3
+#           {{% elif is_state("input_text.radio_station", "Alternative Hits") %} http://rfcmedia.streamguys1.com/alternativehits.mp3
+#           {{% elif is_state("input_text.radio_station", "Alternative X") %} http://strm112.1.fm/x_mobile_mp3
+#           {{% elif is_state("input_text.radio_station", "Relax and Unwind") %} http://rfcmedia.streamguys1.com/relaxation.mp3
+#           {{% elif is_state("input_text.radio_station", "Holiday Hits") %} http://rfcmedia.streamguys1.com/holidayhits.mp3
+#           {{% elif is_state("input_text.radio_station", "Country Christmas") %} http://rfcmedia.streamguys1.com/countrychristmas.mp3
+#           {{% elif is_state("input_text.radio_station", "Holiday Standards") %} http://rfcmedia.streamguys1.com/holidaystandards.mp3
+#           {{% elif is_state("input_text.radio_station", "Classical Holiday") %} http://rfcmedia.streamguys1.com/classicalholiday.mp3
+#           {{% endif %}         
+
+  
+# spotify_play:
+#   alias: Play Spotify Playlist on Chromecast Audio
+#   sequence:
+#     # - service: media_player.select_source
+#     #   entity_id: media_player.spotify
+#     #   source: media_player.kitchen_speaker
+#       #'source: '{{ radio_player }}'
+#     - service: media_player.play_media
+#       data_template:
+#         entity_id: media_player.spotify
+#         media_content_id: >
+#           {{% if is_state("input_text.radio_station", "Playlist Test 1") %} spotify:user:spotify:playlist:37i9dQZF1DX4WYpdgoIcn6
+#           {{% elif is_state("input_text.radio_station", "Playlist Test 2") %} spotify:user:mscoaco:playlist:5u9FvbFz0j6QGkSBNNuT5G
+#           {{% elif is_state("input_text.radio_station", "Playlist Test 3") %} spotify:user:12131571557:playlist:2JgjNysZhksrtRjuGbbWns
+#           {{% elif is_state("input_text.radio_station", "Playlist Test 4") %} spotify:user:spotify:playlist:37i9dQZF1DWTlzJXLRpd4a 
+#           {{% endif %}
+#         media_content_type: playlist
+# # spotify_scene_party:
+# #   alias: "Spotify - Party"
+# #   sequence:
+# #     - service: media_player.select_source
+# #       data:
+# #         entity_id: media_player.spotify
+# #         source: media_player.bedroom_speaker
+# #     - service: media_player.play_media
+# #       data:
+# #         entity_id: media_player.spotify
+# #         media_content_type: playlist
+# #         media_content_id: spotify:user:spotify:playlist:37i9dQZF1DX4WYpdgoIcn6
+
+
+# kitchen_radio_station_p1_multi:
+#   alias: Kitchen Radio Preset 1
+#   sequence:
+#     - service: input_select.select_option
+#       data_template:
+#         entity_id: input_select.radio_station
+#         option: '{{ states("input_text.radio_station_p1_display") }}'
+#     - service: script.radio_play_kitchen_multi
+
+# kitchen_radio_station_p2_multi:
+#   alias: Kitchen Radio Preset 2
+#   sequence:
+#     - service: input_select.select_option
+#       data_template:
+#         entity_id: input_select.radio_station
+#         option: '{{ states("input_select.radio_station_p2") }}'
+#     - service: script.radio_play_kitchen_multi
+
+# kitchen_radio_station_p3_multi:
+#   alias: Kitchen Radio Preset 3
+#   sequence:
+#     - service: input_select.select_option
+#       data_template:
+#         entity_id: input_select.radio_station
+#         option: '{{ states("input_select.radio_station_p3") }}'
+#     - service: script.radio_play_kitchen_multi
+
+# kitchen_radio_station_p4_multi:
+#   alias: Kitchen Radio Preset 4
+#   sequence:
+#     - service: input_select.select_option
+#       data_template:
+#         entity_id: input_select.radio_station
+#         option: '{{ states("input_select.radio_station_p4") }}'
+#     - service: script.radio_play_kitchen_multi
+
+# kitchen_radio_station_p1:
+#   alias: Kitchen Radio Preset 1
+#   sequence:
+#     - service: input_select.select_option
+#       data_template:
+#         entity_id: input_select.radio_station
+#         option: '{{ states("input_text.radio_station_p1_display") }}'
+#     - service: script.radio_play_kitchen
+
+# kitchen_radio_station_p2:
+#   alias: Kitchen Radio Preset 2
+#   sequence:
+#     - service: input_select.select_option
+#       data_template:
+#         entity_id: input_select.radio_station
+#         option: '{{ states("input_select.radio_station_p2") }}'
+#     - service: script.radio_play_kitchen
+
+# kitchen_radio_station_p3:
+#   alias: Kitchen Radio Preset 3
+#   sequence:
+#     - service: input_select.select_option
+#       data_template:
+#         entity_id: input_select.radio_station
+#         option: '{{ states("input_select.radio_station_p3") }}'
+#     - service: script.radio_play_kitchen
+
+# kitchen_radio_station_p4:
+#   alias: Kitchen Radio Preset 4
+#   sequence:
+#     - service: input_select.select_option
+#       data_template:
+#         entity_id: input_select.radio_station
+#         option: '{{ states("input_select.radio_station_p4") }}'
+#     - service: script.radio_play_kitchen
+
+# bedroom_radio_station_p1:
+#   alias: Bedroom Radio Preset 1
+#   sequence:
+#     - service: input_select.select_option
+#       data_template:
+#         entity_id: input_select.bedroom_radio_station
+#         option: '{{ states("input_select.bedroom_radio_station_p1") }}'
+#     - service: script.radio_play_bedroom
+
+# bedroom_radio_station_p2:
+#   alias: Bedroom Radio Preset 2
+#   sequence:
+#     - service: input_select.select_option
+#       data_template:
+#         entity_id: input_select.bedroom_radio_station
+#         option: '{{ states("input_select.bedroom_radio_station_p2") }}'
+#     - service: script.radio_play_bedroom
+
+# bedroom_radio_station_p3:
+#   alias: Bedroom Radio Preset 3
+#   sequence:
+#     - service: input_select.select_option
+#       data_template:
+#         entity_id: input_select.bedroom_radio_station
+#         option: '{{ states("input_select.bedroom_radio_station_p3") }}'
+#     - service: script.radio_play_bedroom
+
+# bedroom_radio_station_p4:
+#   alias: Bedroom Radio Preset 4
+#   sequence:
+#     - service: input_select.select_option
+#       data_template:
+#         entity_id: input_select.bedroom_radio_station
+#         option: '{{ states("input_select.bedroom_radio_station_p4") }}'
+#     - service: script.radio_play_bedroom

@@ -1,0 +1,25 @@
+ha_themes:
+  name: Theme
+  icon: mdi:palette
+  options: 
+    - default
+    - Midnight Alt
+    - midnight 
+    - midnight_blue
+    # Some Themes disabled as giving Data too long for column 'event_data' at row 1" -- background_image in base64 code too long
+    #- amoled
+    #- blue_night
+    #- christmas
+    #- clear
+    #- clear-dark
+    #- dark_orange
+    #- dark_mint
+    - grey_night
+    - green_slate
+    - halloween
+    #- ios-dark-mode
+    - material_dark_green
+    - material_dark_pink
+    - slate
+    - solarized_light
+    - synthwave

@@ -1,0 +1,17 @@
+#################################################################
+# VIEW: calendars                                               #
+#                                                               #
+################################################################# 
+title: Calendar
+path: calendar
+icon: mdi:calendar
+panel: true
+cards:
+  - type: vertical-stack
+    cards:
+      - type: custom:vertical-stack-in-card
+        cards:
+          - !include /config/lovelace/cards/navigation_home.yaml
+          - type: iframe
+            url: /calendar
+            aspect_ratio: 150%

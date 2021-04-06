@@ -1,0 +1,66 @@
+- action:
+  - service: timer.start
+    entity_id: timer.wayne_not_home
+  alias: Wayne Not Home
+  id: 'wayne_not_home'
+  trigger: 
+    - platform: state
+      entity_id: person.wayne
+      to: 'not_home'
+- action:
+    - service: notify.telegram
+      data:
+        message: 'Wayne Has Left the building!'
+  alias: Wayne Left
+  id: 'wayne_left'
+  trigger:
+    platform: event
+    event_type: timer.finished
+    event_data:
+      entity_id: timer.wayne_not_home
+
+- alias: 'Wayne Not Home Timeout'
+  initial_state: 'on'
+  trigger: 
+    - platform: state
+      entity_id: person.wayne
+      to: 'home'
+  condition:
+    condition: state
+    entity_id: timer.wayne_not_home
+    state: 'active'
+  action:
+    - delay: 
+        seconds: 2                #NOT SURE IF NEEDED delay 2 seconds before cancelling timer to allow other 'home' triggers to finish
+    - service: timer.cancel
+      entity_id: timer.wayne_not_home
+
+- alias: 'Wayne Home Notification'
+  initial_state: 'on'
+  trigger: 
+    - platform: state
+      entity_id: person.wayne
+      to: 'home'
+  condition: 
+    condition: state
+    entity_id: timer.wayne_not_home
+    state: 'idle'
+  action:
+    - service: notify.telegram
+      data:
+        message: 'Wayne Has Arrived Home!'
+            
+- alias: 'Wayne Home Lights'
+  initial_state: 'on'
+  trigger: 
+    - platform: state
+      entity_id: person.wayne
+      to: 'home'
+  condition:
+    - condition: state
+      entity_id: timer.wayne_not_home
+      state: 'idle'
+    - condition: template
+      value_template: '{{ state_attr("sun.sun", "elevation") < 2.5 }}'      
+  action:
+    - service: script.lights_arrival

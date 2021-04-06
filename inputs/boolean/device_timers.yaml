@@ -1,0 +1,64 @@
+device_timer_1_enabled_on:
+  name: On Timer Enabled
+  icon: mdi:timer
+device_timer_1_enabled_off:
+  name: Off Timer Enabled
+  icon: mdi:timer
+device_timer_1_on_time_sun:
+  name: Use sunset to turn on
+  icon: mdi:weather-sunset
+device_timer_1_on_bilger_home:
+  name: Turn on only if someone home
+  icon: mdi:home-map-marker
+device_timer_1_off_bilger_home:
+  name: Turn off if house empty
+  icon: mdi:home-outline
+device_timer_2_enabled_on:
+  name: On Timer Enabled
+  icon: mdi:timer
+device_timer_2_enabled_off:
+  name: Off Timer Enabled
+  icon: mdi:timer
+device_timer_2_on_time_sun:
+  name: Use sunset to turn on
+  icon: mdi:weather-sunset
+device_timer_2_on_bilger_home:
+  name: Turn on only if someone home
+  icon: mdi:home-map-marker
+device_timer_2_off_bilger_home:
+  name: Turn off if house empty
+  icon: mdi:home-outline
+device_timer_3_enabled_on:
+  name: On Timer Enabled
+  icon: mdi:timer
+device_timer_3_enabled_off:
+  name: Off Timer Enabled
+  icon: mdi:timer
+device_timer_3_on_time_sun:
+  name: Use sunset to turn on
+  icon: mdi:weather-sunset
+device_timer_3_on_bilger_home:
+  name: Turn on only if someone home
+  icon: mdi:home-map-marker
+device_timer_3_off_bilger_home:
+  name: Turn off if house empty
+  icon: mdi:home-outline
+device_timer_xmas_tree_manual:
+  name: Manual On/Off
+  icon: mdi:pine-tree
+device_timer_xmas_tree_enabled_on:
+  name: On Timer Enabled
+  icon: mdi:timer
+device_timer_xmas_tree_enabled_off:
+  name: Off Timer Enabled
+  icon: mdi:timer
+device_timer_xmas_tree_on_time_sun:
+  name: Use sunset to turn on
+  icon: mdi:weather-sunset
+device_timer_xmas_tree_on_bilger_home:
+  name: Turn on only if someone home
+  icon: mdi:home-map-marker
+device_timer_xmas_tree_off_bilger_home:
+  name: Turn off if house empty
+  icon: mdi:home-outline
+

@@ -1,0 +1,58 @@
+# #################################################################
+# # VIEW: floorplan                                               #
+# #                                                               #
+# ################################################################# 
+#   - title: Floor Plan
+#     path: floorplan
+#     icon: mdi:floor-plan
+#     cards:
+#       - type: picture-elements
+#         image: /local/photos/transparent-300x50.png
+#         elements:
+#           - type: image
+#             image: /local/photos/arrow_back.png
+#             tap_action:
+#               action: navigate
+#               navigation_path: home
+#             style: 
+#               width: 20%
+#               top: 50%
+#               left: 50%
+#       - type: picture-elements
+#         image: /local/photos/floorplan_main.jpg
+#         elements:
+#           - type: image
+#             image: /local/photos/light_brightness.png
+#             entity: group.entrance_way_lights
+#             tap_action:
+#               action: toggle
+#             state_filter:
+#               "off": opacity(33%)
+#               "unavailable": opacity(20%) brightness(10%)
+#             style:
+#               width: 10%
+#               top: 13%
+#               left: 40%
+#           - type: image
+#             image: /local/photos/light_ceiling.png
+#             entity: light.entrance_light
+#             tap_action:
+#               action: toggle
+#             state_filter:
+#               "off": opacity(33%)
+#               "unavailable": opacity(20%) brightness(10%)
+#             style:
+#               top: 14%
+#               left: 27%
+#           - type: image
+#             image: /local/photos/light_outside.png
+#             entity: light.entrance_light_porch
+#             tap_action:
+#               action: toggle
+#             state_filter:
+#               "off": opacity(33%)
+#               "unavailable": opacity(20%) brightness(10%)
+#             style:
+#               #width: 15%
+#               top: 0
+#               left: 42%

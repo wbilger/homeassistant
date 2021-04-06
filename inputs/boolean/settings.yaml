@@ -1,0 +1,20 @@
+test:
+  initial: off
+test_trigger:
+  initial: off
+
+kiosk_mode:
+  initial: on
+  name: Kiosk Mode
+  icon: mdi:tablet-dashboard
+kiosk_mode_hide_header:
+  initial: on
+  name: Hide Header
+  icon: mdi:view-compact
+kiosk_mode_hide_sidebar:
+  initial: off
+  name: Hide Sidebar
+  icon: mdi:table-row
+
+google_send:
+  name: Google send

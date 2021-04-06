@@ -1,0 +1,59 @@
+- alias: 'Dining Room TV Turned On'
+  initial_state: 'on'
+  trigger: 
+    - platform: state
+      entity_id: group.tv_dining_room
+      to: 'home'
+  action:
+    - service: switch.turn_on
+      entity_id: switch.dining_room_tv
+- alias: 'Dining Room TV Turned Off'
+  initial_state: 'on'
+  trigger: 
+    - platform: state
+      entity_id: group.tv_dining_room
+      to: 'not_home'
+  action:
+    - service: switch.turn_off
+      entity_id: switch.dining_room_tv
+
+- alias: 'Bedroom TV Turned On'
+  initial_state: 'on'
+  trigger: 
+    - platform: state
+      entity_id: group.tv_bedroom
+      to: 'home'
+  action:
+    - service: switch.turn_on
+      entity_id: switch.bedroom_tv
+- alias: 'Bedroom TV Turned Off'
+  initial_state: 'on'
+  trigger: 
+    - platform: state
+      entity_id: group.tv_bedroom
+      to: 'not_home'
+  action:
+    - service: switch.turn_off
+      entity_id: switch.bedroom_tv
+
+- alias: 'Bedroom TV Stopped'
+  initial_state: 'on'
+  trigger: 
+    - platform: state
+      entity_id: media_player.bedroom_universal
+      to: 'off'
+      for:
+        minutes: 5      
+    - platform: state
+      entity_id: media_player.bedroom_universal
+      to: 'paused'
+      for:
+        minutes: 5      
+    - platform: state
+      entity_id: media_player.bedroom_universal
+      to: 'stopped'
+      for:
+        minutes: 5      
+  action:
+    - service: switch.turn_off
+      entity_id: switch.bedroom_tv

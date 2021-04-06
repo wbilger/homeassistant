@@ -1,0 +1,92 @@
+- alias: 'Theatre Plex Stop'
+  initial_state: 'on'
+  trigger:
+    - platform: state
+      entity_id: media_player.theatre_plex
+      to: 'paused'
+    - platform: state
+      entity_id: media_player.theatre_plex
+      to: 'idle'
+  action:
+    - service: script.theatre_stop_lights
+
+- alias: 'Theatre Plex Stop Roku Home'
+  initial_state: 'on'
+  trigger:
+    - platform: template
+      value_template: '{{ is_state_attr("media_player.theatre_roku", "source", "Roku") }}'    #went Home
+  action:
+    - service: script.theatre_stop_lights
+
+- alias: 'Theatre Plex Play'
+  initial_state: 'on'
+  trigger:
+    - platform: state
+      entity_id: media_player.theatre_plex
+      to: 'playing'
+  action:
+    - service: script.theatre_play_lights
+
+#Plex Webhooks no longer needed as all information now contained in media_player.plex*
+- alias: 'Plex Webhook MQTT'
+  initial_state: 'on'
+  trigger:
+    platform: webhook
+    webhook_id: !secret plex_webhook
+  action:
+    - service: mqtt.publish
+      data_template:
+        topic: 'plex/update'
+        payload_template: >
+          {{ (trigger.data["payload"] | string)[12:][:-2] | replace ("\\\\", "\\") | replace ("\\\'", "'") | replace ("\\x","?") }}
+
+- alias: 'Plex Webhook State Update'
+  initial_state: 'on'
+  trigger:
+    platform: mqtt
+    topic: 'plex/update'
+  condition:
+    condition: or
+    conditions:
+      - condition: template
+        value_template: '{{ "Hisense 58" in trigger.payload_json.Player.title }}'
+      - condition: template
+        value_template: '{{ "Wayne-FR" in trigger.payload_json.Player.title }}'
+      - condition: template
+        value_template: '{{ "Wayne-Laptop" in trigger.payload_json.Player.title  }}'
+      - condition: template
+        value_template: '{{ "Theatre" in trigger.payload_json.Player.title }}'
+      - condition: template
+        value_template: '{{ "Dining Room" in trigger.payload_json.Player.title }}'
+      - condition: template
+        value_template: '{{ "Bedroom" in trigger.payload_json.Player.title }}'
+      - condition: template
+        value_template: '{{ "Jalynne" in trigger.payload_json.Player.title }}'
+  action:
+    - service: mqtt.publish
+      data_template:
+        topic: >
+          {% if "Wayne-FR" in trigger.payload_json.Player.title or "Hisense 58" in trigger.payload_json.Player.title %}
+            plex/update/family_room
+          {% elif "Theatre" in trigger.payload_json.Player.title %}
+            plex/update/theatre
+          {% elif "Dining Room" in trigger.payload_json.Player.title %}
+            plex/update/dining_room
+          {% elif "Bedroom" in trigger.payload_json.Player.title %}
+            plex/update/bedroom
+          {% elif "Jalynne" in trigger.payload_json.Player.title %}
+            plex/update/jalynne
+          {% endif %}
+        retain: true
+        payload_template: >
+          { "Event":"{{ trigger.payload_json.event }}",
+            "Account":"{{ trigger.payload_json.Account.title.replace('WayneBilger','Wayne') }}",
+            "Type":"{{ trigger.payload_json.Metadata.type }}",
+            "LibraryType":"{{ trigger.payload_json.Metadata.librarySectionType }}",
+            "ShowTitle":"{% if trigger.payload_json.Metadata.grandparentTitle is defined %}{{ trigger.payload_json.Metadata.grandparentTitle.replace('"',"''").replace('?e2?80?99',"'").replace('?e2?80?9c',"'").replace('?e2?80?9d',"'") }}{% endif %}",
+            "Title":"{{ trigger.payload_json.Metadata.title.replace('"',"''").replace('?e2?80?99',"'").replace('?e2?80?9c',"'").replace('?e2?80?9d',"'").replace('?e2?80?93',"-") }}", 
+            "Season":"{% if trigger.payload_json.Metadata.parentIndex is defined %}{{ trigger.payload_json.Metadata.parentIndex }}{% endif %}",
+            "Episode":"{% if trigger.payload_json.Metadata.index is defined %}{{ trigger.payload_json.Metadata.index }}{% endif %}",             
+            "Summary": "{{ trigger.payload_json.Metadata.summary.replace('"',"''").replace('?e2?80?99',"'").replace('?e2?80?9c',"'").replace('?e2?80?9d',"'").replace('?e2?80?93',"-") }}",
+            "Image":"{{ trigger.payload_json.Metadata.thumb }}"
+          }

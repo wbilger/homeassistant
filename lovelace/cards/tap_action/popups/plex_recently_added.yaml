@@ -1,0 +1,19 @@
+action: fire-dom-event
+browser_mod:
+  command: call-service
+  service: browser_mod.popup
+  service_data:
+    deviceID: this
+    title: Plex Recently Added
+    large: true
+    card: 
+      type: custom:upcoming-media-card
+      entity: sensor.plex_recently_added
+      title: ""
+      max: 5
+      image_style: fanart
+      #accent_color: orange
+      flag_color: orange
+      icon: none
+
+             

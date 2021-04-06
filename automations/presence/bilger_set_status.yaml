@@ -1,0 +1,291 @@
+- alias: 'Phone Updates'
+  initial_state: 'on'
+  trigger:
+    - platform: time_pattern
+      minutes: '*'
+  condition:
+    - condition: numeric_state
+      entity_id: sensor.uptime
+      above: 6      #needs to be above 5, but in case rounding go 6
+  action:
+    - service: script.phone_wayne_update
+    - service: script.phone_jenn_update
+    - service: script.phone_kale_update
+    - service: script.phone_jalynne_update
+    
+- alias: 'Bilger Home Motion'
+  initial_state: 'on'
+  trigger:
+    - platform: homeassistant
+      event: start
+    - platform: state
+      entity_id: group.bilger_home_motion
+      from: 'off'
+      to: 'on'
+  condition:
+    - condition: state
+      entity_id: group.bilger_home_motion
+      state: 'on'   #check if on if triggered on homeassistant start, otherwise trigger by it being on
+  action:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.bilger_home_motion
+        option: 'home'
+- alias: 'Bilger Home Motion Cleared'
+  initial_state: 'on'
+  trigger:
+    - platform: state
+      entity_id: group.bilger_home_motion
+      from: 'on'
+      to: 'off'
+      for: 
+        minutes: 15
+  action:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.bilger_home_motion
+        option: 'not_home'        
+        
+- alias: 'Set person as just arrived'
+  initial_state: 'on'
+  trigger:
+    - platform: state
+      entity_id: person.wayne
+      to: 'home'
+    - platform: state
+      entity_id: person.jenn
+      to: 'home'
+    - platform: state
+      entity_id: person.kale
+      to: 'home'
+    - platform: state
+      entity_id: person.jalynne
+      to: 'home'
+  action:
+    - service: input_select.select_option
+      data_template:
+        entity_id: >
+          {% if trigger.entity_id == 'person.wayne' %}
+            input_select.presence_wayne_status
+          {% elif trigger.entity_id == 'person.jenn' %}
+            input_select.presence_jenn_status
+          {% elif trigger.entity_id == 'person.kale' %}
+            input_select.presence_kale_status
+          {% elif trigger.entity_id == 'person.jalynne' %}
+            input_select.presence_jalynne_status
+          {% endif %}
+        option: >
+          {% if trigger.entity_id == 'person.wayne' %}
+            {% if is_state("input_select.presence_wayne_status", "Just Left") %}
+              Home
+            {% else %}
+              Just Arrived
+            {% endif %}
+          {% elif trigger.entity_id == 'person.jenn' %}
+            {% if is_state("input_select.presence_jenn_status", "Just Left") %}
+              Home
+            {% else %}
+              Just Arrived
+            {% endif %}
+          {% elif trigger.entity_id == 'person.kale' %}
+            {% if is_state("input_select.presence_kale_status", "Just Left") %}
+              Home
+            {% else %}
+              Just Arrived
+            {% endif %}
+          {% elif trigger.entity_id == 'person.jalynne' %}
+            {% if is_state("input_select.presence_jalynne_status", "Just Left") %}
+              Home
+            {% else %}
+              Just Arrived
+            {% endif %}
+          {% endif %}
+    - condition: template   #only continue on for Kale or Jalynne (for stupid iPhones sleeping at night -- cancel timer as back home)
+      value_template: '{{ trigger.entity_id == "person.kale" or trigger.entity_id == "person.jalynne" }}'
+    - service_template: timer.cancel
+      data_template:
+        entity_id: >
+          {% if trigger.entity_id == 'person.kale' %}
+            timer.away_home_timeout_kale
+          {% else %}
+            timer.away_home_timeout_jalynne
+          {% endif %}
+
+- alias: 'Set person as home'
+  initial_state: 'on'
+  trigger:
+    - platform: state
+      entity_id: input_select.presence_wayne_status
+      to: 'Just Arrived'
+      for:
+        minutes: 10
+    - platform: state
+      entity_id: input_select.presence_jenn_status
+      to: 'Just Arrived'
+      for:
+        minutes: 10
+    - platform: state
+      entity_id: input_select.presence_kale_status
+      to: 'Just Arrived'
+      for:
+        minutes: 10
+    - platform: state
+      entity_id: input_select.presence_jalynne_status
+      to: 'Just Arrived'
+      for:
+        minutes: 10
+    - platform: state
+      entity_id: input_select.presence_wayne_status
+      from: 'Just Left'
+      to: 'Just Arrived'
+    - platform: state
+      entity_id: input_select.presence_jenn_status
+      from: 'Just Left'
+      to: 'Just Arrived'
+    - platform: state
+      entity_id: input_select.presence_kale_status
+      from: 'Just Left'
+      to: 'Just Arrived'
+    - platform: state
+      entity_id: input_select.presence_jalynne_status
+      from: 'Just Left'
+      to: 'Just Arrived'
+  action:
+    - service: input_select.select_option
+      data_template:
+        entity_id: >
+          {% if trigger.entity_id == 'input_select.presence_wayne_status' %}
+            input_select.presence_wayne_status
+          {% elif trigger.entity_id == 'input_select.presence_jenn_status' %}
+            input_select.presence_jenn_status
+          {% elif trigger.entity_id == 'input_select.presence_kale_status' %}
+            input_select.presence_kale_status
+          {% elif trigger.entity_id == 'input_select.presence_jalynne_status' %}
+            input_select.presence_jalynne_status
+          {% endif %}
+        option: Home
+ 
+- alias: 'Set person as just left'
+  initial_state: 'on'
+  trigger:
+    - platform: state
+      entity_id: person.wayne
+      from: 'home'
+    - platform: state
+      entity_id: person.jenn
+      from: 'home'
+    - platform: state
+      entity_id: person.kale
+      from: 'home'
+    - platform: state
+      entity_id: person.jalynne
+      from: 'home'
+  action:
+    - service: input_select.select_option
+      data_template:
+        entity_id: >
+          {% if trigger.entity_id == 'person.wayne' %}
+            input_select.presence_wayne_status
+          {% elif trigger.entity_id == 'person.jenn' %}
+            input_select.presence_jenn_status
+          {% elif trigger.entity_id == 'person.kale' %}
+            input_select.presence_kale_status
+          {% elif trigger.entity_id == 'person.jalynne' %}
+            input_select.presence_jalynne_status
+          {% endif %}
+        option: Just Left
+ 
+- alias: 'Set person as away'
+  initial_state: 'on'
+  trigger:
+    - platform: state
+      entity_id: input_select.presence_wayne_status
+      to: 'Just Left'
+      for:
+        minutes: 10
+    - platform: state
+      entity_id: input_select.presence_jenn_status
+      to: 'Just Left'
+      for:
+        minutes: 10
+    - platform: state
+      entity_id: input_select.presence_kale_status
+      to: 'Just Left'
+      for:
+        minutes: 10
+    - platform: state
+      entity_id: input_select.presence_jalynne_status
+      to: 'Just Left'
+      for:
+        minutes: 10
+  action:
+    - service: input_select.select_option
+      data_template:
+        entity_id: >
+          {% if trigger.entity_id == 'input_select.presence_wayne_status' %}
+            input_select.presence_wayne_status
+          {% elif trigger.entity_id == 'input_select.presence_jenn_status' %}
+            input_select.presence_jenn_status
+          {% elif trigger.entity_id == 'input_select.presence_kale_status' %}
+            input_select.presence_kale_status
+          {% elif trigger.entity_id == 'input_select.presence_jalynne_status' %}
+            input_select.presence_jalynne_status
+          {% endif %}
+        option: Away
+    - condition: template   #only continue on for Kale or Jalynne (for stupid iPhones sleeping at night)
+      value_template: '{{ trigger.entity_id == "input_select.presence_kale_status" or trigger.entity_id == "input_select.presence_jalynne_status" }}'
+    - service_template: timer.start
+      data_template:
+        entity_id: >
+          {% if trigger.entity_id == 'input_select.presence_kale_status' %}
+            timer.away_home_timeout_kale
+          {% else %}
+            timer.away_home_timeout_jalynne
+          {% endif %}
+    - service: input_boolean.turn_off
+      data_template:
+        entity_id: >
+          {% if trigger.entity_id == 'input_select.presence_kale_status' %}
+            input_boolean.home_arrival_automations_kale
+          {% else %}
+            input_boolean.home_arrival_automations_jalynne
+          {% endif %}
+
+ 
+- alias: 'Set person as extended away'
+  initial_state: 'on'
+  trigger:
+    - platform: state
+      entity_id: input_select.presence_wayne_status
+      to: 'Away'
+      for:
+        hours: 24
+    - platform: state
+      entity_id: input_select.presence_jenn_status
+      to: 'Away'
+      for:
+        hours: 24
+    - platform: state
+      entity_id: input_select.presence_kale_status
+      to: 'Away'
+      for:
+        hours: 24
+    - platform: state
+      entity_id: input_select.presence_jalynne_status
+      to: 'Away'
+      for:
+        hours: 24
+  action:
+    - service: input_select.select_option
+      data_template:
+        entity_id: >
+          {% if trigger.entity_id == 'input_select.presence_wayne_status' %}
+            input_select.presence_wayne_status
+          {% elif trigger.entity_id == 'input_select.presence_jenn_status' %}
+            input_select.presence_jenn_status
+          {% elif trigger.entity_id == 'input_select.presence_kale_status' %}
+            input_select.presence_kale_status
+          {% elif trigger.entity_id == 'input_select.presence_jalynne_status' %}
+            input_select.presence_jalynne_status
+          {% endif %}
+        option: Extended Away

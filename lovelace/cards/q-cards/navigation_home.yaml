@@ -1,0 +1,94 @@
+type: custom:state-switch
+entity: deviceID
+default: default
+states:
+  default:
+    type: picture-elements
+    image: /local/photos/transparent.png
+    aspect_ratio: 9.5%
+    elements:
+      - type: image
+        image: /local/photos/home.png
+        tap_action:
+          action: none
+        style:
+          width: 5%
+          top: 48%
+          left: 50%
+      - type: state-label
+        entity: sensor.date_friendly_day
+        style:
+          top: 50%
+          left: 18%
+          color: orange
+          font-size: 90%
+          font-weight: bold
+      - type: state-label
+        entity: sensor.time_friendly
+        style:
+          top: 50%
+          left: 90%
+          color: red
+          font-size: 100%
+          font-weight: bold
+      - type: image
+        image: /local/photos/transparent.png
+        aspect_ratio: 7%
+        tap_action:
+          action: navigate
+          navigation_path: /lovelace/home
+        hold_action:
+          action: navigate
+          navigation_path: /lovelace/dashboard
+        style:
+          width: 100%
+          top: 50%
+          left: 50%
+          
+  'c5c29698-84005f51':      #Kitchen Table running Fully Kiosk Browser
+    type: picture-elements
+    image: /local/photos/transparent.png
+    aspect_ratio: 7%
+    elements:
+      - type: image
+        image: /local/photos/home.png
+        tap_action:
+          action: none
+        style:
+          width: 3.5%
+          top: 48%
+          left: 50%
+    
+      - type: state-label
+        entity: sensor.date_friendly_day
+        style:
+          top: 10%
+          left: 2%
+          transform: none
+          color: orange
+          font-size: 175%
+          font-weight: bold
+      - type: state-label
+        entity: sensor.time_friendly
+        style:
+          top: 0%
+          right: 2%
+          transform: none
+          color: red
+          font-size: 250%
+          font-weight: bold
+      - type: image
+        image: /local/photos/transparent.png
+        aspect_ratio: 7%
+        tap_action:
+          action: navigate
+          navigation_path: /lovelace/dashboard
+        hold_action:
+          action: navigate
+          navigation_path: /lovelace/home
+        style:
+          width: 100%
+          top: 50%
+          left: 50%
+    
+    

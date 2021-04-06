@@ -1,0 +1,982 @@
+#################################################################
+# VIEW: r.dining_room
+#   Dining Room Remote
+################################################################# 
+title: Dining Room Remote
+path: r.dining_room
+icon: mdi:remote
+popup_cards:
+  media_player.dining_room_plex:
+    title: Now Playing
+    card: 
+      type: custom:vertical-stack-in-card
+      cards:        
+        - type: custom:mini-media-player
+          entity: media_player.dining_room_plex
+          icon: mdi:plex
+          name: 'Dining Room Plex'
+          artwork: full-cover-fit
+          more_info: false
+          info: scroll
+          tap_action:
+            action: none
+          hide:
+            controls: true
+            power: true
+            volume: true
+        - type: markdown
+          content: '{{ state_attr("media_player.dining_room_chromecast_plex", "media_summary") }}'
+cards:
+  - type: vertical-stack
+    cards:
+      - type: custom:state-switch
+        entity: deviceID
+        default: default
+        states:
+          default:
+            type: picture-elements
+            image: /local/photos/transparent.png
+            aspect_ratio: 27.25%
+            elements:
+              - type: image
+                image: /local/photos/yellow.png
+                aspect_ratio: 27.25%  
+                entity: switch.dining_room_lights
+                tap_action:
+                  action: call-service
+                  service: switch.turn_off
+                  service_data:
+                    entity_id: switch.dining_room_lights
+                state_filter:
+                  "off": opacity(0%)
+                  "on": opacity(10%)
+                style:
+                  width: 100%
+                  top: 50%
+                  left: 50%
+                  border: 1px solid lightgray
+
+              - type: state-label
+                entity: sensor.rtemperature_diningroom
+                tap_action:
+                  action: call-service
+                  service: switch.turn_off
+                  service_data:
+                    entity_id: switch.dining_room_lights
+                style:
+                  color: gray
+                  font-weight: bold
+                  top: 10%
+                  left: 10%
+
+              - type: image
+                image: /local/photos/light_lamp.png
+                entity: light.front_window
+                tap_action:
+                  action: toggle
+                state_filter:
+                  "off": opacity(33%)
+                  "unavailable": opacity(20%) brightness(10%)
+                style:
+                  width: 14%
+                  top: 46%
+                  left: 10%
+
+              - type: image
+                image: /local/photos/light_ceiling.png
+                entity: light.dining_room_light
+                tap_action:
+                  action: toggle
+                state_filter:
+                  "off": opacity(33%)
+                  "unavailable": opacity(20%) brightness(10%)
+                style:
+                  width: 20%
+                  top: 33%
+                  left: 35%
+
+              - type: image
+                image: /local/photos/light_lamp_floor.png
+                entity: light.dining_room_plug
+                tap_action:
+                  action: toggle
+                state_filter:
+                  "off": opacity(33%)
+                  "unavailable": opacity(20%) brightness(10%)
+                style:
+                  width: 20%
+                  top: 55%
+                  left: 65%
+
+              - type: image
+                image: /local/photos/home.png
+                tap_action:
+                  action: navigate
+                  navigation_path: /lovelace/home
+                style:
+                  opacity: .75
+                  width: 8%
+                  top: 20%
+                  left: 85%
+
+              - type: custom:text-element
+                text: Island
+                style:
+                  font-size: smaller
+                  color: black
+                  top: 55%
+                  left: 85%
+              - type: image
+                image: /local/photos/light_recessed.png
+                entity: light.kitchen_island_lights                            
+                tap_action:
+                  action: toggle
+                hold_action:
+                  action: more-info
+                state_filter:
+                  "off": opacity(33%)
+                  "unavailable": opacity(20%) brightness(10%)
+                style:
+                  width: 11%
+                  top: 76%
+                  left: 85%
+
+          'c5c29698-84005f51':      #Kitchen Table running Fully Kiosk Browser
+            type: picture-elements
+            image: /local/photos/transparent.png
+            aspect_ratio: 27.25%
+            elements:              
+              - type: image
+                image: /local/photos/yellow.png
+                aspect_ratio: 27.25%  
+                entity: switch.dining_room_lights
+                tap_action:
+                  action: call-service
+                  service: switch.turn_off
+                  service_data:
+                    entity_id: switch.dining_room_lights
+                state_filter:
+                  "off": opacity(0%)
+                  "on": opacity(10%)
+                style:
+                  width: 100%
+                  top: 50%
+                  left: 50%
+                  border: 1px solid lightgray
+
+              - type: state-label
+                entity: sensor.rtemperature_diningroom
+                tap_action:
+                  action: call-service
+                  service: switch.turn_off
+                  service_data:
+                    entity_id: switch.dining_room_lights
+                style:
+                  color: gray
+                  font-weight: bold
+                  top: 10%
+                  left: 10%
+
+              - type: image
+                image: /local/photos/light_lamp.png
+                entity: light.front_window
+                tap_action:
+                  action: toggle
+                state_filter:
+                  "off": opacity(33%)
+                  "unavailable": opacity(20%) brightness(10%)
+                style:
+                  width: 14%
+                  top: 46%
+                  left: 10%
+
+              - type: image
+                image: /local/photos/light_ceiling.png
+                entity: light.dining_room_light
+                tap_action:
+                  action: toggle
+                state_filter:
+                  "off": opacity(33%)
+                  "unavailable": opacity(20%) brightness(10%)
+                style:
+                  width: 20%
+                  top: 33%
+                  left: 35%
+
+              - type: image
+                image: /local/photos/light_lamp_floor.png
+                entity: light.dining_room_plug
+                tap_action:
+                  action: toggle
+                state_filter:
+                  "off": opacity(33%)
+                  "unavailable": opacity(20%) brightness(10%)
+                style:
+                  width: 20%
+                  top: 55%
+                  left: 65%
+
+              - type: image
+                image: /local/photos/home.png
+                tap_action:
+                  action: navigate
+                  navigation_path: /lovelace/dashboard
+                style:
+                  opacity: .75
+                  width: 8%
+                  top: 20%
+                  left: 85%
+
+              - type: custom:text-element
+                text: Island
+                style:
+                  font-size: smaller
+                  color: black
+                  top: 55%
+                  left: 85%
+              - type: image
+                image: /local/photos/light_recessed.png
+                entity: light.kitchen_island_lights                            
+                tap_action:
+                  action: toggle
+                hold_action:
+                  action: more-info
+                state_filter:
+                  "off": opacity(33%)
+                  "unavailable": opacity(20%) brightness(10%)
+                style:
+                  width: 11%
+                  top: 76%
+                  left: 85%
+          
+#################################################################
+# VIEW: r.dining_room
+#   Dining Room Remote - navigation buttons (3x3 Grid)
+################################################################# 
+      - type: conditional
+        conditions:
+          - entity: input_select.remote_dining_room
+            state: "FireTV"
+        card:    
+          type: vertical-stack
+          cards:
+            - type: horizontal-stack
+              cards:
+                - type: custom:button-card
+                  icon: mdi:menu
+                  tap_action:
+                    action: call-service
+                    service: androidtv.adb_command
+                    service_data:
+                      entity_id: media_player.dining_room_chromecast
+                      command: "MENU"
+                  styles:
+                    card:
+                      - height: 94px
+                - type: custom:button-card
+                  icon: mdi:arrow-up-thick
+                  tap_action:
+                    action: call-service
+                    service: switch.turn_on
+                    service_data:
+                      entity_id: switch.dining_room_tv_up
+                  hold_action:
+                    action: call-service
+                    service: switch.turn_on
+                    service_data:
+                      entity_id: switch.dining_room_tv_up
+                    repeat: 400
+                  styles:
+                    card:
+                      - height: 94px
+                - type: vertical-stack
+                  cards:
+                    - type: horizontal-stack
+                      cards:
+                        - type: custom:button-card
+                          icon: mdi:netflix
+                          show_name: false
+                          tap_action:
+                            action: call-service
+                            service: media_player.select_source
+                            service_data:
+                              entity_id: media_player.dining_room_chromecast
+                              source: 'com.netflix.ninja'
+                          styles:
+                            card:
+                              - height: 43px
+                        - type: custom:button-card
+                          icon: mdi:youtube
+                          tap_action:
+                            action: call-service
+                            service: media_player.select_source
+                            service_data:
+                              entity_id: media_player.dining_room_chromecast
+                              source: 'com.google.android.youtube.tv'
+                          styles:
+                            card:
+                              - height: 43px
+                    - type: horizontal-stack
+                      cards:
+                        - type: custom:button-card
+                          icon: mdi:plex
+                          tap_action:
+                            action: call-service
+                            service: media_player.select_source
+                            service_data:
+                              entity_id: media_player.dining_room_chromecast
+                              source: 'com.plexapp.android'
+                          styles:
+                            card:
+                              - height: 43px
+                        - type: custom:button-card
+                          icon: mdi:kodi
+                          tap_action:
+                            action: call-service
+                            service: media_player.select_source
+                            service_data:
+                              entity_id: media_player.dining_room_chromecast
+                              source: 'org.xbmc.kodi'
+                          styles:
+                            card:
+                              - height: 43px
+
+            - type: horizontal-stack
+              cards:
+                - type: custom:button-card
+                  icon: mdi:arrow-left-thick
+                  show_name: false
+                  tap_action:
+                    action: call-service
+                    service: switch.turn_on
+                    service_data:
+                      entity_id: switch.dining_room_tv_left
+                  hold_action:
+                    action: call-service
+                    service: switch.turn_on
+                    service_data:
+                      entity_id: switch.dining_room_tv_left
+                    repeat: 400
+                  styles:
+                    card:
+                      - height: 94px
+                - type: custom:button-card
+                  icon: mdi:circle
+                  tap_action:
+                    action: call-service
+                    service: switch.turn_on
+                    service_data:
+                      entity_id: switch.dining_room_tv_ok
+                  hold_action:
+                    action: call-service
+                    service: androidtv.adb_command
+                    service_data:
+                      entity_id: media_player.dining_room_chromecast
+                      command: "CIRCLE"
+                  styles:
+                    card:
+                      - height: 94px
+                - type: custom:button-card
+                  icon: mdi:arrow-right-thick
+                  show_name: false
+                  tap_action:
+                    action: call-service
+                    service: switch.turn_on
+                    service_data:
+                      entity_id: switch.dining_room_tv_right
+                  hold_action:
+                    action: call-service
+                    service: switch.turn_on
+                    service_data:
+                      entity_id: switch.dining_room_tv_right
+                    repeat: 400
+                  styles:
+                    card:
+                      - height: 94px
+
+            - type: horizontal-stack
+              cards:
+                - type: custom:button-card
+                  icon: mdi:home
+                  show_name: false
+                  tap_action:
+                    action: call-service
+                    service: androidtv.adb_command
+                    service_data:
+                      entity_id: media_player.dining_room_chromecast
+                      command: "HOME"
+                  styles:
+                    card:
+                      - height: 94px
+                - type: custom:button-card
+                  icon: mdi:arrow-down-thick
+                  tap_action:
+                    action: call-service
+                    service: switch.turn_on
+                    service_data:
+                      entity_id: switch.dining_room_tv_down
+                  hold_action:
+                    action: call-service
+                    service: switch.turn_on
+                    service_data:
+                      entity_id: switch.dining_room_tv_down
+                    repeat: 400
+                  styles:
+                    card:
+                      - height: 94px
+                - type: custom:button-card
+                  icon: mdi:keyboard-backspace
+                  show_name: false
+                  tap_action:
+                    action: call-service
+                    service: switch.turn_on
+                    service_data:
+                      entity_id: switch.dining_room_tv_back
+                  styles:
+                    card:
+                      - height: 94px
+      - type: conditional
+        conditions:
+          - entity: input_select.remote_dining_room
+            state: "TV"
+        card:            
+          type: vertical-stack
+          cards:
+            - type: horizontal-stack
+              cards:
+                - type: vertical-stack
+                  cards:
+                    - type: horizontal-stack
+                      cards:
+                        - type: custom:button-card
+                          icon: mdi:settings
+                          tap_action:
+                            action: call-service
+                            service: switch.turn_on
+                            service_data:
+                              entity_id: switch.dining_room_tv_settings
+                          styles:
+                            card:
+                              - height: 43px
+                        - type: custom:button-card
+                          icon: mdi:apps
+                          tap_action:
+                            action: call-service
+                            service: switch.turn_on
+                            service_data:
+                              entity_id: switch.dining_room_tv_apps
+                          styles:
+                            card:
+                              - height: 43px
+                    - type: horizontal-stack
+                      cards:
+                        - type: custom:button-card
+                          icon: mdi:youtube
+                          tap_action:
+                            action: call-service
+                            service: switch.turn_on
+                            service_data:
+                              entity_id: switch.dining_room_tv_youtube
+                          styles:
+                            card:
+                              - height: 43px
+                        - type: custom:button-card
+                          icon: mdi:netflix
+                          tap_action:
+                            action: call-service
+                            service: switch.dining_room_tv_netflix
+                          styles:
+                            card:
+                              - height: 43px
+                - type: custom:button-card
+                  icon: mdi:arrow-up-thick
+                  tap_action:
+                    action: call-service
+                    service: switch.turn_on
+                    service_data:
+                      entity_id: switch.dining_room_tv_up
+                  styles:
+                    card:
+                      - height: 94px
+                - type: vertical-stack
+                  cards:
+                    - type: horizontal-stack
+                      cards:
+                        - type: custom:button-card
+                          icon: mdi:video-input-hdmi
+                          tap_action:
+                            action: call-service
+                            service: switch.turn_on
+                            service_data:
+                              entity_id: switch.dining_room_tv_input
+                          styles:
+                            card:
+                              - height: 43px
+                        - type: custom:button-card
+                          icon: mdi:volume-mute
+                          tap_action:
+                            action: call-service
+                            service: switch.turn_on
+                            service_data:
+                              entity_id: switch.dining_room_tv_mute
+                          styles:
+                            card:
+                              - height: 43px
+                    - type: horizontal-stack
+                      cards:
+                        - type: custom:button-card
+                          icon: mdi:volume-minus
+                          tap_action:
+                            action: call-service
+                            service: switch.turn_on
+                            service_data:
+                              entity_id: switch.dining_room_tv_volume_down
+                          hold_action:
+                            action: call-service
+                            service: switch.turn_on
+                            service_data:
+                              entity_id: switch.dining_room_tv_volume_down
+                            repeat: 1000
+                          styles:
+                            card:
+                              - height: 43px
+                        - type: custom:button-card
+                          icon: mdi:volume-plus
+                          tap_action:
+                            action: call-service
+                            service: switch.turn_on
+                            service_data:
+                              entity_id: switch.dining_room_tv_volume_down
+                          hold_action:
+                            action: call-service
+                            service: switch.turn_on
+                            service_data:
+                              entity_id: switch.dining_room_tv_volume_down
+                            repeat: 1000
+                          styles:
+                            card:
+                              - height: 43px
+                              - font-size: 12px
+
+            - type: horizontal-stack
+              cards:
+                - type: custom:button-card
+                  icon: mdi:arrow-left-thick
+                  tap_action:
+                    action: call-service
+                    service: switch.turn_on
+                    service_data:
+                      entity_id: switch.dining_room_tv_left
+                  styles:
+                    card:
+                      - height: 94px
+                - type: custom:button-card
+                  icon: mdi:circle
+                  tap_action:
+                    action: call-service
+                    service: switch.turn_on
+                    service_data:
+                      entity_id: switch.dining_room_tv_ok
+                  styles:
+                    card:
+                      - height: 94px
+                - type: custom:button-card
+                  icon: mdi:arrow-right-thick
+                  tap_action:
+                    action: call-service
+                    service: switch.turn_on
+                    service_data:
+                      entity_id: switch.dining_room_tv_right
+                  styles:
+                    card:
+                      - height: 94px
+
+            - type: horizontal-stack
+              cards:
+                - type: vertical-stack
+                  cards:
+                    - type: custom:button-card
+                      icon: mdi:keyboard-backspace
+                      tap_action:
+                        action: call-service
+                        service: switch.turn_on
+                        service_data:
+                          entity_id: switch.dining_room_tv_back
+                      styles:
+                        card:
+                          - height: 43px
+                          - font-size: 11px
+                    - type: custom:button-card
+                      icon: mdi:exit-to-app
+                      tap_action:
+                        action: call-service
+                        service: switch.turn_on
+                        service_data: 
+                          entity_id: switch.dining_room_tv_exit
+                      styles:
+                        card:
+                          - height: 43px
+                - type: custom:button-card
+                  icon: mdi:arrow-down-thick
+                  tap_action:
+                    action: call-service
+                    service: switch.turn_on
+                    service_data:
+                      entity_id: switch.dining_room_tv_down
+                  styles:
+                    card:
+                      - height: 94px
+                - type: vertical-stack
+                  cards:
+                    - type: custom:button-card
+                      icon: mdi:menu-up
+                      name: CH
+                      tap_action:
+                        action: call-service
+                        service: switch.turn_on
+                        service_data:
+                          entity_id: switch.dining_room_tv_channel_up
+                      styles:
+                        card:
+                          - height: 43px
+                          - font-size: 12px
+                    - type: custom:button-card
+                      icon: mdi:menu-down
+                      name: CH
+                      tap_action:
+                        action: call-service
+                        service: switch.turn_on
+                        service_data: 
+                          entity_id: switch.dining_room_tv_channel_down
+                      styles:
+                        card:
+                          - height: 43px
+                          - font-size: 12px
+    
+      - type: conditional
+        conditions:
+          - entity: input_select.remote_dining_room
+            state: "Chromecast"
+        card:                    
+          type: custom:vertical-stack-in-card
+          cards:
+            - type: conditional
+              conditions:
+                - entity: media_player.dining_room_chromecast
+                  state: "off"
+              card:    
+                type: picture-elements
+                image: /local/photos/transparent.png
+                aspect_ratio: 97.7%
+                elements:
+                  - type: image
+                    image: /local/photos/pic_chromecast.png
+                    tap_action:
+                      action: call-service
+                      service: script.remote_dining_room_watch_chromecast
+                    style:
+                      top: 50%
+                      left: 50%
+            - type: conditional
+              conditions:
+                - entity: media_player.dining_room_chromecast
+                  state_not: "off"
+              card:    
+                type: custom:mini-media-player
+                entity: media_player.dining_room_chromecast
+                name: ' '
+                artwork: full-cover-fit
+                more_info: false
+                hide:
+                  volume: true
+                  media_info: true
+
+#################################################################
+# VIEW: r.dining_room
+#   Dining Room Remote - buttons - Media Control row                                                               
+################################################################# 
+      - type: conditional
+        conditions:
+          - entity: input_select.remote_dining_room
+            state_not: "Chromecast"
+        card:            
+          type: horizontal-stack
+          cards:
+            - type: custom:button-card
+              icon: mdi:stop
+              tap_action:
+                action: call-service
+                service: switch.turn_on
+                service_data:
+                  entity_id: switch.dining_room_tv_stop
+              styles:
+                card:
+                  - height: 46px
+            - type: custom:button-card
+              icon: mdi:play
+              tap_action:
+                action: call-service
+                service: switch.turn_on
+                service_data:
+                  entity_id: switch.dining_room_tv_play
+              styles:
+                card:
+                  - height: 46px
+            - type: custom:button-card
+              icon: mdi:pause
+              tap_action:
+                action: call-service
+                service: switch.turn_on
+                service_data:
+                  entity_id: switch.dining_room_tv_pause
+              styles:
+                card:
+                  - height: 46px
+            - type: custom:button-card
+              icon: mdi:rewind
+              tap_action:
+                action: call-service
+                service_data:
+                  entity_id: switch.dining_room_tv_rewind
+              styles:
+                card:
+                  - height: 46px
+            - type: custom:button-card
+              icon: mdi:fast-forward
+              tap_action:
+                action: call-service
+                service_data:
+                  entity_id: switch.dining_room_tv_fastforward
+              styles:
+                card:
+                  - height: 46px
+
+  #################################################################
+  # VIEW: r.dining_room
+  #   Dining Room Remote - buttons - Volume Control row                                                               
+  ################################################################# 
+      - type: horizontal-stack
+        cards:
+          - type: custom:button-card
+            icon: mdi:volume-mute
+            size: 35px
+            tap_action:
+              action: call-service
+              service: switch.turn_on
+              service_data:
+                entity_id: switch.dining_room_tv_mute
+            styles:
+              card:
+                - height: 46px
+          - type: custom:button-card
+            icon: mdi:volume-minus
+            size: 35px
+            tap_action:
+              action: call-service
+              service: switch.turn_on
+              service_data:
+                entity_id: switch.dining_room_tv_volume_down
+            hold_action:
+              action: call-service
+              service: switch.turn_on
+              service_data:
+                entity_id: switch.dining_room_tv_volume_down
+              repeat: 100
+            styles:
+              card:
+                - height: 46px
+          - type: custom:button-card
+            icon: mdi:volume-plus
+            size: 35px
+            tap_action:
+              action: call-service
+              service: switch.turn_on
+              service_data:
+                entity_id: switch.dining_room_tv_volume_up
+            hold_action:
+              action: call-service
+              service: switch.turn_on
+              service_data:
+                entity_id: switch.dining_room_tv_volume_up
+              repeat: 100
+            styles:
+              card:
+                - height: 46px
+
+    #################################################################
+    # VIEW: r.dining_room
+    #   Dining Room Remote - Media Player Info Screen
+    ################################################################# 
+      - type: custom:vertical-stack-in-card
+        cards:
+          - type: conditional
+            conditions:
+              - entity: input_select.remote_dining_room
+                state: "FireTV"
+              - entity: sensor.dining_room_plex_playing
+                state: "True"
+            card:
+              type: custom:mini-media-player
+              entity: media_player.dining_room_plex
+              name: Dining Room Plex
+              icon: mdi:plex
+              info: short
+              hide:
+                artwork_border: false
+                power: true
+                volume: true
+                controls: true
+              # tap_action:
+              #   action: call-service
+              #   service: browser_mod.popup
+              #   service_data:
+              #     deviceID: this
+              #     title: Now Playing
+              #     card: 
+              #       type: custom:vertical-stack-in-card
+              #       cards:        
+              #         - type: custom:mini-media-player
+              #           entity: media_player.dining_room_plex
+              #           icon: mdi:plex
+              #           name: 'Dining Room Plex'
+              #           artwork: full-cover-fit
+              #           more_info: false
+              #           info: scroll
+              #           tap_action:
+              #             action: none
+              #           hide:
+              #             controls: true
+              #             power: true
+              #             volume: true
+              #         - type: markdown
+              #           content: '{{ state_attr("media_player.dining_room_chromecast_plex", "media_summary") }}'
+          - type: conditional
+            conditions:
+              - entity: input_select.remote_dining_room
+                state: "FireTV"
+              - entity: sensor.dining_room_plex_playing
+                state: "False"
+            card:    
+              type: custom:mini-media-player
+              entity: media_player.dining_room_chromecast
+              icon: mdi:amazon
+              info: short
+              more_info: false
+              hide: 
+                artwork_border: false
+                power: true
+                volume: true
+                controls: true
+          - type: conditional
+            conditions:
+              - entity: input_select.remote_dining_room
+                state: "Chromecast"
+            card:
+              type: custom:mini-media-player
+              entity: media_player.dining_room_chromecast
+              name: Dining Room Chromecast
+              icon: mdi:google-chrome
+              artwork: none
+              info: short
+              more_info: false
+              hide:
+                artwork_border: false
+                power: true
+                volume: true
+                controls: true
+          - type: conditional
+            conditions:
+              - entity: input_select.remote_dining_room
+                state: "TV"
+            card:
+              type: picture-elements
+              image: /local/photos/transparent.png
+              aspect_ratio: 20%
+              elements:
+                - type: image
+                  image: /local/photos/icon_tv.png
+                  tap_action:
+                    action: none
+                  style:
+                    opacity: .6
+                    width: 7%
+                    top: 50%
+                    left: 40px
+                - type: custom:text-element
+                  text: Dining Room TV
+                  style:
+                    top: 40%
+                    left: 124px
+                - type: custom:text-element
+                  text: Sharp 4k TV
+                  style:
+                    color: var(--secondary-text-color)
+                    top: 63%
+                    left: 112px 
+      
+    #################################################################
+    # VIEW: r.dining_room
+    #   Dining Room Remote - Remote Selection Screen
+    ################################################################# 
+          - type: picture-elements
+            image: /local/photos/gray.png
+            aspect_ratio: 8.8%
+            elements:
+              - type: image
+                image: /local/photos/icon_chrome.png
+                entity: switch.remote_dining_room_firetv
+                state_filter:
+                  "off": opacity(33%)
+                tap_action:
+                  action: toggle
+                hold_action:
+                  action: call-service
+                  service: script.remote_dining_room_watch_firetv
+                style:
+                  width: 8%
+                  top: 50%
+                  left: 15%
+              - type: image
+                image: null #/local/photos/icon_chrome.png
+                Eimage: /local/photos/icon_firetv.png
+                entity: switch.remote_dining_room_chromecast
+                state_filter:
+                  "off": opacity(33%)
+                tap_action:
+                  action: toggle
+                hold_action:
+                  action: call-service
+                  service: script.remote_dining_room_watch_chromecast
+                style:
+                  width: 8%
+                  top: 50%
+                  left: 35%
+              - type: image
+                image: /local/photos/icon_tv.png
+                entity: switch.remote_dining_room_tv
+                state_filter:
+                  "off": opacity(33%)
+                tap_action: 
+                  action: toggle
+                hold_action:
+                  action: call-service
+                  service: script.remote_dining_room_watch_tv
+                style:
+                  width: 8%
+                  top: 50%
+                  left: 55%
+              - type: image
+                image: /local/photos/icon_power.png
+                entity: input_boolean.dining_room_tv
+                tap_action:
+                  action: none
+                hold_action:
+                  action: call-service
+                  service: script.dining_room_tv_off
+                state_filter:
+                  "on": opacity(75%)
+                  "off": opacity(20%)
+                style:
+                  width: 8%
+                  top: 50%
+                  left: 85%

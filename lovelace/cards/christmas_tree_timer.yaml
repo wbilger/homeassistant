@@ -1,0 +1,88 @@
+type: entities
+title: Christmas Tree On/Off Timer
+show_header_toggle: false
+entities:
+  - entity: input_boolean.device_timer_xmas_tree_manual
+  - type: conditional
+    conditions:
+      - entity: binary_sensor.device_timer_xmas_tree
+        state: 'on'
+    row:
+      entity: input_select.device_timer_xmas_tree_list
+      icon: mdi:light-switch
+  - type: conditional
+    conditions:
+      - entity: input_boolean.device_timer_xmas_tree_manual
+        state: 'off'
+      - entity: binary_sensor.device_timer_xmas_tree
+        state: 'on'
+    row:
+      entity: binary_sensor.device_timer_xmas_tree_on_time                
+  - type: conditional
+    conditions:
+      - entity: input_boolean.device_timer_xmas_tree_manual
+        state: 'off'
+    row:    
+      entity: input_boolean.device_timer_xmas_tree_enabled_on
+  - type: conditional
+    conditions:
+      - entity: input_boolean.device_timer_xmas_tree_manual
+        state: 'off'
+      - entity: input_boolean.device_timer_xmas_tree_enabled_on
+        state: 'on'
+    row:    
+      entity: input_datetime.device_timer_xmas_tree_on_time
+  - type: conditional
+    conditions:
+      - entity: input_boolean.device_timer_xmas_tree_manual
+        state: 'off'
+      - entity: input_boolean.device_timer_xmas_tree_enabled_on
+        state: 'on'
+    row:    
+      entity: input_boolean.device_timer_xmas_tree_on_bilger_home
+  - type: conditional
+    conditions:
+      - entity: input_boolean.device_timer_xmas_tree_manual
+        state: 'off'
+      - entity: input_boolean.device_timer_xmas_tree_enabled_on
+        state: 'on'
+    row:    
+      entity: input_boolean.device_timer_xmas_tree_on_time_sun
+  - type: conditional
+    conditions:
+      - entity: input_boolean.device_timer_xmas_tree_manual
+        state: 'off'
+      - entity: input_boolean.device_timer_xmas_tree_enabled_on
+        state: 'on'
+    row:    
+      entity: input_number.device_timer_xmas_tree_on_time_sun          
+  - type: conditional
+    conditions:
+      - entity: input_boolean.device_timer_xmas_tree_manual
+        state: 'off'
+      - entity: input_boolean.device_timer_xmas_tree_enabled_on
+        state: 'on'
+    row:    
+      type: divider    
+  - type: conditional
+    conditions:
+      - entity: input_boolean.device_timer_xmas_tree_manual
+        state: 'off'
+    row:    
+      entity: input_boolean.device_timer_xmas_tree_enabled_off          
+  - type: conditional
+    conditions:
+      - entity: input_boolean.device_timer_xmas_tree_manual
+        state: 'off'
+      - entity: input_boolean.device_timer_xmas_tree_enabled_off
+        state: 'on'
+    row:    
+      entity: input_datetime.device_timer_xmas_tree_off_time
+  - type: conditional
+    conditions:
+      - entity: input_boolean.device_timer_xmas_tree_manual
+        state: 'off'
+      - entity: input_boolean.device_timer_xmas_tree_enabled_off
+        state: 'on'
+    row:    
+      entity: input_boolean.device_timer_xmas_tree_off_bilger_home

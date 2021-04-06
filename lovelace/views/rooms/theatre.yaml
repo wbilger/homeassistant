@@ -1,0 +1,210 @@
+#################################################################
+# VIEW: theatre                                                 #
+#                                                               #
+################################################################# 
+title: Theatre
+path: theatre
+icon: mdi:projector
+cards:
+  - type: vertical-stack
+    cards:
+      - !include /config/lovelace/cards/navigation.yaml
+      - type: picture-elements
+        image: /local/photos/transparent.png
+        aspect_ratio: 12%
+        elements:
+          - type: custom:text-element
+            text: Theatre
+            style:
+              color: var(--primary-text-color)
+              font-size: larger
+              font-weight: bold
+              top: 50%
+              left: 20%
+          - type: image
+            image: /local/photos/icon_remote.png
+            tap_action:
+              action: navigate
+              navigation_path: /lovelace/r.theatre
+            style:
+              width: 10%
+              top: 50%
+              left: 50%
+    
+      - type: custom:vertical-stack-in-card
+        cards:
+          - type: picture-elements
+            image: /local/photos/transparent.png
+            aspect_ratio: 11%
+            elements:
+              - type: image
+                image: /local/photos/yellow.png
+                aspect_ratio: 11%  
+                entity: group.theatre_lights
+                tap_action:
+                  action: toggle
+                state_filter:
+                  "off": opacity(10%) hue-rotate(170deg) brightness(200%)
+                  "on": opacity(50%)
+                  "unavailable": opacity(20%) hue-rotate(180deg)
+                style:
+                  width: 100%
+                  top: 50%
+                  left: 50%
+              - type: custom:text-action-element
+                text: Lights
+                entity: group.theatre_lights
+                tap_action: 
+                  action: toggle
+                style:
+                  color: var(--primary-text-color)
+                  top: 50%
+                  left: 50%
+
+          - type: entities
+            show_header_toggle: false
+            entities:
+              - type: custom:fold-entity-row
+                head:
+                  type: custom:slider-entity-row
+                  entity: light.theatre_lights
+                  name: Theatre
+                  toggle: true
+                items:
+                  - type: custom:slider-entity-row
+                    entity: light.theatre_fl
+                    icon: mdi:spotlight-beam
+                    name: Front L
+                    toggle: true
+                  - type: custom:slider-entity-row
+                    entity: light.theatre_fr
+                    icon: mdi:spotlight-beam
+                    name: Front R
+                    toggle: true
+                  - type: custom:slider-entity-row
+                    entity: light.theatre_rl
+                    icon: mdi:spotlight-beam
+                    name: Rear L
+                    toggle: true
+                  - type: custom:slider-entity-row
+                    entity: light.theatre_rr
+                    icon: mdi:spotlight-beam
+                    name: Rear R
+                    toggle: true
+              - light.bar_light
+
+      - type: custom:vertical-stack-in-card
+        cards:
+          - type: picture-elements
+            image: /local/photos/transparent.png
+            aspect_ratio: 11%
+            elements:
+              - type: image
+                image: /local/photos/yellow.png
+                aspect_ratio: 11%  
+                entity: group.theatre_tv
+                tap_action:
+                  action: toggle
+                state_filter:
+                  "off": opacity(10%) hue-rotate(170deg) brightness(200%)
+                  "on": opacity(50%)
+                  "unavailable": opacity(20%) hue-rotate(180deg)
+                style:
+                  width: 100%
+                  top: 50%
+                  left: 50%
+              - type: custom:text-action-element
+                text: Theatre TV
+                entity: group.theatre_tv
+                tap_action: 
+                  action: toggle
+                style:
+                  color: var(--primary-text-color)
+                  top: 50%
+                  left: 50%
+          - type: entities
+            show_header_toggle: false
+            entities:
+              - entity: switch.theatre_projector
+                name: Projector
+                icon: mdi:projector
+              - entity: script.theatre_projector_off
+                name: Shut Down Projector
+                icon: mdi:power
+              - entity: switch.theatre_surround_sound
+                name: Surround Sound
+                icon: mdi:surround-sound
+              - entity: switch.butt_kickers
+                name: Butt Kickers
+                icon: mdi:speaker-wireless
+          - type: picture-elements
+            image: /local/photos/transparent.png
+            aspect_ratio: 3%
+            elements:
+              - type: image
+                image: /local/photos/transparent.png
+              
+                
+#################################################################
+# VIEW: r.theatre
+#   Theatre Remote - Media Start Bottom Bar
+################################################################# 
+      - type: picture-elements
+        image: /local/photos/transparent.png
+        aspect_ratio: 12%
+        elements:
+          - type: image
+            image: /local/photos/icon_roku.png
+            tap_action: 
+              action: call-service
+              service: script.remote_theatre_watch_roku
+            style:
+              width: 8%
+              top: 50%
+              left: 12%
+          - type: image
+            image: /local/photos/icon_chrome.png
+            tap_action: 
+              action: call-service
+              service: script.remote_theatre_watch_chromecast
+            style:
+              width: 8%
+              top: 50%
+              left: 29%
+          - type: image
+            image: /local/photos/projector_screen-16x9.png
+            entity: switch.theatre_projector
+            tap_action:
+              action: call-service
+              service: script.theatre_projector_16x9
+            state_filter:
+              "off": opacity(10%)
+            style:
+              width: 8%
+              top: 50%
+              left: 50%
+          - type: image
+            image: /local/photos/projector_screen-21x9.png
+            entity: switch.theatre_projector
+            tap_action: 
+              action: call-service
+              service: script.theatre_projector_21x9
+            state_filter:
+              "off": opacity(10%)
+            style:
+              width: 10%
+              top: 50%
+              left: 65%
+          - type: image
+            image: /local/photos/icon_power.png
+            entity: group.theatre_tv
+            tap_action:
+              action: call-service
+              service: script.theatre_off
+            state_filter:
+              "on": opacity(75%)
+              "off": opacity(20%)
+            style:
+              width: 8%
+              top: 50%
+              left: 85%              

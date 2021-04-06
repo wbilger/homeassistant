@@ -1,0 +1,68 @@
+google_broadcast_message:
+  name: Google Broadcast Message
+
+#radio station presets saves, and display text
+radio_station_p1:
+  name: Radio Station Preset 1
+radio_station_p1_display:
+  name: Radio Station Preset 1 Display
+radio_station_p2:
+  name: Radio Station Preset 2
+radio_station_p2_display:
+  name: Radio Station Preset 2 Display
+radio_station_p3:
+  name: Radio Station Preset 3
+radio_station_p3_display:
+  name: Radio Station Preset 3 Display
+radio_station_p4:
+  name: Radio Station Preset 4
+radio_station_p4_display:
+  name: Radio Station Preset 4 Display
+
+# #Google Cast Presets
+radio_station_pdog:
+  name: Google Cast for Dog When Parent's Gone
+radio_station_person_home_automation:
+  name: Google Cast for Person Home Automation
+radio_station_person_awake_automation:
+  name: Google Cast for Person Awake Automation
+google_cast_p01:
+  name: Google Cast Preset 1
+google_cast_p02:
+  name: Google Cast Preset 2
+google_cast_p03:
+  name: Google Cast Preset 3
+google_cast_p04:
+  name: Google Cast Preset 4
+google_cast_p05:
+  name: Google Cast Preset 5
+google_cast_p06:
+  name: Google Cast Preset 6
+google_cast_p07:
+  name: Google Cast Preset 7
+google_cast_p08:
+  name: Google Cast Preset 8
+google_cast_p09:
+  name: Google Cast Preset 9
+google_cast_p10:
+  name: Google Cast Preset 10
+google_cast_p11:
+  name: Google Cast Preset 11
+google_cast_p12:
+  name: Google Cast Preset 12
+google_cast_p13:
+  name: Google Cast Preset 13
+google_cast_p14:
+  name: Google Cast Preset 14
+google_cast_p15:
+  name: Google Cast Preset 15
+google_cast_p16:
+  name: Google Cast Preset 16
+google_cast_p17:
+  name: Google Cast Preset 17
+google_cast_p18:
+  name: Google Cast Preset 18
+google_cast_p19:
+  name: Google Cast Preset 19
+google_cast_p20:
+  name: Google Cast Preset 20

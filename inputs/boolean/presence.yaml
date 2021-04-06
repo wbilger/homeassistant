@@ -1,0 +1,27 @@
+presence_wayne_kitchen:
+  name: Wayne Kitchen Presence
+  initial: false
+presence_wayne_bedroom:
+  name: Wayne Bedroom Presence
+  initial: false
+
+presence_jenn_kitchen:
+  name: Jenn Kitchen Presence
+  initial: false
+presence_jenn_bedroom:
+  name: Jenn Bedroom Presence
+  initial: false
+
+presence_kale_kitchen:
+  name: Kale Kitchen Presence
+  initial: false
+presence_kale_bedroom:
+  name: Kale Bedroom Presence
+  initial: false
+
+presence_jalynne_kitchen:
+  name: Jalynne Kitchen Presence
+  initial: false
+presence_jalynne_bedroom:
+  name: Jalynne Bedroom Presence
+  initial: false

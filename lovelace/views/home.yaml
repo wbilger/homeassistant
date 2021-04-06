@@ -1,0 +1,1037 @@
+title: Home
+path: home
+icon: mdi:home
+popup_cards:
+  media_player.kitchen_speaker:
+    !include /config/lovelace/cards/radio_player.yaml      
+cards:
+  - type: vertical-stack
+    cards:
+      - type: custom:vertical-stack-in-card
+        cards:
+          - type: picture-elements
+            image: /local/photos/transparent.png
+            aspect_ratio: 13%
+            elements:
+              - type: image
+                image: /local/photos/bedroom.png
+                tap_action:
+                  action: navigate
+                  navigation_path: /lovelace/bedroom
+                hold_action:
+                  action: navigate
+                  navigation_path: /lovelace/r.bedroom
+                style:
+                  width: 8%
+                  top: 50%
+                  left: 8%
+              - type: image
+                image: /local/photos/family_room.png
+                tap_action:
+                  action: navigate
+                  navigation_path: /lovelace/family_room
+                hold_action:
+                  action: navigate
+                  navigation_path: /lovelace/r.family_room
+                style:
+                  width: 8%
+                  top: 50%
+                  left: 22%
+              - type: image
+                image: /local/photos/theatre.png
+                tap_action:
+                  action: navigate
+                  navigation_path: /lovelace/theatre
+                hold_action:
+                  action: navigate
+                  navigation_path: /lovelace/r.theatre
+                style:
+                  width: 8%
+                  top: 50%
+                  left: 36%
+              - type: image
+                image: /local/photos/weather.png
+                tap_action:
+                  action: navigate
+                  navigation_path: /lovelace/weather
+                style:
+                  width: 8%
+                  top: 50%
+                  left: 50%
+              - type: image
+                image: /local/photos/sensors.png
+                tap_action:
+                  action: navigate
+                  navigation_path: /lovelace/sensors
+                hold_action:
+                  action: navigate
+                  navigation_path: /lovelace/cameras
+                style:
+                  width: 8%
+                  top: 50%
+                  left: 64%
+              - type: image
+                image: /local/photos/settings.png
+                tap_action:
+                  action: navigate
+                  navigation_path: /lovelace/settings
+                double_tap_action:
+                  action: navigate
+                  navigation_path: /lovelace/settings_locks
+                hold_action:
+                  action: navigate
+                  navigation_path: /lovelace/settings_admin
+                style:
+                  width: 8%
+                  top: 50%
+                  left: 78%
+              - type: image
+                image: /local/photos/icon_remote.png
+                tap_action:
+                  action: navigate
+                  navigation_path: /lovelace/r.dining_room
+                hold_action:
+                  action: navigate
+                  navigation_path: /lovelace/dashboard
+                style:
+                  width: 8%
+                  top: 50%
+                  left: 92%
+                  
+          - type: picture-elements
+            image: /local/photos/pic_home_bilger-small.png
+            elements:
+              - type: conditional
+                conditions:
+                  - entity: binary_sensor.device_timer_xmas_tree
+                    state: 'on'
+                elements:  
+                  - type: image
+                    entity: light.christmas_tree_lights
+                    tap_action:
+                      action: toggle
+                    hold_action:
+                      action: fire-dom-event
+                      browser_mod:
+                        command: call-service
+                        service: browser_mod.popup
+                        service_data:
+                          deviceID: this
+                          title: Christmas Tree Timer
+                          card: 
+                            !include /config/lovelace/cards/christmas_tree_timer.yaml  
+                    image: /local/photos/icon_christmas-tree.png
+                    state_filter:
+                      "off": opacity(60%)
+                      "unavailable": opacity(30%)
+                    style:
+                      width: 14%
+                      top: 40%
+                      left: 30%
+              - type: image
+                entity: sensor.calendar_garbage_day
+                tap_action:
+                  action: none
+                image: /local/photos/icon_transparent.png
+                state_image:
+                  "Garbage Day (Tomorrow)": /local/photos/icon_garbage_day-tomorrow.png
+                  "Garbage Day (Today)": /local/photos/icon_garbage_day.png
+                style:
+                  width: 12%
+                  top: 82%
+                  left: 60%
+
+              - type: image
+                image: /local/photos/icon_irobot.png
+                entity: vacuum.boomba
+                tap_action: 
+                  !include /config/lovelace/cards/tap_action/popups/vacuum.yaml
+                hold_action:
+                  action: call-service
+                  service: vacuum.toggle
+                  service_data:
+                    entity_id: vacuum.boomba
+                state_filter:
+                  "off": opacity(35%)
+                  "docked": opacity(50%)
+                  "unavailable": opacity(20%) brightness(10%)
+                style:
+                  width: 7%
+                  top: 50%
+                  left: 5%
+              - type: image
+                image: /local/photos/transparent.png
+                entity: sensor.vacuum_bin_full
+                tap_action: 
+                  !include /config/lovelace/cards/tap_action/popups/vacuum.yaml
+                state_image:
+                  "True": /local/photos/icon_irobot_red.png
+                style:
+                  width: 7%
+                  top: 50%
+                  left: 5%
+              - type: state-label
+                entity: sensor.vacuum_bin_status
+                tap_action: 
+                  !include /config/lovelace/cards/tap_action/popups/vacuum.yaml
+                hold_action: 
+                  action: call-service
+                  service: vacuum.toggle
+                  service_data:
+                    entity_id: vacuum.boomba
+                style:
+                  top: 32%
+                  left: 5%
+                  font-size: 10px
+                  color: red
+
+              - type: image
+                entity: automation.notify_washing_machine_stop
+                image: /local/photos/icon_washing_machine.png
+                tap_action:
+                  action: fire-dom-event
+                  browser_mod:
+                    command: call-service
+                    service: browser_mod.popup
+                    service_data:
+                      deviceID: this
+                      title: Washing Machine
+                      large: true
+                      card: 
+                        !include /config/lovelace/cards/washing_machine.yaml
+                state_filter:
+                  "off": opacity(20%)
+                style:
+                  width: 7%
+                  top: 82%
+                  left: 5%
+              - type: image
+                entity: sensor.ecobee_mode_status
+                tap_action:
+                  action: navigate
+                  navigation_path: /lovelace/thermostat
+                hold_action:
+                  action: more-info
+                image: /local/photos/icon_transparent.png
+                state_image:
+                  "Home": /local/photos/icon_home.png
+                  "Away": /local/photos/icon_away.png
+                  "Sleep": /local/photos/icon_sleep-moon.png
+                  "Morning": /local/photos/icon_sunrise.png
+                  "Evening": /local/photos/icon_sunset.png
+                  "Night": /local/photos/icon_night.png
+                  "Vacation": /local/photos/icon_vacation.png
+                  "Manual": /local/photos/icon_select-color.png
+                  "?": /local/photos/icon_question-red.png
+                style:
+                  width: 7%
+                  top: 82%
+                  left: 15%
+              - type: image
+                entity: sensor.ecobee_operation
+                tap_action:
+                  action: navigate
+                  navigation_path: /lovelace/thermostat
+                hold_action:
+                  action: more-info
+                image: /local/photos/icon_power.png
+                state_image:
+                  "Heat": /local/photos/icon_flame.png
+                  "Heat_Idle": /local/photos/icon_flame.png
+                  "Cool": /local/photos/icon_snowflake.png
+                  "Cool_Idle": /local/photos/icon_snowflake.png
+                  "Fan": /local/photos/icon_fan.png
+                  "?": /local/photos/icon_question-red.png
+                state_filter:
+                  "Heat_Idle": opacity(40%)
+                  "Cool_Idle": opacity(40%)
+                style:
+                  width: 8%
+                  top: 82%
+                  left: 27%
+              - type: state-label
+                entity: sensor.ecobee_temperature_target_real
+                tap_action:
+                  action: navigate
+                  navigation_path: /lovelace/thermostat
+                hold_action: 
+                  action: more-info
+                style:
+                  font-size: 140%
+                  top: 82%
+                  left: 40%
+                  color: white
+              - type: state-label
+                entity: sensor.rtemperature_home_avg
+                tap_action:
+                  action: navigate
+                  navigation_path: /lovelace/thermostat
+                hold_action: 
+                  action: more-info
+                style:
+                  color: white
+                  font-weight: bold
+                  font-size: 260%
+                  top: 82%
+                  left: 85%
+              - type: icon
+                entity: sensor.ecobee_humidity
+                tap_action:
+                  action: navigate
+                  navigation_path: /lovelace/thermostat
+                hold_action: 
+                  action: more-info
+                icon: mdi:water-percent
+                style:
+                  top: 56%
+                  left: 95%
+                  color: white
+              - type: state-label
+                entity: sensor.ecobee_humidity
+                tap_action:
+                  action: navigate
+                  navigation_path: /lovelace/thermostat
+                hold_action: 
+                  action: more-info
+                style:
+                  font-size: 130%
+                  top: 57%
+                  left: 85%
+                  color: white
+              ##### Presence badges      
+              - type: image
+                entity: sensor.presence_wayne_status
+                image: /local/photos/wayne_badge_home.png
+                show_name: false
+                show_state: false
+                tap_action:
+                  action: navigate
+                  navigation_path: /lovelace/map
+                hold_action: 
+                  action: more-info
+                state_image:
+                  "Away": /local/photos/wayne_badge_away.png
+                  "Just Left": /local/photos/wayne_badge_away.png
+                  "Extended Away": /local/photos/wayne_badge_away.png
+                state_filter:
+                  "Away": opacity(33%)
+                  "Extended Away": opacity(20%)
+                  "Just Arrived": opacity(60%)
+                  "Just Left": opacity(60%)
+                style:
+                  width: 50px
+                  top: 26%
+                  left: 20%
+              - type: state-label
+                entity: sensor.location_away_wayne
+                tap_action:
+                  action: navigate
+                  navigation_path: /lovelace/map
+                style:
+                  font-size: smaller
+                  font-weight: bold
+                  top: 43%
+                  left: 20%
+              - type: image
+                entity: sensor.presence_jenn_status
+                image: /local/photos/jenn_badge_home.png
+                show_name: false
+                show_state: false
+                tap_action:
+                  action: navigate
+                  navigation_path: /lovelace/map
+                hold_action: 
+                  action: more-info
+                state_image:
+                  "Away": /local/photos/jenn_badge_away.png
+                  "Just Left": /local/photos/jenn_badge_away.png
+                  "Extended Away": /local/photos/jenn_badge_away.png
+                state_filter:
+                  "Away": opacity(33%)
+                  "Extended Away": opacity(20%)
+                  "Just Arrived": opacity(60%)
+                  "Just Left": opacity(60%)
+                style:
+                  width: 50px
+                  top: 26%
+                  left: 40%
+              - type: state-label
+                entity: sensor.location_away_jenn
+                tap_action:
+                  action: navigate
+                  navigation_path: /lovelace/map
+                style:
+                  font-size: smaller
+                  font-weight: bold
+                  top: 43%
+                  left: 40%
+              - type: image
+                entity: sensor.presence_kale_status
+                image: /local/photos/kale_badge_home.png
+                show_name: false
+                show_state: false
+                tap_action:
+                  action: navigate
+                  navigation_path: /lovelace/map
+                hold_action: 
+                  action: more-info
+                state_image:
+                  "Away": /local/photos/kale_badge_away.png
+                  "Just Left": /local/photos/kale_badge_away.png
+                  "Extended Away": /local/photos/kale_badge_away.png
+                state_filter:
+                  "Away": opacity(33%)
+                  "Extended Away": opacity(20%)
+                  "Just Arrived": opacity(60%)
+                  "Just Left": opacity(60%)
+                style:
+                  width: 50px
+                  top: 26%
+                  left: 60%
+              - type: state-label
+                entity: sensor.location_away_kale
+                tap_action:
+                  action: navigate
+                  navigation_path: /lovelace/map
+                style:
+                  font-size: smaller
+                  font-weight: bold
+                  top: 43%
+                  left: 60%
+              - type: image
+                entity: sensor.presence_jalynne_status
+                image: /local/photos/jalynne_badge_home.png
+                show_name: false
+                show_state: false
+                tap_action:
+                  action: navigate
+                  navigation_path: /lovelace/map
+                hold_action: 
+                  action: more-info
+                state_image:
+                  "Away": /local/photos/jalynne_badge_away.png
+                  "Just Left": /local/photos/jalynne_badge_away.png
+                  "Extended Away": /local/photos/jalynne_badge_away.png
+                state_filter:
+                  "Away": opacity(33%)
+                  "Extended Away": opacity(20%)
+                  "Just Arrived": opacity(60%)
+                  "Just Left": opacity(60%)
+                style:
+                  width: 50px
+                  top: 26%
+                  left: 80%
+              - type: state-label
+                entity: sensor.location_away_jalynne
+                tap_action:
+                  action: navigate
+                  navigation_path: /lovelace/map
+                style:
+                  font-size: smaller
+                  font-weight: bold
+                  top: 43%
+                  left: 80%
+
+      - type: horizontal-stack
+        cards:
+          - type: custom:button-card
+            size: 80%
+            entity: lock.schlage_allegion_be469_touchscreen_deadbolt_locked_frontdoor
+            tap_action:
+              action: toggle
+            hold_action:
+              action: more-info
+            show_label: true
+            show_name: true
+            show_last_changed: true
+            name: Front
+            state:
+                - value: 'locked'
+                  styles:
+                    icon:
+                      - color: red
+                - value: "unavailable"
+                  styles:
+                    name:
+                      - opacity: 30%
+                    icon:
+                      - color: var(--primary-text-color)
+                      - opacity: 30%
+                    label:
+                      - opacity: 30%
+                    custom_fields:
+                      name2:
+                        - opacity: 30%
+            styles:
+              card:
+                - height: 56.4px
+              grid:
+                - grid-template-areas: '"i n" "i name2" "l l"'
+                - grid-template-columns: 1fr 1fr
+                - grid-template-rows: 1fr 1fr min-content
+              icon:     
+                - color: green
+                - padding-left: 5px
+                - padding-bottom: 5px
+              name:
+                - font-size: 13px
+                - justify-self: start
+              label:        
+                - font-size: 10px
+                - padding-bottom: 2px
+              custom_fields:
+                name2:
+                  - padding-bottom: 7px
+                  - font-size: 13px
+                  - justify-self: start
+            custom_fields:
+              name2: Door
+          - type: custom:button-card
+            entity: light.entrance_light
+            icon: mdi:ceiling-light
+            name: Entrance
+            styles:
+              card:
+                - height: 56.4px
+              name: 
+                - font-size: 13px
+            state:
+              - value: "unavailable"
+                styles:
+                  name:
+                    - opacity: 30%
+                  icon:
+                    - opacity: 30%
+          - type: custom:button-card
+            entity: light.entrance_light_porch
+            icon: mdi:wall-sconce
+            name: Front Porch
+            styles:
+              card:
+                - height: 56.4px
+              name: 
+                - font-size: 13px
+              icon:
+                - transform: rotate(180deg)
+            state:
+              - value: "unavailable"
+                styles:
+                  name:
+                    - opacity: 30%
+                  icon:
+                    - opacity: 30%
+          - type: custom:button-card
+            entity: switch.dining_room_tv
+            icon: mdi:television
+            color: var(--secondary-text-color)
+            name: Dining Room
+            hold_action:
+              action: navigate
+              navigation_path: /lovelace/r.dining_room
+            styles:
+              card:
+                - height: 56.4px
+              name: 
+                - font-size: 13px
+
+      - type: horizontal-stack
+        cards:
+          - type: custom:button-card
+            entity: light.front_window
+            icon: mdi:lamp
+            name: Front Window
+            styles:
+              card:
+                - height: 56.4px
+              name: 
+                - font-size: 12px
+            state:
+              - value: "unavailable"
+                styles:
+                  name:
+                    - opacity: 30%
+                  icon:
+                    - opacity: 30%
+          - type: custom:button-card
+            entity: light.dining_room_light
+            icon: mdi:ceiling-light
+            name: Fan Light
+            styles:
+              card:
+                - height: 56.4px
+              name: 
+                - font-size: 13px
+            state:
+              - value: "unavailable"
+                styles:
+                  name:
+                    - opacity: 30%
+                  icon:
+                    - opacity: 30%
+          - type: custom:button-card
+            entity: switch.dining_room_fan
+            icon: mdi:fan
+            name: Fan
+            styles:
+              card:
+                - height: 56.4px
+              name: 
+                - font-size: 13px
+            state:
+              - value: "unavailable"
+                styles:
+                  name:
+                    - opacity: 30%
+                  icon:
+                    - opacity: 30%
+          - type: custom:button-card
+            entity: light.dining_room_plug
+            icon: mdi:floor-lamp
+            name: Reading
+            styles:
+              card:
+                - height: 56.4px
+              name: 
+                - font-size: 13px
+            state:
+              - value: "unavailable"
+                styles:
+                  name:
+                    - opacity: 30%
+                  icon:
+                    - opacity: 30%
+
+      - type: horizontal-stack
+        cards:
+          - type: horizontal-stack
+            cards:
+              - type: horizontal-stack
+                cards:
+                  - type: custom:button-card
+                    entity: light.deck_lights
+                    icon: mdi:wall-sconce
+                    name: Deck
+                    styles:
+                      card:
+                        - height: 56.4px
+                      name: 
+                        - font-size: 13px
+                      icon:
+                        - transform: rotate(180deg)
+                    state:
+                      - value: "unavailable"
+                        styles:
+                          name:
+                            - opacity: 30%
+                          icon:
+                            - opacity: 30%
+                  - type: custom:button-card
+                    entity: switch.deck_fan
+                    icon: mdi:fan
+                    name: Deck TV
+                    styles:
+                      card:
+                        - height: 56.4px
+                      name: 
+                        - font-size: 13px
+                    state:
+                      - value: "unavailable"
+                        styles:
+                          name:
+                            - opacity: 30%
+                          icon:
+                            - opacity: 30%
+                  - type: custom:button-card
+                    entity: light.kitchen_sink_light
+                    icon: mdi:ceiling-light
+                    name: Sink
+                    styles:
+                      card:
+                        - height: 56.4px
+                      name: 
+                        - font-size: 13px
+                    state:
+                      - value: "unavailable"
+                        styles:
+                          name:
+                            - opacity: 30%
+                          icon:
+                            - opacity: 30%
+              
+          - type: custom:button-card
+            entity: light.kitchen_island_lights
+            icon: mdi:spotlight-beam
+            name: "Kitchen Island Lights  ."
+            tap_action:
+              action: toggle
+            hold_action:
+              action: call-service
+              service: script.kitchen_lights_night_dim
+            custom_fields:
+              slider:
+                card:
+                  type: custom:slider-entity-row
+                  entity: light.kitchen_island_lights
+                  hide_state: true
+                  full_row: true
+                  tap_action:
+                    action: toggle
+                  hold_action:
+                    action: call-service
+                    service: script.kitchen_lights_night_dim
+            styles:
+              card:
+                - height: 56.4px
+              grid:
+                - grid-template-areas: '"i n l" "slider slider slider"'
+                - grid-template-columns: fr min-content 1fr
+                - grid-template-rows: min-content min-content
+              label:
+                - font-size: 15px
+                - color: var(--paper-card-background-color)
+              name:
+                - font-size: 13px
+              custom_fields:
+                slider:
+                  - padding-bottom: 5px              
+            state:
+              - value: "unavailable"
+                styles:
+                  name:
+                    - opacity: 30%
+                  icon:
+                    - opacity: 30%
+
+      - type: horizontal-stack
+        cards:
+          - type: custom:button-card
+            entity: light.jenn_bedroom
+            icon: mdi:wall-sconce
+            name: Jenn Bed
+            styles:
+              card:
+                - height: 56.4px
+              name: 
+                - font-size: 13px
+            state:
+              - value: "unavailable"
+                styles:
+                  name:
+                    - opacity: 30%
+                  icon:
+                    - opacity: 30%
+          - type: custom:button-card
+            entity: light.bedroom_light
+            icon: mdi:ceiling-light
+            name: Bedroom
+            styles:
+              card:
+                - height: 56.4px
+              name: 
+                - font-size: 13px
+            state:
+              - value: "unavailable"
+                styles:
+                  name:
+                    - opacity: 30%
+                  icon:
+                    - opacity: 30%
+          - type: custom:button-card
+            entity: switch.sonoff_basic_02      #bedroom_fan
+            icon: mdi:fan
+            name: Fan
+            styles:
+              card:
+                - height: 56.4px
+              name: 
+                - font-size: 13px
+            state:
+              - value: "unavailable"
+                styles:
+                  name:
+                    - opacity: 30%
+                  icon:
+                    - opacity: 30%
+          - type: custom:button-card
+            entity: switch.bedroom_tv
+            icon: mdi:television
+            color: var(--secondary-text-color)
+            name: Bedroom
+            hold_action:
+              action: navigate
+              navigation_path: /lovelace/r.bedroom
+            styles:
+              card:
+                - height: 56.4px
+              name: 
+                - font-size: 13px
+
+      - type: horizontal-stack
+        cards:
+          - type: horizontal-stack
+            cards:
+              - type: custom:button-card
+                name: Jay
+                styles:
+                  card:
+                    - height: 28px
+                  name: 
+                    - font-size: 13px
+                state:
+                  - value: "unavailable"
+                    styles:
+                      name:
+                        - opacity: 30%
+                      icon:
+                        - opacity: 30%
+              - type: custom:button-card
+                entity: light.jalynne_bedroom
+                icon: mdi:lightbulb
+                show_name: false
+                styles:
+                  card:
+                    - height: 28px
+                state:
+                  - value: "unavailable"
+                    styles:
+                      name:
+                        - opacity: 30%
+                      icon:
+                        - opacity: 30%
+              - type: custom:button-card
+                entity: switch.jalynne_bedroom_fan
+                show_name: false
+                styles:
+                  card:
+                    - height: 28px
+                state:
+                  - value: "unavailable"
+                    styles:
+                      name:
+                        - opacity: 30%
+                      icon:
+                        - opacity: 30%
+              - type: custom:button-card
+                entity: light.jalynnes_lamp
+                icon: mdi:lamp
+                show_name: false
+                tap_action:
+                  action: toggle
+                hold_action:
+                  action: more-info
+                styles:
+                  card:
+                    - height: 28px
+                state:
+                  - value: "unavailable"
+                    styles:
+                      name:
+                        - opacity: 30%
+                      icon:
+                        - opacity: 30%
+          - type: horizontal-stack
+            cards:
+              - type: custom:button-card
+                name: Kale
+                styles:
+                  card:
+                    - height: 28px
+                  name: 
+                    - font-size: 13px
+                state:
+                  - value: "unavailable"
+                    styles:
+                      name:
+                        - opacity: 30%
+                      icon:
+                        - opacity: 30%
+              - type: custom:button-card
+                entity: light.kales_light
+                icon: mdi:lightbulb
+                show_name: false
+                tap_action:
+                  action: toggle
+                hold_action:
+                  action: more-info
+                styles:
+                  card:
+                    - height: 28px
+                state:
+                  - value: "unavailable"
+                    styles:
+                      name:
+                        - opacity: 30%
+                      icon:
+                        - opacity: 30%
+              - type: custom:button-card
+                entity: light.kales_lamp
+                icon: mdi:lamp
+                show_name: false
+                tap_action:
+                  action: toggle
+                hold_action:
+                  action: more-info
+                styles:
+                  card:
+                    - height: 28px
+                state:
+                  - value: "unavailable"
+                    styles:
+                      name:
+                        - opacity: 30%
+                      icon:
+                        - opacity: 30%
+
+      - type: horizontal-stack
+        cards:
+          - type: custom:button-card
+            entity: light.couch_lamp
+            icon: mdi:floor-lamp
+            name: Couch
+            tap_action:
+              action: toggle
+            hold_action:
+              action: more-info
+            styles:
+              card:
+                - height: 56.4px
+              name: 
+                - font-size: 13px
+            state:
+              - value: "unavailable"
+                styles:
+                  name:
+                    - opacity: 30%
+                  icon:
+                    - opacity: 30%
+          - type: custom:button-card
+            entity: light.family_room_light
+            icon: mdi:ceiling-light
+            name: Fan Light
+            tap_action:
+              action: toggle
+            hold_action:
+              action: more-info
+            styles:
+              card:
+                - height: 56.4px
+              name: 
+                - font-size: 13px
+            state:
+              - value: "unavailable"
+                styles:
+                  name:
+                    - opacity: 30%
+                  icon:
+                    - opacity: 30%
+          - type: custom:button-card
+            entity: light.desk_lamp
+            styles:
+              card:
+                - height: 56.4px
+              name: 
+                - font-size: 13px
+            state:
+              - value: "unavailable"
+                styles:
+                  name:
+                    - opacity: 30%
+                  icon:
+                    - opacity: 30%
+          - type: custom:button-card
+            entity: switch.family_room_tv
+            icon: mdi:television
+            color: var(--secondary-text-color)
+            name: Family Room
+            hold_action:
+              action: navigate
+              navigation_path: /lovelace/r.family_room
+            styles:
+              card:
+                - height: 56.4px
+              name: 
+                - font-size: 13px
+
+      - type: picture-elements
+        image: /local/photos/transparent.png
+        aspect_ratio: 27.8%
+        elements:
+          - type: state-label
+            entity: input_text.radio_station_p1_display
+            tap_action:
+              action: call-service
+              service: notify.google_assistant_command
+              service_data:
+                message: 'Play {{ states("input_select.radio_station_p1") }} on Kitchen'
+            style:
+              top: 9%
+              left: 12.5%
+              font-size: 11px
+              color: var(--secondary-text-color)
+
+          - type: state-label
+            entity: input_text.radio_station_p2_display
+            tap_action:
+              action: call-service
+              service: notify.google_assistant_command
+              service_data:
+                message: 'Play {{ states("input_select.radio_station_p2") }} on Kitchen'
+            style:
+              top: 9%
+              left: 37.5%
+              font-size: 11px
+              color: var(--secondary-text-color)
+          - type: state-label
+            entity: input_text.radio_station_p3_display
+            tap_action:
+              action: call-service
+              service: notify.google_assistant_command
+              service_data:
+                message: 'Play {{ states("input_select.radio_station_p3") }} on Kitchen'
+            style:
+              top: 9%
+              left: 62.5%
+              font-size: 11px
+              color: var(--secondary-text-color)
+          - type: state-label
+            entity: input_text.radio_station_p4_display
+            tap_action:
+              action: call-service
+              service: notify.google_assistant_command
+              service_data:
+                message: 'Play {{ states("input_select.radio_station_p4") }} on Kitchen'
+            style:
+              top: 9%
+              left: 87.5%
+              font-size: 11px
+              color: var(--secondary-text-color)
+          - type: custom:mini-media-player
+            entity: media_player.kitchen_speaker
+            group: true
+            icon: mdi:google-home
+            info: scroll
+            # tap_action:             
+            #   !include /config/lovelace/cards/tap_action/popups/google_home_radio.yaml
+            hide:
+              volume: true
+              controls: true
+              progress: true
+            style: 
+              width: 95%
+              top: 43%
+              left: 50%    
+          - type: custom:mini-media-player
+            entity: media_player.kitchen_speaker
+            group: true
+            artwork: none
+            # tap_action:             
+            #   !include /config/lovelace/cards/tap_action/popups/google_home_radio.yaml
+            hide:
+              name: true
+              icon: true
+              power: true
+              info: true
+            style: 
+              width: 90%
+              top: 80%
+              left: 50%

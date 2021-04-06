@@ -1,0 +1,393 @@
+type: vertical-stack
+cards:  
+  - type: horizontal-stack
+    cards:
+      - type: custom:button-card
+        styles:
+          card:
+            - width: 1px
+      - type: custom:button-card
+        entity: input_text.google_cast_p01
+        show_icon: false
+        show_name: false
+        show_state: true
+        tap_action:
+          action: call-service
+          service: script.radio_presets_popup_press
+          service_data:
+           var_message: 'Play {{ states("input_text.google_cast_p01") }} on Kitchen'           
+        styles:
+          card:
+            - height: 34px
+            - color: var(--secondary-text-color)
+      - type: custom:button-card
+        entity: input_text.google_cast_p02
+        show_icon: false
+        show_name: false
+        show_state: true
+        tap_action:
+          action: call-service
+          service: script.radio_presets_popup_press
+          service_data:
+           var_message: 'Play {{ states("input_text.google_cast_p02") }} on Kitchen'
+        styles:
+          card:
+            - height: 34px
+            - color: var(--secondary-text-color)
+      - type: custom:button-card
+        styles:
+          card:
+            - width: 1px
+  - type: horizontal-stack
+    cards:
+      - type: custom:button-card
+        styles:
+          card:
+            - width: 1px
+      - type: custom:button-card
+        entity: input_text.google_cast_p03
+        show_icon: false
+        show_name: false
+        show_state: true
+        tap_action:
+          action: call-service
+          service: script.radio_presets_popup_press
+          service_data:
+           var_message: 'Play {{ states("input_text.google_cast_p03") }} on Kitchen'
+        styles:
+          card:
+            - height: 34px
+            - color: var(--secondary-text-color)
+      - type: custom:button-card
+        entity: input_text.google_cast_p04
+        show_icon: false
+        show_name: false
+        show_state: true
+        tap_action:
+          action: call-service
+          service: script.radio_presets_popup_press
+          service_data:
+           var_message: 'Play {{ states("input_text.google_cast_p04") }} on Kitchen'
+        styles:
+          card:
+            - height: 34px
+            - color: var(--secondary-text-color)
+      - type: custom:button-card
+        styles:
+          card:
+            - width: 1px
+  - type: horizontal-stack
+    cards:
+      - type: custom:button-card
+        styles:
+          card:
+            - width: 1px
+      - type: custom:button-card
+        entity: input_text.google_cast_p05
+        show_icon: false
+        show_name: false
+        show_state: true
+        tap_action:
+          action: call-service
+          service: script.radio_presets_popup_press
+          service_data:
+           var_message: 'Play {{ states("input_text.google_cast_p05") }} on Kitchen'
+        styles:
+          card:
+            - height: 34px
+            - color: var(--secondary-text-color)
+      - type: custom:button-card
+        entity: input_text.google_cast_p06
+        show_icon: false
+        show_name: false
+        show_state: true
+        tap_action:
+          action: call-service
+          service: script.radio_presets_popup_press
+          service_data:
+           var_message: 'Play {{ states("input_text.google_cast_p06") }} on Kitchen'
+        styles:
+          card:
+            - height: 34px
+            - color: var(--secondary-text-color)
+      - type: custom:button-card
+        styles:
+          card:
+            - width: 1px
+  - type: horizontal-stack
+    cards:
+      - type: custom:button-card
+        styles:
+          card:
+            - width: 1px
+      - type: custom:button-card
+        entity: input_text.google_cast_p07
+        show_icon: false
+        show_name: false
+        show_state: true
+        tap_action:
+          action: call-service
+          service: script.radio_presets_popup_press
+          service_data:
+           var_message: 'Play {{ states("input_text.google_cast_p07") }} on Kitchen'
+        styles:
+          card:
+            - height: 34px
+            - color: var(--secondary-text-color)
+      - type: custom:button-card
+        entity: input_text.google_cast_p08
+        show_icon: false
+        show_name: false
+        show_state: true
+        tap_action:
+          action: call-service
+          service: script.radio_presets_popup_press
+          service_data:
+           var_message: 'Play {{ states("input_text.google_cast_p08") }} on Kitchen'
+        styles:
+          card:
+            - height: 34px
+            - color: var(--secondary-text-color)
+      - type: custom:button-card
+        styles:
+          card:
+            - width: 1px
+  - type: horizontal-stack
+    cards:
+      - type: custom:button-card
+        styles:
+          card:
+            - width: 1px
+      - type: custom:button-card
+        entity: input_text.google_cast_p09
+        show_icon: false
+        show_name: false
+        show_state: true
+        tap_action:
+          action: call-service
+          service: script.radio_presets_popup_press
+          service_data:
+           var_message: 'Play {{ states("input_text.google_cast_p09") }} on Kitchen'
+        styles:
+          card:
+            - height: 34px
+            - color: var(--secondary-text-color)
+      - type: custom:button-card
+        entity: input_text.google_cast_p10
+        show_icon: false
+        show_name: false
+        show_state: true
+        tap_action:
+          action: call-service
+          service: script.radio_presets_popup_press
+          service_data:
+           var_message: 'Play {{ states("input_text.google_cast_p10") }} on Kitchen'
+        styles:
+          card:
+            - height: 34px
+            - color: var(--secondary-text-color)
+      - type: custom:button-card
+        styles:
+          card:
+            - width: 1px
+  - type: horizontal-stack
+    cards:
+      - type: custom:button-card
+        styles:
+          card:
+            - width: 1px
+      - type: custom:button-card
+        entity: input_text.google_cast_p11
+        show_icon: false
+        show_name: false
+        show_state: true
+        tap_action:
+          action: call-service
+          service: script.radio_presets_popup_press
+          service_data:
+           var_message: 'Play {{ states("input_text.google_cast_p11") }} on Kitchen'
+        styles:
+          card:
+            - height: 34px
+            - color: var(--secondary-text-color)
+      - type: custom:button-card
+        entity: input_text.google_cast_p12
+        show_icon: false
+        show_name: false
+        show_state: true
+        tap_action:
+          action: call-service
+          service: script.radio_presets_popup_press
+          service_data:
+           var_message: 'Play {{ states("input_text.google_cast_p12") }} on Kitchen'
+        styles:
+          card:
+            - height: 34px
+            - color: var(--secondary-text-color)
+      - type: custom:button-card
+        styles:
+          card:
+            - width: 1px
+  - type: horizontal-stack
+    cards:
+      - type: custom:button-card
+        styles:
+          card:
+            - width: 1px
+      - type: custom:button-card
+        entity: input_text.google_cast_p13
+        show_icon: false
+        show_name: false
+        show_state: true
+        tap_action:
+          action: call-service
+          service: script.radio_presets_popup_press
+          service_data:
+           var_message: 'Play {{ states("input_text.google_cast_p13") }} on Kitchen'
+        styles:
+          card:
+            - height: 34px
+            - color: var(--secondary-text-color)
+      - type: custom:button-card
+        entity: input_text.google_cast_p14
+        show_icon: false
+        show_name: false
+        show_state: true
+        tap_action:
+          action: call-service
+          service: script.radio_presets_popup_press
+          service_data:
+           var_message: 'Play {{ states("input_text.google_cast_p14") }} on Kitchen'
+        styles:
+          card:
+            - height: 34px
+            - color: var(--secondary-text-color)
+      - type: custom:button-card
+        styles:
+          card:
+            - width: 1px
+  - type: horizontal-stack
+    cards:
+      - type: custom:button-card
+        styles:
+          card:
+            - width: 1px
+      - type: custom:button-card
+        entity: input_text.google_cast_p15
+        show_icon: false
+        show_name: false
+        show_state: true
+        tap_action:
+          action: call-service
+          service: script.radio_presets_popup_press
+          service_data:
+           var_message: 'Play {{ states("input_text.google_cast_p15") }} on Kitchen'
+        styles:
+          card:
+            - height: 34px
+            - color: var(--secondary-text-color)
+      - type: custom:button-card
+        entity: input_text.google_cast_p16
+        show_icon: false
+        show_name: false
+        show_state: true
+        tap_action:
+          action: call-service
+          service: script.radio_presets_popup_press
+          service_data:
+           var_message: 'Play {{ states("input_text.google_cast_p16") }} on Kitchen'
+        styles:
+          card:
+            - height: 34px
+            - color: var(--secondary-text-color)
+      - type: custom:button-card
+        styles:
+          card:
+            - width: 1px
+  - type: horizontal-stack
+    cards:
+      - type: custom:button-card
+        styles:
+          card:
+            - width: 1px
+      - type: custom:button-card
+        entity: input_text.google_cast_p17
+        show_icon: false
+        show_name: false
+        show_state: true
+        tap_action:
+          action: call-service
+          service: script.radio_presets_popup_press
+          service_data:
+           var_message: 'Play {{ states("input_text.google_cast_p17") }} on Kitchen'
+        styles:
+          card:
+            - height: 34px
+            - color: var(--secondary-text-color)
+      - type: custom:button-card
+        entity: input_text.google_cast_p18
+        show_icon: false
+        show_name: false
+        show_state: true
+        tap_action:
+          action: call-service
+          service: script.radio_presets_popup_press
+          service_data:
+           var_message: 'Play {{ states("input_text.google_cast_p18") }} on Kitchen'
+        styles:
+          card:
+            - height: 34px
+            - color: var(--secondary-text-color)
+      - type: custom:button-card
+        styles:
+          card:
+            - width: 1px
+  - type: horizontal-stack
+    cards:
+      - type: custom:button-card
+        styles:
+          card:
+            - width: 1px
+      - type: custom:button-card
+        entity: input_text.google_cast_p19
+        show_icon: false
+        show_name: false
+        show_state: true
+        tap_action:
+          action: call-service
+          service: script.radio_presets_popup_press
+          service_data:
+           var_message: 'Play {{ states("input_text.google_cast_p19") }} on Kitchen'
+        styles:
+          card:
+            - height: 34px
+            - color: var(--secondary-text-color)
+      - type: custom:button-card
+        entity: input_text.google_cast_p20
+        show_icon: false
+        show_name: false
+        show_state: true
+        tap_action:
+          action: call-service
+          service: script.radio_presets_popup_press
+          service_data:
+           var_message: 'Play {{ states("input_text.google_cast_p20") }} on Kitchen'
+        styles:
+          card:
+            - height: 34px
+            - color: var(--secondary-text-color)
+      - type: custom:button-card
+        styles:
+          card:
+            - width: 1px
+  - type: picture-elements
+    image: /local/photos/transparent.png
+    aspect_ratio: 19%
+    elements:
+      - type: image
+        image: /local/photos/pic_music_notes.png
+        aspect_ratio: 17%
+        style:
+          top: 50%
+          left: 50%
+          width: 90%

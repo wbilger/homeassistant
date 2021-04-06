@@ -1,0 +1,863 @@
+#################################################################
+# VIEW: r.bedroom
+#   Bedroom Remote
+#################################################################
+title: Bedroom Remote
+path: r.bedroom
+icon: mdi:remote
+popup_cards:
+  media_player.bedroom_plex:
+    title: Now Playing
+    card:
+      type: custom:vertical-stack-in-card
+      cards:
+        - type: custom:mini-media-player
+          entity: media_player.bedroom_plex
+          icon: mdi:plex
+          name: "Bedroom Plex"
+          artwork: full-cover-fit
+          more_info: false
+          info: scroll
+          tap_action:
+            action: none
+          hide:
+            controls: true
+            power: true
+            volume: true
+        - type: markdown
+          content: '{{ state_attr("media_player.bedroom_plex", "media_summary") }}'
+cards:
+  - type: vertical-stack
+    cards:
+      - type: custom:vertical-stack-in-card
+        cards:
+          - type: picture-elements
+            image: /local/photos/transparent.png
+            aspect_ratio: 27.25%
+            elements:
+              - type: image
+                image: /local/photos/yellow.png
+                aspect_ratio: 27.25%
+                entity: switch.bedroom_lights
+                tap_action:
+                  action: call-service
+                  service: switch.turn_off
+                  service_data:
+                    entity_id: switch.bedroom_lights
+                state_filter:
+                  "off": opacity(0%)
+                  "on": opacity(10%)
+                style:
+                  width: 100%
+                  top: 50%
+                  left: 50%
+                  border: 1px solid lightgray
+
+              - type: image
+                image: /local/photos/light_wall.png
+                entity: light.jenn_bedroom
+                tap_action:
+                  action: toggle
+                hold_action:
+                  action: more-info
+                state_filter:
+                  "off": opacity(33%)
+                  "unavailable": opacity(20%) brightness(10%)
+                style:
+                  width: 17%
+                  top: 50%
+                  left: 15%
+              - type: image
+                image: /local/photos/light_ceiling.png
+                entity: light.bedroom_light
+                tap_action:
+                  action: toggle
+                hold_action:
+                  action: more-info
+                state_filter:
+                  "off": opacity(33%)
+                  "unavailable": opacity(20%) brightness(10%)
+                style:
+                  width: 17%
+                  top: 50%
+                  left: 40%
+              - type: image
+                image: /local/photos/fan_ceiling.png
+                entity: switch.sonoff_basic_02 #bedroom_fan
+                tap_action:
+                  action: toggle
+                state_filter:
+                  "off": opacity(33%)
+                  "unavailable": opacity(20%) brightness(10%)
+                style:
+                  width: 12%
+                  top: 50%
+                  left: 65%
+              - type: state-label
+                entity: sensor.rtemperature_bedroom
+                tap_action:
+                  action: none
+                style:
+                  color: gray
+                  font-weight: bold
+                  font-size: 130%
+                  top: 15%
+                  left: 90%
+              - type: image
+                image: /local/photos/icon_question-mark.png
+                tap_action:
+                  action: navigate
+                  navigation_path: /lovelace/bedroom
+                style:
+                  opacity: .5
+                  width: 7%
+                  top: 70%
+                  left: 90%
+
+      #################################################################
+      # VIEW: r.bedroom
+      #   Bedroom Remote - navigation buttons (3x3 Grid)
+      #################################################################
+      - type: conditional
+        conditions:
+          - entity: input_select.remote_bedroom
+            state: "Roku"
+        card:
+          type: vertical-stack
+          cards:
+            - type: horizontal-stack
+              cards:
+                - type: custom:button-card
+                  icon: mdi:information-variant
+                  entity: input_text.bedroom_plex_user
+                  show_state: true
+                  show_name: false
+                  tap_action:
+                    action: call-service
+                    service: remote.send_command
+                    service_data:
+                      entity_id: remote.bedroom_roku
+                      command:
+                        - info
+                  hold_action: !include /config/lovelace/cards/tap_action/popups/tautulli.yaml
+                  double_tap_action: !include /config/lovelace/cards/tap_action/popups/plex_recently_added.yaml
+                  styles:
+                    card:
+                      - height: 94px
+                - type: custom:button-card
+                  icon: mdi:arrow-up-thick
+                  tap_action:
+                    action: call-service
+                    service: remote.send_command
+                    service_data:
+                      entity_id: remote.bedroom_roku
+                      command:
+                        - up
+                  hold_action:
+                    action: call-service
+                    service: remote.send_command
+                    service_data:
+                      entity_id: remote.bedroom_roku
+                      command:
+                        - up
+                    repeat: 100
+                  styles:
+                    card:
+                      - height: 94px
+                - type: vertical-stack
+                  cards:
+                    - type: horizontal-stack
+                      cards:
+                        - type: custom:button-card
+                          icon: mdi:netflix
+                          tap_action:
+                            action: call-service
+                            service: media_player.select_source
+                            service_data:
+                              entity_id: media_player.family_room_roku
+                              source: "Netflix"
+                          styles:
+                            card:
+                              - height: 43px
+                        - type: custom:button-card
+                          icon: mdi:plex
+                          tap_action:
+                            action: call-service
+                            service: media_player.select_source
+                            service_data:
+                              entity_id: media_player.family_room_roku
+                              source: "Plex - Stream for Free"
+                          styles:
+                            card:
+                              - height: 43px
+                    - type: horizontal-stack
+                      cards:
+                        - type: custom:button-card
+                          icon: mdi:home
+                          tap_action:
+                            action: call-service
+                            service: remote.send_command
+                            service_data:
+                              entity_id: remote.bedroom_roku
+                              command:
+                                - home
+                          styles:
+                            card:
+                              - height: 43px
+                        - type: custom:button-card
+                          icon: mdi:youtube
+                          tap_action:
+                            action: call-service
+                            service: media_player.select_source
+                            service_data:
+                              entity_id: media_player.family_room_roku
+                              source: "YouTube"
+                          styles:
+                            card:
+                              - height: 43px
+            - type: horizontal-stack
+              cards:
+                - type: custom:button-card
+                  icon: mdi:arrow-left-thick
+                  tap_action:
+                    action: call-service
+                    service: remote.send_command
+                    service_data:
+                      entity_id: remote.bedroom_roku
+                      command:
+                        - left
+                  hold_action:
+                    action: call-service
+                    service: remote.send_command
+                    service_data:
+                      entity_id: remote.bedroom_roku
+                      command:
+                        - left
+                    repeat: 100
+                  styles:
+                    card:
+                      - height: 94px
+                - type: custom:button-card
+                  icon: mdi:circle
+                  tap_action:
+                    action: call-service
+                    service: remote.send_command
+                    service_data:
+                      entity_id: remote.bedroom_roku
+                      command:
+                        - select
+                  styles:
+                    card:
+                      - height: 94px
+                - type: custom:button-card
+                  icon: mdi:arrow-right-thick
+                  tap_action:
+                    action: call-service
+                    service: remote.send_command
+                    service_data:
+                      entity_id: remote.bedroom_roku
+                      command:
+                        - right
+                  hold_action:
+                    action: call-service
+                    service: remote.send_command
+                    service_data:
+                      entity_id: remote.bedroom_roku
+                      command:
+                        - right
+                    repeat: 100
+                  styles:
+                    card:
+                      - height: 94px
+
+            - type: horizontal-stack
+              cards:
+                - type: custom:button-card
+                  icon: mdi:replay
+                  tap_action:
+                    action: call-service
+                    service: remote.send_command
+                    service_data:
+                      entity_id: remote.bedroom_roku
+                      command:
+                        - replay
+                  styles:
+                    card:
+                      - height: 94px
+                - type: custom:button-card
+                  icon: mdi:arrow-down-thick
+                  tap_action:
+                    action: call-service
+                    service: remote.send_command
+                    service_data:
+                      entity_id: remote.bedroom_roku
+                      command:
+                        - down
+                  hold_action:
+                    action: call-service
+                    service: remote.send_command
+                    service_data:
+                      entity_id: remote.bedroom_roku
+                      command:
+                        - down
+                    repeat: 100
+                  styles:
+                    card:
+                      - height: 94px
+                - type: custom:button-card
+                  icon: mdi:keyboard-backspace
+                  tap_action:
+                    action: call-service
+                    service: remote.send_command
+                    service_data:
+                      entity_id: remote.bedroom_roku
+                      command:
+                        - back
+                  styles:
+                    card:
+                      - height: 94px
+
+      - type: conditional
+        conditions:
+          - entity: input_select.remote_bedroom
+            state: "Chromecast"
+        card:
+          type: custom:vertical-stack-in-card
+          cards:
+            - type: conditional
+              conditions:
+                - entity: media_player.bedroom_chromecast
+                  state: "off"
+              card:
+                type: picture-elements
+                image: /local/photos/transparent.png
+                aspect_ratio: 97.7%
+                elements:
+                  - type: image
+                    image: /local/photos/pic_chromecast.png
+                    tap_action:
+                      action: call-service
+                      service: script.remote_bedroom_watch_chromecast
+                    style:
+                      top: 50%
+                      left: 50%
+            - type: conditional
+              conditions:
+                - entity: media_player.bedroom_chromecast
+                  state_not: "off"
+              card:
+                type: custom:mini-media-player
+                entity: media_player.bedroom_chromecast
+                name: " "
+                artwork: full-cover-fit
+                more_info: false
+                hide:
+                  volume: true
+                  info: true
+
+      - type: conditional
+        conditions:
+          - entity: input_select.remote_bedroom
+            state: "TV"
+        card:
+          type: vertical-stack
+          cards:
+            - type: horizontal-stack
+              cards:
+                - type: custom:button-card
+                  icon: mdi:information-variant
+                  tap_action:
+                    action: call-service
+                    service: switch.turn_on
+                    service_data:
+                      entity_id: switch.bedroom_tv_info
+                  styles:
+                    card:
+                      - height: 94px
+                - type: custom:button-card
+                  icon: mdi:arrow-up-thick
+                  tap_action:
+                    action: call-service
+                    service: switch.turn_on
+                    service_data:
+                      entity_id: switch.bedroom_tv_up
+                  hold_action:
+                    action: call-service
+                    service: switch.turn_on
+                    service_data:
+                      entity_id: switch.bedroom_tv_up
+                    repeat: 400
+                  styles:
+                    card:
+                      - height: 94px
+                - type: vertical-stack
+                  cards:
+                    - type: horizontal-stack
+                      cards:
+                        - type: custom:button-card
+                          icon: mdi:video-input-hdmi
+                          tap_action:
+                            action: call-service
+                            service: switch.turn_on
+                            service_data:
+                              entity_id: switch.bedroom_tv_input
+                          styles:
+                            card:
+                              - height: 43px
+                        - type: custom:button-card
+                          icon: mdi:television-classic
+                          tap_action:
+                            action: call-service
+                            service: switch.turn_on
+                            service_data:
+                              entity_id: switch.bedroom_tv_input_tv
+                          styles:
+                            card:
+                              - height: 43px
+                    - type: horizontal-stack
+                      cards:
+                        - type: custom:button-card
+                          icon: mdi:amazon
+                          tap_action:
+                            action: call-service
+                            service: switch.turn_on
+                            service_data:
+                              entity_id: switch.bedroom_tv_input_hdmi1
+                          styles:
+                            card:
+                              - height: 43px
+                        - type: custom:button-card
+                          icon: mdi:google-chrome
+                          tap_action:
+                            action: call-service
+                            service: switch.turn_on
+                            service_data:
+                              entity_id: switch.bedroom_tv_input_hdmi2
+                          styles:
+                            card:
+                              - height: 43px
+
+            - type: horizontal-stack
+              cards:
+                - type: custom:button-card
+                  icon: mdi:arrow-left-thick
+                  tap_action:
+                    action: call-service
+                    service: switch.turn_on
+                    service_data:
+                      entity_id: switch.bedroom_tv_left
+                  hold_action:
+                    action: call-service
+                    service: switch.turn_on
+                    service_data:
+                      entity_id: switch.bedroom_tv_left
+                    repeat: 400
+                  styles:
+                    card:
+                      - height: 94px
+                - type: custom:button-card
+                  icon: mdi:circle
+                  tap_action:
+                    action: call-service
+                    service: switch.turn_on
+                    service_data:
+                      entity_id: switch.bedroom_tv_ok
+                  styles:
+                    card:
+                      - height: 94px
+                - type: custom:button-card
+                  icon: mdi:arrow-right-thick
+                  tap_action:
+                    action: call-service
+                    service: switch.turn_on
+                    service_data:
+                      entity_id: switch.bedroom_tv_right
+                  hold_action:
+                    action: call-service
+                    service: switch.turn_on
+                    service_data:
+                      entity_id: switch.bedroom_tv_right
+                    repeat: 400
+                  styles:
+                    card:
+                      - height: 94px
+
+            - type: horizontal-stack
+              cards:
+                - type: custom:button-card
+                  icon: mdi:menu-down
+                  name: CH
+                  tap_action:
+                    action: call-service
+                    service: switch.turn_on
+                    service_data:
+                      entity_id: switch.bedroom_tv_channel_down
+                  styles:
+                    card:
+                      - height: 94px
+                - type: custom:button-card
+                  icon: mdi:arrow-down-thick
+                  tap_action:
+                    action: call-service
+                    service: switch.turn_on
+                    service_data:
+                      entity_id: switch.bedroom_tv_down
+                  hold_action:
+                    action: call-service
+                    service: switch.turn_on
+                    service_data:
+                      entity_id: switch.bedroom_tv_down
+                    repeat: 400
+                  styles:
+                    card:
+                      - height: 94px
+                - type: custom:button-card
+                  icon: mdi:menu-up
+                  name: CH
+                  tap_action:
+                    action: call-service
+                    service: switch.turn_on
+                    service_data:
+                      entity_id: switch.bedroom_tv_channel_up
+                  styles:
+                    card:
+                      - height: 94px
+
+      #################################################################
+      # VIEW: r.bedroom
+      #   Bedroom Remote - buttons - Media Control row
+      #################################################################
+      - type: conditional
+        conditions:
+          - entity: input_select.remote_bedroom
+            state: "Roku"
+        card:
+          type: horizontal-stack
+          cards:
+            - type: custom:button-card
+              icon: mdi:rewind
+              tap_action:
+                action: call-service
+                service: remote.send_command
+                service_data:
+                  entity_id: remote.bedroom_roku
+                  command:
+                    - reverse
+              styles:
+                card:
+                  - height: 46px
+            - type: custom:button-card
+              icon: mdi:play-pause
+              tap_action:
+                action: call-service
+                service: remote.send_command
+                service_data:
+                  entity_id: remote.bedroom_roku
+                  command:
+                    - play
+              styles:
+                card:
+                  - height: 46px
+            - type: custom:button-card
+              icon: mdi:fast-forward
+              tap_action:
+                action: call-service
+                service: remote.send_command
+                service_data:
+                  entity_id: remote.bedroom_roku
+                  command:
+                    - forward
+              styles:
+                card:
+                  - height: 46px
+
+      - type: conditional
+        conditions:
+          - entity: input_select.remote_bedroom
+            state: "TV"
+        card:
+          type: horizontal-stack
+          cards:
+            - type: custom:button-card
+              icon: mdi:home
+              tap_action:
+                action: call-service
+                service: switch.turn_on
+                service_data:
+                  entity_id: switch.bedroom_tv_home
+              styles:
+                card:
+                  - height: 46px
+            - type: custom:button-card
+              icon: mdi:settings
+              tap_action:
+                action: call-service
+                service: switch.turn_on
+                service_data:
+                  entity_id: switch.bedroom_tv_settings
+              styles:
+                card:
+                  - height: 46px
+            - type: custom:button-card
+              icon: mdi:keyboard-backspace
+              tap_action:
+                action: call-service
+                service: switch.turn_on
+                service_data:
+                  entity_id: switch.bedroom_tv_exit
+              styles:
+                card:
+                  - height: 46px
+            - type: custom:button-card
+              icon: mdi:sleep
+              tap_action:
+                action: call-service
+                service: switch.turn_on
+                service_data:
+                  entity_id: switch.bedroom_tv_sleep
+              styles:
+                card:
+                  - height: 46px
+            - type: custom:button-card
+              icon: mdi:backup-restore
+              tap_action:
+                action: call-service
+                service: switch.turn_on
+                service_data:
+                  entity_id: switch.bedroom_tv_lastchannel
+              styles:
+                card:
+                  - height: 46px
+
+      #################################################################
+      # VIEW: r.bedroom
+      #   Bedroom Remote - buttons - Volume Control row
+      #################################################################
+      - type: horizontal-stack
+        cards:
+          - type: custom:button-card
+            icon: mdi:volume-mute
+            size: 35px
+            tap_action:
+              action: call-service
+              service: switch.turn_on
+              service_data:
+                entity_id: switch.bedroom_tv_volume_mute
+            styles:
+              card:
+                - height: 46px
+          - type: custom:button-card
+            icon: mdi:volume-minus
+            size: 35px
+            tap_action:
+              action: call-service
+              service: switch.turn_on
+              service_data:
+                entity_id: switch.bedroom_tv_volume_down
+            hold_action:
+              action: call-service
+              service: switch.turn_on
+              service_data:
+                entity_id: switch.bedroom_tv_volume_down
+              repeat: 100
+            styles:
+              card:
+                - height: 46px
+          - type: custom:button-card
+            icon: mdi:volume-plus
+            size: 35px
+            tap_action:
+              action: call-service
+              service: switch.turn_on
+              service_data:
+                entity_id: switch.bedroom_tv_volume_up
+            hold_action:
+              action: call-service
+              service: switch.turn_on
+              service_data:
+                entity_id: switch.bedroom_tv_volume_up
+              repeat: 100
+            styles:
+              card:
+                - height: 46px
+
+      #################################################################
+      # VIEW: r.bedroom
+      #   Bedroom Remote - Media Player Info Screen
+      #################################################################
+      - type: custom:vertical-stack-in-card
+        cards:
+          - type: conditional
+            conditions:
+              - entity: input_select.remote_bedroom
+                state: "Roku"
+              - entity: sensor.bedroom_plex_playing
+                state: "True"
+            card:
+              type: custom:mini-media-player
+              entity: media_player.bedroom_plex
+              name: Bedroom Plex
+              icon: mdi:plex
+              info: short
+              hide:
+                artwork_border: false
+                power: true
+                volume: true
+                controls: true
+              # tap_action:
+              #   action: fire-dom-event
+              #   browser_mod:
+              #     command: call-service
+              #     service: browser_mod.popup
+              #     service_data:
+              #       deviceID: this
+              #       title: Now Playing
+              #       card:
+              #         type: custom:vertical-stack-in-card
+              #         cards:
+              #           - type: custom:mini-media-player
+              #             entity: media_player.bedroom_plex
+              #             icon: mdi:plex
+              #             name: 'Bedroom Plex'
+              #             artwork: full-cover-fit
+              #             more_info: false
+              #             info: scroll
+              #             tap_action:
+              #               action: none
+              #             hide:
+              #               controls: true
+              #               power: true
+              #               volume: true
+              #           - type: markdown
+              #             content: '{{ state_attr("media_player.bedroom_plex", "media_summary") }}'
+          - type: conditional
+            conditions:
+              - entity: input_select.remote_bedroom
+                state: "Roku"
+              - entity: sensor.bedroom_plex_playing
+                state: "False"
+            card:
+              type: custom:mini-media-player
+              entity: media_player.bedroom_universal
+              name: Bedroom Roku
+              icon: mdi:alpha-r-box
+              info: short
+              show_source: full
+              hide:
+                artwork_border: false
+                power: true
+                volume: true
+                controls: true
+
+          - type: conditional
+            conditions:
+              - entity: input_select.remote_bedroom
+                state: "Chromecast"
+            card:
+              type: custom:mini-media-player
+              entity: media_player.bedroom_chromecast
+              name: Bedroom Chromecast
+              icon: mdi:google-chrome
+              artwork: none
+              info: short
+              more_info: false
+              hide:
+                artwork_border: false
+                power: true
+                volume: true
+                controls: true
+          - type: conditional
+            conditions:
+              - entity: input_select.remote_bedroom
+                state: "TV"
+            card:
+              type: picture-elements
+              image: /local/photos/transparent.png
+              aspect_ratio: 20%
+              elements:
+                - type: image
+                  image: /local/photos/icon_tv.png
+                  tap_action:
+                    action: none
+                  style:
+                    opacity: .6
+                    width: 7%
+                    top: 50%
+                    left: 40px
+                - type: custom:text-element
+                  text: Bedroom TV
+                  style:
+                    top: 40%
+                    left: 112px
+                - type: custom:text-element
+                  text: Digital OTA Television
+                  style:
+                    color: var(--secondary-text-color)
+                    top: 65%
+                    left: 140px
+
+          #################################################################
+          # VIEW: r.bedroom
+          #   Bedroom Remote - Remote Selection Screen
+          #################################################################
+          - type: picture-elements
+            image: /local/photos/gray.png
+            aspect_ratio: 8.8%
+            elements:
+              - type: image
+                image: /local/photos/icon_roku.png
+                entity: switch.remote_bedroom_roku
+                state_filter:
+                  "off": opacity(33%)
+                tap_action:
+                  action: toggle
+                hold_action:
+                  action: call-service
+                  service: script.remote_bedroom_watch_roku
+                style:
+                  width: 8%
+                  top: 50%
+                  left: 15%
+              - type: image
+                image: /local/photos/icon_chrome.png
+                entity: switch.remote_bedroom_chromecast
+                state_filter:
+                  "off": opacity(33%)
+                tap_action:
+                  action: toggle
+                hold_action:
+                  action: call-service
+                  service: script.remote_bedroom_watch_chromecast
+                style:
+                  width: 8%
+                  top: 50%
+                  left: 35%
+              - type: image
+                image: /local/photos/icon_tv.png
+                entity: switch.remote_bedroom_tv
+                state_filter:
+                  "off": opacity(33%)
+                tap_action:
+                  action: toggle
+                hold_action:
+                  action: call-service
+                  service: script.remote_bedroom_watch_tv
+                style:
+                  width: 8%
+                  top: 50%
+                  left: 55%
+              - type: image
+                image: /local/photos/icon_power.png
+                entity: switch.bedroom_tv
+                tap_action:
+                  action: none
+                hold_action:
+                  action: call-service
+                  service: script.bedroom_tv_off
+                state_filter:
+                  "on": opacity(75%)
+                  "off": opacity(20%)
+                style:
+                  width: 8%
+                  top: 50%
+                  left: 85%
