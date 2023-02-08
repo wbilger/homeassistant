@@ -3033,3 +3033,27 @@ info  2023-02-08 12:53:15: MQTT publish: topic 'zigbee2mqtt/Theatre Lights', pay
 info  2023-02-08 12:53:15: MQTT publish: topic 'zigbee2mqtt/Theatre RR', payload '{"brightness":1,"linkquality":102,"power_on_behavior":null,"state":"OFF","update":{"installed_version":587810353,"latest_version":587810353,"state":"idle"},"update_available":false}'
 info  2023-02-08 12:53:15: MQTT publish: topic 'zigbee2mqtt/Theatre Lights Rear', payload '{"brightness":1,"state":"OFF"}'
 info  2023-02-08 12:53:15: MQTT publish: topic 'zigbee2mqtt/Theatre Lights Rear', payload '{"brightness":1,"state":"OFF"}'
+info  2023-02-08 13:15:27: MQTT publish: topic 'zigbee2mqtt/Kitchen Island Dimmer', payload '{"action":null,"battery":34,"brightness":0,"level":0,"linkquality":75,"rate":195,"update":{"installed_version":587367985,"latest_version":587367985,"state":"idle"},"update_available":false}'
+info  2023-02-08 13:15:27: MQTT publish: topic 'zigbee2mqtt/Kitchen Island 1', payload '{"brightness":1,"linkquality":72,"power_on_behavior":null,"state":"OFF","update":{"installed_version":587810353,"latest_version":587810353,"state":"idle"},"update_available":false}'
+info  2023-02-08 13:15:27: MQTT publish: topic 'zigbee2mqtt/Kitchen Island 2', payload '{"brightness":1,"linkquality":66,"power_on_behavior":null,"state":"OFF","update":{"installed_version":587810353,"latest_version":587810353,"state":"idle"},"update_available":false}'
+info  2023-02-08 13:15:27: MQTT publish: topic 'zigbee2mqtt/Kitchen Island 3', payload '{"brightness":1,"linkquality":57,"power_on_behavior":null,"state":"OFF","update":{"installed_version":587810353,"latest_version":587810353,"state":"idle"},"update_available":false}'
+info  2023-02-08 13:15:27: MQTT publish: topic 'zigbee2mqtt/Jenn Bedroom Light', payload '{"brightness":254,"linkquality":78,"power_on_behavior":null,"state":"ON","update":{"installed_version":587810353,"latest_version":587810353,"state":"idle"},"update_available":false}'
+info  2023-02-08 13:15:27: MQTT publish: topic 'zigbee2mqtt/Theatre Dimmer', payload '{"action":null,"battery":60,"brightness":0,"level":0,"linkquality":102,"rate":195,"update":{"installed_version":587367985,"latest_version":587367985,"state":"idle"},"update_available":false}'
+info  2023-02-08 13:15:27: MQTT publish: topic 'zigbee2mqtt/Theatre FL', payload '{"brightness":1,"linkquality":111,"power_on_behavior":null,"state":"OFF","update":{"installed_version":587810353,"latest_version":587810353,"state":"idle"},"update_available":false}'
+info  2023-02-08 13:15:27: MQTT publish: topic 'zigbee2mqtt/Theatre FR', payload '{"brightness":1,"linkquality":123,"power_on_behavior":null,"state":"OFF","update":{"installed_version":587810353,"latest_version":587810353,"state":"idle"},"update_available":false}'
+info  2023-02-08 13:15:27: MQTT publish: topic 'zigbee2mqtt/Theatre RL', payload '{"brightness":1,"linkquality":72,"power_on_behavior":null,"state":"OFF","update":{"installed_version":587810353,"latest_version":587810353,"state":"idle"},"update_available":false}'
+info  2023-02-08 13:15:27: MQTT publish: topic 'zigbee2mqtt/Theatre RR', payload '{"brightness":1,"linkquality":102,"power_on_behavior":null,"state":"OFF","update":{"installed_version":587810353,"latest_version":587810353,"state":"idle"},"update_available":false}'
+info  2023-02-08 13:15:27: MQTT publish: topic 'zigbee2mqtt/Family Room Dimmer', payload '{"action":null,"battery":60,"brightness":0,"level":0,"linkquality":105,"rate":195,"update":{"installed_version":587367985,"latest_version":587367985,"state":"idle"},"update_available":false}'
+info  2023-02-08 13:15:27: MQTT publish: topic 'zigbee2mqtt/Family Room 1', payload '{"brightness":1,"level_config":{"on_level":"previous"},"linkquality":66,"power_on_behavior":null,"state":"OFF","update":{"installed_version":587810353,"latest_version":587810353,"state":"idle"},"update_available":false}'
+info  2023-02-08 13:15:27: MQTT publish: topic 'zigbee2mqtt/Family Room 2', payload '{"brightness":1,"level_config":{"on_level":"previous"},"linkquality":57,"power_on_behavior":null,"state":"OFF","update":{"installed_version":587810353,"latest_version":587810353,"state":"idle"},"update_available":false}'
+info  2023-02-08 13:15:27: MQTT publish: topic 'zigbee2mqtt/Couch Lamp', payload '{"brightness":178,"linkquality":105,"power_on_behavior":null,"state":"OFF","update":{"installed_version":587810353,"latest_version":587810353,"state":"idle"},"update_available":false}'
+info  2023-02-08 13:15:27: MQTT publish: topic 'zigbee2mqtt/Kitchen Island Lights', payload '{"brightness":1,"state":"OFF"}'
+info  2023-02-08 13:15:27: MQTT publish: topic 'zigbee2mqtt/Family Room Light', payload '{"brightness":1,"state":"OFF"}'
+info  2023-02-08 13:15:27: MQTT publish: topic 'zigbee2mqtt/Theatre Lights', payload '{"brightness":1,"state":"OFF"}'
+info  2023-02-08 13:15:27: MQTT publish: topic 'zigbee2mqtt/Theatre Lights Front', payload '{"brightness":1,"state":"OFF"}'
+info  2023-02-08 13:15:27: MQTT publish: topic 'zigbee2mqtt/Theatre Lights Rear', payload '{"brightness":1,"state":"OFF"}'
+info  2023-02-08 13:16:54: MQTT publish: topic 'zigbee2mqtt/bridge/state', payload 'offline'
+info  2023-02-08 13:16:55: Disconnecting from MQTT server
+info  2023-02-08 13:16:55: Stopping zigbee-herdsman...
+info  2023-02-08 13:17:04: Stopped zigbee-herdsman
+info  2023-02-08 13:17:04: Stopped Zigbee2MQTT
