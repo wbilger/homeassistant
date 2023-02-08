@@ -1,31 +1,10 @@
 #################################################################
 # VIEW: r.dining_room
 #   Dining Room Remote
-################################################################# 
+#################################################################
 title: Dining Room Remote
 path: r.dining_room
 icon: mdi:remote
-popup_cards:
-  media_player.dining_room_plex:
-    title: Now Playing
-    card: 
-      type: custom:vertical-stack-in-card
-      cards:        
-        - type: custom:mini-media-player
-          entity: media_player.dining_room_plex
-          icon: mdi:plex
-          name: 'Dining Room Plex'
-          artwork: full-cover-fit
-          more_info: false
-          info: scroll
-          tap_action:
-            action: none
-          hide:
-            controls: true
-            power: true
-            volume: true
-        - type: markdown
-          content: '{{ state_attr("media_player.dining_room_chromecast_plex", "media_summary") }}'
 cards:
   - type: vertical-stack
     cards:
@@ -40,7 +19,7 @@ cards:
             elements:
               - type: image
                 image: /local/photos/yellow.png
-                aspect_ratio: 27.25%  
+                aspect_ratio: 27.25%
                 entity: switch.dining_room_lights
                 tap_action:
                   action: call-service
@@ -97,7 +76,7 @@ cards:
 
               - type: image
                 image: /local/photos/light_lamp_floor.png
-                entity: light.dining_room_plug
+                entity: light.dining_room_lamp
                 tap_action:
                   action: toggle
                 state_filter:
@@ -128,11 +107,10 @@ cards:
                   left: 85%
               - type: image
                 image: /local/photos/light_recessed.png
-                entity: light.kitchen_island_lights                            
+                entity: light.kitchen_island_lights
                 tap_action:
                   action: toggle
-                hold_action:
-                  action: more-info
+                hold_action: !include /config/lovelace/cards/tap_action/popups/kitchen_island_lights.yaml
                 state_filter:
                   "off": opacity(33%)
                   "unavailable": opacity(20%) brightness(10%)
@@ -141,14 +119,14 @@ cards:
                   top: 76%
                   left: 85%
 
-          'c5c29698-84005f51':      #Kitchen Table running Fully Kiosk Browser
+          "c5c29698-84005f51": #Kitchen Table running Fully Kiosk Browser
             type: picture-elements
             image: /local/photos/transparent.png
             aspect_ratio: 27.25%
-            elements:              
+            elements:
               - type: image
                 image: /local/photos/yellow.png
-                aspect_ratio: 27.25%  
+                aspect_ratio: 27.25%
                 entity: switch.dining_room_lights
                 tap_action:
                   action: call-service
@@ -205,7 +183,7 @@ cards:
 
               - type: image
                 image: /local/photos/light_lamp_floor.png
-                entity: light.dining_room_plug
+                entity: light.dining_room_lamp
                 tap_action:
                   action: toggle
                 state_filter:
@@ -236,11 +214,10 @@ cards:
                   left: 85%
               - type: image
                 image: /local/photos/light_recessed.png
-                entity: light.kitchen_island_lights                            
+                entity: light.kitchen_island_lights
                 tap_action:
                   action: toggle
-                hold_action:
-                  action: more-info
+                hold_action: !include /config/lovelace/cards/tap_action/popups/kitchen_island_lights.yaml
                 state_filter:
                   "off": opacity(33%)
                   "unavailable": opacity(20%) brightness(10%)
@@ -248,16 +225,16 @@ cards:
                   width: 11%
                   top: 76%
                   left: 85%
-          
-#################################################################
-# VIEW: r.dining_room
-#   Dining Room Remote - navigation buttons (3x3 Grid)
-################################################################# 
+
+      #################################################################
+      # VIEW: r.dining_room
+      #   Dining Room Remote - navigation buttons (3x3 Grid)
+      #################################################################
       - type: conditional
         conditions:
           - entity: input_select.remote_dining_room
-            state: "FireTV"
-        card:    
+            state: "AndroidTV"
+        card:
           type: vertical-stack
           cards:
             - type: horizontal-stack
@@ -301,7 +278,7 @@ cards:
                             service: media_player.select_source
                             service_data:
                               entity_id: media_player.dining_room_chromecast
-                              source: 'com.netflix.ninja'
+                              source: "com.netflix.ninja"
                           styles:
                             card:
                               - height: 43px
@@ -312,34 +289,21 @@ cards:
                             service: media_player.select_source
                             service_data:
                               entity_id: media_player.dining_room_chromecast
-                              source: 'com.google.android.youtube.tv'
+                              source: "com.google.android.youtube.tv"
                           styles:
                             card:
                               - height: 43px
-                    - type: horizontal-stack
-                      cards:
-                        - type: custom:button-card
-                          icon: mdi:plex
-                          tap_action:
-                            action: call-service
-                            service: media_player.select_source
-                            service_data:
-                              entity_id: media_player.dining_room_chromecast
-                              source: 'com.plexapp.android'
-                          styles:
-                            card:
-                              - height: 43px
-                        - type: custom:button-card
-                          icon: mdi:kodi
-                          tap_action:
-                            action: call-service
-                            service: media_player.select_source
-                            service_data:
-                              entity_id: media_player.dining_room_chromecast
-                              source: 'org.xbmc.kodi'
-                          styles:
-                            card:
-                              - height: 43px
+                    - type: custom:button-card
+                      icon: mdi:plex
+                      tap_action:
+                        action: call-service
+                        service: media_player.select_source
+                        service_data:
+                          entity_id: media_player.dining_room_chromecast
+                          source: "com.plexapp.android"
+                      styles:
+                        card:
+                          - height: 95px
 
             - type: horizontal-stack
               cards:
@@ -439,7 +403,7 @@ cards:
         conditions:
           - entity: input_select.remote_dining_room
             state: "TV"
-        card:            
+        card:
           type: vertical-stack
           cards:
             - type: horizontal-stack
@@ -611,7 +575,7 @@ cards:
                       tap_action:
                         action: call-service
                         service: switch.turn_on
-                        service_data: 
+                        service_data:
                           entity_id: switch.dining_room_tv_exit
                       styles:
                         card:
@@ -646,25 +610,25 @@ cards:
                       tap_action:
                         action: call-service
                         service: switch.turn_on
-                        service_data: 
+                        service_data:
                           entity_id: switch.dining_room_tv_channel_down
                       styles:
                         card:
                           - height: 43px
                           - font-size: 12px
-    
+
       - type: conditional
         conditions:
           - entity: input_select.remote_dining_room
             state: "Chromecast"
-        card:                    
+        card:
           type: custom:vertical-stack-in-card
           cards:
             - type: conditional
               conditions:
                 - entity: media_player.dining_room_chromecast
                   state: "off"
-              card:    
+              card:
                 type: picture-elements
                 image: /local/photos/transparent.png
                 aspect_ratio: 97.7%
@@ -681,25 +645,25 @@ cards:
               conditions:
                 - entity: media_player.dining_room_chromecast
                   state_not: "off"
-              card:    
+              card:
                 type: custom:mini-media-player
                 entity: media_player.dining_room_chromecast
-                name: ' '
+                name: " "
                 artwork: full-cover-fit
                 more_info: false
                 hide:
                   volume: true
                   media_info: true
 
-#################################################################
-# VIEW: r.dining_room
-#   Dining Room Remote - buttons - Media Control row                                                               
-################################################################# 
+      #################################################################
+      # VIEW: r.dining_room
+      #   Dining Room Remote - buttons - Media Control row
+      #################################################################
       - type: conditional
         conditions:
           - entity: input_select.remote_dining_room
             state_not: "Chromecast"
-        card:            
+        card:
           type: horizontal-stack
           cards:
             - type: custom:button-card
@@ -751,10 +715,10 @@ cards:
                 card:
                   - height: 46px
 
-  #################################################################
-  # VIEW: r.dining_room
-  #   Dining Room Remote - buttons - Volume Control row                                                               
-  ################################################################# 
+      #################################################################
+      # VIEW: r.dining_room
+      #   Dining Room Remote - buttons - Volume Control row
+      #################################################################
       - type: horizontal-stack
         cards:
           - type: custom:button-card
@@ -803,25 +767,27 @@ cards:
               card:
                 - height: 46px
 
-    #################################################################
-    # VIEW: r.dining_room
-    #   Dining Room Remote - Media Player Info Screen
-    ################################################################# 
+      #################################################################
+      # VIEW: r.dining_room
+      #   Dining Room Remote - Media Player Info Screen
+      #################################################################
       - type: custom:vertical-stack-in-card
         cards:
           - type: conditional
             conditions:
               - entity: input_select.remote_dining_room
-                state: "FireTV"
+                state: "AndroidTV"
               - entity: sensor.dining_room_plex_playing
                 state: "True"
             card:
               type: custom:mini-media-player
               entity: media_player.dining_room_plex
+              tap_action: !include /config/lovelace/cards/tap_action/popups/media_player_plex_dining_room.yaml
               name: Dining Room Plex
               icon: mdi:plex
               info: short
               hide:
+                progress: true
                 artwork_border: false
                 power: true
                 volume: true
@@ -832,9 +798,9 @@ cards:
               #   service_data:
               #     deviceID: this
               #     title: Now Playing
-              #     card: 
+              #     card:
               #       type: custom:vertical-stack-in-card
-              #       cards:        
+              #       cards:
               #         - type: custom:mini-media-player
               #           entity: media_player.dining_room_plex
               #           icon: mdi:plex
@@ -845,6 +811,7 @@ cards:
               #           tap_action:
               #             action: none
               #           hide:
+              #             progress: true
               #             controls: true
               #             power: true
               #             volume: true
@@ -853,16 +820,17 @@ cards:
           - type: conditional
             conditions:
               - entity: input_select.remote_dining_room
-                state: "FireTV"
+                state: "AndroidTV"
               - entity: sensor.dining_room_plex_playing
                 state: "False"
-            card:    
+            card:
               type: custom:mini-media-player
               entity: media_player.dining_room_chromecast
               icon: mdi:amazon
               info: short
               more_info: false
-              hide: 
+              hide:
+                progress: true
                 artwork_border: false
                 power: true
                 volume: true
@@ -880,6 +848,7 @@ cards:
               info: short
               more_info: false
               hide:
+                progress: true
                 artwork_border: false
                 power: true
                 volume: true
@@ -912,33 +881,33 @@ cards:
                   style:
                     color: var(--secondary-text-color)
                     top: 63%
-                    left: 112px 
-      
-    #################################################################
-    # VIEW: r.dining_room
-    #   Dining Room Remote - Remote Selection Screen
-    ################################################################# 
+                    left: 112px
+
+          #################################################################
+          # VIEW: r.dining_room
+          #   Dining Room Remote - Remote Selection Screen
+          #################################################################
           - type: picture-elements
             image: /local/photos/gray.png
             aspect_ratio: 8.8%
             elements:
               - type: image
                 image: /local/photos/icon_chrome.png
-                entity: switch.remote_dining_room_firetv
+                entity: switch.remote_dining_room_androidtv
                 state_filter:
                   "off": opacity(33%)
                 tap_action:
                   action: toggle
                 hold_action:
                   action: call-service
-                  service: script.remote_dining_room_watch_firetv
+                  service: script.remote_dining_room_watch_androidtv
                 style:
                   width: 8%
                   top: 50%
                   left: 15%
               - type: image
                 image: null #/local/photos/icon_chrome.png
-                Eimage: /local/photos/icon_firetv.png
+                #image: /local/photos/icon_androidtv.png
                 entity: switch.remote_dining_room_chromecast
                 state_filter:
                   "off": opacity(33%)
@@ -956,7 +925,7 @@ cards:
                 entity: switch.remote_dining_room_tv
                 state_filter:
                   "off": opacity(33%)
-                tap_action: 
+                tap_action:
                   action: toggle
                 hold_action:
                   action: call-service

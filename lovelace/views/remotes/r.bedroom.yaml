@@ -5,27 +5,6 @@
 title: Bedroom Remote
 path: r.bedroom
 icon: mdi:remote
-popup_cards:
-  media_player.bedroom_plex:
-    title: Now Playing
-    card:
-      type: custom:vertical-stack-in-card
-      cards:
-        - type: custom:mini-media-player
-          entity: media_player.bedroom_plex
-          icon: mdi:plex
-          name: "Bedroom Plex"
-          artwork: full-cover-fit
-          more_info: false
-          info: scroll
-          tap_action:
-            action: none
-          hide:
-            controls: true
-            power: true
-            volume: true
-        - type: markdown
-          content: '{{ state_attr("media_player.bedroom_plex", "media_summary") }}'
 cards:
   - type: vertical-stack
     cards:
@@ -185,8 +164,8 @@ cards:
                             action: call-service
                             service: media_player.select_source
                             service_data:
-                              entity_id: media_player.family_room_roku
-                              source: "Plex - Stream for Free"
+                              entity_id: media_player.bedroom_roku
+                              source: '{{ states("input_select.remote_bedroom_plex") }}'
                           styles:
                             card:
                               - height: 43px
@@ -696,40 +675,15 @@ cards:
             card:
               type: custom:mini-media-player
               entity: media_player.bedroom_plex
-              name: Bedroom Plex
+              tap_action: !include /config/lovelace/cards/tap_action/popups/media_player_plex_bedroom.yaml
               icon: mdi:plex
               info: short
               hide:
+                progress: true
                 artwork_border: false
                 power: true
                 volume: true
                 controls: true
-              # tap_action:
-              #   action: fire-dom-event
-              #   browser_mod:
-              #     command: call-service
-              #     service: browser_mod.popup
-              #     service_data:
-              #       deviceID: this
-              #       title: Now Playing
-              #       card:
-              #         type: custom:vertical-stack-in-card
-              #         cards:
-              #           - type: custom:mini-media-player
-              #             entity: media_player.bedroom_plex
-              #             icon: mdi:plex
-              #             name: 'Bedroom Plex'
-              #             artwork: full-cover-fit
-              #             more_info: false
-              #             info: scroll
-              #             tap_action:
-              #               action: none
-              #             hide:
-              #               controls: true
-              #               power: true
-              #               volume: true
-              #           - type: markdown
-              #             content: '{{ state_attr("media_player.bedroom_plex", "media_summary") }}'
           - type: conditional
             conditions:
               - entity: input_select.remote_bedroom
@@ -744,6 +698,7 @@ cards:
               info: short
               show_source: full
               hide:
+                progress: true
                 artwork_border: false
                 power: true
                 volume: true
@@ -762,6 +717,7 @@ cards:
               info: short
               more_info: false
               hide:
+                progress: true
                 artwork_border: false
                 power: true
                 volume: true

@@ -26,50 +26,50 @@ lights_arrival:
     - service: script.lights_arrival_porch
     - service: script.lights_arrival_entrance
 lights_arrival_porch:
-  sequence: 
+  sequence:
     - condition: state
       entity_id: light.entrance_light_porch
-      state: 'off'
+      state: "off"
     - service: light.turn_on
       data:
         entity_id: light.entrance_light_porch
     - service: timer.start
-      entity_id: timer.arrival_lights_porch_timeout     #start timer to turn light off
+      entity_id: timer.arrival_lights_porch_timeout #start timer to turn light off
 lights_arrival_entrance:
-  sequence: 
+  sequence:
     - condition: state
       entity_id: light.entrance_light
-      state: 'off'
+      state: "off"
     - service: light.turn_on
       data:
         entity_id: light.entrance_light
     - service: timer.start
-      entity_id: timer.arrival_lights_entrance_timeout  #start timer to turn light off
+      entity_id: timer.arrival_lights_entrance_timeout #start timer to turn light off
 lights_arrival_kitchen_island:
-  sequence: 
+  sequence:
     - condition: state
       entity_id: light.kitchen_island_lights
-      state: 'off'
+      state: "off"
     - wait_template: '{{ is_state("binary_sensor.kitchen_occupancy", "on") or is_state("binary_sensor.fully_kitchen_dashboard", "on") }}'
-      timeout: '00:02:00'   #wait 2 minutes to detect occupancy
-      continue_on_timeout: 'false'  
+      timeout: "00:02:00" #wait 2 minutes to detect occupancy
+      continue_on_timeout: "false"
     - service: script.kitchen_island_lights_on_trasnsition
 kitchen_island_lights_on_trasnsition:
-  sequence: 
+  sequence:
     - service: light.turn_on
       data:
         entity_id: light.kitchen_island_lights
         transition: 60
         brightness_pct: 75
-        
+
 kitchen_lights_night_dim_auto:
   alias: Kitchen Island Dim Night
   sequence:
     - condition: state
       entity_id: sun.sun
-      state: 'below_horizon'
+      state: "below_horizon"
     - service: script.kitchen_lights_night_dim
-  
+
 kitchen_lights_night_dim:
   alias: Kitchen Island Dim
   sequence:
@@ -77,7 +77,7 @@ kitchen_lights_night_dim:
       entity_id: light.kitchen_sink_light
     - service: light.turn_on
       data:
-        entity_id: light.kitchen_island_2   
+        entity_id: light.kitchen_island_2
         brightness_pct: 10
     - service: light.turn_off
       entity_id: light.kitchen_island_1
@@ -85,7 +85,7 @@ kitchen_lights_night_dim:
       entity_id: light.kitchen_island_3
 
 kitchen_island_lights_bright:
-  sequence: 
+  sequence:
     - service: light.turn_on
       data:
         entity_id: light.kitchen_island_lights
@@ -96,7 +96,7 @@ theatre_lights_dim:
   sequence:
     - service: light.turn_on
       data:
-        entity_id: light.theatre_lights_front   
+        entity_id: light.theatre_lights_front
         brightness_pct: 10
     - service: light.turn_on
       data:
@@ -104,7 +104,7 @@ theatre_lights_dim:
         brightness_pct: 20
 
 theatre_lights_bright:
-  sequence: 
+  sequence:
     - service: light.turn_on
       data:
         entity_id: light.theatre_lights

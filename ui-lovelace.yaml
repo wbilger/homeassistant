@@ -1,21 +1,5 @@
 title: !secret hass_name_lovelace
 
-kiosk_mode:
-  mobile_settings:
-    hide_header: true
-    ignore_entity_settings: true #for some reason, needs to be on to work on Fully Kiosk Browser
-    #custom_width: 768  #kitchen dashboard is 800, default is 820
-  entity_settings:
-    - entity:
-        input_boolean.kiosk_mode_hide_sidebar: "on"
-      hide_sidebar: true
-    - entity:
-        input_boolean.kiosk_mode_hide_header: "on"
-      hide_header: true
-    - entity:
-        input_boolean.kiosk_mode: "on"
-      kiosk: true
-
 views: #If changes made in !include file, a change must be made in this file to reflect changes in !include file (they are not checked for changes)
   - !include /config/lovelace/views/home.yaml #default view Home
   - !include /config/lovelace/views/dashboard.yaml #Home Dashboard (Tablet) view
@@ -23,45 +7,16 @@ views: #If changes made in !include file, a change must be made in this file to 
   - !include /config/lovelace/views/rooms/family_room.yaml
   - !include /config/lovelace/views/rooms/theatre.yaml
   - !include /config/lovelace/views/other/thermostat.yaml #other views
-  - !include /config/lovelace/views/other/map.yaml
-  - !include /config/lovelace/views/other/calendar.yaml
-  - !include /config/lovelace/views/other/weather.dash.yaml
-  - !include /config/lovelace/views/other/weather.yaml
   - !include /config/lovelace/views/other/sensors.yaml
   - !include /config/lovelace/views/other/cameras.yaml
   - !include /config/lovelace/views/remotes/r.family_room.yaml #television remotes
   - !include /config/lovelace/views/remotes/r.dining_room.yaml
   - !include /config/lovelace/views/remotes/r.theatre.yaml
   - !include /config/lovelace/views/remotes/r.bedroom.yaml
-  - !include /config/lovelace/views/remotes/r.jalynne.yaml
   - !include /config/lovelace/views/other/settings.yaml
   - !include /config/lovelace/views/other/settings_admin.yaml
   - !include /config/lovelace/views/other/settings_locks.yaml
 
-#q-cards (re-usable cards not to be used in more than one place at once)
-q_cards:
-  navigation: !include /config/lovelace/cards/q-cards/navigation.yaml
-  navigation_home: !include /config/lovelace/cards/q-cards/navigation_home.yaml
-
-popup_cards:
-  light.family_room_light:
-    title: Family Room Light
-    card:
-      type: entities
-      show_header_toggle: false
-      entities:
-        - type: custom:slider-entity-row
-          entity: light.family_room_light
-          name: Fan Light
-          icon: mdi:ceiling-light
-          toggle: true
-        - type: divider
-        - type: divider
-        - type: custom:slider-entity-row
-          entity: light.family_room_1
-          name: Light 1
-          toggle: true
-        - type: custom:slider-entity-row
-          entity: light.family_room_2
-          name: Light 2
-          toggle: true
+kiosk_mode: !include lovelace/includes/kiosk_mode.yaml
+decluttering_templates: !include lovelace/includes/decluttering_templates.yaml
+button_card_templates: !include lovelace/includes/button_card_templates.yaml

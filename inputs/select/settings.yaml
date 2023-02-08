@@ -1,10 +1,10 @@
 ha_themes:
   name: Theme
   icon: mdi:palette
-  options: 
+  options:
     - default
     - Midnight Alt
-    - midnight 
+    - midnight
     - midnight_blue
     # Some Themes disabled as giving Data too long for column 'event_data' at row 1" -- background_image in base64 code too long
     #- amoled

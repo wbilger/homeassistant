@@ -62,3 +62,10 @@ device_timer_xmas_tree_list:
     - light.kitchen_island_1
     - light.kitchen_island_2
     - light.kitchen_island_3"]
+etekcity_1:
+  name: Etekcity 1
+  icon: mdi:switch
+  options:
+    - Etekcity 1
+    - Deck TV Fan
+    - Christmas Tree

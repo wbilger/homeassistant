@@ -1,0 +1,6 @@
+- name: "Remote Family Room Motion"
+  state_topic: "wallpanel/remote_family_room/sensor/motion"
+  payload_on: '{"value":true}'
+  payload_off: '{"value":false}'
+  device_class: motion
+

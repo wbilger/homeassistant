@@ -2,6 +2,7 @@
   name: Family Room Plex
   children:
     - media_player.family_room_roku_plex
+    - media_player.family_room_androidtv_plex
     - media_player.family_room_pc_plex
   commands:
     volume_up:
@@ -56,8 +57,8 @@
   name: Family Room Universal
   children:
     - media_player.family_room_plex
+    - media_player.family_room_androidtv_plex
     - media_player.family_room_pc_plex
-    - media_player.family_room_kodi
     - media_player.family_room_chromecast
     - media_player.family_room_roku
   commands:

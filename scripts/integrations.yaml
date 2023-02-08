@@ -1,0 +1,7 @@
+reload_integration_plex:
+  alias: Reload Plex integration
+  mode: restart
+  sequence:
+    service: homeassistant.reload_config_entry
+    data:
+      entry_id: 3a2bdc38790e5a20a1518988b74660da

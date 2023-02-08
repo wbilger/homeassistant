@@ -59,17 +59,10 @@ bedroom_speaker_volume_announcements_morning:
   min: 0
   max: 100
   step: 5
-  
+
 family_room_plex_volume:
   name: Family Room Plex Volume
   icon: mdi:volume-high
   min: 0
   max: 100
   step: 5
-jalynne_plex_volume:
-  name: Jalynne Plex Volume
-  icon: mdi:volume-high
-  min: 0
-  max: 100
-  step: 5
-    

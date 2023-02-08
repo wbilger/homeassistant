@@ -1,0 +1,32 @@
+# a way to change state of phone GPS status to not_home if phone not getting updates (and would stat as HOME)
+phone_wayne_not_home:
+  url: "http://192.168.1.15:8123/api/states/device_tracker.phone_wayne"
+  method: POST
+  headers:
+    content-type: application/json
+    authorization: !secret authorization_bearer
+  payload: '{"state":"not_home"}'
+
+phone_jenn_not_home:
+  url: "http://192.168.1.15:8123/api/states/device_tracker.phone_jenn"
+  method: POST
+  headers:
+    content-type: application/json
+    authorization: !secret authorization_bearer
+  payload: '{"state":"not_home"}'
+
+phone_kale_not_home:
+  url: "http://192.168.1.15:8123/api/states/device_tracker.phone_kale"
+  method: POST
+  headers:
+    content-type: application/json
+    authorization: !secret authorization_bearer
+  payload: '{"state":"not_home"}'
+
+phone_jalynne_not_home:
+  url: "http://192.168.1.15:8123/api/states/device_tracker.phone_jalynne"
+  method: POST
+  headers:
+    content-type: application/json
+    authorization: !secret authorization_bearer
+  payload: '{"state":"not_home"}'

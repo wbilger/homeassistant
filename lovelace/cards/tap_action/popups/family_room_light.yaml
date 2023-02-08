@@ -1,0 +1,23 @@
+action: fire-dom-event
+browser_mod:
+  service: browser_mod.popup
+  data:
+    title: Family Room Light
+    #size: fullscreen
+    content:
+      type: entities
+      entities:
+        - type: custom:slider-entity-row
+          entity: light.family_room_2
+          name: TV Side
+          toggle: true
+        - type: custom:slider-entity-row
+          entity: light.family_room_1
+          name: Chair Side
+          toggle: true
+        - type: custom:text-divider-row
+          text: "Fan Lights"
+        - type: custom:slider-entity-row
+          entity: light.family_room_light
+          full_row: true
+          toggle: true

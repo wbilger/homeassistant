@@ -1,0 +1,3648 @@
+{
+    "version": 1,
+    "key": "core.device_registry",
+    "data": {
+        "devices": [
+            {
+                "config_entries": [
+                    "82a001427ff3ec95f14824f39d8182e2"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "cast",
+                        "ba0c5237bd4ee85e3ee5082f8e01cec5"
+                    ]
+                ],
+                "manufacturer": "Google Inc.",
+                "model": "Google Nest Mini",
+                "name": "Kale\u2019s room  speaker",
+                "sw_version": null,
+                "entry_type": null,
+                "id": "01acca947538b43170218e5c0bc47d04",
+                "via_device_id": null,
+                "area_id": null,
+                "name_by_user": null,
+                "disabled_by": null
+            },
+            {
+                "config_entries": [
+                    "82a001427ff3ec95f14824f39d8182e2"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "cast",
+                        "b2cd837718f5fda8fa0a260d2cd64088"
+                    ]
+                ],
+                "manufacturer": "Google Inc.",
+                "model": "Google Nest Mini",
+                "name": "Jalynne Bedroom speaker",
+                "sw_version": null,
+                "entry_type": null,
+                "id": "8584a78b31b9c81bb1a037f3b6af3e76",
+                "via_device_id": null,
+                "area_id": null,
+                "name_by_user": null,
+                "disabled_by": null
+            },
+            {
+                "config_entries": [
+                    "82a001427ff3ec95f14824f39d8182e2"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "cast",
+                        "062950e90120d5a26022c160e7f44d9b"
+                    ]
+                ],
+                "manufacturer": "Google Inc.",
+                "model": "Chromecast Audio",
+                "name": "Outside Speakers",
+                "sw_version": null,
+                "entry_type": null,
+                "id": "f805e87a1b7bb477b323943817a0d5a6",
+                "via_device_id": null,
+                "area_id": null,
+                "name_by_user": null,
+                "disabled_by": null
+            },
+            {
+                "config_entries": [
+                    "82a001427ff3ec95f14824f39d8182e2"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "cast",
+                        "4851a1b52d58fefe6d79bf7a0044b03f"
+                    ]
+                ],
+                "manufacturer": "Google Inc.",
+                "model": "Google Home Mini",
+                "name": "Bathroom speaker",
+                "sw_version": null,
+                "entry_type": null,
+                "id": "1c3cb24c0cbe1a8cc5c862df62ee68df",
+                "via_device_id": null,
+                "area_id": null,
+                "name_by_user": null,
+                "disabled_by": null
+            },
+            {
+                "config_entries": [
+                    "82a001427ff3ec95f14824f39d8182e2"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "cast",
+                        "9c6dd7206704866475e6d576bad91251"
+                    ]
+                ],
+                "manufacturer": "Google Inc.",
+                "model": "Chromecast Audio",
+                "name": "Kale's speakers",
+                "sw_version": null,
+                "entry_type": null,
+                "id": "89d5637f30a49d8800a1773e20b079a5",
+                "via_device_id": null,
+                "area_id": null,
+                "name_by_user": null,
+                "disabled_by": null
+            },
+            {
+                "config_entries": [
+                    "82a001427ff3ec95f14824f39d8182e2"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "cast",
+                        "5ca00b99aff250a4cd219f08cfcdd1a1"
+                    ]
+                ],
+                "manufacturer": "Google Inc.",
+                "model": "Lenovo Smart Clock",
+                "name": "Bedroom clock",
+                "sw_version": null,
+                "entry_type": null,
+                "id": "93634e9f57a89a986a4bbc1ef4494463",
+                "via_device_id": null,
+                "area_id": null,
+                "name_by_user": null,
+                "disabled_by": null
+            },
+            {
+                "config_entries": [
+                    "82a001427ff3ec95f14824f39d8182e2"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "cast",
+                        "65dc3a24daa7962768683c6b73915a42"
+                    ]
+                ],
+                "manufacturer": "Google Inc.",
+                "model": "Chromecast",
+                "name": "Dining Room Chromecast",
+                "sw_version": null,
+                "entry_type": null,
+                "id": "654df0d458fcdcad0644a7ce8cf28353",
+                "via_device_id": null,
+                "area_id": null,
+                "name_by_user": null,
+                "disabled_by": null
+            },
+            {
+                "config_entries": [
+                    "82a001427ff3ec95f14824f39d8182e2"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "cast",
+                        "d96361d0b7257ed5dc9fa04d4a340818"
+                    ]
+                ],
+                "manufacturer": "Google Inc.",
+                "model": "Google Home",
+                "name": "Kitchen Speaker",
+                "sw_version": null,
+                "entry_type": null,
+                "id": "075230e69b78b95ac31281af9cffdc60",
+                "via_device_id": null,
+                "area_id": null,
+                "name_by_user": null,
+                "disabled_by": null
+            },
+            {
+                "config_entries": [
+                    "82a001427ff3ec95f14824f39d8182e2"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "cast",
+                        "1d2f5d6e14150f4ec4ab7be2b42c4b58"
+                    ]
+                ],
+                "manufacturer": "Google Inc.",
+                "model": "Chromecast",
+                "name": "Kale\u2019s room TV",
+                "sw_version": null,
+                "entry_type": null,
+                "id": "93170595ef778a48eeb9c7ee67f8dba6",
+                "via_device_id": null,
+                "area_id": null,
+                "name_by_user": null,
+                "disabled_by": null
+            },
+            {
+                "config_entries": [
+                    "82a001427ff3ec95f14824f39d8182e2"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "cast",
+                        "be08b1551b1716db6e22effa0b82eb10"
+                    ]
+                ],
+                "manufacturer": "Google Inc.",
+                "model": "Lenovo CD-4N341Y",
+                "name": "Kales Alarm Clock",
+                "sw_version": null,
+                "entry_type": null,
+                "id": "dc2e01d4115140b623f93301bef9c98c",
+                "via_device_id": null,
+                "area_id": null,
+                "name_by_user": null,
+                "disabled_by": null
+            },
+            {
+                "config_entries": [
+                    "29ff83d56308c0e757825aa0aebda408"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "roku",
+                        "4E7573035098"
+                    ]
+                ],
+                "manufacturer": "Roku",
+                "model": "Roku 3",
+                "name": "Bedroom Roku",
+                "sw_version": "10.0.0",
+                "entry_type": null,
+                "id": "69e8776a412638f5b011271ee7be6ac5",
+                "via_device_id": null,
+                "area_id": "bedroom",
+                "name_by_user": null,
+                "disabled_by": null
+            },
+            {
+                "config_entries": [
+                    "5a2398daf80f6ec977f011f2b508d380"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "roku",
+                        "YN00YF677955"
+                    ]
+                ],
+                "manufacturer": "Hisense",
+                "model": "58R6+",
+                "name": "Hisense 58\"",
+                "sw_version": "10.0.0",
+                "entry_type": null,
+                "id": "0dc0fb15b5d4e5056a27516a8422a309",
+                "via_device_id": null,
+                "area_id": "family_room",
+                "name_by_user": null,
+                "disabled_by": null
+            },
+            {
+                "config_entries": [
+                    "dba026ac670eedf8b1d5f77793dcc3e9"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "roku",
+                        "YH003N228041"
+                    ]
+                ],
+                "manufacturer": "Roku",
+                "model": "Roku Streaming Stick+",
+                "name": "Roku 4k Stick",
+                "sw_version": "10.0.0",
+                "entry_type": null,
+                "id": "2f14f3cf625dd7f9cccf486c9a88a9f1",
+                "via_device_id": null,
+                "area_id": "family_room",
+                "name_by_user": null,
+                "disabled_by": null
+            },
+            {
+                "config_entries": [
+                    "506999f1c39debf619b2b91c41c794a6"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "roku",
+                        "5S671U312947"
+                    ]
+                ],
+                "manufacturer": "Roku",
+                "model": "Roku Stick",
+                "name": "Theatre Roku",
+                "sw_version": "10.0.0",
+                "entry_type": null,
+                "id": "9b70c73702e6b83d9df7c83d83a048aa",
+                "via_device_id": null,
+                "area_id": "theatre",
+                "name_by_user": null,
+                "disabled_by": null
+            },
+            {
+                "config_entries": [
+                    "82a001427ff3ec95f14824f39d8182e2"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "cast",
+                        "4e82721efb0933604dbe8cedf8d63efa"
+                    ]
+                ],
+                "manufacturer": "Google Inc.",
+                "model": "Chromecast",
+                "name": "Family room Chromecast",
+                "sw_version": null,
+                "entry_type": null,
+                "id": "7941b01fc0348afa85e54ad0be8e5f15",
+                "via_device_id": null,
+                "area_id": null,
+                "name_by_user": null,
+                "disabled_by": null
+            },
+            {
+                "config_entries": [
+                    "fbdd41ef72001e92611e470b8fd01c76"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "hacs",
+                        "0717a0cd-745c-48fd-9b16-c8534c9704f9-bc944b0f-fd42-4a58-a072-ade38d1444cd"
+                    ]
+                ],
+                "manufacturer": "hacs.xyz",
+                "model": "",
+                "name": "HACS",
+                "sw_version": "1.12.3",
+                "entry_type": "service",
+                "id": "75a1d14057c99de56efd15675b776c9a",
+                "via_device_id": null,
+                "area_id": null,
+                "name_by_user": null,
+                "disabled_by": null
+            },
+            {
+                "config_entries": [
+                    "8fcc1258cfdc73b010e58c8712d228c4"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "brother",
+                        "U62708B2N577210"
+                    ]
+                ],
+                "manufacturer": "Brother",
+                "model": "HL-2280DW",
+                "name": "HL-2280DW",
+                "sw_version": "U1307022128VER.J",
+                "entry_type": null,
+                "id": "7eeb2bf95d3306a79683919961cd6333",
+                "via_device_id": null,
+                "area_id": null,
+                "name_by_user": null,
+                "disabled_by": null
+            },
+            {
+                "config_entries": [
+                    "5e65c6f3a460842a677fb45b6d27bbf8"
+                ],
+                "connections": [
+                    [
+                        "mac",
+                        "d8:07:b6:a4:a0:fc"
+                    ]
+                ],
+                "identifiers": [],
+                "manufacturer": "TP-Link",
+                "model": "HS220(US)",
+                "name": "Kales Light",
+                "sw_version": "1.0.5 Build 201211 Rel.085320",
+                "entry_type": null,
+                "id": "6d740f90c1903c37d19aca4c22e0906d",
+                "via_device_id": null,
+                "area_id": null,
+                "name_by_user": null,
+                "disabled_by": null
+            },
+            {
+                "config_entries": [
+                    "18e197b9e06f62d4ed6e863b94b4c09e"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "browser_mod",
+                        "5507ee99-482c3fa4"
+                    ]
+                ],
+                "manufacturer": null,
+                "model": null,
+                "name": "5507ee99-482c3fa4",
+                "sw_version": null,
+                "entry_type": null,
+                "id": "0aa9a4ba8dae8114c03459bd94b7f99a",
+                "via_device_id": null,
+                "area_id": null,
+                "name_by_user": null,
+                "disabled_by": null
+            },
+            {
+                "config_entries": [
+                    "5e65c6f3a460842a677fb45b6d27bbf8"
+                ],
+                "connections": [
+                    [
+                        "mac",
+                        "3c:84:6a:f6:ee:81"
+                    ]
+                ],
+                "identifiers": [],
+                "manufacturer": "TP-Link",
+                "model": "HS200(US)",
+                "name": "Sink Light",
+                "sw_version": "1.1.4 Build 200814 Rel.105352",
+                "entry_type": null,
+                "id": "2bbe70382fd356c6dae699d8dba2f0ee",
+                "via_device_id": null,
+                "area_id": null,
+                "name_by_user": null,
+                "disabled_by": null
+            },
+            {
+                "config_entries": [
+                    "5e65c6f3a460842a677fb45b6d27bbf8"
+                ],
+                "connections": [
+                    [
+                        "mac",
+                        "0c:80:63:93:5d:cb"
+                    ]
+                ],
+                "identifiers": [],
+                "manufacturer": "TP-Link",
+                "model": "HS200(US)",
+                "name": "Bedroom Light",
+                "sw_version": "1.5.7 Build 191118 Rel.140152",
+                "entry_type": null,
+                "id": "a2573aefd61a2f3c0b7334382bcf8899",
+                "via_device_id": null,
+                "area_id": null,
+                "name_by_user": null,
+                "disabled_by": null
+            },
+            {
+                "config_entries": [
+                    "5e65c6f3a460842a677fb45b6d27bbf8"
+                ],
+                "connections": [
+                    [
+                        "mac",
+                        "0c:80:63:93:fe:ae"
+                    ]
+                ],
+                "identifiers": [],
+                "manufacturer": "TP-Link",
+                "model": "HS200(US)",
+                "name": "Deck Lights",
+                "sw_version": "1.5.7 Build 191118 Rel.140152",
+                "entry_type": null,
+                "id": "24af292028640bf8dcf1435529108b4c",
+                "via_device_id": null,
+                "area_id": null,
+                "name_by_user": null,
+                "disabled_by": null
+            },
+            {
+                "config_entries": [
+                    "82a001427ff3ec95f14824f39d8182e2"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "cast",
+                        "a838374deb30ae9253b639deaf041039"
+                    ]
+                ],
+                "manufacturer": "Google Inc.",
+                "model": "Chromecast",
+                "name": "Jalynne Bedroom TV",
+                "sw_version": null,
+                "entry_type": null,
+                "id": "665e97c8fad93915f4bcb52366736585",
+                "via_device_id": null,
+                "area_id": null,
+                "name_by_user": null,
+                "disabled_by": null
+            },
+            {
+                "config_entries": [
+                    "82a001427ff3ec95f14824f39d8182e2"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "cast",
+                        "5ab67b4e0ec7548436aaf7650bbfe479"
+                    ]
+                ],
+                "manufacturer": "Google Inc.",
+                "model": "Chromecast",
+                "name": "Bedroom TV",
+                "sw_version": null,
+                "entry_type": null,
+                "id": "d566e2338c96f547e6e477e8721c9e2e",
+                "via_device_id": null,
+                "area_id": null,
+                "name_by_user": null,
+                "disabled_by": null
+            },
+            {
+                "config_entries": [
+                    "82a001427ff3ec95f14824f39d8182e2"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "cast",
+                        "d0c9d57979c80fc64661ed7a4e9adc28"
+                    ]
+                ],
+                "manufacturer": "Google Inc.",
+                "model": "Chromecast",
+                "name": "Chromecast9630",
+                "sw_version": null,
+                "entry_type": null,
+                "id": "130a9c07255f897e05166def32cda722",
+                "via_device_id": null,
+                "area_id": null,
+                "name_by_user": null,
+                "disabled_by": null
+            },
+            {
+                "config_entries": [
+                    "ae6830701c283ea9802856d2697523fa"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "broadlink",
+                        "34ea34c7ccbe"
+                    ]
+                ],
+                "manufacturer": "Broadlink",
+                "model": "RM pro",
+                "name": "rm_pro_dr",
+                "sw_version": 20028,
+                "entry_type": null,
+                "id": "3ca00ebd937c12bdc5012e1ff34b2cf6",
+                "via_device_id": null,
+                "area_id": null,
+                "name_by_user": null,
+                "disabled_by": null
+            },
+            {
+                "config_entries": [
+                    "5aa273ce96a86b36574c6b7d1cbb3180"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "broadlink",
+                        "34ea34d0abb1"
+                    ]
+                ],
+                "manufacturer": "Broadlink",
+                "model": "RM pro",
+                "name": "rm_pro_br",
+                "sw_version": 20025,
+                "entry_type": null,
+                "id": "dea396204b07996d321354113a2af8d5",
+                "via_device_id": null,
+                "area_id": null,
+                "name_by_user": null,
+                "disabled_by": null
+            },
+            {
+                "config_entries": [
+                    "82a001427ff3ec95f14824f39d8182e2"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "cast",
+                        "56748f4d7f8ccd29ccd77ab069bec7bd"
+                    ]
+                ],
+                "manufacturer": "Google Inc.",
+                "model": "Chromecast",
+                "name": "Deck Chromecast",
+                "sw_version": null,
+                "entry_type": null,
+                "id": "ad5ed26e5a229588062826bd09ddeef3",
+                "via_device_id": null,
+                "area_id": null,
+                "name_by_user": null,
+                "disabled_by": null
+            },
+            {
+                "config_entries": [
+                    "e184211ad4b9ce69933db28ba25ac78f"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "broadlink",
+                        "34ea3458b711"
+                    ]
+                ],
+                "manufacturer": "Broadlink",
+                "model": "RM mini 3",
+                "name": "rm_mini_fr",
+                "sw_version": 50,
+                "entry_type": null,
+                "id": "bf7a5c8085191c2863f96887beb68e58",
+                "via_device_id": null,
+                "area_id": null,
+                "name_by_user": null,
+                "disabled_by": null
+            },
+            {
+                "config_entries": [
+                    "9583b38980799872e3060e5c9af87e92"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "broadlink",
+                        "34ea3458d217"
+                    ]
+                ],
+                "manufacturer": "Broadlink",
+                "model": "RM mini 3",
+                "name": "rm_mini_th",
+                "sw_version": 50,
+                "entry_type": null,
+                "id": "37474542df3eaa0e2fbe04dfd327a7e2",
+                "via_device_id": null,
+                "area_id": null,
+                "name_by_user": null,
+                "disabled_by": null
+            },
+            {
+                "config_entries": [
+                    "18e197b9e06f62d4ed6e863b94b4c09e"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "browser_mod",
+                        "ca5dd3fb-6dd04767"
+                    ]
+                ],
+                "manufacturer": null,
+                "model": null,
+                "name": "ca5dd3fb-6dd04767",
+                "sw_version": null,
+                "entry_type": null,
+                "id": "ed90014ae625f3619c353597d1c347ef",
+                "via_device_id": null,
+                "area_id": null,
+                "name_by_user": null,
+                "disabled_by": null
+            },
+            {
+                "config_entries": [
+                    "18e197b9e06f62d4ed6e863b94b4c09e"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "browser_mod",
+                        "13e22c5d-5f058110"
+                    ]
+                ],
+                "manufacturer": null,
+                "model": null,
+                "name": "13e22c5d-5f058110",
+                "sw_version": null,
+                "entry_type": null,
+                "id": "433e164fde045e747998d33168bc4da4",
+                "via_device_id": null,
+                "area_id": null,
+                "name_by_user": null,
+                "disabled_by": null
+            },
+            {
+                "config_entries": [
+                    "408f088a04283e158b4e9360c4b09813"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "roomba",
+                        "roomba_3173C71442408660"
+                    ]
+                ],
+                "manufacturer": "iRobot",
+                "model": "R671020",
+                "name": "Boomba",
+                "sw_version": "3.5.62+95",
+                "entry_type": null,
+                "id": "a39b1d46e8a48bed065a520fcfe798bc",
+                "via_device_id": null,
+                "area_id": null,
+                "name_by_user": null,
+                "disabled_by": null
+            },
+            {
+                "config_entries": [
+                    "18e197b9e06f62d4ed6e863b94b4c09e"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "browser_mod",
+                        "78565a93-1a99fd48"
+                    ]
+                ],
+                "manufacturer": null,
+                "model": null,
+                "name": "78565a93-1a99fd48",
+                "sw_version": null,
+                "entry_type": null,
+                "id": "10ac7974cfcb21b6c971f1fdf948ff0d",
+                "via_device_id": null,
+                "area_id": null,
+                "name_by_user": null,
+                "disabled_by": null
+            },
+            {
+                "config_entries": [
+                    "34247d3666972bfc64a8bd6754f0494b"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "ecobee",
+                        "F2K9"
+                    ]
+                ],
+                "manufacturer": "ecobee",
+                "model": "ecobee Room Sensor",
+                "name": "Kitchen",
+                "sw_version": null,
+                "entry_type": null,
+                "id": "fcc7c5eb19ca417547484853665bc829",
+                "via_device_id": null,
+                "area_id": null,
+                "name_by_user": null,
+                "disabled_by": null
+            },
+            {
+                "config_entries": [
+                    "34247d3666972bfc64a8bd6754f0494b"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "ecobee",
+                        "DZZZ"
+                    ]
+                ],
+                "manufacturer": "ecobee",
+                "model": "ecobee Room Sensor",
+                "name": "Family Room",
+                "sw_version": null,
+                "entry_type": null,
+                "id": "d261c42b12764b176ec59ec5de03611a",
+                "via_device_id": null,
+                "area_id": null,
+                "name_by_user": null,
+                "disabled_by": null
+            },
+            {
+                "config_entries": [
+                    "34247d3666972bfc64a8bd6754f0494b"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "ecobee",
+                        "411962414013"
+                    ]
+                ],
+                "manufacturer": "ecobee",
+                "model": "ecobee3 lite Smart Thermostat",
+                "name": "Bilger Home",
+                "sw_version": null,
+                "entry_type": null,
+                "id": "5d9a77f886c55907889e49a6463f0b75",
+                "via_device_id": null,
+                "area_id": null,
+                "name_by_user": null,
+                "disabled_by": null
+            },
+            {
+                "config_entries": [
+                    "18e197b9e06f62d4ed6e863b94b4c09e"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "browser_mod",
+                        "29bcb21b-477828d1"
+                    ]
+                ],
+                "manufacturer": null,
+                "model": null,
+                "name": "29bcb21b-477828d1",
+                "sw_version": null,
+                "entry_type": null,
+                "id": "a4aae3cc1a9b30bfbc230196bf9bdd61",
+                "via_device_id": null,
+                "area_id": null,
+                "name_by_user": null,
+                "disabled_by": null
+            },
+            {
+                "config_entries": [
+                    "18e197b9e06f62d4ed6e863b94b4c09e"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "browser_mod",
+                        "43947e50-0347e515"
+                    ]
+                ],
+                "manufacturer": null,
+                "model": null,
+                "name": "43947e50-0347e515",
+                "sw_version": null,
+                "entry_type": null,
+                "id": "bc1baf3681bead1dc86418632cb1eb2c",
+                "via_device_id": null,
+                "area_id": null,
+                "name_by_user": null,
+                "disabled_by": null
+            },
+            {
+                "config_entries": [
+                    "18e197b9e06f62d4ed6e863b94b4c09e"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "browser_mod",
+                        "e3790066-0ab1c59b"
+                    ]
+                ],
+                "manufacturer": null,
+                "model": null,
+                "name": "e3790066-0ab1c59b",
+                "sw_version": null,
+                "entry_type": null,
+                "id": "b57c16acd2414d985e7475627a1c0018",
+                "via_device_id": null,
+                "area_id": null,
+                "name_by_user": null,
+                "disabled_by": null
+            },
+            {
+                "config_entries": [
+                    "18e197b9e06f62d4ed6e863b94b4c09e"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "browser_mod",
+                        "4b50cd35-d91f80c0"
+                    ]
+                ],
+                "manufacturer": null,
+                "model": null,
+                "name": "4b50cd35-d91f80c0",
+                "sw_version": null,
+                "entry_type": null,
+                "id": "66328c39fb396bbd7524acbca01c8440",
+                "via_device_id": null,
+                "area_id": null,
+                "name_by_user": null,
+                "disabled_by": null
+            },
+            {
+                "config_entries": [
+                    "18e197b9e06f62d4ed6e863b94b4c09e"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "browser_mod",
+                        "ab8597ab-89ede02f"
+                    ]
+                ],
+                "manufacturer": null,
+                "model": null,
+                "name": "fully_theatre_remote",
+                "sw_version": null,
+                "entry_type": null,
+                "id": "332f6e097f0409a96e5ee8b14bf6f1ba",
+                "via_device_id": null,
+                "area_id": null,
+                "name_by_user": null,
+                "disabled_by": null
+            },
+            {
+                "config_entries": [
+                    "3a2bdc38790e5a20a1518988b74660da"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "plex",
+                        "74daed96024de8446ccf71d2c548b714db96e6ed"
+                    ]
+                ],
+                "manufacturer": "Plex",
+                "model": "Plex Media Server",
+                "name": "Bilger-PLEX",
+                "sw_version": "1.23.0.4497-a1b1f3c10",
+                "entry_type": null,
+                "id": "21a3c6ed523c08a973287a87bb58c1b3",
+                "via_device_id": null,
+                "area_id": null,
+                "name_by_user": null,
+                "disabled_by": null
+            },
+            {
+                "config_entries": [
+                    "3a2bdc38790e5a20a1518988b74660da"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "plex",
+                        "fbd9a1e2bd39b49fd59fd2e2933425f9"
+                    ]
+                ],
+                "manufacturer": "Plex",
+                "model": "Plex for Roku",
+                "name": "Plex (Plex for Roku - Hisense 58\")",
+                "sw_version": "6.7.18.6920-44ea894e9-Plex - Stream for Free",
+                "entry_type": null,
+                "id": "fa7d04caf23b9348545330f3449652fb",
+                "via_device_id": "21a3c6ed523c08a973287a87bb58c1b3",
+                "area_id": null,
+                "name_by_user": null,
+                "disabled_by": null
+            },
+            {
+                "config_entries": [
+                    "3a2bdc38790e5a20a1518988b74660da"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "plex",
+                        "08a341af4156eb6100bbff197107bf66"
+                    ]
+                ],
+                "manufacturer": "Roku",
+                "model": "Plex for Roku",
+                "name": "Plex (Jalynne - Plex for Roku - Roku 4k Stick)",
+                "sw_version": "6.7.18.6920-44ea894e9-Plex - Stream for Free",
+                "entry_type": null,
+                "id": "2768c8e06acb5c06508275d4cc88fbe5",
+                "via_device_id": "21a3c6ed523c08a973287a87bb58c1b3",
+                "area_id": null,
+                "name_by_user": null,
+                "disabled_by": null
+            },
+            {
+                "config_entries": [
+                    "3a2bdc38790e5a20a1518988b74660da"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "plex",
+                        "50f1d5175396da8d77c0361ae58eeaf5"
+                    ]
+                ],
+                "manufacturer": "Roku",
+                "model": "Plex for Roku",
+                "name": "Plex (travisclark7@hotmail.com - Plex for Roku - Roku Premiere+)",
+                "sw_version": "6.7.24.7009-0d0d064dd-Plex",
+                "entry_type": null,
+                "id": "a8f4549f7438de838d8674ed2f05dd4d",
+                "via_device_id": "21a3c6ed523c08a973287a87bb58c1b3",
+                "area_id": null,
+                "name_by_user": null,
+                "disabled_by": null
+            },
+            {
+                "config_entries": [
+                    "3a2bdc38790e5a20a1518988b74660da"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "plex",
+                        "9e10583f049cf493-com-plexapp-android"
+                    ]
+                ],
+                "manufacturer": "Plex",
+                "model": "Plex for Android (TV)",
+                "name": "Plex (Plex for Android (TV) - AFTT)",
+                "sw_version": "8.17.0.25120",
+                "entry_type": null,
+                "id": "69d91826a528258d91efdd20ef5a5adc",
+                "via_device_id": "21a3c6ed523c08a973287a87bb58c1b3",
+                "area_id": null,
+                "name_by_user": null,
+                "disabled_by": null
+            },
+            {
+                "config_entries": [
+                    "3a2bdc38790e5a20a1518988b74660da"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "plex",
+                        "a29114ec0323f0559a3a739bd8f29263"
+                    ]
+                ],
+                "manufacturer": "Roku",
+                "model": "Plex for Roku",
+                "name": "Plex (IreneBilger - Plex for Roku - Roku 3)",
+                "sw_version": "6.7.24.7009-0d0d064dd-Plex",
+                "entry_type": null,
+                "id": "c2ced0d94f4fae101a368f8d66e7f5e6",
+                "via_device_id": "21a3c6ed523c08a973287a87bb58c1b3",
+                "area_id": null,
+                "name_by_user": null,
+                "disabled_by": null
+            },
+            {
+                "config_entries": [
+                    "3a2bdc38790e5a20a1518988b74660da"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "plex",
+                        "f747ee665808657adbab4d74d8921d02"
+                    ]
+                ],
+                "manufacturer": "Roku",
+                "model": "Plex for Roku",
+                "name": "Plex (Plex for Roku - Bedroom Roku)",
+                "sw_version": "6.7.18.6920-44ea894e9-Plex - Stream for Free",
+                "entry_type": null,
+                "id": "65e48ee6438a85596488bb2c514909da",
+                "via_device_id": "21a3c6ed523c08a973287a87bb58c1b3",
+                "area_id": null,
+                "name_by_user": null,
+                "disabled_by": null
+            },
+            {
+                "config_entries": [
+                    "18e197b9e06f62d4ed6e863b94b4c09e"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "browser_mod",
+                        "b2042c85-e83a754e"
+                    ]
+                ],
+                "manufacturer": null,
+                "model": null,
+                "name": "b2042c85-e83a754e",
+                "sw_version": null,
+                "entry_type": null,
+                "id": "c3178c58f0c7a927eb816bc8c6a62f1a",
+                "via_device_id": null,
+                "area_id": null,
+                "name_by_user": null,
+                "disabled_by": null
+            },
+            {
+                "config_entries": [
+                    "3a2bdc38790e5a20a1518988b74660da"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "plex",
+                        "517dc182b83b8d6-com-plexapp-android"
+                    ]
+                ],
+                "manufacturer": "Android",
+                "model": "Plex for Android (TV)",
+                "name": "Plex (mbilger - Plex for Android (TV) - AFTMM)",
+                "sw_version": "8.16.2.24953",
+                "entry_type": null,
+                "id": "535c28bd44ad9f04d60fab1838185808",
+                "via_device_id": "21a3c6ed523c08a973287a87bb58c1b3",
+                "area_id": null,
+                "name_by_user": null,
+                "disabled_by": null
+            },
+            {
+                "config_entries": [
+                    "3a2bdc38790e5a20a1518988b74660da"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "plex",
+                        "863229b70f7cf8d4-com-plexapp-android"
+                    ]
+                ],
+                "manufacturer": "Plex",
+                "model": "Plex for Android (TV)",
+                "name": "Plex (Plex for Android (TV) - Chromecast Google TV)",
+                "sw_version": "8.17.0.25120",
+                "entry_type": null,
+                "id": "295852e92a2a39ae7e25b396c405cbe5",
+                "via_device_id": "21a3c6ed523c08a973287a87bb58c1b3",
+                "area_id": null,
+                "name_by_user": null,
+                "disabled_by": null
+            },
+            {
+                "config_entries": [
+                    "365844384244f044ba682b780e13beed"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "zwave_js",
+                        "4178193169-1"
+                    ]
+                ],
+                "manufacturer": "AEON Labs",
+                "model": "ZW090",
+                "name": "Z\u2010Stick Gen5 USB Controller",
+                "sw_version": null,
+                "entry_type": null,
+                "id": "5e51b455d357fd38295054bd184f0634",
+                "via_device_id": null,
+                "area_id": null,
+                "name_by_user": null,
+                "disabled_by": null
+            },
+            {
+                "config_entries": [
+                    "3a2bdc38790e5a20a1518988b74660da"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "plex",
+                        "7f89fe365adde05c-com-plexapp-android"
+                    ]
+                ],
+                "manufacturer": "Plex",
+                "model": "Plex for Android (TV)",
+                "name": "Plex (Plex for Android (TV) - Chromecast)",
+                "sw_version": "8.17.0.25120",
+                "entry_type": null,
+                "id": "0975cb23d2c8c4dcaf3bdc8e657e7ea0",
+                "via_device_id": "21a3c6ed523c08a973287a87bb58c1b3",
+                "area_id": null,
+                "name_by_user": null,
+                "disabled_by": null
+            },
+            {
+                "config_entries": [
+                    "3a2bdc38790e5a20a1518988b74660da"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "plex",
+                        "asss27qvj07zfkyaq9ggrmpg"
+                    ]
+                ],
+                "manufacturer": "Chrome",
+                "model": "Plex Web",
+                "name": "Plex (Plex Web - Chrome - Windows)",
+                "sw_version": "4.54.4",
+                "entry_type": null,
+                "id": "3235e8c89b3a450795e68c66f6d66d52",
+                "via_device_id": "21a3c6ed523c08a973287a87bb58c1b3",
+                "area_id": null,
+                "name_by_user": null,
+                "disabled_by": null
+            },
+            {
+                "config_entries": [
+                    "3a2bdc38790e5a20a1518988b74660da"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "plex",
+                        "75765b0cbc085fbeb79f74ba13f9d843"
+                    ]
+                ],
+                "manufacturer": "Roku",
+                "model": "Plex for Roku",
+                "name": "Plex (Barbread - Plex for Roku - camdens)",
+                "sw_version": "6.7.18.6920-44ea894e9-Plex - Stream for Free",
+                "entry_type": null,
+                "id": "8b18d8d884a01960e14946acf8d51c75",
+                "via_device_id": "21a3c6ed523c08a973287a87bb58c1b3",
+                "area_id": null,
+                "name_by_user": null,
+                "disabled_by": null
+            },
+            {
+                "config_entries": [
+                    "18e197b9e06f62d4ed6e863b94b4c09e"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "browser_mod",
+                        "bcf009e0-059159b4"
+                    ]
+                ],
+                "manufacturer": null,
+                "model": null,
+                "name": "bcf009e0-059159b4",
+                "sw_version": null,
+                "entry_type": null,
+                "id": "5ecd0e0a7b690602b7c544dbfd4777a6",
+                "via_device_id": null,
+                "area_id": null,
+                "name_by_user": null,
+                "disabled_by": null
+            },
+            {
+                "config_entries": [
+                    "3a2bdc38790e5a20a1518988b74660da"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "plex",
+                        "wsjeuufn7o2n62r1hvh9nsto"
+                    ]
+                ],
+                "manufacturer": "Xbox",
+                "model": "Plex for Xbox",
+                "name": "Plex (travisclark7@hotmail.com - Plex for Xbox - XBOXONE)",
+                "sw_version": "5.15.1",
+                "entry_type": null,
+                "id": "8858e3bc0548742767743e293767a676",
+                "via_device_id": "21a3c6ed523c08a973287a87bb58c1b3",
+                "area_id": null,
+                "name_by_user": null,
+                "disabled_by": null
+            },
+            {
+                "config_entries": [
+                    "18e197b9e06f62d4ed6e863b94b4c09e"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "browser_mod",
+                        "e6320f03-be73c50e"
+                    ]
+                ],
+                "manufacturer": null,
+                "model": null,
+                "name": "e6320f03-be73c50e",
+                "sw_version": null,
+                "entry_type": null,
+                "id": "eca5a7d147dc5affaf84a6aaf12ff1c4",
+                "via_device_id": null,
+                "area_id": null,
+                "name_by_user": null,
+                "disabled_by": null
+            },
+            {
+                "config_entries": [
+                    "18e197b9e06f62d4ed6e863b94b4c09e"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "browser_mod",
+                        "c5c29698-84005f51"
+                    ]
+                ],
+                "manufacturer": null,
+                "model": null,
+                "name": "fully_kitchen_dashboard",
+                "sw_version": null,
+                "entry_type": null,
+                "id": "881beb133692b914d534493acac15363",
+                "via_device_id": null,
+                "area_id": null,
+                "name_by_user": null,
+                "disabled_by": null
+            },
+            {
+                "config_entries": [
+                    "3a2bdc38790e5a20a1518988b74660da"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "plex",
+                        "6178ec3c284bd645-com-plexapp-android"
+                    ]
+                ],
+                "manufacturer": "Android",
+                "model": "Plex for Android (TV)",
+                "name": "Plex (z_mann - Plex for Android (TV) - AFTT)",
+                "sw_version": "8.17.0.25120",
+                "entry_type": null,
+                "id": "2a47c677d2648abf574c64222eeff2a1",
+                "via_device_id": "21a3c6ed523c08a973287a87bb58c1b3",
+                "area_id": null,
+                "name_by_user": null,
+                "disabled_by": null
+            },
+            {
+                "config_entries": [
+                    "3a2bdc38790e5a20a1518988b74660da"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "plex",
+                        "9cea078cfb865f902d2dad019f7b4ba7"
+                    ]
+                ],
+                "manufacturer": "Roku",
+                "model": "Plex for Roku",
+                "name": "Plex (Tyquila - Plex for Roku - Nan)",
+                "sw_version": "6.7.24.7009-0d0d064dd-Plex",
+                "entry_type": null,
+                "id": "44e538ede93daf3a16d2a831395c33ca",
+                "via_device_id": "21a3c6ed523c08a973287a87bb58c1b3",
+                "area_id": null,
+                "name_by_user": null,
+                "disabled_by": null
+            },
+            {
+                "config_entries": [
+                    "3a2bdc38790e5a20a1518988b74660da"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "plex",
+                        "4valutmzw25fusorrouwyw2s"
+                    ]
+                ],
+                "manufacturer": "Tizen",
+                "model": "Plex for Samsung",
+                "name": "Plex (huntley77 - Plex for Samsung - TV 2017)",
+                "sw_version": "5.15.1",
+                "entry_type": null,
+                "id": "1686d9779a4e9d5a645c842c96855d64",
+                "via_device_id": "21a3c6ed523c08a973287a87bb58c1b3",
+                "area_id": null,
+                "name_by_user": null,
+                "disabled_by": null
+            },
+            {
+                "config_entries": [
+                    "3a2bdc38790e5a20a1518988b74660da"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "plex",
+                        "599C6BBC-E3BF-4288-9110-AEA4ADB2380B"
+                    ]
+                ],
+                "manufacturer": "iOS",
+                "model": "Plex for iOS",
+                "name": "Plex (keaganread@gmail.com - Plex for iOS - Ilayda\u2019s iPhone)",
+                "sw_version": "7.14",
+                "entry_type": null,
+                "id": "3b4ce291b2e858bb9066d3f924f8b1e0",
+                "via_device_id": "21a3c6ed523c08a973287a87bb58c1b3",
+                "area_id": null,
+                "name_by_user": null,
+                "disabled_by": null
+            },
+            {
+                "config_entries": [
+                    "3a2bdc38790e5a20a1518988b74660da"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "plex",
+                        "zss9kmaex9j3bgu7sh9o4732"
+                    ]
+                ],
+                "manufacturer": "Chromecast",
+                "model": "Plex Cast",
+                "name": "Plex (keaganread@gmail.com - Plex Cast - Chromecast)",
+                "sw_version": "4.54.1",
+                "entry_type": null,
+                "id": "0653347ceb7d4c548cf024ead4432e6e",
+                "via_device_id": "21a3c6ed523c08a973287a87bb58c1b3",
+                "area_id": null,
+                "name_by_user": null,
+                "disabled_by": null
+            },
+            {
+                "config_entries": [
+                    "3a2bdc38790e5a20a1518988b74660da"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "plex",
+                        "f5b5002d6796a911-com-plexapp-android"
+                    ]
+                ],
+                "manufacturer": "Plex",
+                "model": "Plex for Android (Mobile)",
+                "name": "Plex (Plex for Android (Mobile) - LG G5)",
+                "sw_version": "8.15.1.23935",
+                "entry_type": null,
+                "id": "af288cde89196da390f4a9c99be769ab",
+                "via_device_id": "21a3c6ed523c08a973287a87bb58c1b3",
+                "area_id": null,
+                "name_by_user": null,
+                "disabled_by": null
+            },
+            {
+                "config_entries": [
+                    "3a2bdc38790e5a20a1518988b74660da"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "plex",
+                        "fbc1f790b4671bb1fe494395c6ec29b7"
+                    ]
+                ],
+                "manufacturer": "Roku",
+                "model": "Plex for Roku",
+                "name": "Plex (finchropes8@gmail.com - Plex for Roku - Roku 2 - 4A6546076781)",
+                "sw_version": "6.7.24.7009-0d0d064dd-Plex",
+                "entry_type": null,
+                "id": "c8c176b92341033ca42f593c5a9631e6",
+                "via_device_id": "21a3c6ed523c08a973287a87bb58c1b3",
+                "area_id": null,
+                "name_by_user": null,
+                "disabled_by": null
+            },
+            {
+                "config_entries": [
+                    "18e197b9e06f62d4ed6e863b94b4c09e"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "browser_mod",
+                        "18508e87-98c7abfd"
+                    ]
+                ],
+                "manufacturer": null,
+                "model": null,
+                "name": "18508e87-98c7abfd",
+                "sw_version": null,
+                "entry_type": null,
+                "id": "1327aa92a99ec3338ea3de0745209b55",
+                "via_device_id": null,
+                "area_id": null,
+                "name_by_user": null,
+                "disabled_by": null
+            },
+            {
+                "config_entries": [
+                    "18e197b9e06f62d4ed6e863b94b4c09e"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "browser_mod",
+                        "d3a1c366-8b03ac74"
+                    ]
+                ],
+                "manufacturer": null,
+                "model": null,
+                "name": "d3a1c366-8b03ac74",
+                "sw_version": null,
+                "entry_type": null,
+                "id": "d94745d8b7074e8d08ccaf0669bcb1bf",
+                "via_device_id": null,
+                "area_id": null,
+                "name_by_user": null,
+                "disabled_by": null
+            },
+            {
+                "config_entries": [
+                    "18e197b9e06f62d4ed6e863b94b4c09e"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "browser_mod",
+                        "8ea186a2-c998bf5f"
+                    ]
+                ],
+                "manufacturer": null,
+                "model": null,
+                "name": "8ea186a2-c998bf5f",
+                "sw_version": null,
+                "entry_type": null,
+                "id": "3d8dfc4b214f0df2403ba1b71e3af037",
+                "via_device_id": null,
+                "area_id": null,
+                "name_by_user": null,
+                "disabled_by": null
+            },
+            {
+                "config_entries": [
+                    "3a2bdc38790e5a20a1518988b74660da"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "plex",
+                        "f729de3d6823a61a-com-plexapp-android"
+                    ]
+                ],
+                "manufacturer": "Android",
+                "model": "Plex for Android (TV)",
+                "name": "Plex (angus50@rogers.com - Plex for Android (TV) - AFTMM)",
+                "sw_version": "8.16.1.24597",
+                "entry_type": null,
+                "id": "d9f31f7ab4cc17352ee3407a87cb7d06",
+                "via_device_id": "21a3c6ed523c08a973287a87bb58c1b3",
+                "area_id": null,
+                "name_by_user": null,
+                "disabled_by": null
+            },
+            {
+                "config_entries": [
+                    "3a2bdc38790e5a20a1518988b74660da"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "plex",
+                        "6858228c9ad3864069d47a01224b8b5f"
+                    ]
+                ],
+                "manufacturer": "Roku",
+                "model": "Plex for Roku",
+                "name": "Plex (Barbread - Plex for Roku - Living room)",
+                "sw_version": "6.7.24.7009-0d0d064dd-Plex",
+                "entry_type": null,
+                "id": "85b1423a7b5978850542dccbb969f04f",
+                "via_device_id": "21a3c6ed523c08a973287a87bb58c1b3",
+                "area_id": null,
+                "name_by_user": null,
+                "disabled_by": null
+            },
+            {
+                "config_entries": [
+                    "3a2bdc38790e5a20a1518988b74660da"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "plex",
+                        "6c96804e65ca5d7f-com-plexapp-android"
+                    ]
+                ],
+                "manufacturer": "Android",
+                "model": "Plex for Android (TV)",
+                "name": "Plex (angus50@rogers.com - Plex for Android (TV) - BRAVIA VU1)",
+                "sw_version": "8.16.0.24423",
+                "entry_type": null,
+                "id": "0a42975e555e2b6ed5f46e72340c99bd",
+                "via_device_id": "21a3c6ed523c08a973287a87bb58c1b3",
+                "area_id": null,
+                "name_by_user": null,
+                "disabled_by": null
+            },
+            {
+                "config_entries": [
+                    "3a2bdc38790e5a20a1518988b74660da"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "plex",
+                        "f55a6baf8e51c125033e1e6d7f878318"
+                    ]
+                ],
+                "manufacturer": "Roku",
+                "model": "Plex for Roku",
+                "name": "Plex (Plex for Roku - Theatre Roku)",
+                "sw_version": "6.7.18.6920-44ea894e9-Plex - Stream for Free",
+                "entry_type": null,
+                "id": "30c8a7768be24600a98ee4524dd8e7a3",
+                "via_device_id": "21a3c6ed523c08a973287a87bb58c1b3",
+                "area_id": null,
+                "name_by_user": null,
+                "disabled_by": null
+            },
+            {
+                "config_entries": [
+                    "3a2bdc38790e5a20a1518988b74660da"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "plex",
+                        "C788C935-0A90-471D-81E3-BB9F2D4562A5"
+                    ]
+                ],
+                "manufacturer": "Plex",
+                "model": "Plex for iOS",
+                "name": "Plex (Plex for iOS - Kales iphone)",
+                "sw_version": "7.16",
+                "entry_type": null,
+                "id": "251c1fbcbfaf6ee3daa4c6de51715efc",
+                "via_device_id": "21a3c6ed523c08a973287a87bb58c1b3",
+                "area_id": null,
+                "name_by_user": null,
+                "disabled_by": null
+            },
+            {
+                "config_entries": [
+                    "3a2bdc38790e5a20a1518988b74660da"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "plex",
+                        "23a746075a11a1a7-com-plexapp-android"
+                    ]
+                ],
+                "manufacturer": "Plex",
+                "model": "Plex for Android (Mobile)",
+                "name": "Plex (Plex for Android (Mobile) - LG G5)",
+                "sw_version": "8.17.0.25120",
+                "entry_type": null,
+                "id": "dc128de7f6b4dc2a862a3566b61ef67d",
+                "via_device_id": "21a3c6ed523c08a973287a87bb58c1b3",
+                "area_id": null,
+                "name_by_user": null,
+                "disabled_by": null
+            },
+            {
+                "config_entries": [
+                    "3a2bdc38790e5a20a1518988b74660da"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "plex",
+                        "b06760a1e812dc1ae77cb10801e09c06"
+                    ]
+                ],
+                "manufacturer": "Roku",
+                "model": "Plex for Roku",
+                "name": "Plex (kobyread - Plex for Roku - Koby)",
+                "sw_version": "6.7.24.7009-0d0d064dd-Plex",
+                "entry_type": null,
+                "id": "965d9fb9c08156d60b6a4cb98468ddb2",
+                "via_device_id": "21a3c6ed523c08a973287a87bb58c1b3",
+                "area_id": null,
+                "name_by_user": null,
+                "disabled_by": null
+            },
+            {
+                "config_entries": [
+                    "3a2bdc38790e5a20a1518988b74660da"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "plex",
+                        "0297dd21c8383efdfbead2e05e43c73d"
+                    ]
+                ],
+                "manufacturer": "Roku",
+                "model": "Plex for Roku",
+                "name": "Plex (Barbread - Plex for Roku - Express)",
+                "sw_version": "6.7.18.6920-44ea894e9-Plex - Stream for Free",
+                "entry_type": null,
+                "id": "3842614d76520560c1a6e8afef10e480",
+                "via_device_id": "21a3c6ed523c08a973287a87bb58c1b3",
+                "area_id": null,
+                "name_by_user": null,
+                "disabled_by": null
+            },
+            {
+                "config_entries": [
+                    "3a2bdc38790e5a20a1518988b74660da"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "plex",
+                        "xa0cvy9rjine3he2xyxj0sl0"
+                    ]
+                ],
+                "manufacturer": "Chrome",
+                "model": "Plex Web",
+                "name": "Plex (Plex Web - Chrome - Windows)",
+                "sw_version": "4.54.5",
+                "entry_type": null,
+                "id": "f1dd48369be9ada071c19397f0343914",
+                "via_device_id": "21a3c6ed523c08a973287a87bb58c1b3",
+                "area_id": null,
+                "name_by_user": null,
+                "disabled_by": null
+            },
+            {
+                "config_entries": [
+                    "3a2bdc38790e5a20a1518988b74660da"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "plex",
+                        "8e588567595eb423-com-plexapp-android"
+                    ]
+                ],
+                "manufacturer": "Android",
+                "model": "Plex for Android (TV)",
+                "name": "Plex (angeleastman@hotmail.com - Plex for Android (TV) - AFTMM)",
+                "sw_version": "8.17.0.25120",
+                "entry_type": null,
+                "id": "443d5fe794f78e9c3b3ec1cc2772198d",
+                "via_device_id": "21a3c6ed523c08a973287a87bb58c1b3",
+                "area_id": null,
+                "name_by_user": null,
+                "disabled_by": null
+            },
+            {
+                "config_entries": [
+                    "3a2bdc38790e5a20a1518988b74660da"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "plex",
+                        "569a033b1138cc4f2c5f508539228e62"
+                    ]
+                ],
+                "manufacturer": "Roku",
+                "model": "Plex for Roku",
+                "name": "Plex (Tyquila - Plex for Roku - Bedroom)",
+                "sw_version": "6.7.24.7009-0d0d064dd-Plex",
+                "entry_type": null,
+                "id": "2879f59e0bc9ab2c0987bef571d25fb0",
+                "via_device_id": "21a3c6ed523c08a973287a87bb58c1b3",
+                "area_id": null,
+                "name_by_user": null,
+                "disabled_by": null
+            },
+            {
+                "config_entries": [
+                    "18e197b9e06f62d4ed6e863b94b4c09e"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "browser_mod",
+                        "b0384b37-cbb27c7f"
+                    ]
+                ],
+                "manufacturer": null,
+                "model": null,
+                "name": "b0384b37-cbb27c7f",
+                "sw_version": null,
+                "entry_type": null,
+                "id": "fe1e8d20bf39232e20d10ea310fded0e",
+                "via_device_id": null,
+                "area_id": null,
+                "name_by_user": null,
+                "disabled_by": null
+            },
+            {
+                "config_entries": [
+                    "f06358f901eb09f270d9202cced951c0"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "mobile_app",
+                        "44A9E488-C403-4F51-9D96-261A4CF6E28B"
+                    ]
+                ],
+                "manufacturer": "Apple",
+                "model": "iPhone12,1",
+                "name": "Kales iphone ",
+                "sw_version": "14.5.1",
+                "entry_type": null,
+                "id": "838de0ab9b7e08f55f5f1fdfc444f49c",
+                "via_device_id": null,
+                "area_id": null,
+                "name_by_user": null,
+                "disabled_by": null
+            },
+            {
+                "config_entries": [
+                    "295e73bfa161235b550bba8f4a05d2a0"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "hassio",
+                        "core_mariadb"
+                    ]
+                ],
+                "manufacturer": "core",
+                "model": "Home Assistant Add-on",
+                "name": "MariaDB",
+                "sw_version": "2.3.0",
+                "entry_type": "service",
+                "id": "2e56eda7586fae7695a00c53fccadaa7",
+                "via_device_id": null,
+                "area_id": null,
+                "name_by_user": null,
+                "disabled_by": null
+            },
+            {
+                "config_entries": [
+                    "295e73bfa161235b550bba8f4a05d2a0"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "hassio",
+                        "core_ssh"
+                    ]
+                ],
+                "manufacturer": "core",
+                "model": "Home Assistant Add-on",
+                "name": "Terminal & SSH",
+                "sw_version": "9.1.1",
+                "entry_type": "service",
+                "id": "e14dfa3bb44a10ec5d493ae6b7e24893",
+                "via_device_id": null,
+                "area_id": null,
+                "name_by_user": null,
+                "disabled_by": null
+            },
+            {
+                "config_entries": [
+                    "295e73bfa161235b550bba8f4a05d2a0"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "hassio",
+                        "core_samba"
+                    ]
+                ],
+                "manufacturer": "core",
+                "model": "Home Assistant Add-on",
+                "name": "Samba share",
+                "sw_version": "9.3.1",
+                "entry_type": "service",
+                "id": "875c6d59145b817f4a37aa54dc634be3",
+                "via_device_id": null,
+                "area_id": null,
+                "name_by_user": null,
+                "disabled_by": null
+            },
+            {
+                "config_entries": [
+                    "295e73bfa161235b550bba8f4a05d2a0"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "hassio",
+                        "a0d7b954_vscode"
+                    ]
+                ],
+                "manufacturer": "a0d7b954",
+                "model": "Home Assistant Add-on",
+                "name": "Visual Studio Code",
+                "sw_version": "3.3.1",
+                "entry_type": "service",
+                "id": "fc47f1ed0f0b029d6ad2b89f5b4fa020",
+                "via_device_id": null,
+                "area_id": null,
+                "name_by_user": null,
+                "disabled_by": null
+            },
+            {
+                "config_entries": [
+                    "295e73bfa161235b550bba8f4a05d2a0"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "hassio",
+                        "a0d7b954_nodered"
+                    ]
+                ],
+                "manufacturer": "a0d7b954",
+                "model": "Home Assistant Add-on",
+                "name": "Node-RED",
+                "sw_version": "9.0.1",
+                "entry_type": "service",
+                "id": "44e03c270713957e2bc863d94eac586d",
+                "via_device_id": null,
+                "area_id": null,
+                "name_by_user": null,
+                "disabled_by": null
+            },
+            {
+                "config_entries": [
+                    "295e73bfa161235b550bba8f4a05d2a0"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "hassio",
+                        "core_zwave_js"
+                    ]
+                ],
+                "manufacturer": "core",
+                "model": "Home Assistant Add-on",
+                "name": "Z-Wave JS",
+                "sw_version": "0.1.21",
+                "entry_type": "service",
+                "id": "8cad9ff4e1c0618dbb64b40ab10dff5f",
+                "via_device_id": null,
+                "area_id": null,
+                "name_by_user": null,
+                "disabled_by": null
+            },
+            {
+                "config_entries": [
+                    "295e73bfa161235b550bba8f4a05d2a0"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "hassio",
+                        "core_mosquitto"
+                    ]
+                ],
+                "manufacturer": "core",
+                "model": "Home Assistant Add-on",
+                "name": "Mosquitto broker",
+                "sw_version": "5.1.1",
+                "entry_type": "service",
+                "id": "0e003fde1bccf3a2b82c336d8c5e38bb",
+                "via_device_id": null,
+                "area_id": null,
+                "name_by_user": null,
+                "disabled_by": null
+            },
+            {
+                "config_entries": [
+                    "295e73bfa161235b550bba8f4a05d2a0"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "hassio",
+                        "OS"
+                    ]
+                ],
+                "manufacturer": "Home Assistant",
+                "model": "Home Assistant Operating System",
+                "name": "Home Assistant Operating System",
+                "sw_version": "5.13",
+                "entry_type": "service",
+                "id": "f66bca051b107f98be8015825dc54eda",
+                "via_device_id": null,
+                "area_id": null,
+                "name_by_user": null,
+                "disabled_by": null
+            },
+            {
+                "config_entries": [
+                    "3a2bdc38790e5a20a1518988b74660da"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "plex",
+                        "plex.tv-clients"
+                    ]
+                ],
+                "manufacturer": "Plex",
+                "model": "Plex Clients",
+                "name": "Plex Client Service",
+                "sw_version": null,
+                "entry_type": "service",
+                "id": "a98ca3f72abd92b557844c0cc046f724",
+                "via_device_id": null,
+                "area_id": null,
+                "name_by_user": null,
+                "disabled_by": null
+            },
+            {
+                "config_entries": [
+                    "18e197b9e06f62d4ed6e863b94b4c09e"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "browser_mod",
+                        "8ff30379-b067e127"
+                    ]
+                ],
+                "manufacturer": null,
+                "model": null,
+                "name": "8ff30379-b067e127",
+                "sw_version": null,
+                "entry_type": null,
+                "id": "fc0584bf4b231ac689c41e3738c66023",
+                "via_device_id": null,
+                "area_id": null,
+                "name_by_user": null,
+                "disabled_by": null
+            },
+            {
+                "config_entries": [
+                    "18e197b9e06f62d4ed6e863b94b4c09e"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "browser_mod",
+                        "576c026c-df3c1bbd"
+                    ]
+                ],
+                "manufacturer": null,
+                "model": null,
+                "name": "576c026c-df3c1bbd",
+                "sw_version": null,
+                "entry_type": null,
+                "id": "f0296aeaf9be2c0dd9fb8688a9d2e820",
+                "via_device_id": null,
+                "area_id": null,
+                "name_by_user": null,
+                "disabled_by": null
+            },
+            {
+                "config_entries": [
+                    "f035181f4eaaa8f7017e73815e5b7489"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "mobile_app",
+                        "14D2BD97-FBC9-46A4-8E1A-5DEEEB300625"
+                    ]
+                ],
+                "manufacturer": "Apple",
+                "model": "iPhone12,1",
+                "name": "Jays phone",
+                "sw_version": "14.4.2",
+                "entry_type": null,
+                "id": "49db3ef2eb197d66bf4d89de00d3cd7b",
+                "via_device_id": null,
+                "area_id": null,
+                "name_by_user": null,
+                "disabled_by": null
+            },
+            {
+                "config_entries": [
+                    "dbe521159e3a75de18459bb9d93746ce"
+                ],
+                "connections": [
+                    [
+                        "mac",
+                        "33:f6:b5:88:4d:30"
+                    ]
+                ],
+                "identifiers": [
+                    [
+                        "homekit",
+                        "dbe521159e3a75de18459bb9d93746ce",
+                        "homekit.bridge"
+                    ]
+                ],
+                "manufacturer": "Home Assistant",
+                "model": "HomeKit Bridge",
+                "name": "Jalynne Phone (HASS Bridge)",
+                "sw_version": null,
+                "entry_type": "service",
+                "id": "56418245dfaa0bf6850518653f8e8887",
+                "via_device_id": null,
+                "area_id": null,
+                "name_by_user": null,
+                "disabled_by": null
+            },
+            {
+                "config_entries": [
+                    "18e197b9e06f62d4ed6e863b94b4c09e"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "browser_mod",
+                        "e31b3f0a-44e28e33"
+                    ]
+                ],
+                "manufacturer": null,
+                "model": null,
+                "name": "e31b3f0a-44e28e33",
+                "sw_version": null,
+                "entry_type": null,
+                "id": "85d4482cda0775f255ea82da61d62213",
+                "via_device_id": null,
+                "area_id": null,
+                "name_by_user": null,
+                "disabled_by": null
+            },
+            {
+                "config_entries": [
+                    "3a2bdc38790e5a20a1518988b74660da"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "plex",
+                        "ge5t64j6ld8j56t8rkaggecq"
+                    ]
+                ],
+                "manufacturer": "windows",
+                "model": "Plex for Windows",
+                "name": "Plex (Plex for Windows - Wayne-PC)",
+                "sw_version": "1.30.1.2115-81e1fc3f",
+                "entry_type": null,
+                "id": "e379b7609690243fddfe06b19b573c81",
+                "via_device_id": "21a3c6ed523c08a973287a87bb58c1b3",
+                "area_id": null,
+                "name_by_user": null,
+                "disabled_by": null
+            },
+            {
+                "config_entries": [
+                    "3a2bdc38790e5a20a1518988b74660da"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "plex",
+                        "fdddf2b73c68a19b-com-plexapp-android"
+                    ]
+                ],
+                "manufacturer": "Android",
+                "model": "Plex for Android (TV)",
+                "name": "Plex (dhuntley - Plex for Android (TV) - Chromecast)",
+                "sw_version": "8.16.0.24423",
+                "entry_type": null,
+                "id": "17476031bf58600b91b378f3f9e9b305",
+                "via_device_id": "21a3c6ed523c08a973287a87bb58c1b3",
+                "area_id": null,
+                "name_by_user": null,
+                "disabled_by": null
+            },
+            {
+                "config_entries": [
+                    "3a2bdc38790e5a20a1518988b74660da"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "plex",
+                        "BDA1F152-6940-4642-8FEA-821DCEF17E96"
+                    ]
+                ],
+                "manufacturer": "iOS",
+                "model": "Plex for iOS",
+                "name": "Plex (travisclark7@hotmail.com - Plex for iOS - Travis\u2019 iPhone)",
+                "sw_version": "7.16",
+                "entry_type": null,
+                "id": "4e85684b875cdff63c4d07034b0fe953",
+                "via_device_id": "21a3c6ed523c08a973287a87bb58c1b3",
+                "area_id": null,
+                "name_by_user": null,
+                "disabled_by": null
+            },
+            {
+                "config_entries": [
+                    "18e197b9e06f62d4ed6e863b94b4c09e"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "browser_mod",
+                        "57b6656a-251d084e"
+                    ]
+                ],
+                "manufacturer": null,
+                "model": null,
+                "name": "57b6656a-251d084e",
+                "sw_version": null,
+                "entry_type": null,
+                "id": "94e496588893a392a1854545b564b934",
+                "via_device_id": null,
+                "area_id": null,
+                "name_by_user": null,
+                "disabled_by": null
+            },
+            {
+                "config_entries": [
+                    "3a2bdc38790e5a20a1518988b74660da"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "plex",
+                        "rrz86wlej1n6rvl2p6507k0l"
+                    ]
+                ],
+                "manufacturer": "windows",
+                "model": "Plex for Windows",
+                "name": "Plex (Plex for Windows - Wayne-PC2)",
+                "sw_version": "1.29.1.1974-a65b3ef3",
+                "entry_type": null,
+                "id": "32cfd8461bb01eddf026fb6ee06ad19c",
+                "via_device_id": "21a3c6ed523c08a973287a87bb58c1b3",
+                "area_id": null,
+                "name_by_user": null,
+                "disabled_by": null
+            },
+            {
+                "config_entries": [
+                    "3a2bdc38790e5a20a1518988b74660da"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "plex",
+                        "d5fd067fa28d9c1e-com-plexapp-android"
+                    ]
+                ],
+                "manufacturer": "Android",
+                "model": "Plex for Android (TV)",
+                "name": "Plex (huntley77 - Plex for Android (TV) - BRAVIA 4K 2015)",
+                "sw_version": "8.15.2.24006",
+                "entry_type": null,
+                "id": "2261fe273c1670c5de0b92a5821be7ce",
+                "via_device_id": "21a3c6ed523c08a973287a87bb58c1b3",
+                "area_id": null,
+                "name_by_user": null,
+                "disabled_by": null
+            },
+            {
+                "config_entries": [
+                    "18e197b9e06f62d4ed6e863b94b4c09e"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "browser_mod",
+                        "029ce998-9395fce5"
+                    ]
+                ],
+                "manufacturer": null,
+                "model": null,
+                "name": "029ce998-9395fce5",
+                "sw_version": null,
+                "entry_type": null,
+                "id": "053ceb652b611292da1e511751fea43d",
+                "via_device_id": null,
+                "area_id": null,
+                "name_by_user": null,
+                "disabled_by": null
+            },
+            {
+                "config_entries": [
+                    "18e197b9e06f62d4ed6e863b94b4c09e"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "browser_mod",
+                        "a6d6a9d4-1ff299e3"
+                    ]
+                ],
+                "manufacturer": null,
+                "model": null,
+                "name": "a6d6a9d4-1ff299e3",
+                "sw_version": null,
+                "entry_type": null,
+                "id": "6a4027d776583b119a650a099ec045bd",
+                "via_device_id": null,
+                "area_id": null,
+                "name_by_user": null,
+                "disabled_by": null
+            },
+            {
+                "config_entries": [
+                    "18e197b9e06f62d4ed6e863b94b4c09e"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "browser_mod",
+                        "46649bb2-9dc58fec"
+                    ]
+                ],
+                "manufacturer": null,
+                "model": null,
+                "name": "46649bb2-9dc58fec",
+                "sw_version": null,
+                "entry_type": null,
+                "id": "39f246c1089e5a0707a6e8de517c93e9",
+                "via_device_id": null,
+                "area_id": null,
+                "name_by_user": null,
+                "disabled_by": null
+            },
+            {
+                "config_entries": [
+                    "3a2bdc38790e5a20a1518988b74660da"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "plex",
+                        "qb5dol54lboxczlsb4c0q0cg"
+                    ]
+                ],
+                "manufacturer": "Tizen",
+                "model": "Plex for Samsung",
+                "name": "Plex (a.fisher46314@gmail.com - Plex for Samsung - TV 2019)",
+                "sw_version": "5.15.1",
+                "entry_type": null,
+                "id": "9993e04a10e5f620070decc0c94fc47e",
+                "via_device_id": "21a3c6ed523c08a973287a87bb58c1b3",
+                "area_id": null,
+                "name_by_user": null,
+                "disabled_by": null
+            },
+            {
+                "config_entries": [
+                    "3a2bdc38790e5a20a1518988b74660da"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "plex",
+                        "5e8b1e512739f8a045a3c18a4466e05f"
+                    ]
+                ],
+                "manufacturer": "Roku",
+                "model": "Plex for Roku",
+                "name": "Plex (Taylorsweeney - Plex for Roku - 43\" Sharp Roku TV)",
+                "sw_version": "6.7.24.7009-0d0d064dd-Plex",
+                "entry_type": null,
+                "id": "a800bf0b592e9de91c945d506ae504d7",
+                "via_device_id": "21a3c6ed523c08a973287a87bb58c1b3",
+                "area_id": null,
+                "name_by_user": null,
+                "disabled_by": null
+            },
+            {
+                "config_entries": [
+                    "82a001427ff3ec95f14824f39d8182e2"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "cast",
+                        "27335d8ca3abd8f896ba7c7caebad872"
+                    ]
+                ],
+                "manufacturer": "Google Inc.",
+                "model": "JBL Link 20",
+                "name": "Portable Speaker",
+                "sw_version": null,
+                "entry_type": null,
+                "id": "c7964485798a461bfccc9655b74c2485",
+                "via_device_id": null,
+                "area_id": null,
+                "name_by_user": null,
+                "disabled_by": null
+            },
+            {
+                "config_entries": [
+                    "3a2bdc38790e5a20a1518988b74660da"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "plex",
+                        "11f747317f1502bd-com-plexapp-android"
+                    ]
+                ],
+                "manufacturer": "Plex",
+                "model": "Plex for Android (Mobile)",
+                "name": "Plex (Plex for Android (Mobile) - LG-H831)",
+                "sw_version": "8.15.2.24006",
+                "entry_type": null,
+                "id": "98d550586490a91bcc56694a48689adb",
+                "via_device_id": "21a3c6ed523c08a973287a87bb58c1b3",
+                "area_id": null,
+                "name_by_user": null,
+                "disabled_by": null
+            },
+            {
+                "config_entries": [
+                    "936ced94a14559eef60db43f3afb3d17"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "mobile_app",
+                        "b2bd5d4b0ef315d7"
+                    ]
+                ],
+                "manufacturer": "LGE",
+                "model": "LG-H831",
+                "name": "Wayne Phone",
+                "sw_version": "26",
+                "entry_type": null,
+                "id": "4d109a296ce2604de68ff30b4e8c878e",
+                "via_device_id": null,
+                "area_id": null,
+                "name_by_user": null,
+                "disabled_by": null
+            },
+            {
+                "config_entries": [
+                    "18e197b9e06f62d4ed6e863b94b4c09e"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "browser_mod",
+                        "cbd6ad2f-4e4acdd4"
+                    ]
+                ],
+                "manufacturer": null,
+                "model": null,
+                "name": "cbd6ad2f-4e4acdd4",
+                "sw_version": null,
+                "entry_type": null,
+                "id": "ef246e64175f9f831154fa98dac9c10a",
+                "via_device_id": null,
+                "area_id": null,
+                "name_by_user": null,
+                "disabled_by": null
+            },
+            {
+                "config_entries": [
+                    "3a2bdc38790e5a20a1518988b74660da"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "plex",
+                        "2df6ac84a0b9f63818658defa8cef4f8"
+                    ]
+                ],
+                "manufacturer": "Roku",
+                "model": "Plex for Roku",
+                "name": "Plex (Plex for Roku - Bedroom Roku)",
+                "sw_version": "6.7.24.7009-0d0d064dd-Plex",
+                "entry_type": null,
+                "id": "b63ec8dc2eb7dd9d706cba181a093f29",
+                "via_device_id": "21a3c6ed523c08a973287a87bb58c1b3",
+                "area_id": null,
+                "name_by_user": null,
+                "disabled_by": null
+            },
+            {
+                "config_entries": [
+                    "3a2bdc38790e5a20a1518988b74660da"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "plex",
+                        "be0d3a13d65566300ff59bf4386c4f26"
+                    ]
+                ],
+                "manufacturer": "Plex",
+                "model": "Plex for Roku",
+                "name": "Plex (Plex for Roku - Hisense 58\")",
+                "sw_version": "6.7.24.7009-0d0d064dd-Plex",
+                "entry_type": null,
+                "id": "0557b923d64cce6ece2d64bc08aaa9f3",
+                "via_device_id": "21a3c6ed523c08a973287a87bb58c1b3",
+                "area_id": null,
+                "name_by_user": null,
+                "disabled_by": null
+            },
+            {
+                "config_entries": [
+                    "3a2bdc38790e5a20a1518988b74660da"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "plex",
+                        "yixu4zwkvvoq0gd7psy7slzz"
+                    ]
+                ],
+                "manufacturer": "windows",
+                "model": "Plex HTPC for Windows",
+                "name": "Plex (army11@live.ca - Plex HTPC for Windows - Army-PC)",
+                "sw_version": "1.2.0.2247-20f0f05d",
+                "entry_type": null,
+                "id": "9d97830689f118eef328a081b664f6f9",
+                "via_device_id": "21a3c6ed523c08a973287a87bb58c1b3",
+                "area_id": null,
+                "name_by_user": null,
+                "disabled_by": null
+            },
+            {
+                "config_entries": [
+                    "18e197b9e06f62d4ed6e863b94b4c09e"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "browser_mod",
+                        "9b4c8c35-e1e0b395"
+                    ]
+                ],
+                "manufacturer": null,
+                "model": null,
+                "name": "9b4c8c35-e1e0b395",
+                "sw_version": null,
+                "entry_type": null,
+                "id": "54f59895b6c6909d95619f5ff4e94414",
+                "via_device_id": null,
+                "area_id": null,
+                "name_by_user": null,
+                "disabled_by": null
+            },
+            {
+                "config_entries": [
+                    "3a2bdc38790e5a20a1518988b74660da"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "plex",
+                        "12523315-87BC-46F6-8CCE-4863477953C0"
+                    ]
+                ],
+                "manufacturer": "iOS",
+                "model": "Plex for iOS",
+                "name": "Plex (angeleastman@hotmail.com - Plex for iOS - Angel\u2019s iPhone)",
+                "sw_version": "7.16",
+                "entry_type": null,
+                "id": "2085e6d8022e5380966c044f9deaeb70",
+                "via_device_id": "21a3c6ed523c08a973287a87bb58c1b3",
+                "area_id": null,
+                "name_by_user": null,
+                "disabled_by": null
+            },
+            {
+                "config_entries": [
+                    "3a2bdc38790e5a20a1518988b74660da"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "plex",
+                        "0df3df0da031b4600e1d0331044d9b6b"
+                    ]
+                ],
+                "manufacturer": "Roku",
+                "model": "Plex for Roku",
+                "name": "Plex (army11@live.ca - Plex for Roku - 55\" TCL Roku TV)",
+                "sw_version": "6.7.24.7009-0d0d064dd-Plex",
+                "entry_type": null,
+                "id": "0e10d56f180a05d1d93d702df3614d0d",
+                "via_device_id": "21a3c6ed523c08a973287a87bb58c1b3",
+                "area_id": null,
+                "name_by_user": null,
+                "disabled_by": null
+            },
+            {
+                "config_entries": [
+                    "3a2bdc38790e5a20a1518988b74660da"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "plex",
+                        "B38F3F8B-B88C-47A8-A661-015FDD1FEB72"
+                    ]
+                ],
+                "manufacturer": "iOS",
+                "model": "Plex for iOS",
+                "name": "Plex (mirandatoad@gmail.com - Plex for iOS - Miranda\u2019s IPhone )",
+                "sw_version": "7.16",
+                "entry_type": null,
+                "id": "c28c9ecd8c7f0a7d97cb617e53c96038",
+                "via_device_id": "21a3c6ed523c08a973287a87bb58c1b3",
+                "area_id": null,
+                "name_by_user": null,
+                "disabled_by": null
+            },
+            {
+                "config_entries": [
+                    "3a2bdc38790e5a20a1518988b74660da"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "plex",
+                        "707470beda7cdf3f5500338600ceb476"
+                    ]
+                ],
+                "manufacturer": "Roku",
+                "model": "Plex for Roku",
+                "name": "Plex (mirandatoad@gmail.com - Plex for Roku - 58\" Hisense Roku TV)",
+                "sw_version": "6.7.18.6920-44ea894e9-Plex - Stream for Free",
+                "entry_type": null,
+                "id": "52d0d7f2fb6d79503899b09187e38450",
+                "via_device_id": "21a3c6ed523c08a973287a87bb58c1b3",
+                "area_id": null,
+                "name_by_user": null,
+                "disabled_by": null
+            },
+            {
+                "config_entries": [
+                    "3a2bdc38790e5a20a1518988b74660da"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "plex",
+                        "96c4683511821cb0c3666d443256f54f"
+                    ]
+                ],
+                "manufacturer": "Roku",
+                "model": "Plex for Roku",
+                "name": "Plex (Plex for Roku - Theatre Roku)",
+                "sw_version": "6.7.24.7009-0d0d064dd-PlexPreview",
+                "entry_type": null,
+                "id": "a02dcf94afbd8610260d99d5497dd999",
+                "via_device_id": "21a3c6ed523c08a973287a87bb58c1b3",
+                "area_id": null,
+                "name_by_user": null,
+                "disabled_by": null
+            },
+            {
+                "config_entries": [
+                    "18e197b9e06f62d4ed6e863b94b4c09e"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "browser_mod",
+                        "e004ba66-8f979737"
+                    ]
+                ],
+                "manufacturer": null,
+                "model": null,
+                "name": "e004ba66-8f979737",
+                "sw_version": null,
+                "entry_type": null,
+                "id": "a4ac63e66fb4de9dad27f882773974fe",
+                "via_device_id": null,
+                "area_id": null,
+                "name_by_user": null,
+                "disabled_by": null
+            },
+            {
+                "config_entries": [
+                    "18e197b9e06f62d4ed6e863b94b4c09e"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "browser_mod",
+                        "7baf47a7-e6dadf09"
+                    ]
+                ],
+                "manufacturer": null,
+                "model": null,
+                "name": "fully_family_room_remote",
+                "sw_version": null,
+                "entry_type": null,
+                "id": "3c8eb4221a274a9db47c898b26cbfb88",
+                "via_device_id": null,
+                "area_id": null,
+                "name_by_user": null,
+                "disabled_by": null
+            },
+            {
+                "config_entries": [
+                    "18e197b9e06f62d4ed6e863b94b4c09e"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "browser_mod",
+                        "b9378ae5-dedb9946"
+                    ]
+                ],
+                "manufacturer": null,
+                "model": null,
+                "name": "b9378ae5-dedb9946",
+                "sw_version": null,
+                "entry_type": null,
+                "id": "432b136b4efc4485580e32650a2c5913",
+                "via_device_id": null,
+                "area_id": null,
+                "name_by_user": null,
+                "disabled_by": null
+            },
+            {
+                "config_entries": [
+                    "9df7baa52d7fb676ef9d7839bce936ef"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "mobile_app",
+                        "cf3673de992e0f90"
+                    ]
+                ],
+                "manufacturer": "HXY",
+                "model": "BISON",
+                "name": "Jenn Phone",
+                "sw_version": "29",
+                "entry_type": null,
+                "id": "9050310743c794b0fc2f2b68e894aac2",
+                "via_device_id": null,
+                "area_id": null,
+                "name_by_user": null,
+                "disabled_by": null
+            },
+            {
+                "config_entries": [
+                    "18e197b9e06f62d4ed6e863b94b4c09e"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "browser_mod",
+                        "199d0895-057f393f"
+                    ]
+                ],
+                "manufacturer": null,
+                "model": null,
+                "name": "199d0895-057f393f",
+                "sw_version": null,
+                "entry_type": null,
+                "id": "9c7486bb60074fe51e9d1cf0e399b663",
+                "via_device_id": null,
+                "area_id": null,
+                "name_by_user": null,
+                "disabled_by": null
+            },
+            {
+                "config_entries": [
+                    "3a2bdc38790e5a20a1518988b74660da"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "plex",
+                        "d4d6401ba24af6c24d2c8bc53191c42c"
+                    ]
+                ],
+                "manufacturer": "Roku",
+                "model": "Plex for Roku",
+                "name": "Plex (Tyquila - Plex for Roku - Noahs Room!)",
+                "sw_version": "6.7.24.7009-0d0d064dd-Plex",
+                "entry_type": null,
+                "id": "524861e3adb1bd3568819298ab65ffa9",
+                "via_device_id": "21a3c6ed523c08a973287a87bb58c1b3",
+                "area_id": null,
+                "name_by_user": null,
+                "disabled_by": null
+            },
+            {
+                "config_entries": [
+                    "3a2bdc38790e5a20a1518988b74660da"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "plex",
+                        "C99C8AF6-8FDD-41C1-8CA4-A5FB11E65E13"
+                    ]
+                ],
+                "manufacturer": "iOS",
+                "model": "Plex for iOS",
+                "name": "Plex (jevans9451@gmail.com - Plex for iOS - Jack\u2019s iPhone)",
+                "sw_version": "7.17",
+                "entry_type": null,
+                "id": "d6108bf9d66a2d9420bba594fcf7e747",
+                "via_device_id": "21a3c6ed523c08a973287a87bb58c1b3",
+                "area_id": null,
+                "name_by_user": null,
+                "disabled_by": null
+            },
+            {
+                "config_entries": [
+                    "3a2bdc38790e5a20a1518988b74660da"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "plex",
+                        "r3iffh3l7vdbmrjg3yffduyn"
+                    ]
+                ],
+                "manufacturer": "Xbox",
+                "model": "Plex for Xbox",
+                "name": "Plex (jevans9451@gmail.com - Plex for Xbox - XboxOne)",
+                "sw_version": "5.14.1",
+                "entry_type": null,
+                "id": "12f4596e7cc7529d0a3ac5385788c734",
+                "via_device_id": "21a3c6ed523c08a973287a87bb58c1b3",
+                "area_id": null,
+                "name_by_user": null,
+                "disabled_by": null
+            },
+            {
+                "config_entries": [
+                    "3a2bdc38790e5a20a1518988b74660da"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "plex",
+                        "ue60sw2qqswgyjrs9s6q51td"
+                    ]
+                ],
+                "manufacturer": "Chromecast",
+                "model": "Plex Cast",
+                "name": "Plex (armeee - Plex Cast - Chromecast)",
+                "sw_version": "4.54.1",
+                "entry_type": null,
+                "id": "2e8eacf1a769a7e14e0318be5d3c4a68",
+                "via_device_id": "21a3c6ed523c08a973287a87bb58c1b3",
+                "area_id": null,
+                "name_by_user": null,
+                "disabled_by": null
+            },
+            {
+                "config_entries": [
+                    "3a2bdc38790e5a20a1518988b74660da"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "plex",
+                        "13df31cf8f417b42cd5ef7a5ce94bef5"
+                    ]
+                ],
+                "manufacturer": "Roku",
+                "model": "Plex for Roku",
+                "name": "Plex (travisclark7@hotmail.com - Plex for Roku - 65\" TCL Roku TV)",
+                "sw_version": "6.7.24.7009-0d0d064dd-Plex",
+                "entry_type": null,
+                "id": "ea36aa2b5dea2c169ecb9fbaf774d5d0",
+                "via_device_id": "21a3c6ed523c08a973287a87bb58c1b3",
+                "area_id": null,
+                "name_by_user": null,
+                "disabled_by": null
+            },
+            {
+                "config_entries": [
+                    "18e197b9e06f62d4ed6e863b94b4c09e"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "browser_mod",
+                        "b113cd73-b1459120"
+                    ]
+                ],
+                "manufacturer": null,
+                "model": null,
+                "name": "b113cd73-b1459120",
+                "sw_version": null,
+                "entry_type": null,
+                "id": "eb9fc77c72ac38bdd7912ad9638f697e",
+                "via_device_id": null,
+                "area_id": null,
+                "name_by_user": null,
+                "disabled_by": null
+            },
+            {
+                "config_entries": [
+                    "18e197b9e06f62d4ed6e863b94b4c09e"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "browser_mod",
+                        "ece20e5d-010ee35d"
+                    ]
+                ],
+                "manufacturer": null,
+                "model": null,
+                "name": "ece20e5d-010ee35d",
+                "sw_version": null,
+                "entry_type": null,
+                "id": "699b8cc465741b2af82c1f0d75b0b4cf",
+                "via_device_id": null,
+                "area_id": null,
+                "name_by_user": null,
+                "disabled_by": null
+            },
+            {
+                "config_entries": [
+                    "3a2bdc38790e5a20a1518988b74660da"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "plex",
+                        "be0d3a13d65566300"
+                    ]
+                ],
+                "manufacturer": "Plex",
+                "model": "Plex for Roku",
+                "name": "Plex (Plex for Roku - Hisense 58\")",
+                "sw_version": "6.7.24.7009-0d0d064dd-PlexPreview",
+                "entry_type": null,
+                "id": "bf8192d9da9137d10528913ffa742685",
+                "via_device_id": "21a3c6ed523c08a973287a87bb58c1b3",
+                "area_id": null,
+                "name_by_user": null,
+                "disabled_by": null
+            },
+            {
+                "config_entries": [
+                    "d0ad36e5a0186ca1c99295236fe7493d"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "tradfri",
+                        "7e1509520440004b"
+                    ]
+                ],
+                "manufacturer": "IKEA of Sweden",
+                "model": "E1526",
+                "name": "Gateway",
+                "sw_version": "1.13.25",
+                "entry_type": null,
+                "id": "2b8e6453c76d4e526d7a0610f57d2e2b",
+                "via_device_id": null,
+                "area_id": null,
+                "name_by_user": null,
+                "disabled_by": null
+            },
+            {
+                "config_entries": [
+                    "d0ad36e5a0186ca1c99295236fe7493d"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "tradfri",
+                        65645
+                    ]
+                ],
+                "manufacturer": "IKEA of Sweden",
+                "model": "TRADFRI bulb GU10 W 400lm",
+                "name": "Theatre FL",
+                "sw_version": "2.3.068",
+                "entry_type": null,
+                "id": "b3a3502cd817bc335ca6f69725a0b0c9",
+                "via_device_id": "2b8e6453c76d4e526d7a0610f57d2e2b",
+                "area_id": null,
+                "name_by_user": null,
+                "disabled_by": null
+            },
+            {
+                "config_entries": [
+                    "d0ad36e5a0186ca1c99295236fe7493d"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "tradfri",
+                        65624
+                    ]
+                ],
+                "manufacturer": "IKEA of Sweden",
+                "model": "TRADFRI bulb E26 opal 1000lm",
+                "name": "Family Room 1",
+                "sw_version": "2.3.068",
+                "entry_type": null,
+                "id": "a4060b52153f61fb42d0cfb6c2708e2b",
+                "via_device_id": "2b8e6453c76d4e526d7a0610f57d2e2b",
+                "area_id": null,
+                "name_by_user": null,
+                "disabled_by": null
+            },
+            {
+                "config_entries": [
+                    "d0ad36e5a0186ca1c99295236fe7493d"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "tradfri",
+                        65537
+                    ]
+                ],
+                "manufacturer": "IKEA of Sweden",
+                "model": "TRADFRI bulb E26 opal 1000lm",
+                "name": "Jenn Bedroom",
+                "sw_version": "2.3.068",
+                "entry_type": null,
+                "id": "1583677474ca34d50663eeb752690589",
+                "via_device_id": "2b8e6453c76d4e526d7a0610f57d2e2b",
+                "area_id": null,
+                "name_by_user": null,
+                "disabled_by": null
+            },
+            {
+                "config_entries": [
+                    "d0ad36e5a0186ca1c99295236fe7493d"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "tradfri",
+                        65625
+                    ]
+                ],
+                "manufacturer": "IKEA of Sweden",
+                "model": "TRADFRI bulb E26 W opal 1000lm",
+                "name": "Family Room 2",
+                "sw_version": "2.3.068",
+                "entry_type": null,
+                "id": "917744f6990ccf2411aaa3d63535a14b",
+                "via_device_id": "2b8e6453c76d4e526d7a0610f57d2e2b",
+                "area_id": null,
+                "name_by_user": null,
+                "disabled_by": null
+            },
+            {
+                "config_entries": [
+                    "d0ad36e5a0186ca1c99295236fe7493d"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "tradfri",
+                        65642
+                    ]
+                ],
+                "manufacturer": "IKEA of Sweden",
+                "model": "TRADFRI bulb GU10 W 400lm",
+                "name": "Theatre FR",
+                "sw_version": "2.3.068",
+                "entry_type": null,
+                "id": "a6b26914d084b09e82d449f498150ec7",
+                "via_device_id": "2b8e6453c76d4e526d7a0610f57d2e2b",
+                "area_id": null,
+                "name_by_user": null,
+                "disabled_by": null
+            },
+            {
+                "config_entries": [
+                    "d0ad36e5a0186ca1c99295236fe7493d"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "tradfri",
+                        65632
+                    ]
+                ],
+                "manufacturer": "IKEA of Sweden",
+                "model": "TRADFRI bulb GU10 W 400lm",
+                "name": "Kitchen Island 1",
+                "sw_version": "2.3.068",
+                "entry_type": null,
+                "id": "5225759d35b47f5605d86acfa61a7172",
+                "via_device_id": "2b8e6453c76d4e526d7a0610f57d2e2b",
+                "area_id": null,
+                "name_by_user": null,
+                "disabled_by": null
+            },
+            {
+                "config_entries": [
+                    "d0ad36e5a0186ca1c99295236fe7493d"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "tradfri",
+                        65633
+                    ]
+                ],
+                "manufacturer": "IKEA of Sweden",
+                "model": "TRADFRI bulb GU10 W 400lm",
+                "name": "Kitchen Island 2",
+                "sw_version": "2.3.068",
+                "entry_type": null,
+                "id": "6729cc92d53672a3cc04fc64a9aeef1f",
+                "via_device_id": "2b8e6453c76d4e526d7a0610f57d2e2b",
+                "area_id": null,
+                "name_by_user": null,
+                "disabled_by": null
+            },
+            {
+                "config_entries": [
+                    "d0ad36e5a0186ca1c99295236fe7493d"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "tradfri",
+                        65635
+                    ]
+                ],
+                "manufacturer": "IKEA of Sweden",
+                "model": "TRADFRI bulb GU10 W 400lm",
+                "name": "Kitchen Island 3",
+                "sw_version": "2.3.068",
+                "entry_type": null,
+                "id": "57dd598d7f29ec17cc7ba197697d707c",
+                "via_device_id": "2b8e6453c76d4e526d7a0610f57d2e2b",
+                "area_id": null,
+                "name_by_user": null,
+                "disabled_by": null
+            },
+            {
+                "config_entries": [
+                    "d0ad36e5a0186ca1c99295236fe7493d"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "tradfri",
+                        65643
+                    ]
+                ],
+                "manufacturer": "IKEA of Sweden",
+                "model": "TRADFRI bulb GU10 W 400lm",
+                "name": "Theatre RL",
+                "sw_version": "2.3.068",
+                "entry_type": null,
+                "id": "76b4b2b758439260b9a43de25bf94aaf",
+                "via_device_id": "2b8e6453c76d4e526d7a0610f57d2e2b",
+                "area_id": null,
+                "name_by_user": null,
+                "disabled_by": null
+            },
+            {
+                "config_entries": [
+                    "d0ad36e5a0186ca1c99295236fe7493d"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "tradfri",
+                        65641
+                    ]
+                ],
+                "manufacturer": "IKEA of Sweden",
+                "model": "TRADFRI bulb GU10 W 400lm",
+                "name": "Theatre RR",
+                "sw_version": "2.3.068",
+                "entry_type": null,
+                "id": "db2062e50c8009fdf18d5eabacba130b",
+                "via_device_id": "2b8e6453c76d4e526d7a0610f57d2e2b",
+                "area_id": null,
+                "name_by_user": null,
+                "disabled_by": null
+            },
+            {
+                "config_entries": [
+                    "d0ad36e5a0186ca1c99295236fe7493d"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "tradfri",
+                        65557
+                    ]
+                ],
+                "manufacturer": "IKEA of Sweden",
+                "model": "TRADFRI bulb E26 opal 1000lm",
+                "name": "Couch Lamp",
+                "sw_version": "2.3.068",
+                "entry_type": null,
+                "id": "b35e762a2b403c779355a8fb19633467",
+                "via_device_id": "2b8e6453c76d4e526d7a0610f57d2e2b",
+                "area_id": null,
+                "name_by_user": null,
+                "disabled_by": null
+            },
+            {
+                "config_entries": [
+                    "d0ad36e5a0186ca1c99295236fe7493d"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "tradfri",
+                        65536
+                    ]
+                ],
+                "manufacturer": "IKEA of Sweden",
+                "model": "TRADFRI wireless dimmer",
+                "name": "Jenn Bedroom Dimmer",
+                "sw_version": "2.3.028",
+                "entry_type": null,
+                "id": "cc1bb2ad95d4146c66feaf84821b943a",
+                "via_device_id": "2b8e6453c76d4e526d7a0610f57d2e2b",
+                "area_id": null,
+                "name_by_user": null,
+                "disabled_by": null
+            },
+            {
+                "config_entries": [
+                    "d0ad36e5a0186ca1c99295236fe7493d"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "tradfri",
+                        65640
+                    ]
+                ],
+                "manufacturer": "IKEA of Sweden",
+                "model": "TRADFRI wireless dimmer",
+                "name": "Theatre Dimmer",
+                "sw_version": "2.3.028",
+                "entry_type": null,
+                "id": "404828397c076349c9674a2a7f222d94",
+                "via_device_id": "2b8e6453c76d4e526d7a0610f57d2e2b",
+                "area_id": null,
+                "name_by_user": null,
+                "disabled_by": null
+            },
+            {
+                "config_entries": [
+                    "d0ad36e5a0186ca1c99295236fe7493d"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "tradfri",
+                        65647
+                    ]
+                ],
+                "manufacturer": "IKEA of Sweden",
+                "model": "TRADFRI wireless dimmer",
+                "name": "Kitchen Island Dimmer",
+                "sw_version": "2.3.028",
+                "entry_type": null,
+                "id": "1fc5fd2b5518792ce29ed1669bb64b58",
+                "via_device_id": "2b8e6453c76d4e526d7a0610f57d2e2b",
+                "area_id": null,
+                "name_by_user": null,
+                "disabled_by": null
+            },
+            {
+                "config_entries": [
+                    "d0ad36e5a0186ca1c99295236fe7493d"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "tradfri",
+                        65636
+                    ]
+                ],
+                "manufacturer": "IKEA of Sweden",
+                "model": "TRADFRI wireless dimmer",
+                "name": "Family Room Dimmer",
+                "sw_version": "2.3.028",
+                "entry_type": null,
+                "id": "d0b876a12c3ae0f0b6da0e1208270b02",
+                "via_device_id": "2b8e6453c76d4e526d7a0610f57d2e2b",
+                "area_id": null,
+                "name_by_user": null,
+                "disabled_by": null
+            },
+            {
+                "config_entries": [
+                    "18e197b9e06f62d4ed6e863b94b4c09e"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "browser_mod",
+                        "cb45cbf2-d2136278"
+                    ]
+                ],
+                "manufacturer": null,
+                "model": null,
+                "name": "cb45cbf2-d2136278",
+                "sw_version": null,
+                "entry_type": null,
+                "id": "63c035c5eaa9a935741e3dae62da80ad",
+                "via_device_id": null,
+                "area_id": null,
+                "name_by_user": null,
+                "disabled_by": null
+            },
+            {
+                "config_entries": [
+                    "18e197b9e06f62d4ed6e863b94b4c09e"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "browser_mod",
+                        "19cf4a42-a31e0d29"
+                    ]
+                ],
+                "manufacturer": null,
+                "model": null,
+                "name": "19cf4a42-a31e0d29",
+                "sw_version": null,
+                "entry_type": null,
+                "id": "98f73d8842ba57153a6cc6c556606e05",
+                "via_device_id": null,
+                "area_id": null,
+                "name_by_user": null,
+                "disabled_by": null
+            },
+            {
+                "config_entries": [
+                    "3a2bdc38790e5a20a1518988b74660da"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "plex",
+                        "88BF362F-ED8D-4470-A588-805792DF5C94"
+                    ]
+                ],
+                "manufacturer": "iOS",
+                "model": "Plex for iOS",
+                "name": "Plex (huntley77 - Plex for iOS - iPhone)",
+                "sw_version": "7.16",
+                "entry_type": null,
+                "id": "9538eef855cc1dba7d26ffff956a8dc0",
+                "via_device_id": "21a3c6ed523c08a973287a87bb58c1b3",
+                "area_id": null,
+                "name_by_user": null,
+                "disabled_by": null
+            },
+            {
+                "config_entries": [
+                    "18e197b9e06f62d4ed6e863b94b4c09e"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "browser_mod",
+                        "a4bd0bc2-a4ee2525"
+                    ]
+                ],
+                "manufacturer": null,
+                "model": null,
+                "name": "a4bd0bc2-a4ee2525",
+                "sw_version": null,
+                "entry_type": null,
+                "id": "8dd18fad15764261945e70709a91dcd0",
+                "via_device_id": null,
+                "area_id": null,
+                "name_by_user": null,
+                "disabled_by": null
+            },
+            {
+                "config_entries": [
+                    "18e197b9e06f62d4ed6e863b94b4c09e"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "browser_mod",
+                        "fab83b8a-bd39fcc1"
+                    ]
+                ],
+                "manufacturer": null,
+                "model": null,
+                "name": "fab83b8a-bd39fcc1",
+                "sw_version": null,
+                "entry_type": null,
+                "id": "18f5c53c0e8628e9962b735750eed814",
+                "via_device_id": null,
+                "area_id": null,
+                "name_by_user": null,
+                "disabled_by": null
+            },
+            {
+                "config_entries": [
+                    "18e197b9e06f62d4ed6e863b94b4c09e"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "browser_mod",
+                        "440f591a-44783018"
+                    ]
+                ],
+                "manufacturer": null,
+                "model": null,
+                "name": "440f591a-44783018",
+                "sw_version": null,
+                "entry_type": null,
+                "id": "4048d86830b21a34becb3413c7e04280",
+                "via_device_id": null,
+                "area_id": null,
+                "name_by_user": null,
+                "disabled_by": null
+            },
+            {
+                "config_entries": [
+                    "18e197b9e06f62d4ed6e863b94b4c09e"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "browser_mod",
+                        "9d2ead5b-6ab696cf"
+                    ]
+                ],
+                "manufacturer": null,
+                "model": null,
+                "name": "9d2ead5b-6ab696cf",
+                "sw_version": null,
+                "entry_type": null,
+                "id": "6804f83aed93619aca7b2904237e4b08",
+                "via_device_id": null,
+                "area_id": null,
+                "name_by_user": null,
+                "disabled_by": null
+            },
+            {
+                "config_entries": [
+                    "18e197b9e06f62d4ed6e863b94b4c09e"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "browser_mod",
+                        "6c548860-f04bdaf1"
+                    ]
+                ],
+                "manufacturer": null,
+                "model": null,
+                "name": "6c548860-f04bdaf1",
+                "sw_version": null,
+                "entry_type": null,
+                "id": "bed86d4a758d6ca6064551548cf84ac2",
+                "via_device_id": null,
+                "area_id": null,
+                "name_by_user": null,
+                "disabled_by": null
+            },
+            {
+                "config_entries": [
+                    "18e197b9e06f62d4ed6e863b94b4c09e"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "browser_mod",
+                        "6c3ee8bd-026190fd"
+                    ]
+                ],
+                "manufacturer": null,
+                "model": null,
+                "name": "6c3ee8bd-026190fd",
+                "sw_version": null,
+                "entry_type": null,
+                "id": "cc81d1b14b92835a47215661bdf11dc0",
+                "via_device_id": null,
+                "area_id": null,
+                "name_by_user": null,
+                "disabled_by": null
+            }
+        ],
+        "deleted_devices": [
+            {
+                "config_entries": [
+                    "3a2bdc38790e5a20a1518988b74660da"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "plex",
+                        "b2mb1wrzvpfvfe82eiv2j915"
+                    ]
+                ],
+                "id": "4a91a8be28ab4189ff5d237cfa76170f",
+                "orphaned_timestamp": null
+            },
+            {
+                "config_entries": [
+                    "3a2bdc38790e5a20a1518988b74660da"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "plex",
+                        "4l66hkqbz2xn6vvovbdpnmik"
+                    ]
+                ],
+                "id": "37acc1acedcdc3fae2d1d1d47c6b2d85",
+                "orphaned_timestamp": null
+            },
+            {
+                "config_entries": [
+                    "3a2bdc38790e5a20a1518988b74660da"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "plex",
+                        "rh2mf5nlewayiun922v7prs6"
+                    ]
+                ],
+                "id": "7bd625758fd34396e198df63c5ef6846",
+                "orphaned_timestamp": null
+            },
+            {
+                "config_entries": [
+                    "3a2bdc38790e5a20a1518988b74660da"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "plex",
+                        "uci3dccgsr6hb534rpu334az"
+                    ]
+                ],
+                "id": "0ec1fa99e51e2f8460a77f830bea933c",
+                "orphaned_timestamp": null
+            },
+            {
+                "config_entries": [
+                    "3a2bdc38790e5a20a1518988b74660da"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "plex",
+                        "j1vgkcsaz6bkn9hp73f66eor"
+                    ]
+                ],
+                "id": "5fc512187dc5d125f331d26e6b9ea38f",
+                "orphaned_timestamp": null
+            },
+            {
+                "config_entries": [
+                    "3a2bdc38790e5a20a1518988b74660da"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "plex",
+                        "3ze4jpdtdmm0jumsnvfhh1v3"
+                    ]
+                ],
+                "id": "02ab84a32dd6a10d6d0b37653665d724",
+                "orphaned_timestamp": null
+            },
+            {
+                "config_entries": [
+                    "3a2bdc38790e5a20a1518988b74660da"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "plex",
+                        "0h0l4afgjhzar9rnr4yweqer"
+                    ]
+                ],
+                "id": "16d4fa58f897bd4866767a9872982a52",
+                "orphaned_timestamp": null
+            },
+            {
+                "config_entries": [],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "mobile_app",
+                        "d4e0b2e7b53286ab"
+                    ]
+                ],
+                "id": "4c39cefcf5f406c5ed603adbc9502913",
+                "orphaned_timestamp": 1619091865.5925658
+            },
+            {
+                "config_entries": [],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "mobile_app",
+                        "687df5fc5901b93f"
+                    ]
+                ],
+                "id": "aa07778f55086a8777bf4a42ad85edd1",
+                "orphaned_timestamp": 1619482900.8793113
+            },
+            {
+                "config_entries": [],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "tradfri",
+                        65637
+                    ]
+                ],
+                "id": "9e329cc3e45f0fa537efeccc3c9da62b",
+                "orphaned_timestamp": 1620569557.4270425
+            }
+        ]
+    }
+}

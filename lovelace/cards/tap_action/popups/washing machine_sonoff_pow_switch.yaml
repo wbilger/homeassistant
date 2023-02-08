@@ -1,0 +1,9 @@
+action: fire-dom-event
+browser_mod:
+  service: browser_mod.popup
+  data:
+    title: Washing Machine Power TOP
+    content:
+      type: custom:more-info-card
+      entity_id: switch.sonoff_pow_01 #washing machine Sonoff POW switch
+      title: Washing Machine Power

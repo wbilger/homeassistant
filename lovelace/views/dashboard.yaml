@@ -5,10 +5,10 @@ panel: true
 cards:
   - type: custom:vertical-stack-in-card
     cards:
-#################################################################
-# VIEW_home                                                     
-#   Header banner - date/time/weather summaries 
-################################################################# 
+      #################################################################
+      # VIEW_home
+      #   Header banner - date/time/weather summaries
+      #################################################################
       - type: picture-elements
         image: /local/photos/transparent.png
         aspect_ratio: 4.5%
@@ -17,18 +17,17 @@ cards:
             entity: sensor.date_friendly_short
             tap_action:
               action: navigate
-              navigation_path: /lovelace/calendar
-            style: 
+              navigation_path: /calendar
+            style:
               top: 1%
               left: 1%
               transform: none
               font-size: 22px
               font-weight: bold
           - type: state-label
-            entity: input_text.dark_sky_summaries   #rotating minutely/hourly/daily summaries
+            entity: input_text.weather_summaries #rotating weather summaries and alerts
             tap_action:
-              action: navigate
-              navigation_path: /lovelace/weather
+              action: none
             style:
               font-size: 20px
               font-weight: bold
@@ -39,17 +38,17 @@ cards:
             entity: sensor.time_friendly
             tap_action:
               action: navigate
-              navigation_path: /lovelace/calendar
+              navigation_path: /calendar
             style:
               top: 50%
               left: 90%
               color: orange
               font-size: 32px
               font-weight: bold
-#################################################################
-# VIEW_home                                                     #
-#   Header banner - column 1: Calendar / column 2: Weather      #
-################################################################# 
+      #################################################################
+      # VIEW_home                                                     #
+      #   Header banner - column 1: Calendar / column 2: Weather      #
+      #################################################################
       - type: horizontal-stack
         cards:
           - type: custom:atomic-calendar-revive
@@ -57,34 +56,40 @@ cards:
             showWeekDay: true
             sortByStartTime: true
             showRelativeTime: false
+            showLoader: false
             showProgressBar: false
-            showCurrentEventLine: true
+            showCurrentEventLine: false #true
             progressBarColor: white
             locationTextSize: 85
             disableEventLink: true
             disableLocationLink: true
+            cardHeight: 225px
             entities:
               - calendar.ontario_holidays
               - calendar.bilger_family
               - calendar.bilger_work
               - calendar.bilger_wayne
-              - calendar.bilger_wayne_slopitch
-              - calendar.bilger_wayne_tecumsehs_umpiring
+              - calendar.bilger_wayne_to_do
+              - calendar.bilger_wayne_talons
               - calendar.bilger_jenn
               - calendar.bilger_kale
               - calendar.bilger_jalynne
               - calendar.curbside_pickup_garbage_day
               - calendar.curbside_pickup_yard_waste
+          - type: custom:weather-card
+            entity: weather.london
+            current: true
+            details: false
+            forecast: true
             style: |
               ha-card {
-                height: 225px;
-                overflow: scroll
+                height: 220px;
               }
-          - !include /config/lovelace/cards/weather.yaml
-#################################################################
-# VIEW_home                                                     #
-#   Header banner - card/column 1 (of 3) - Home Status          #
-################################################################# 
+
+      #################################################################
+      # VIEW_home                                                     #
+      #   Header banner - card/column 1 (of 3) - Home Status          #
+      #################################################################
       - type: picture-elements
         image: /local/photos/pic_home_bilger-small.png
         aspect_ratio: 30%
@@ -92,7 +97,7 @@ cards:
           - type: image #used to give border line at top of image
             image: /local/photos/transparent.png
             aspect_ratio: 30%
-            style:                  
+            style:
               width: 101%
               left: 50%
               top: 51%
@@ -100,23 +105,14 @@ cards:
           - type: conditional
             conditions:
               - entity: binary_sensor.device_timer_xmas_tree
-                state: 'on'
-            elements:  
+                state: "on"
+            elements:
               - type: image
                 image: /local/photos/icon_christmas-tree.png
                 entity: light.christmas_tree_lights
                 tap_action:
                   action: toggle
-                hold_action:
-                  action: fire-dom-event
-                  browser_mod:
-                    command: call-service
-                    service: browser_mod.popup
-                    service_data:
-                      deviceID: this
-                      title: Christmas Tree Timer
-                      card: 
-                        !include /config/lovelace/cards/christmas_tree_timer.yaml  
+                hold_action: !include /config/lovelace/cards/tap_action/popups/christmas_tree_lights.yaml
                 state_filter:
                   "off": opacity(60%)
                   "unavailable": opacity(30%)
@@ -127,11 +123,11 @@ cards:
           - type: image
             image: /local/photos/circle_green.png
             entity: lock.schlage_allegion_be469_touchscreen_deadbolt_locked_frontdoor
-            tap_action: 
+            tap_action:
               action: toggle
             hold_action:
               action: more-info
-            state_image:  
+            state_image:
               "locked": /local/photos/circle_red.png
             state_filter:
               "unavailable": opacity(30%) brightness(10%)
@@ -142,11 +138,11 @@ cards:
           - type: image
             image: /local/photos/lock_door_unlocked.png
             entity: lock.schlage_allegion_be469_touchscreen_deadbolt_locked_frontdoor
-            tap_action: 
+            tap_action:
               action: toggle
             hold_action:
               action: more-info
-            state_image:  
+            state_image:
               "locked": /local/photos/lock_door_locked.png
             state_filter:
               "unlocked": opacity(40%)
@@ -158,17 +154,7 @@ cards:
           - type: image
             entity: automation.notify_washing_machine_stop
             image: /local/photos/icon_washing_machine.png
-            tap_action:
-              action: fire-dom-event
-              browser_mod:
-                command: call-service
-                service: browser_mod.popup
-                service_data:
-                  deviceID: this
-                  title: Washing Machine
-                  large: true
-                  card: 
-                    !include /config/lovelace/cards/washing_machine.yaml
+            tap_action: !include /config/lovelace/cards/tap_action/popups/washing_machine.yaml
             state_filter:
               "off": opacity(20%)
             style:
@@ -219,7 +205,7 @@ cards:
               width: 9%
               top: 83%
               left: 36%
-              
+
           - type: image
             entity: sensor.ecobee_temperature_target_real
             image: /local/photos/target.png
@@ -300,8 +286,8 @@ cards:
             show_state: false
             tap_action:
               action: navigate
-              navigation_path: /lovelace/map
-            hold_action: 
+              navigation_path: /map
+            hold_action:
               action: more-info
             state_image:
               "Away": /local/photos/wayne_badge_away.png
@@ -320,7 +306,7 @@ cards:
             entity: sensor.location_away_wayne
             tap_action:
               action: navigate
-              navigation_path: /lovelace/map
+              navigation_path: /map
             style:
               font-weight: bold
               top: 29%
@@ -333,8 +319,8 @@ cards:
             show_state: false
             tap_action:
               action: navigate
-              navigation_path: /lovelace/map
-            hold_action: 
+              navigation_path: /map
+            hold_action:
               action: more-info
             state_image:
               "Away": /local/photos/jenn_badge_away.png
@@ -353,7 +339,7 @@ cards:
             entity: sensor.location_away_jenn
             tap_action:
               action: navigate
-              navigation_path: /lovelace/map
+              navigation_path: /map
             style:
               font-weight: bold
               top: 29%
@@ -366,8 +352,8 @@ cards:
             show_state: false
             tap_action:
               action: navigate
-              navigation_path: /lovelace/map
-            hold_action: 
+              navigation_path: /map
+            hold_action:
               action: more-info
             state_image:
               "Away": /local/photos/kale_badge_away.png
@@ -386,7 +372,7 @@ cards:
             entity: sensor.location_away_kale
             tap_action:
               action: navigate
-              navigation_path: /lovelace/map
+              navigation_path: /map
             style:
               font-weight: bold
               top: 60%
@@ -399,8 +385,8 @@ cards:
             show_state: false
             tap_action:
               action: navigate
-              navigation_path: /lovelace/map
-            hold_action: 
+              navigation_path: /map
+            hold_action:
               action: more-info
             state_image:
               "Away": /local/photos/jalynne_badge_away.png
@@ -419,24 +405,25 @@ cards:
             entity: sensor.location_away_jalynne
             tap_action:
               action: navigate
-              navigation_path: /lovelace/map
+              navigation_path: /map
             style:
               font-weight: bold
               top: 60%
               left: 78%
               color: lightgray
 
-#################################################################
-# VIEW_home                                           
-#   Middle Section (rooms and lights)
-################################################################# 
+      #################################################################
+      # VIEW_home
+      #   Middle Section (rooms and lights)
+      #################################################################
+
       - type: picture-elements
         image: /local/photos/transparent.png
         aspect_ratio: 76.5%
         elements:
           - type: image
             image: /local/photos/yellow.png
-            aspect_ratio: 33%  
+            aspect_ratio: 33%
             entity: switch.entrance_way_lights
             tap_action:
               action: toggle
@@ -452,7 +439,7 @@ cards:
           - type: image
             image: /local/photos/light_outside.png
             entity: light.entrance_light_porch
-            tap_action: 
+            tap_action:
               action: toggle
             state_filter:
               "off": opacity(33%)
@@ -464,7 +451,7 @@ cards:
           - type: custom:text-action-element
             text: Entrance
             entity: switch.entrance_way_lights
-            tap_action: 
+            tap_action:
               action: toggle
             style:
               top: 9%
@@ -474,7 +461,7 @@ cards:
           - type: custom:text-action-element
             text: Way
             entity: switch.entrance_way_lights
-            tap_action: 
+            tap_action:
               action: toggle
             style:
               top: 13%
@@ -496,7 +483,7 @@ cards:
 
           - type: image
             image: /local/photos/yellow.png
-            aspect_ratio: 33%  
+            aspect_ratio: 33%
             entity: switch.bedroom_lights
             tap_action:
               action: call-service
@@ -563,7 +550,7 @@ cards:
 
           - type: image
             image: /local/photos/yellow.png
-            aspect_ratio: 35%  
+            aspect_ratio: 35%
             entity: switch.dining_room_lights
             tap_action:
               action: call-service
@@ -607,8 +594,7 @@ cards:
           - type: image
             image: /local/photos/icon_irobot.png
             entity: vacuum.boomba
-            tap_action: 
-              !include /config/lovelace/cards/tap_action/popups/vacuum.yaml
+            tap_action: !include /config/lovelace/cards/tap_action/popups/vacuum.yaml
             hold_action:
               action: call-service
               service: vacuum.toggle
@@ -625,8 +611,7 @@ cards:
           - type: image
             image: /local/photos/transparent.png
             entity: sensor.vacuum_bin_full
-            tap_action: 
-              !include /config/lovelace/cards/tap_action/popups/vacuum.yaml
+            tap_action: !include /config/lovelace/cards/tap_action/popups/vacuum.yaml
             hold_action:
               action: toggle
             state_image:
@@ -637,9 +622,8 @@ cards:
               left: 82%
           - type: state-label
             entity: sensor.vacuum_bin_status
-            tap_action: 
-              !include /config/lovelace/cards/tap_action/popups/vacuum.yaml
-            hold_action: 
+            tap_action: !include /config/lovelace/cards/tap_action/popups/vacuum.yaml
+            hold_action:
               action: call-service
               service: vacuum.toggle
               service_data:
@@ -718,7 +702,7 @@ cards:
           - type: image
             image: /local/photos/light_lamp.png
             entity: light.front_window
-            tap_action: 
+            tap_action:
               action: toggle
             state_filter:
               "off": opacity(33%)
@@ -729,7 +713,7 @@ cards:
               left: 7%
           - type: image
             image: /local/photos/light_lamp_floor.png
-            entity: light.dining_room_plug
+            entity: light.dining_room_lamp
             tap_action:
               action: toggle
             state_filter:
@@ -758,7 +742,7 @@ cards:
           - type: custom:text-action-element
             text: Sink
             entity: light.kitchen_sink_light
-            tap_action: 
+            tap_action:
               action: toggle
             style:
               top: 96%
@@ -780,10 +764,11 @@ cards:
 
           - type: image
             image: /local/photos/yellow.png
-            aspect_ratio: 33.25%  
+            aspect_ratio: 33.25%
             entity: light.kitchen_island_lights
             tap_action:
               action: toggle
+            double_tap_action: !include /config/lovelace/cards/tap_action/popups/kitchen_island_lights.yaml
             state_filter:
               "off": opacity(10%) hue-rotate(170deg) brightness(200%)
               "on": opacity(20%)
@@ -837,6 +822,7 @@ cards:
             tap_action:
               action: call-service
               service: script.kitchen_lights_night_dim
+              double_tap_action: !include /config/lovelace/cards/tap_action/popups/kitchen_island_lights.yaml
             style:
               width: 5%
               top: 84%
@@ -853,6 +839,7 @@ cards:
               color: lightgray
             tap_action:
               action: toggle
+            double_tap_action: !include /config/lovelace/cards/tap_action/popups/kitchen_island_lights.yaml
           - type: image
             image: /local/photos/levels.png
             entity: light.kitchen_island_lights
@@ -865,39 +852,8 @@ cards:
               width: 3%
               top: 96%
               left: 70.5%
-            tap_action:
-              action: fire-dom-event
-              browser_mod:
-                command: call-service
-                service: browser_mod.popup
-                service_data:
-                  deviceID: this
-                  title: "Kitchen Island Lights"
-                  card:
-                    type: entities
-                    #show_header_toggle: false
-                    entities:
-                      - type: custom:slider-entity-row
-                        entity: light.kitchen_island_1
-                        name: Left
-                        icon: mdi:spotlight-beam
-                        toggle: true
-                      - type: custom:slider-entity-row
-                        entity: light.kitchen_island_2
-                        name: Middle
-                        icon: mdi:spotlight-beam
-                        toggle: true
-                      - type: custom:slider-entity-row
-                        entity: light.kitchen_island_3
-                        name: Right
-                        icon: mdi:spotlight-beam
-                        toggle: true
-                      - type: custom:text-divider-row  
-                        text: "Island"
-                      - type: custom:slider-entity-row
-                        entity: light.kitchen_island_lights
-                        full_row: true
-                        toggle: true
+            tap_action: !include /config/lovelace/cards/tap_action/popups/kitchen_island_lights.yaml
+            double_tap_action: !include /config/lovelace/cards/tap_action/popups/kitchen_island_lights.yaml
           - type: image
             image: /local/photos/icon_transparent.png
             entity: binary_sensor.fully_kitchen_dashboard
@@ -916,6 +872,8 @@ cards:
               service: light.toggle
               service_data:
                 entity_id: light.kitchen_island_lights
+            double_tap_action:
+              action: more-info
             style:
               color: gray
               font-weight: bold
@@ -953,7 +911,7 @@ cards:
           - type: custom:text-action-element
             text: Deck
             entity: light.deck_lights
-            tap_action: 
+            tap_action:
               action: toggle
             style:
               top: 96%
@@ -961,10 +919,10 @@ cards:
               font-size: large
               color: lightgray
 
-#################################################################
-# VIEW_home                                           
-#   Bottom Section (navigation and radio)
-################################################################# 
+      #################################################################
+      # VIEW_home
+      #   Bottom Section (navigation and radio)
+      #################################################################
       - type: picture-elements
         image: /local/photos/transparent.png
         aspect_ratio: 16.3%
@@ -972,7 +930,7 @@ cards:
           - type: image
             image: /local/photos/yellow.png
             entity: switch.family_room_lights
-            aspect_ratio: 115%  
+            aspect_ratio: 115%
             tap_action:
               action: call-service
               service: switch.turn_off
@@ -1085,8 +1043,7 @@ cards:
                   deviceID: this
                   title: Kitchen Radio Presets
                   large: true
-                  card: 
-                    !include /config/lovelace/cards/radio_presets_kitchen.yaml
+                  card: !include /config/lovelace/cards/radio_presets_kitchen.yaml
             style:
               top: 12%
               left: 82%
@@ -1094,34 +1051,32 @@ cards:
 
           - type: custom:mini-media-player
             entity: media_player.kitchen_speaker
+            tap_action: !include /config/lovelace/cards/tap_action/popups/radio_player.yaml
             group: true
             icon: mdi:google-home
             info: scroll
-            tap_action: 
-              !include /config/lovelace/cards/tap_action/popups/google_home_radio.yaml
             hide:
               volume: true
               controls: true
               progress: true
-            style: 
+            style:
               width: 57%
               top: 45%
-              left: 50%    
+              left: 50%
           - type: custom:mini-media-player
             entity: media_player.kitchen_speaker
+            tap_action: !include /config/lovelace/cards/tap_action/popups/radio_player.yaml
             group: true
             artwork: none
-            tap_action: 
-              !include /config/lovelace/cards/tap_action/popups/google_home_radio.yaml
             hide:
               name: true
               icon: true
               power: true
               info: true
-            style: 
+            style:
               width: 50%
               top: 75%
-              left: 50%    
+              left: 50%
           - type: image
             image: /local/photos/goodnight.png
             tap_action:
@@ -1144,7 +1099,7 @@ cards:
             state_filter:
               "off": opacity(0%)
               "on": opacity(15%)
-            aspect_ratio: 75%  
+            aspect_ratio: 75%
             style:
               width: 8.5%
               top: 80%

@@ -1,20 +1,20 @@
-# rotate dark_sky_summaries depending on clock
-dark_sky_summaries:
+# rotate weather_summaries depending on clock
+weather_summaries:
   sequence:
     - service: input_text.set_value
       data_template:
-        entity_id: input_text.dark_sky_summaries
+        entity_id: input_text.weather_summaries
         value: >-
-            {% if now().second | int < 10 %}
-              {% if states("sensor.dark_sky_minutely_summary") != "unknown" %}{{ states("sensor.dark_sky_minutely_summary") }}{% endif %}
-            {% elif now().second | int < 20 %}
-              {% if states("sensor.dark_sky_hourly_summary") != "unknown" %}{{ states("sensor.dark_sky_hourly_summary") }}{% endif %}
-            {% elif now().second | int < 30 %}
-              {% if states("sensor.dark_sky_daily_summary") != "unknown" %}{{ states("sensor.dark_sky_daily_summary") }}{% endif %}
-            {% elif now().second | int < 40 %}
-              {% if states("sensor.dark_sky_minutely_summary") != "unknown" %}{{ states("sensor.dark_sky_minutely_summary") }}{% endif %}
-            {% elif now().second | int < 50 %}
-              {% if states("sensor.dark_sky_hourly_summary") != "unknown" %}{{ states("sensor.dark_sky_hourly_summary") }}{% endif %}
-            {% else %}
-              {% if states("sensor.dark_sky_daily_summary") != "unknown" %}{{ states("sensor.dark_sky_daily_summary") }}{% endif %}
-            {% endif %}
+          {% if now().second | int < 10 %}
+            {% if states("sensor.dark_sky_minutely_summary") != "unknown" %}{{ states("sensor.dark_sky_minutely_summary") }}{% endif %}
+          {% elif now().second | int < 20 %}
+            {% if states("sensor.dark_sky_hourly_summary") != "unknown" %}{{ states("sensor.dark_sky_hourly_summary") }}{% endif %}
+          {% elif now().second | int < 30 %}
+            {% if states("sensor.dark_sky_daily_summary") != "unknown" %}{{ states("sensor.dark_sky_daily_summary") }}{% endif %}
+          {% elif now().second | int < 40 %}
+            {% if states("sensor.dark_sky_minutely_summary") != "unknown" %}{{ states("sensor.dark_sky_minutely_summary") }}{% endif %}
+          {% elif now().second | int < 50 %}
+            {% if states("sensor.dark_sky_hourly_summary") != "unknown" %}{{ states("sensor.dark_sky_hourly_summary") }}{% endif %}
+          {% else %}
+            {% if states("sensor.dark_sky_daily_summary") != "unknown" %}{{ states("sensor.dark_sky_daily_summary") }}{% endif %}
+          {% endif %}

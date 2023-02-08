@@ -10,11 +10,11 @@ kiosk_mode:
 kiosk_mode_hide_header:
   initial: on
   name: Hide Header
-  icon: mdi:view-compact
+  icon: mdi:page-layout-header
 kiosk_mode_hide_sidebar:
   initial: off
   name: Hide Sidebar
-  icon: mdi:table-row
+  icon: mdi:page-layout-sidebar-left
 
 google_send:
   name: Google send

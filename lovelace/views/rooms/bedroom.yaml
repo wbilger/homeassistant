@@ -1,7 +1,7 @@
 #################################################################
 # VIEW: bedroom                                                 #
 #                                                               #
-################################################################# 
+#################################################################
 title: Bedroom
 path: bedroom
 icon: mdi:bed
@@ -30,22 +30,11 @@ cards:
               width: 10%
               top: 50%
               left: 50%
-          - type: custom:text-element
-            text: Jalynne
-            style:
-              color: var(--primary-text-color)
-              font-size: smaller
-              top: 80%
-              left: 90%
-          - type: image
-            image: /local/photos/icon_remote.png
-            tap_action:
-              action: navigate
-              navigation_path: /lovelace/r.jalynne
-            style:
-              width: 7%
-              top: 35%
-              left: 90%
+
+      - type: entities
+        show_header_toggle: false
+        entities:
+          - input_select.remote_bedroom_plex
 
       - type: horizontal-stack
         cards:
@@ -66,12 +55,17 @@ cards:
               card:
                 - height: 65px
           - type: custom:button-card
-            entity: switch.sonoff_basic_02      #bedroom_fan
+            entity: switch.sonoff_basic_02 #bedroom_fan
             icon: mdi:fan
             show_name: false
+            color: var(--secondary-text-color)
+            state:
+              - value: "on"
+                spin: true
             styles:
               card:
                 - height: 65px
+
           - type: custom:button-card
             entity: switch.bedroom_tv
             icon: mdi:television
@@ -93,6 +87,10 @@ cards:
             entity: switch.jalynne_bedroom_fan
             icon: mdi:fan
             name: Jalynne Fan
+            color: var(--secondary-text-color)
+            state:
+              - value: "on"
+                spin: true
             styles:
               card:
                 - height: 65px
@@ -104,98 +102,93 @@ cards:
               card:
                 - height: 65px
 
-      - type: custom:vertical-stack-in-card
-        cards:
-          - type: picture-elements
-            image: /local/photos/transparent.png
-            aspect_ratio: 76.5%
-            elements:
-              - type: image
-                image: /local/photos/pic_music_notes.png
-                aspect_ratio: 35%
-                tap_action:
-                  action: none
-                style:
-                  top: 50%
-                  left: 50%
-                  width: 100%
-                  
-          - type: picture-elements
-            image: /local/photos/transparent.png
-            aspect_ratio: 27.8%
-            elements:
-              - type: state-label
-                entity: input_text.radio_station_p1_display
-                tap_action:
-                  action: call-service
-                  service: notify.google_assistant_command
-                  service_data:
-                    message: 'Play {{ states("input_select.radio_station_p1") }} on Bedroom Clock'
-                style:
-                  top: 9%
-                  left: 12.5%
-                  font-size: 11px
-                  color: var(--secondary-text-color)
-    
-              - type: state-label
-                entity: input_text.radio_station_p2_display
-                tap_action:
-                  action: call-service
-                  service: notify.google_assistant_command
-                  service_data:
-                    message: 'Play {{ states("input_select.radio_station_p2") }} on Bedroom Clock'
-                style:
-                  top: 9%
-                  left: 37.5%
-                  font-size: 11px
-                  color: var(--secondary-text-color)
-              - type: state-label
-                entity: input_text.radio_station_p3_display
-                tap_action:
-                  action: call-service
-                  service: notify.google_assistant_command
-                  service_data:
-                    message: 'Play {{ states("input_select.radio_station_p3") }} on Bedroom Clock'
-                style:
-                  top: 9%
-                  left: 62.5%
-                  font-size: 11px
-                  color: var(--secondary-text-color)
-              - type: state-label
-                entity: input_text.radio_station_p4_display
-                tap_action:
-                  action: call-service
-                  service: notify.google_assistant_command
-                  service_data:
-                    message: 'Play {{ states("input_select.radio_station_p4") }} on Bedroom Clock'
-                style:
-                  top: 9%
-                  left: 87.5%
-                  font-size: 11px
-                  color: var(--secondary-text-color)
-              - type: custom:mini-media-player
-                entity: media_player.bedroom_speaker
-                group: true
-                icon: mdi:google-home
-                info: scroll
-                hide:
-                  volume: true
-                  controls: true
-                  progress: true
-                style: 
-                  width: 95%
-                  top: 43%
-                  left: 50%    
-              - type: custom:mini-media-player
-                entity: media_player.bedroom_speaker
-                group: true
-                artwork: none
-                hide:
-                  name: true
-                  icon: true
-                  power: true
-                  info: true
-                style: 
-                  width: 90%
-                  top: 80%
-                  left: 50%                            
+      - type: picture-elements
+        image: /local/photos/transparent.png
+        aspect_ratio: 56%
+        elements:
+          - type: image
+            image: /local/photos/pic_music_notes.png
+            aspect_ratio: 20%
+            tap_action:
+              action: none
+            style:
+              top: 20%
+              left: 50%
+              width: 100%
+
+          - type: custom:mini-media-player
+            entity: media_player.bedroom_clock
+            group: true
+            icon: mdi:google-home
+            info: scroll
+            hide:
+              volume: true
+              controls: true
+              progress: true
+            style:
+              width: 95%
+              top: 55%
+              left: 50%
+          - type: custom:mini-media-player
+            entity: media_player.bedroom_clock
+            group: true
+            artwork: none
+            hide:
+              name: true
+              icon: true
+              power: true
+              info: true
+              progress: true
+            style:
+              width: 90%
+              top: 75%
+              left: 50%
+
+          - type: state-label
+            entity: input_text.radio_station_p1_display
+            tap_action:
+              action: call-service
+              service: notify.google_assistant_command
+              service_data:
+                message: 'Play {{ states("input_select.radio_station_p1") }} on Bedroom Clock'
+            style:
+              top: 94%
+              left: 12.5%
+              font-size: 11px
+              color: var(--secondary-text-color)
+          - type: state-label
+            entity: input_text.radio_station_p2_display
+            tap_action:
+              action: call-service
+              service: notify.google_assistant_command
+              service_data:
+                message: 'Play {{ states("input_select.radio_station_p2") }} on Bedroom Clock'
+            style:
+              top: 94%
+              left: 37.5%
+              font-size: 11px
+              color: var(--secondary-text-color)
+          - type: state-label
+            entity: input_text.radio_station_p3_display
+            tap_action:
+              action: call-service
+              service: notify.google_assistant_command
+              service_data:
+                message: 'Play {{ states("input_select.radio_station_p3") }} on Bedroom Clock'
+            style:
+              top: 94%
+              left: 62.5%
+              font-size: 11px
+              color: var(--secondary-text-color)
+          - type: state-label
+            entity: input_text.radio_station_p4_display
+            tap_action:
+              action: call-service
+              service: notify.google_assistant_command
+              service_data:
+                message: 'Play {{ states("input_select.radio_station_p4") }} on Bedroom Clock'
+            style:
+              top: 94%
+              left: 87.5%
+              font-size: 11px
+              color: var(--secondary-text-color)

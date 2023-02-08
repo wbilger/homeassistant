@@ -18,14 +18,10 @@ ecobee:
     - sensor.ecobee_fan
     - sensor.ecobee_mode_hold
 
-ikea_lights:
-  name: Ikea Tradfri Lights
+kitchen_island_lights:
+  name: Kitchen Island Lights
   entities:
-    - light.jenn_bedroom
     - light.kitchen_island_lights
-    - light.family_room_light
-    - light.couch_lamp
-    - light.theatre_lights
 
 main_floor_lights:
   name: Entrance Way
@@ -36,7 +32,7 @@ main_floor_lights:
     - light.kitchen_sink_light
     - light.front_window
     - light.dining_room_light
-    - light.dining_room_plug
+    - light.dining_room_lamp
 
 entrance_way_lights:
   name: Entrance Way
@@ -50,7 +46,7 @@ dining_room:
     - light.front_window
     - light.dining_room_light
     - switch.dining_room_fan
-    - light.dining_room_plug
+    - light.dining_room_lamp
 #    - light.christmas_tree
 
 dining_room_lights:
@@ -58,14 +54,7 @@ dining_room_lights:
   entities:
     - light.front_window
     - light.dining_room_light
-    - light.dining_room_plug
-
-dining_room_lights_test:
-  name: Dining Room Lights Test
-  entities:
-    - switch.rf_etekcity_4 #light.front_window
-    - switch.dining_room_light
-    - switch.dining_room_plug
+    - light.dining_room_lamp
 
 family_room_lights:
   name: Family Room Lights
@@ -92,14 +81,6 @@ family_room_tv_time: ## used for google assistant Screen to watch plex
     - script.family_room_tv_surround_sound
     - script.family_room_surround_sound_tv
     - switch.family_room_plex
-family_room_bell_time: ## used for google assistant Screen to watch Bell
-  name: Family Room Bell Time
-  entities:
-    - switch.wayne_fr
-    - light.couch_lamp
-    - script.family_room_tv_surround_sound
-    - script.family_room_surround_sound_tv
-    - switch.family_room_bell
 
 theatre:
   name: Theatre
@@ -111,7 +92,7 @@ theatre:
     - light.theatre_rr
     - light.bar_light
     - switch.theatre_projector
-    - switch.surround_sound_theatre
+    - switch.theatre_surround_sound
     - switch.butt_kickers
 theatre_tv:
   name: Theatre
@@ -130,11 +111,22 @@ bedroom_lights:
     - light.bedroom_light
     - light.jenn_bedroom
 #    - switch.sonoff_basic_02        #bedroom fan
+
 bedroom_jalynne:
   name: Jalynne Bedroom
   entities:
-    - light.bedroom_jalynne_light
+    - light.jalynne_light
     - switch.jalynne_bedroom_fan
+bedroom_jalynne_lights:
+  name: Jalynne Bedroom Lights
+  entities:
+    - light.jalynne_light
+    - light.jalynnes_lamp
+bedroom_kale_lights:
+  name: Kale Bedroom Lights
+  entities:
+    - light.kales_light
+    - light.kales_lamp
 
 bedroom_google_home_mini:
   name: Bedroom Clock Speaker

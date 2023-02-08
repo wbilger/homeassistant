@@ -32,7 +32,7 @@ entity_config:
       - Jenn's Bedroom Light
       - Jenn Side Light
       - Jenn's Side Light
-  light.dining_room_plug:
+  light.dining_room_lamp:
     name: Reading Light
     aliases:
       - Dining Room Lamp
@@ -49,7 +49,7 @@ entity_config:
     aliases:
       - Ceiling Fan
       - Bedroom Ceiling Fan
-  switch.deck_fan:
+  switch.deck_tv_fan:
     expose: true
     name: Deck TV Fan
     aliases:
@@ -96,9 +96,6 @@ entity_config:
   script.bedroom_watch_chromecast:
     expose: true
     name: Bedroom Watch Chromecast
-  script.bedroom_watch_kodi:
-    expose: true
-    name: Bedroom Watch Kodi
   script.bedroom_watch_tv:
     expose: true
     name: Bedroom Watch TV
@@ -124,9 +121,6 @@ entity_config:
   script.dining_room_watch_tv:
     expose: true
     name: Dining Room Watch TV
-  script.family_room_bell_time:
-    expose: true
-    name: Family Room TV Time
   script.family_room_off:
     expose: true
     name: Family Room Off
@@ -161,7 +155,7 @@ entity_config:
       - Watch Roku Theatre
 
   #hide entitites from google assistant
-  light.dashboard_screen_kitchen:
+  light.fully_kitchen_dashboard:
     expose: false
   light.family_room_1:
     expose: false
@@ -218,7 +212,7 @@ entity_config:
     expose: false
   script.speakers_google_home_portable:
     expose: false
-  script.dark_sky_summaries:
+  script.weather_summaries:
     expose: false
   script.dining_room_tv_down_1_ok:
     expose: false
@@ -268,13 +262,7 @@ entity_config:
     expose: false
   script.family_room_watch_bell:
     expose: false
-  script.family_room_watch_chromecast:
-    expose: false
-  script.family_room_watch_kodi:
-    expose: false
   script.family_room_watch_plex:
-    expose: false
-  script.family_room_watch_tv:
     expose: false
   script.kale_bedroom_tv_poweroff:
     expose: false
@@ -328,13 +316,9 @@ entity_config:
     expose: false
   script.remote_bedroom_chromecast:
     expose: false
-  script.remote_bedroom_kodi:
-    expose: false
   script.remote_bedroom_tv:
     expose: false
   script.remote_bedroom_watch_chromecast:
-    expose: false
-  script.remote_bedroom_watch_kodi:
     expose: false
   script.remote_bedroom_watch_tv:
     expose: false
@@ -356,14 +340,6 @@ entity_config:
     expose: false
   script.remote_family_room_chromecast:
     expose: false
-  script.remote_family_room_kodi:
-    expose: false
-  script.remote_family_room_kodi_active:
-    expose: false
-  script.remote_family_room_kodi_fullscreen:
-    expose: false
-  script.remote_family_room_kodi_plex_home:
-    expose: false
   script.remote_family_room_plex:
     expose: false
   script.remote_family_room_plex_active:
@@ -378,27 +354,17 @@ entity_config:
     expose: false
   script.remote_family_room_watch_bell:
     expose: false
-  script.remote_family_room_watch_chromecast:
-    expose: false
-  script.remote_family_room_watch_kodi:
-    expose: false
   script.remote_family_room_watch_plex:
     expose: false
   script.remote_family_room_watch_tv:
-    expose: false
-  script.remote_jalynne_netflix:
-    expose: false
-  script.remote_jalynne_plex:
-    expose: false
-  script.remote_jalynne_plex_fastforward:
-    expose: false
-  script.remote_jalynne_plex_rewind:
     expose: false
   script.remote_theatre_chromecast:
     expose: false
   script.remote_theatre_projector:
     expose: false
   script.remote_theatre_roku:
+    expose: false
+  script.remote_theatre_firestick:
     expose: false
   script.remote_theatre_stereo:
     expose: false

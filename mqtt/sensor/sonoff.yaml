@@ -1,0 +1,33 @@
+# - name: "Sonoff POW01 Current0"
+#   state_topic: "stat/sonoff_pow_01/STATUS8"
+#   value_template: '{{ value_json.StatusSNS.ENERGY.Current"
+#   unit_of_measurement: 'amps'
+# - name: "Sonoff POW01 Power0"
+#   state_topic: "stat/sonoff_pow_01/STATUS8"
+#   value_template: '{{ value_json.StatusSNS.ENERGY.Power"
+#   unit_of_measurement: 'watts'
+# - name: "Sonoff POW01 Voltage0"
+#   state_topic: "stat/sonoff_pow_01/STATUS8"
+#   value_template: '{{ value_json.StatusSNS.ENERGY.Voltage"
+#   unit_of_measurement: 'volts'
+
+- name: Sonoff POW01 Energy Today
+  unit_of_measurement: "kWh"
+  state_topic: "tele/sonoff_pow_01/SENSOR"
+  value_template: "{{ value_json.ENERGY.Today }}"
+- name: Sonoff Pow01 Energy Yesterday
+  unit_of_measurement: "kWh"
+  state_topic: "tele/sonoff_pow_01/SENSOR"
+  value_template: "{{ value_json.ENERGY.Yesterday }}"
+- name: Sonoff Pow01 Current
+  unit_of_measurement: "Amps"
+  state_topic: "tele/sonoff_pow_01/SENSOR"
+  value_template: "{{ value_json.ENERGY.Current }}"
+- name: Sonoff Pow01 Power
+  unit_of_measurement: "Watts"
+  state_topic: "tele/sonoff_pow_01/SENSOR"
+  value_template: "{{ value_json.ENERGY.Power }}"
+- name: Sonoff Pow01 Voltage
+  unit_of_measurement: "Volts"
+  state_topic: "tele/sonoff_pow_01/SENSOR"
+  value_template: "{{ value_json.ENERGY.Voltage }}"

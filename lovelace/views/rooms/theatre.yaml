@@ -1,7 +1,7 @@
 #################################################################
 # VIEW: theatre                                                 #
 #                                                               #
-################################################################# 
+#################################################################
 title: Theatre
 path: theatre
 icon: mdi:projector
@@ -30,7 +30,7 @@ cards:
               width: 10%
               top: 50%
               left: 50%
-    
+
       - type: custom:vertical-stack-in-card
         cards:
           - type: picture-elements
@@ -39,7 +39,7 @@ cards:
             elements:
               - type: image
                 image: /local/photos/yellow.png
-                aspect_ratio: 11%  
+                aspect_ratio: 11%
                 entity: group.theatre_lights
                 tap_action:
                   action: toggle
@@ -54,7 +54,7 @@ cards:
               - type: custom:text-action-element
                 text: Lights
                 entity: group.theatre_lights
-                tap_action: 
+                tap_action:
                   action: toggle
                 style:
                   color: var(--primary-text-color)
@@ -101,7 +101,7 @@ cards:
             elements:
               - type: image
                 image: /local/photos/yellow.png
-                aspect_ratio: 11%  
+                aspect_ratio: 11%
                 entity: group.theatre_tv
                 tap_action:
                   action: toggle
@@ -116,7 +116,7 @@ cards:
               - type: custom:text-action-element
                 text: Theatre TV
                 entity: group.theatre_tv
-                tap_action: 
+                tap_action:
                   action: toggle
                 style:
                   color: var(--primary-text-color)
@@ -126,36 +126,46 @@ cards:
             show_header_toggle: false
             entities:
               - entity: switch.theatre_projector
+                type: custom:multiple-entity-row
                 name: Projector
                 icon: mdi:projector
-              - entity: script.theatre_projector_off
-                name: Shut Down Projector
-                icon: mdi:power
+                show_state: false
+                tap_action:
+                  action: none
+                entities:
+                  - entity: switch.theatre_projector
+                    name: false
+                    toggle: true
+                  - entity: switch.theatre_projector
+                    name: Shutdown
+                    icon: mdi:power
+                    state_color: false
+                    tap_action:
+                      action: call-service
+                      service: script.theatre_projector_off
               - entity: switch.theatre_surround_sound
                 name: Surround Sound
                 icon: mdi:surround-sound
               - entity: switch.butt_kickers
-                name: Butt Kickers
-                icon: mdi:speaker-wireless
+              - input_select.remote_theatre_plex
           - type: picture-elements
             image: /local/photos/transparent.png
             aspect_ratio: 3%
             elements:
               - type: image
                 image: /local/photos/transparent.png
-              
-                
-#################################################################
-# VIEW: r.theatre
-#   Theatre Remote - Media Start Bottom Bar
-################################################################# 
+
+      #################################################################
+      # VIEW: r.theatre
+      #   Theatre Remote - Media Start Bottom Bar
+      #################################################################
       - type: picture-elements
         image: /local/photos/transparent.png
         aspect_ratio: 12%
         elements:
           - type: image
             image: /local/photos/icon_roku.png
-            tap_action: 
+            tap_action:
               action: call-service
               service: script.remote_theatre_watch_roku
             style:
@@ -164,7 +174,7 @@ cards:
               left: 12%
           - type: image
             image: /local/photos/icon_chrome.png
-            tap_action: 
+            tap_action:
               action: call-service
               service: script.remote_theatre_watch_chromecast
             style:
@@ -186,7 +196,7 @@ cards:
           - type: image
             image: /local/photos/projector_screen-21x9.png
             entity: switch.theatre_projector
-            tap_action: 
+            tap_action:
               action: call-service
               service: script.theatre_projector_21x9
             state_filter:
@@ -207,4 +217,4 @@ cards:
             style:
               width: 8%
               top: 50%
-              left: 85%              
+              left: 85%

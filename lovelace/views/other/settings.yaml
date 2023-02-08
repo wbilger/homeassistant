@@ -1,14 +1,14 @@
 #################################################################
 # VIEW: settings                                                #
 #                                                               #
-################################################################# 
+#################################################################
 title: Settings
 path: settings
 icon: mdi:cog
 cards:
-  - !include /config/lovelace/cards/navigation.yaml
   - type: vertical-stack
     cards:
+      - !include /config/lovelace/cards/navigation.yaml
       - type: entities
         title: Google Speaker Automations
         show_header_toggle: false
@@ -16,66 +16,48 @@ cards:
           - entity: automation.person_awake_message_enable
             name: Morning Announcement
             icon: mdi:weather-sunset
-            tap_action:
-              action: none
+            tap_action: none
+          - entity: automation.person_awake_message
+          - entity: input_datetime.person_awake_message
+            name: Earliest Time
+            tap_action: none
           - entity: input_number.kitchen_speaker_volume_announcements_morning
             name: Message
-            tap_action:
-              action: call-service
-              service: notify.google_assistant_command
-              service_data:
-                message: 'Set Volume on Kitchen Speaker to {{ states("input_number.kitchen_speaker_volume_announcements_morning") | int }} Percent'
+            tap_action: none
           - type: custom:text-input-row
             entity: input_text.radio_station_person_awake_automation
             name: Music for after Morning Announcement
           - entity: input_number.kitchen_speaker_volume_favourite_morning
             name: Kitchen Volume
-            tap_action:
-              action: call-service
-              service: notify.google_assistant_command
-              service_data:
-                message: 'Set Volume on Kitchen Speaker to {{ states("input_number.kitchen_speaker_volume_favourite_morning") | int }} Percent'
+            tap_action: none
           - entity: input_boolean.person_awake_bathroom_speaker
             name: Also Play Music on Bathrooom Speaker
             icon: mdi:none
             tap_action:
               action: none
           - type: conditional
-            conditions: 
+            conditions:
               - entity: input_boolean.person_awake_bathroom_speaker
-                state: 'on'
-            row: 
+                state: "on"
+            row:
               entity: input_number.bathroom_speaker_volume_favourite_morning
               name: Bathroom Volume
               icon: mdi:none
-              tap_action:
-                action: call-service
-                service: notify.google_assistant_command
-                service_data:
-                  message: 'Set Volume on Bathroom Speaker to {{ states("input_number.bathroom_speaker_volume_favourite_morning") | int }} Percent'
+              tap_action: none
           - type: divider
           - entity: automation.person_home_message
             name: Welcome Home Announcement
             icon: mdi:home-account
-            tap_action:
-              action: none
+            tap_action: none
           - entity: input_number.kitchen_speaker_volume_announcements
             name: Message
-            tap_action:
-              action: call-service
-              service: notify.google_assistant_command
-              service_data:
-                message: 'Set Volume on Kitchen Speaker to {{ states("input_number.kitchen_speaker_volume_announcements") | int }} Percent'
+            tap_action: none
           - type: custom:text-input-row
             entity: input_text.radio_station_person_home_automation
             name: Music for after Welcome Home Announcement
           - entity: input_number.kitchen_speaker_volume_favourite
             name: Volume
-            tap_action:
-              action: call-service
-              service: notify.google_assistant_command
-              service_data:
-                message: 'Set Volume on Kitchen Speaker to {{ states("input_number.kitchen_speaker_volume_favourite") | int }} Percent'
+            tap_action: none
 
           - type: divider
           - entity: automation.bilger_parents_are_not_home_on_work_day
@@ -88,7 +70,7 @@ cards:
             name: Music for Dog When House Empty
           - entity: input_number.kitchen_speaker_volume_dog
             name: Volume
-            
+
             icon: mdi:music
             tap_action:
               action: call-service
@@ -201,59 +183,59 @@ cards:
           - type: conditional
             conditions:
               - entity: binary_sensor.device_timer_1
-                state: 'on'
+                state: "on"
             row:
               entity: input_select.device_timer_1_list
               icon: mdi:light-switch
           - type: conditional
             conditions:
               - entity: binary_sensor.device_timer_1
-                state: 'on'
+                state: "on"
             row:
-              entity: binary_sensor.device_timer_1_on_time                
+              entity: binary_sensor.device_timer_1_on_time
           - input_boolean.device_timer_1_enabled_on
           - type: conditional
             conditions:
               - entity: input_boolean.device_timer_1_enabled_on
-                state: 'on'
-            row:    
+                state: "on"
+            row:
               entity: input_datetime.device_timer_1_on_time
           - type: conditional
             conditions:
               - entity: input_boolean.device_timer_1_enabled_on
-                state: 'on'
-            row:    
+                state: "on"
+            row:
               entity: input_boolean.device_timer_1_on_bilger_home
           - type: conditional
             conditions:
               - entity: input_boolean.device_timer_1_enabled_on
-                state: 'on'
-            row:    
+                state: "on"
+            row:
               entity: input_boolean.device_timer_1_on_time_sun
           - type: conditional
             conditions:
               - entity: input_boolean.device_timer_1_enabled_on
-                state: 'on'
-            row:    
-              entity: input_number.device_timer_1_on_time_sun          
+                state: "on"
+            row:
+              entity: input_number.device_timer_1_on_time_sun
           - type: conditional
             conditions:
               - entity: binary_sensor.device_timer_1
-                state: 'on'
-            row:    
-              type: divider    
-          - input_boolean.device_timer_1_enabled_off          
+                state: "on"
+            row:
+              type: divider
+          - input_boolean.device_timer_1_enabled_off
           - type: conditional
             conditions:
               - entity: input_boolean.device_timer_1_enabled_off
-                state: 'on'
-            row:    
+                state: "on"
+            row:
               entity: input_datetime.device_timer_1_off_time
           - type: conditional
             conditions:
               - entity: input_boolean.device_timer_1_enabled_off
-                state: 'on'
-            row:    
+                state: "on"
+            row:
               entity: input_boolean.device_timer_1_off_bilger_home
 
       - type: entities
@@ -263,59 +245,59 @@ cards:
           - type: conditional
             conditions:
               - entity: binary_sensor.device_timer_2
-                state: 'on'
+                state: "on"
             row:
               entity: input_select.device_timer_2_list
               icon: mdi:light-switch
           - type: conditional
             conditions:
               - entity: binary_sensor.device_timer_2
-                state: 'on'
+                state: "on"
             row:
-              entity: binary_sensor.device_timer_2_on_time                
+              entity: binary_sensor.device_timer_2_on_time
           - input_boolean.device_timer_2_enabled_on
           - type: conditional
             conditions:
               - entity: input_boolean.device_timer_2_enabled_on
-                state: 'on'
-            row:    
+                state: "on"
+            row:
               entity: input_datetime.device_timer_2_on_time
           - type: conditional
             conditions:
               - entity: input_boolean.device_timer_2_enabled_on
-                state: 'on'
-            row:    
+                state: "on"
+            row:
               entity: input_boolean.device_timer_2_on_bilger_home
           - type: conditional
             conditions:
               - entity: input_boolean.device_timer_2_enabled_on
-                state: 'on'
-            row:    
+                state: "on"
+            row:
               entity: input_boolean.device_timer_2_on_time_sun
           - type: conditional
             conditions:
               - entity: input_boolean.device_timer_2_enabled_on
-                state: 'on'
-            row:    
-              entity: input_number.device_timer_2_on_time_sun          
+                state: "on"
+            row:
+              entity: input_number.device_timer_2_on_time_sun
           - type: conditional
             conditions:
               - entity: binary_sensor.device_timer_2
-                state: 'on'
-            row:    
-              type: divider    
-          - input_boolean.device_timer_2_enabled_off          
+                state: "on"
+            row:
+              type: divider
+          - input_boolean.device_timer_2_enabled_off
           - type: conditional
             conditions:
               - entity: input_boolean.device_timer_2_enabled_off
-                state: 'on'
-            row:    
+                state: "on"
+            row:
               entity: input_datetime.device_timer_2_off_time
           - type: conditional
             conditions:
               - entity: input_boolean.device_timer_2_enabled_off
-                state: 'on'
-            row:    
+                state: "on"
+            row:
               entity: input_boolean.device_timer_2_off_bilger_home
 
       - type: entities
@@ -325,58 +307,58 @@ cards:
           - type: conditional
             conditions:
               - entity: binary_sensor.device_timer_3
-                state: 'on'
+                state: "on"
             row:
               entity: input_select.device_timer_3_list
               icon: mdi:light-switch
           - type: conditional
             conditions:
               - entity: binary_sensor.device_timer_3
-                state: 'on'
+                state: "on"
             row:
-              entity: binary_sensor.device_timer_3_on_time                
+              entity: binary_sensor.device_timer_3_on_time
           - input_boolean.device_timer_3_enabled_on
           - type: conditional
             conditions:
               - entity: input_boolean.device_timer_3_enabled_on
-                state: 'on'
-            row:    
+                state: "on"
+            row:
               entity: input_datetime.device_timer_3_on_time
           - type: conditional
             conditions:
               - entity: input_boolean.device_timer_3_enabled_on
-                state: 'on'
-            row:    
+                state: "on"
+            row:
               entity: input_boolean.device_timer_3_on_bilger_home
           - type: conditional
             conditions:
               - entity: input_boolean.device_timer_3_enabled_on
-                state: 'on'
-            row:    
+                state: "on"
+            row:
               entity: input_boolean.device_timer_3_on_time_sun
           - type: conditional
             conditions:
               - entity: input_boolean.device_timer_3_enabled_on
-                state: 'on'
-            row:    
-              entity: input_number.device_timer_3_on_time_sun          
+                state: "on"
+            row:
+              entity: input_number.device_timer_3_on_time_sun
           - type: conditional
             conditions:
               - entity: binary_sensor.device_timer_3
-                state: 'on'
-            row:    
-              type: divider    
-          - input_boolean.device_timer_3_enabled_off          
+                state: "on"
+            row:
+              type: divider
+          - input_boolean.device_timer_3_enabled_off
           - type: conditional
             conditions:
               - entity: input_boolean.device_timer_3_enabled_off
-                state: 'on'
-            row:    
+                state: "on"
+            row:
               entity: input_datetime.device_timer_3_off_time
           - type: conditional
             conditions:
               - entity: input_boolean.device_timer_3_enabled_off
-                state: 'on'
-            row:    
+                state: "on"
+            row:
               entity: input_boolean.device_timer_3_off_bilger_home
-      - !include /config/lovelace/cards/christmas_tree_timer.yaml      
+      - !include /config/lovelace/cards/christmas_tree_timer.yaml

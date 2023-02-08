@@ -1,3 +1,7 @@
+person_awake_message:
+  name: Person Awake Message Time
+  has_date: false
+  has_time: true
 device_timer_1_on_time:
   name: Device Timer 1 On Time
   has_date: false
@@ -29,4 +33,4 @@ device_timer_xmas_tree_on_time:
 device_timer_xmas_tree_off_time:
   name: Xmas Tree Timer Off Time
   has_date: false
-  has_time: true  
+  has_time: true

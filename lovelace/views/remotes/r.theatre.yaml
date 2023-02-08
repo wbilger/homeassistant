@@ -5,27 +5,6 @@
 title: Theatre Remote
 path: r.theatre
 icon: mdi:remote
-popup_cards:
-  media_player.theatre_plex:
-    title: Now Playing
-    card:
-      type: custom:vertical-stack-in-card
-      cards:
-        - type: custom:mini-media-player
-          entity: media_player.jalynne_plex
-          icon: mdi:plex
-          name: "Jalynne Plex"
-          artwork: full-cover-fit
-          more_info: false
-          info: scroll
-          tap_action:
-            action: none
-          hide:
-            controls: true
-            power: true
-            volume: true
-        - type: markdown
-          content: '{{ state_attr("media_player.jalynne_plex", "media_summary") }}'
 cards:
   - type: vertical-stack
     cards:
@@ -137,6 +116,8 @@ cards:
                       entity_id: remote.theatre_roku
                       command:
                         - info
+                  hold_action: !include /config/lovelace/cards/tap_action/popups/tautulli.yaml
+                  double_tap_action: !include /config/lovelace/cards/tap_action/popups/plex_recently_added.yaml
                   styles:
                     card:
                       - height: 94px
@@ -195,7 +176,7 @@ cards:
                             service: media_player.select_source
                             service_data:
                               entity_id: media_player.theatre_roku
-                              source: "Plex - Stream for Free"
+                              source: '{{ states("input_select.remote_theatre_plex") }}'
                           styles:
                             card:
                               - height: 43px
@@ -307,6 +288,202 @@ cards:
                     service: remote.send_command
                     service_data:
                       entity_id: remote.theatre_roku
+                      command:
+                        - back
+                  styles:
+                    card:
+                      - height: 94px
+
+      - type: conditional
+        conditions:
+          - entity: input_select.remote_theatre
+            state: "Firestick"
+        card:
+          type: vertical-stack
+          cards:
+            - type: horizontal-stack
+              cards:
+                - type: custom:button-card
+                  icon: mdi:information-variant
+                  tap_action:
+                    action: call-service
+                    service: remote.send_command
+                    service_data:
+                      entity_id: remote.theatre_firestick
+                      command:
+                        - info
+                  hold_action: !include /config/lovelace/cards/tap_action/popups/tautulli.yaml
+                  double_tap_action: !include /config/lovelace/cards/tap_action/popups/plex_recently_added.yaml
+                  styles:
+                    card:
+                      - height: 94px
+                - type: custom:button-card
+                  icon: mdi:arrow-up-thick
+                  tap_action:
+                    action: call-service
+                    service: remote.send_command
+                    service_data:
+                      entity_id: remote.theatre_firestick
+                      command:
+                        - up
+                  hold_action:
+                    action: call-service
+                    service: remote.send_command
+                    service_data:
+                      entity_id: remote.theatre_firestick
+                      command:
+                        - up
+                    repeat: 100
+                  styles:
+                    card:
+                      - height: 94px
+                - type: vertical-stack
+                  cards:
+                    - type: horizontal-stack
+                      cards:
+                        - type: custom:button-card
+                          icon: mdi:youtube
+                          tap_action:
+                            action: call-service
+                            service: media_player.select_source
+                            service_data:
+                              entity_id: media_player.theatre_firestick
+                              source: "YouTube"
+                          styles:
+                            card:
+                              - height: 43px
+                        - type: custom:button-card
+                          icon: mdi:netflix
+                          tap_action:
+                            action: call-service
+                            service: media_player.select_source
+                            service_data:
+                              entity_id: media_player.theatre_firestick
+                              source: "Netflix"
+                          styles:
+                            card:
+                              - height: 43px
+                    - type: horizontal-stack
+                      cards:
+                        - type: custom:button-card
+                          icon: mdi:plex
+                          tap_action:
+                            action: call-service
+                            service: media_player.select_source
+                            service_data:
+                              entity_id: media_player.theatre_firestick
+                              source: '{{ states("input_select.remote_theatre_plex") }}'
+                          styles:
+                            card:
+                              - height: 43px
+                        - type: custom:button-card
+                          icon: mdi:home
+                          tap_action:
+                            action: call-service
+                            service: remote.send_command
+                            service_data:
+                              entity_id: remote.theatre_firestick
+                              command:
+                                - home
+                          styles:
+                            card:
+                              - height: 43px
+            - type: horizontal-stack
+              cards:
+                - type: custom:button-card
+                  icon: mdi:arrow-left-thick
+                  tap_action:
+                    action: call-service
+                    service: remote.send_command
+                    service_data:
+                      entity_id: remote.theatre_firestick
+                      command:
+                        - left
+                  hold_action:
+                    action: call-service
+                    service: remote.send_command
+                    service_data:
+                      entity_id: remote.theatre_firestick
+                      command:
+                        - left
+                    repeat: 100
+                  styles:
+                    card:
+                      - height: 94px
+                - type: custom:button-card
+                  icon: mdi:circle
+                  tap_action:
+                    action: call-service
+                    service: remote.send_command
+                    service_data:
+                      entity_id: remote.theatre_firestick
+                      command:
+                        - select
+                  styles:
+                    card:
+                      - height: 94px
+                - type: custom:button-card
+                  icon: mdi:arrow-right-thick
+                  tap_action:
+                    action: call-service
+                    service: remote.send_command
+                    service_data:
+                      entity_id: remote.theatre_firestick
+                      command:
+                        - right
+                  hold_action:
+                    action: call-service
+                    service: remote.send_command
+                    service_data:
+                      entity_id: remote.theatre_firestick
+                      command:
+                        - right
+                    repeat: 100
+                  styles:
+                    card:
+                      - height: 94px
+
+            - type: horizontal-stack
+              cards:
+                - type: custom:button-card
+                  icon: mdi:replay
+                  tap_action:
+                    action: call-service
+                    service: remote.send_command
+                    service_data:
+                      entity_id: remote.theatre_firestick
+                      command:
+                        - replay
+                  styles:
+                    card:
+                      - height: 94px
+                - type: custom:button-card
+                  icon: mdi:arrow-down-thick
+                  tap_action:
+                    action: call-service
+                    service: remote.send_command
+                    service_data:
+                      entity_id: remote.theatre_firestick
+                      command:
+                        - down
+                  hold_action:
+                    action: call-service
+                    service: remote.send_command
+                    service_data:
+                      entity_id: remote.theatre_firestick
+                      command:
+                        - down
+                    repeat: 100
+                  styles:
+                    card:
+                      - height: 94px
+                - type: custom:button-card
+                  icon: mdi:keyboard-backspace
+                  tap_action:
+                    action: call-service
+                    service: remote.send_command
+                    service_data:
+                      entity_id: remote.theatre_firestick
                       command:
                         - back
                   styles:
@@ -504,6 +681,50 @@ cards:
       - type: conditional
         conditions:
           - entity: input_select.remote_theatre
+            state: "Firestick"
+        card:
+          type: horizontal-stack
+          cards:
+            - type: custom:button-card
+              icon: mdi:rewind
+              tap_action:
+                action: call-service
+                service: remote.send_command
+                service_data:
+                  entity_id: remote.theatre_firestick
+                  command:
+                    - reverse
+              styles:
+                card:
+                  - height: 46px
+            - type: custom:button-card
+              icon: mdi:play-pause
+              tap_action:
+                action: call-service
+                service: remote.send_command
+                service_data:
+                  entity_id: remote.theatre_firestick
+                  command:
+                    - play
+              styles:
+                card:
+                  - height: 46px
+            - type: custom:button-card
+              icon: mdi:fast-forward
+              tap_action:
+                action: call-service
+                service: remote.send_command
+                service_data:
+                  entity_id: remote.theatre_firestick
+                  command:
+                    - forward
+              styles:
+                card:
+                  - height: 46px
+
+      - type: conditional
+        conditions:
+          - entity: input_select.remote_theatre
             state: "Projector"
         card:
           type: horizontal-stack
@@ -610,36 +831,33 @@ cards:
             card:
               type: custom:mini-media-player
               entity: media_player.theatre_plex
+              tap_action: !include /config/lovelace/cards/tap_action/popups/media_player_plex_theatre.yaml
               icon: mdi:plex
               info: short
               hide:
+                progress: true
                 artwork_border: false
                 power: true
                 volume: true
                 controls: true
-              # tap_action:
-              #   action: call-service
-              #   service: browser_mod.popup
-              #   service_data:
-              #     deviceID: this
-              #     title: Now Playing
-              #     card:
-              #       type: custom:vertical-stack-in-card
-              #       cards:
-              #         - type: custom:mini-media-player
-              #           entity: media_player.theatre_plex
-              #           icon: mdi:plex
-              #           name: 'Theatre Plex'
-              #           artwork: full-cover-fit
-              #           info: scroll
-              #           tap_action:
-              #             action: none
-              #           hide:
-              #             controls: true
-              #             power: true
-              #             volume: true
-              #         - type: markdown
-              #           content: '{{ state_attr("media_player.theatre_plex", "media_summary") }}'
+          - type: conditional
+            conditions:
+              - entity: input_select.remote_theatre
+                state: "Firestick"
+              - entity: sensor.theatre_plex_playing
+                state: "True"
+            card:
+              type: custom:mini-media-player
+              entity: media_player.theatre_plex
+              tap_action: !include /config/lovelace/cards/tap_action/popups/media_player_plex_theatre.yaml
+              icon: mdi:plex
+              info: short
+              hide:
+                progress: true
+                artwork_border: false
+                power: true
+                volume: true
+                controls: true
           - type: conditional
             conditions:
               - entity: input_select.remote_theatre
@@ -649,10 +867,34 @@ cards:
             card:
               type: custom:mini-media-player
               entity: media_player.theatre_plex
+              tap_action: !include /config/lovelace/cards/tap_action/popups/media_player_plex_theatre.yaml
               name: Theatre Roku
               icon: mdi:alpha-r-box
               info: short
               hide:
+                progress: true
+                artwork_border: false
+                power: true
+                volume: true
+                controls: true
+              tap_action:
+                action: none
+
+          - type: conditional
+            conditions:
+              - entity: input_select.remote_theatre
+                state: "Firestick"
+              - entity: sensor.theatre_plex_playing
+                state: "False"
+            card:
+              type: custom:mini-media-player
+              entity: media_player.theatre_aftt
+              tap_action: !include /config/lovelace/cards/tap_action/popups/media_player_plex_theatre.yaml
+              name: Theatre Roku
+              icon: mdi:alpha-r-box
+              info: short
+              hide:
+                progress: true
                 artwork_border: false
                 power: true
                 volume: true
@@ -673,6 +915,7 @@ cards:
               info: short
               more_info: false
               hide:
+                progress: true
                 artwork_border: false
                 power: true
                 volume: true
@@ -807,19 +1050,33 @@ cards:
                   top: 50%
                   left: 12%
               - type: image
-                image: /local/photos/icon_chrome.png
-                entity: switch.remote_theatre_chromecast
+                image: /local/photos/icon_androidtv.png
+                entity: switch.remote_theatre_firestick
                 state_filter:
                   "off": opacity(33%)
                 tap_action:
                   action: toggle
                 hold_action:
                   action: call-service
-                  service: script.remote_theatre_watch_chromecast
+                  service: script.remote_theatre_watch_firestick
                 style:
                   width: 8%
                   top: 50%
                   left: 29%
+              # - type: image
+              #   image: /local/photos/icon_chrome.png
+              #   entity: switch.remote_theatre_chromecast
+              #   state_filter:
+              #     "off": opacity(33%)
+              #   tap_action:
+              #     action: toggle
+              #   hold_action:
+              #     action: call-service
+              #     service: script.remote_theatre_watch_chromecast
+              #   style:
+              #     width: 8%
+              #     top: 50%
+              #     left: 29%
               - type: image
                 image: /local/photos/icon_projector_optoma.png
                 entity: switch.remote_theatre_projector

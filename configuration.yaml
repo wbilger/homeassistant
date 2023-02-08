@@ -6,6 +6,7 @@ homeassistant:
   longitude: !secret longitude
   elevation: !secret elevation
   unit_system: metric # metric for Metric, imperial for Imperial
+  country: CA
   time_zone: America/Toronto
   customize: !include_dir_merge_named customize/ # Customization files
   customize_glob: !include_dir_merge_named customize_glob/
@@ -16,7 +17,6 @@ system_health:
 config: # Enables configuration UI
 mobile_app: #integration allows Home Assistant mobile apps to easily integrate with Home Assistant
 ios: !include ios.yaml
-updater: #Checks for available updates #Hass.io has it’s own schedule for release it doesn’t make sense to use this component on Hass.io, but kept on for notifications
 conversation: # Allows you to issue voice commands from the frontend in enabled browsers
 recorder: !include recorder.yaml
 history: # Enables support for tracking state changes over time
@@ -29,14 +29,15 @@ logger:
   #   homeassistant.components.websocket_api: debug #fatal
 map: # Enables a map showing the location of tracked devices
 sun: # Track the sun
-google:
-  client_id: !secret google_client_id
-  client_secret: !secret google_client_secret
+media_source: #may be a bug since 2022.5 as should be loaded automatically
+# google:
+#   client_id: !secret google_client_id
+#   client_secret: !secret google_client_secret
 google_assistant: !include google_assistant.yaml
 camera: !include cameras.yaml
 
 #yaml configuration files
-automation: !include_dir_merge_list automations/
+automation: !include automations.yaml
 binary_sensor: !include_dir_merge_list sensors_binary/
 device_tracker: !include device_trackers.yaml
 group: !include_dir_merge_named groups/
@@ -47,6 +48,10 @@ input_select: !include_dir_merge_named inputs/select/
 input_text: !include_dir_merge_named inputs/text/
 light: !include_dir_merge_list lights/
 media_player: !include_dir_merge_list media_players/
+mqtt:
+  sensor: !include_dir_merge_list mqtt/sensor/
+  binary_sensor: !include_dir_merge_list mqtt/binary_sensor/
+  switch: !include_dir_merge_list mqtt/switch/
 notify: !include notify.yaml
 rest_command: !include_dir_merge_named rest_commands/
 script: !include_dir_merge_named scripts/
@@ -66,9 +71,6 @@ tts: # Text to speech
     service_name: google_say
     cache: false
 
-# Custom Components
-browser_mod: !include browser_mod.yaml #installed with HACS - turn your browser into a controllable entity - and also an audio player and a security camera
-
 #UI configuration items
 #iRobot - 192.168.1.50 username: 3173C71442408660 password: :1:1609091352:IeeeTtgkc2z3t2cH
 #to regenerate run-> docker run -it node sh -c "npm install -g dorita980 && get-roomba-password 192.168.1.50"
@@ -79,6 +81,8 @@ lovelace:
     - url: /hacsfiles/atomic-calendar-revive/atomic-calendar-revive.js
       type: module
     - url: /hacsfiles/button-card/button-card.js
+      type: module
+    - url: /hacsfiles/decluttering-card/decluttering-card.js
       type: module
     - url: /hacsfiles/flex-horseshoe-card/flex-horseshoe-card.js
       type: module
@@ -106,6 +110,8 @@ lovelace:
       type: module
     - url: /hacsfiles/mini-media-player/mini-media-player-bundle.js
       type: module
+    - url: /hacsfiles/lovelace-more-info-card/more-info-card.js
+      type: module
     - url: /hacsfiles/radial-menu/radial-menu.js
       type: module
     - url: /hacsfiles/search-card/search-card.js
@@ -125,10 +131,4 @@ lovelace:
     - url: /hacsfiles/vertical-stack-in-card/vertical-stack-in-card.js
       type: module
     - url: /hacsfiles/weather-card/weather-card.js
-      type: module
-
-    # cards not in HACS
-    - url: /local/custom-cards/dark-sky-weather-card.js?v=7.1
-      type: module
-    - url: /local/custom-cards/q-card.js?v=1
       type: module

@@ -4,6 +4,10 @@ cards:
     image: /local/photos/transparent.png
     aspect_ratio: 33%
     elements:
+      - type: custom:more-info-card
+        entity_id: light.kitchen_island_lights #switch.sonoff_pow_01 #washing machine Sonoff POW switch
+        title: Washing Machine Power
+
       - type: image
         image: /local/photos/switch-on.png
         entity: automation.notify_washing_machine_stop
@@ -12,12 +16,8 @@ cards:
         state_filter:
           "off": opacity(40%)
         tap_action:
-          action: none  
-        hold_action:
-          service: browser_mod.more_info
-          service_data:
-            entity_id: switch.sonoff_pow_01    #washing machine Sonoff POW switch
-            deviceID: this
+          action: none
+        hold_action: !include /config/lovelace/cards/tap_action/popups/washing machine_sonoff_pow_switch.yaml
         style:
           width: 10%
           top: 50%
@@ -44,9 +44,9 @@ cards:
           left: 90%
   - type: history-graph
     name: Power
-    entities: 
+    entities:
       - sensor.sonoff_pow01_power
   - type: history-graph
     name: Current
-    entities: 
+    entities:
       - sensor.sonoff_pow01_current

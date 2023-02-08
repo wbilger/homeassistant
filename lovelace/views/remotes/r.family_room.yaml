@@ -5,27 +5,6 @@
 title: Family Room Remote
 path: r.family_room
 icon: mdi:remote
-popup_cards: #TEMP until mini-media-player supports fire-dom-event
-  media_player.family_room_roku_plex:
-    title: Now Playing
-    card:
-      type: custom:vertical-stack-in-card
-      cards:
-        - type: custom:mini-media-player
-          entity: media_player.family_room_roku_plex
-          icon: mdi:plex
-          name: "Family Room Plex"
-          artwork: full-cover-fit
-          more_info: false
-          info: scroll
-          tap_action:
-            action: none
-          hide:
-            controls: true
-            power: true
-            volume: true
-        - type: markdown
-          content: '{{ state_attr("media_player.family_room_roku_plex", "media_summary") }}'
 cards:
   - type: vertical-stack
     cards:
@@ -82,8 +61,7 @@ cards:
             entity: light.family_room_light
             tap_action:
               action: toggle
-            hold_action:
-              action: more-info
+            hold_action: !include /config/lovelace/cards/tap_action/popups/family_room_light.yaml
             state_filter:
               "off": opacity(33%)
               "unavailable": opacity(20%) brightness(10%)
@@ -103,8 +81,10 @@ cards:
               width: 16%
               top: 46%
               left: 65%
-          - type: image
-            image: /local/photos/icon_question-mark.png
+          # - type: image
+          #   image: /local/photos/icon_question.png
+          - type: icon
+            icon: mdi:help-circle
             tap_action:
               action: navigate
               navigation_path: /lovelace/family_room
@@ -115,15 +95,17 @@ cards:
               opacity: .5
               top: 28%
               left: 90%
+          # - type: image
+          #   image: /local/photos/icon_dim.png
           - type: icon
-            icon: mdi:brightness-4
+            icon: mdi:lightbulb-on-30
             tap_action:
               action: call-service
               service: script.kitchen_lights_night_dim
             style:
               opacity: .2
               top: 80%
-              left: 85%
+              left: 80%
           - type: icon
             icon: mdi:water-pump
             tap_action:
@@ -135,7 +117,19 @@ cards:
               opacity: .2
               width: 9%
               top: 80%
-              left: 95%
+              left: 90%
+          - type: icon
+            icon: mdi:google-home
+            tap_action:
+              action: call-service
+              service: media_player.turn_off
+              service_data:
+                entity_id: media_player.kitchen_speaker
+            style:
+              opacity: .2
+              width: 9%
+              top: 60%
+              left: 97%
 
       #################################################################
       # VIEW: r.family_room
@@ -144,11 +138,9 @@ cards:
       - type: conditional
         conditions: #Roku TV or Plex
           - entity: input_select.remote_family_room
-            state_not: "Chromecast"
+            state_not: "AndroidTV"
           - entity: input_select.remote_family_room
             state_not: "Bell"
-          - entity: input_select.remote_family_room
-            state_not: "Kodi"
         card:
           type: vertical-stack
           cards:
@@ -373,69 +365,45 @@ cards:
       - type: conditional
         conditions:
           - entity: input_select.remote_family_room
-            state: "Kodi"
+            state: "AndroidTV"
         card:
           type: vertical-stack
           cards:
             - type: horizontal-stack
               cards:
-                - type: vertical-stack
-                  cards:
-                    - type: horizontal-stack
-                      cards:
-                        - type: custom:button-card
-                          icon: mdi:information-variant
-                          tap_action:
-                            action: call-service
-                            service: switch.turn_on
-                            service_data:
-                              entity_id: switch.family_room_kodi_api_info
-                          styles:
-                            card:
-                              - height: 43px
-                        - type: custom:button-card
-                          icon: mdi:volume-off
-                          tap_action:
-                            action: call-service
-                            service: switch.turn_on
-                            service_data:
-                              entity_id: switch.family_room_kodi_api_mute
-                          styles:
-                            card:
-                              - height: 43px
-                    - type: horizontal-stack
-                      cards:
-                        - type: custom:button-card
-                          icon: mdi:monitor-multiple
-                          tap_action:
-                            action: call-service
-                            service: switch.turn_on
-                            service_data:
-                              entity_id: switch.family_room_kodi_change_monitor
-                          styles:
-                            card:
-                              - height: 43px
-                        - type: custom:button-card
-                          icon: mdi:fullscreen
-                          tap_action:
-                            action: call-service
-                            service: script.remote_family_room_kodi_fullscreen
-                          styles:
-                            card:
-                              - height: 43px
+                - type: custom:button-card
+                  icon: mdi:information-variant
+                  entity: input_text.family_room_plex_user
+                  show_state: true
+                  show_name: false
+                  tap_action:
+                    action: call-service
+                    service: androidtv.adb_command
+                    service_data:
+                      entity_id: media_player.family_room_androidtv
+                      command: "MENU"
+                  hold_action: !include /config/lovelace/cards/tap_action/popups/tautulli.yaml
+                  double_tap_action: !include /config/lovelace/cards/tap_action/popups/plex_recently_added.yaml
+                  styles:
+                    card:
+                      - height: 94px
                 - type: custom:button-card
                   icon: mdi:arrow-up-thick
                   tap_action:
                     action: call-service
-                    service: switch.turn_on
+                    service: androidtv.adb_command
                     service_data:
-                      entity_id: switch.family_room_kodi_api_up
+                      entity_id: media_player.family_room_androidtv
+                      command: "UP"
+                      #command: "sendevent /dev/input/event5 4 4 786498 && sendevent /dev/input/event5 1 103 1 && sendevent /dev/input/event5 0 0 0 && sendevent /dev/input/event5 4 4 786498 && sendevent /dev/input/event5 1 103 0 && sendevent /dev/input/event5 0 0 0"
                   hold_action:
                     action: call-service
-                    service: switch.turn_on
+                    service: androidtv.adb_command
                     service_data:
-                      entity_id: switch.family_room_kodi_api_up
-                    repeat: 400
+                      entity_id: media_player.family_room_androidtv
+                      command: "UP"
+                      #command: "sendevent /dev/input/event5 4 4 786498 && sendevent /dev/input/event5 1 103 1 && sendevent /dev/input/event5 0 0 0 && sendevent /dev/input/event5 4 4 786498 && sendevent /dev/input/event5 1 103 0 && sendevent /dev/input/event5 0 0 0"
+                    repeat: 100
                   styles:
                     card:
                       - height: 94px
@@ -447,62 +415,68 @@ cards:
                           icon: mdi:plex
                           tap_action:
                             action: call-service
-                            service: switch.turn_on
-                            service_data:
-                              entity_id: switch.family_room_kodi_api_plex
+                            service: media_player.select_source
+                            target:
+                              entity_id: media_player.family_room_androidtv
+                            data:
+                              source: "Plex"
                           styles:
                             card:
                               - height: 43px
                         - type: custom:button-card
-                          icon: mdi:home
+                          icon: mdi:netflix
                           tap_action:
                             action: call-service
-                            service: script.remote_family_room_kodi_plex_home
+                            service: media_player.select_source
+                            service_data:
+                              entity_id: media_player.family_room_androidtv
+                              source: "Netflix"
                           styles:
                             card:
                               - height: 43px
                     - type: horizontal-stack
                       cards:
                         - type: custom:button-card
-                          icon: mdi:hockey-sticks
-                          name: Sports
+                          icon: mdi:cast
                           tap_action:
                             action: call-service
-                            service: switch.turn_on
+                            service: media_player.select_source
                             service_data:
-                              entity_id: switch.family_room_kodi_api_sports
+                              entity_id: media_player.family_room_androidtv
+                              source: "Google Cast"
                           styles:
                             card:
                               - height: 43px
-                              - font-size: 12px
                         - type: custom:button-card
-                          icon: mdi:hammer
-                          name: HGTV
+                          icon: mdi:television-classic
+                          name: "Bell"
                           tap_action:
                             action: call-service
-                            service: switch.turn_on
+                            service: media_player.select_source
                             service_data:
-                              entity_id: switch.family_room_kodi_api_hgtv
+                              entity_id: media_player.family_room_androidtv
+                              source: "Bell Fibe"
                           styles:
                             card:
                               - height: 43px
-                              - font-size: 12px
-
             - type: horizontal-stack
               cards:
                 - type: custom:button-card
                   icon: mdi:arrow-left-thick
                   tap_action:
                     action: call-service
-                    service: switch.turn_on
+                    service: androidtv.adb_command
                     service_data:
-                      entity_id: switch.family_room_kodi_api_left
+                      entity_id: media_player.family_room_androidtv
+                      command: "LEFT"
+                      #command: "sendevent /dev/input/event5 4 4 786500 && sendevent /dev/input/event5 1 105 1 && sendevent /dev/input/event5 0 0 0 &&  sendevent /dev/input/event5 4 4 786500 && sendevent /dev/input/event5 1 105 0 && sendevent /dev/input/event5 0 0 0"
                   hold_action:
                     action: call-service
-                    service: switch.turn_on
+                    service: androidtv.adb_command
                     service_data:
-                      entity_id: switch.family_room_kodi_api_left
-                    repeat: 400
+                      entity_id: media_player.family_room_androidtv
+                      command: "LEFT"
+                    repeat: 100
                   styles:
                     card:
                       - height: 94px
@@ -510,9 +484,10 @@ cards:
                   icon: mdi:circle
                   tap_action:
                     action: call-service
-                    service: switch.turn_on
+                    service: androidtv.adb_command
                     service_data:
-                      entity_id: switch.family_room_kodi_api_select
+                      entity_id: media_player.family_room_androidtv
+                      command: "CENTER"
                   styles:
                     card:
                       - height: 94px
@@ -520,15 +495,18 @@ cards:
                   icon: mdi:arrow-right-thick
                   tap_action:
                     action: call-service
-                    service: switch.turn_on
+                    service: androidtv.adb_command
                     service_data:
-                      entity_id: switch.family_room_kodi_api_right
+                      entity_id: media_player.family_room_androidtv
+                      command: "RIGHT"
+                      #command: "sendevent /dev/input/event5 4 4 786501 && sendevent /dev/input/event5 1 106 1 && sendevent /dev/input/event5 0 0 0 && sendevent /dev/input/event5 4 4 786501 && sendevent /dev/input/event5 1 106 0 && sendevent /dev/input/event5 0 0 0"
                   hold_action:
                     action: call-service
-                    service: switch.turn_on
+                    service: androidtv.adb_command
                     service_data:
-                      entity_id: switch.family_room_kodi_api_right
-                    repeat: 400
+                      entity_id: media_player.family_room_androidtv
+                      command: "RIGHT"
+                    repeat: 100
                   styles:
                     card:
                       - height: 94px
@@ -539,9 +517,10 @@ cards:
                   icon: mdi:home
                   tap_action:
                     action: call-service
-                    service: switch.turn_on
+                    service: androidtv.adb_command
                     service_data:
-                      entity_id: switch.family_room_kodi_api_home
+                      entity_id: media_player.family_room_androidtv
+                      command: "HOME"
                   styles:
                     card:
                       - height: 94px
@@ -549,15 +528,19 @@ cards:
                   icon: mdi:arrow-down-thick
                   tap_action:
                     action: call-service
-                    service: switch.turn_on
+                    service: androidtv.adb_command
                     service_data:
-                      entity_id: switch.family_room_kodi_api_down
+                      entity_id: media_player.family_room_androidtv
+                      command: "DOWN"
+                      #command: "sendevent /dev/input/event5 4 4 786499 && sendevent /dev/input/event5 1 108 1 && sendevent /dev/input/event5 0 0 0 && sendevent /dev/input/event5 4 4 786499 && sendevent /dev/input/event5 1 108 0 && sendevent /dev/input/event5 0 0 0"
                   hold_action:
                     action: call-service
-                    service: switch.turn_on
+                    service: androidtv.adb_command
                     service_data:
-                      entity_id: switch.family_room_kodi_api_down
-                    repeat: 400
+                      entity_id: media_player.family_room_androidtv
+                      command: "DOWN"
+                      #command: "sendevent /dev/input/event5 4 4 786499 && sendevent /dev/input/event5 1 108 1 && sendevent /dev/input/event5 0 0 0 && sendevent /dev/input/event5 4 4 786499 && sendevent /dev/input/event5 1 108 0 && sendevent /dev/input/event5 0 0 0"
+                    repeat: 100
                   styles:
                     card:
                       - height: 94px
@@ -565,9 +548,10 @@ cards:
                   icon: mdi:keyboard-backspace
                   tap_action:
                     action: call-service
-                    service: switch.turn_on
+                    service: androidtv.adb_command
                     service_data:
-                      entity_id: switch.family_room_kodi_api_back
+                      entity_id: media_player.family_room_androidtv
+                      command: "BACK"
                   styles:
                     card:
                       - height: 94px
@@ -584,31 +568,37 @@ cards:
                 - type: vertical-stack
                   cards:
                     - type: custom:button-card
-                      icon: mdi:filter
-                      name: Guide Filter
-                      layout: icon_name
+                      icon: mdi:upload
                       tap_action:
                         action: call-service
                         service: switch.turn_on
                         service_data:
-                          entity_id: switch.family_room_bell_command4 #Guide Filter
+                          entity_id: switch.family_room_mouse_scroll_up
+                      hold_action:
+                        action: call-service
+                        service: switch.turn_on
+                        service_data:
+                          entity_id: switch.family_room_mouse_scroll_up
+                        repeat: 250
                       styles:
                         card:
                           - height: 43px
-                          - font-size: 11px
                     - type: custom:button-card
-                      icon: mdi:television
-                      name: Move To TV
-                      layout: icon_name
+                      icon: mdi:download
                       tap_action:
                         action: call-service
                         service: switch.turn_on
                         service_data:
-                          entity_id: switch.family_room_bell_command8 #move to TV
+                          entity_id: switch.family_room_mouse_scroll_down
+                      hold_action_action:
+                        action: call-service
+                        service: switch.turn_on
+                        service_data:
+                          entity_id: switch.family_room_mouse_scroll_down
+                        repeat: 250
                       styles:
                         card:
                           - height: 43px
-                          - font-size: 11px
                 - type: custom:button-card
                   icon: mdi:chevron-up
                   tap_action:
@@ -627,74 +617,38 @@ cards:
                       - height: 94px
                 - type: vertical-stack
                   cards:
-                    - type: horizontal-stack
-                      cards:
-                        - type: custom:button-card
-                          icon: mdi:upload
-                          tap_action:
-                            action: call-service
-                            service: switch.turn_on
-                            service_data:
-                              entity_id: switch.family_room_mouse_scroll_up
-                          hold_action:
-                            action: call-service
-                            service: switch.turn_on
-                            service_data:
-                              entity_id: switch.family_room_mouse_scroll_up
-                            repeat: 250
-                          styles:
-                            card:
-                              - height: 43px
-                        - type: custom:button-card
-                          icon: mdi:upload-multiple
-                          tap_action:
-                            action: call-service
-                            service: switch.turn_on
-                            service_data:
-                              entity_id: switch.family_room_mouse_scroll_up_page
-                          hold_action:
-                            action: call-service
-                            service: switch.turn_on
-                            service_data:
-                              entity_id: switch.family_room_mouse_scroll_up_page
-                            repeat: 250
-                          styles:
-                            card:
-                              - height: 43px
-                    - type: horizontal-stack
-                      cards:
-                        - type: custom:button-card
-                          icon: mdi:download
-                          tap_action:
-                            action: call-service
-                            service: switch.turn_on
-                            service_data:
-                              entity_id: switch.family_room_mouse_scroll_down
-                          hold_action_action:
-                            action: call-service
-                            service: switch.turn_on
-                            service_data:
-                              entity_id: switch.family_room_mouse_scroll_down
-                            repeat: 250
-                          styles:
-                            card:
-                              - height: 43px
-                        - type: custom:button-card
-                          icon: mdi:download-multiple
-                          tap_action:
-                            action: call-service
-                            service: switch.turn_on
-                            service_data:
-                              entity_id: switch.family_room_mouse_scroll_down_page
-                          hold_action:
-                            action: call-service
-                            service: switch.turn_on
-                            service_data:
-                              entity_id: switch.family_room_mouse_scroll_down_page
-                            repeat: 250
-                          styles:
-                            card:
-                              - height: 43px
+                    - type: custom:button-card
+                      icon: mdi:upload-multiple
+                      tap_action:
+                        action: call-service
+                        service: switch.turn_on
+                        service_data:
+                          entity_id: switch.family_room_mouse_scroll_up_page
+                      hold_action:
+                        action: call-service
+                        service: switch.turn_on
+                        service_data:
+                          entity_id: switch.family_room_mouse_scroll_up_page
+                        repeat: 250
+                      styles:
+                        card:
+                          - height: 43px
+                    - type: custom:button-card
+                      icon: mdi:download-multiple
+                      tap_action:
+                        action: call-service
+                        service: switch.turn_on
+                        service_data:
+                          entity_id: switch.family_room_mouse_scroll_down_page
+                      hold_action:
+                        action: call-service
+                        service: switch.turn_on
+                        service_data:
+                          entity_id: switch.family_room_mouse_scroll_down_page
+                        repeat: 250
+                      styles:
+                        card:
+                          - height: 43px
 
             - type: horizontal-stack
               cards:
@@ -779,44 +733,6 @@ cards:
                     card:
                       - height: 94px
 
-      - type: conditional
-        conditions:
-          - entity: input_select.remote_family_room
-            state: "Chromecast"
-        card:
-          type: custom:vertical-stack-in-card
-          cards:
-            - type: conditional
-              conditions:
-                - entity: media_player.family_room_chromecast
-                  state: "off"
-              card:
-                type: picture-elements
-                image: /local/photos/transparent.png
-                aspect_ratio: 97.7%
-                elements:
-                  - type: image
-                    image: /local/photos/pic_chromecast.png
-                    tap_action:
-                      action: url
-                      url_path: fully://launcher
-                    style:
-                      top: 50%
-                      left: 50%
-            - type: conditional
-              conditions:
-                - entity: media_player.family_room_chromecast
-                  state_not: "off"
-              card:
-                type: custom:mini-media-player
-                entity: media_player.family_room_chromecast
-                name: " "
-                artwork: full-cover-fit
-                more_info: false
-                hide:
-                  volume: true
-                  info: true
-
       #################################################################
       # VIEW: r.family_room
       #   Family Room Remote - buttons - Media Control row
@@ -824,11 +740,9 @@ cards:
       - type: conditional
         conditions: #TV or Plex
           - entity: input_select.remote_family_room
-            state_not: "Chromecast"
+            state_not: "AndroidTV"
           - entity: input_select.remote_family_room
             state_not: "Bell"
-          - entity: input_select.remote_family_room
-            state_not: "Kodi"
         card:
           type: horizontal-stack
           cards:
@@ -872,45 +786,31 @@ cards:
       - type: conditional
         conditions:
           - entity: input_select.remote_family_room
-            state: "Kodi"
+            state: "AndroidTV"
         card:
           type: horizontal-stack
           cards:
             - type: custom:button-card
-              icon: mdi:stop
-              tap_action:
-                action: call-service
-                service: switch.turn_on
-                service_data:
-                  entity_id: switch.family_room_kodi_api_stop
-              styles:
-                card:
-                  - height: 46px
-            - type: custom:button-card
-              icon: mdi:play
-              tap_action:
-                action: call-service
-                service: switch.turn_on
-                service_data:
-                  entity_id: switch.family_room_kodi_api_play
-              styles:
-                card:
-                  - height: 46px
-            - type: custom:button-card
-              icon: mdi:pause
-              tap_action:
-                action: call-service
-                service: switch.turn_on
-                service_data:
-                  entity_id: switch.family_room_kodi_api_pause
-              styles:
-                card:
-                  - height: 46px
-            - type: custom:button-card
               icon: mdi:rewind
               tap_action:
                 action: call-service
-                service: switch.family_room_kodi_api_rewind
+                service: remote.send_command
+                service_data:
+                  entity_id: remote.family_room_roku
+                  command:
+                    - reverse
+              styles:
+                card:
+                  - height: 46px
+            - type: custom:button-card
+              icon: mdi:play-pause
+              tap_action:
+                action: call-service
+                service: remote.send_command
+                service_data:
+                  entity_id: remote.family_room_roku
+                  command:
+                    - play
               styles:
                 card:
                   - height: 46px
@@ -918,7 +818,11 @@ cards:
               icon: mdi:fast-forward
               tap_action:
                 action: call-service
-                service: switch.family_room_kodi_api_fastforward
+                service: remote.send_command
+                service_data:
+                  entity_id: remote.family_room_roku
+                  command:
+                    - forward
               styles:
                 card:
                   - height: 46px
@@ -989,53 +893,110 @@ cards:
       # VIEW: r.family_room
       #   Family Room Remote - buttons - Volume Control row
       #################################################################
-      - type: horizontal-stack
-        cards:
-          - type: custom:button-card
-            icon: mdi:volume-mute
-            size: 35px
-            tap_action:
-              action: call-service
-              service: switch.turn_on
-              service_data:
-                entity_id: switch.family_room_surround_sound_volume_mute
-            styles:
-              card:
-                - height: 46px
-          - type: custom:button-card
-            icon: mdi:volume-minus
-            size: 35px
-            tap_action:
-              action: call-service
-              service: switch.turn_on
-              service_data:
-                entity_id: switch.family_room_surround_sound_volume_down
-            hold_action:
-              action: call-service
-              service: switch.turn_on
-              service_data:
-                entity_id: switch.family_room_surround_sound_volume_down
-              repeat: 100
-            styles:
-              card:
-                - height: 46px
-          - type: custom:button-card
-            icon: mdi:volume-plus
-            size: 35px
-            tap_action:
-              action: call-service
-              service: switch.turn_on
-              service_data:
-                entity_id: switch.family_room_surround_sound_volume_up
-            hold_action:
-              action: call-service
-              service: switch.turn_on
-              service_data:
-                entity_id: switch.family_room_surround_sound_volume_up
-              repeat: 100
-            styles:
-              card:
-                - height: 46px
+      - type: conditional
+        conditions:
+          - entity: input_select.remote_family_room
+            state_not: "Bell"
+        card:
+          type: horizontal-stack
+          cards:
+            - type: custom:button-card
+              icon: mdi:volume-mute
+              size: 35px
+              tap_action:
+                action: call-service
+                service: switch.turn_on
+                service_data:
+                  entity_id: switch.family_room_surround_sound_volume_mute
+              styles:
+                card:
+                  - height: 46px
+            - type: custom:button-card
+              icon: mdi:volume-minus
+              size: 35px
+              tap_action:
+                action: call-service
+                service: switch.turn_on
+                service_data:
+                  entity_id: switch.family_room_surround_sound_volume_down
+              hold_action:
+                action: call-service
+                service: switch.turn_on
+                service_data:
+                  entity_id: switch.family_room_surround_sound_volume_down
+                repeat: 450
+              styles:
+                card:
+                  - height: 46px
+            - type: custom:button-card
+              icon: mdi:volume-plus
+              size: 35px
+              tap_action:
+                action: call-service
+                service: switch.turn_on
+                service_data:
+                  entity_id: switch.family_room_surround_sound_volume_up
+              hold_action:
+                action: call-service
+                service: switch.turn_on
+                service_data:
+                  entity_id: switch.family_room_surround_sound_volume_up
+                repeat: 450
+              styles:
+                card:
+                  - height: 46px
+      - type: conditional
+        conditions:
+          - entity: input_select.remote_family_room
+            state: "Bell"
+        card:
+          type: horizontal-stack
+          cards:
+            - type: custom:button-card
+              icon: mdi:volume-mute
+              size: 35px
+              tap_action:
+                action: call-service
+                service: switch.turn_on
+                service_data:
+                  entity_id: switch.family_room_pc_volume_mute
+              styles:
+                card:
+                  - height: 46px
+            - type: custom:button-card
+              icon: mdi:volume-minus
+              size: 35px
+              tap_action:
+                action: call-service
+                service: switch.turn_on
+                service_data:
+                  entity_id: switch.family_room_pc_volume_down
+              hold_action:
+                action: call-service
+                service: switch.turn_on
+                service_data:
+                  entity_id: switch.family_room_pc_volume_down
+                repeat: 450
+              styles:
+                card:
+                  - height: 46px
+            - type: custom:button-card
+              icon: mdi:volume-plus
+              size: 35px
+              tap_action:
+                action: call-service
+                service: switch.turn_on
+                service_data:
+                  entity_id: switch.family_pc_volume_up
+              hold_action:
+                action: call-service
+                service: switch.turn_on
+                service_data:
+                  entity_id: switch.family_room_pc_volume_up
+                repeat: 450
+              styles:
+                card:
+                  - height: 46px
 
       #################################################################
       # VIEW: r.family_room
@@ -1051,40 +1012,17 @@ cards:
                 state: "True"
             card:
               type: custom:mini-media-player
-              entity: media_player.family_room_roku_plex
+              entity: media_player.family_room_plex
+              tap_action: !include /config/lovelace/cards/tap_action/popups/media_player_plex_family_room.yaml
               name: Family Room Plex
               icon: mdi:plex
               info: short
               hide:
+                progress: true
                 artwork_border: false
                 power: true
                 volume: true
                 controls: true
-              # tap_action:
-              #   action: call-service
-              #   service: browser_mod.popup
-              #   service_data:
-              #     deviceID: this
-              #     title: Now Playing
-              #     card:
-              #       type: custom:vertical-stack-in-card
-              #       cards:
-              #         - type: custom:mini-media-player
-              #           entity: media_player.family_room_roku_plex
-              #           icon: mdi:plex
-              #           name: 'Family Room Plex'
-              #           artwork: full-cover-fit
-              #           more_info: false
-              #           info: scroll
-              #           tap_action:
-              #             action: none
-              #           hide:
-              #             controls: true
-              #             power: true
-              #             volume: true
-              #         - type: markdown
-              #           content: '{{ state_attr("media_player.family_room_roku_plex", "media_summary") }}'
-
           - type: conditional
             conditions:
               - entity: input_select.remote_family_room
@@ -1093,11 +1031,12 @@ cards:
                 state: "False"
             card:
               type: custom:mini-media-player
-              entity: media_player.family_room_roku_plex
-              name: Family Room Plex
-              icon: mdi:plex
+              entity: media_player.family_room_roku
+              name: Family Room Roku
+              icon: mdi:television
               info: short
               hide:
+                progress: true
                 artwork_border: false
                 power: true
                 volume: true
@@ -1118,6 +1057,7 @@ cards:
               icon: mdi:television
               info: short
               hide:
+                progress: true
                 artwork_border: false
                 power: true
                 volume: true
@@ -1136,6 +1076,7 @@ cards:
               icon: mdi:television
               info: short
               hide:
+                progress: true
                 artwork_border: false
                 power: true
                 volume: true
@@ -1144,16 +1085,39 @@ cards:
           - type: conditional
             conditions:
               - entity: input_select.remote_family_room
-                state: "Chromecast"
+                state: "AndroidTV"
+              - entity: sensor.family_room_plex_playing
+                state: "True"
             card:
               type: custom:mini-media-player
-              entity: media_player.family_room_chromecast
-              name: Family Room Chromecast
-              icon: mdi:google-chrome
+              entity: media_player.family_room_plex
+              tap_action: !include /config/lovelace/cards/tap_action/popups/media_player_plex_family_room.yaml
+              name: Family Room Plex
+              icon: mdi:plex
+              info: short
+              hide:
+                progress: true
+                artwork_border: false
+                power: true
+                volume: true
+                controls: true
+
+          - type: conditional
+            conditions:
+              - entity: input_select.remote_family_room
+                state: "AndroidTV"
+              - entity: sensor.family_room_plex_playing
+                state_not: "True"
+            card:
+              type: custom:mini-media-player
+              entity: media_player.family_room_androidtv
+              name: Family Room Android TV
+              icon: mdi:android
               artwork: none
               info: short
               more_info: false
               hide:
+                progress: true
                 artwork_border: false
                 power: true
                 volume: true
@@ -1240,24 +1204,6 @@ cards:
                     top: 70%
                     left: 92%
 
-          - type: conditional
-            conditions:
-              - entity: input_select.remote_family_room
-                state: "Kodi"
-            card:
-              type: custom:mini-media-player
-              entity: media_player.family_room_universal #family_room_kodi not used, keeping PC awake
-              name: Family Room Kodi #tmp, for Family Room Universal
-              icon: mdi:kodi
-              more_info: false
-              info: short
-              source: full
-              hide:
-                artwork_border: false
-                power: true
-                volume: true
-                controls: true
-
           #################################################################
           # VIEW: r.family_room
           #   Family Room Remote - Remote Selection Screen
@@ -1282,7 +1228,7 @@ cards:
                 style:
                   width: 8%
                   top: 50%
-                  left: 9%
+                  left: 10%
               - type: image
                 image: /local/photos/icon_roku_tv.png
                 entity: switch.remote_family_room_tv
@@ -1296,21 +1242,21 @@ cards:
                 style:
                   width: 8%
                   top: 50%
-                  left: 24%
+                  left: 29%
               - type: image
-                image: /local/photos/icon_chrome.png
-                entity: switch.remote_family_room_chromecast
+                image: /local/photos/icon_androidtv.png
+                entity: switch.remote_family_room_androidtv
                 state_filter:
                   "off": opacity(33%)
                 tap_action:
                   action: toggle
                 hold_action:
                   action: call-service
-                  service: script.remote_family_room_watch_chromecast
+                  service: script.remote_family_room_watch_androidtv
                 style:
                   width: 8%
-                  top: 50%
-                  left: 39%
+                  top: 44%
+                  left: 48%
               - type: image
                 image: /local/photos/icon_bell.png
                 entity: switch.remote_family_room_bell
@@ -1324,21 +1270,7 @@ cards:
                 style:
                   width: 8%
                   top: 50%
-                  left: 54%
-              - type: image
-                image: /local/photos/icon_kodi.png
-                entity: switch.remote_family_room_kodi
-                state_filter:
-                  "off": opacity(33%)
-                tap_action:
-                  action: toggle
-                hold_action:
-                  action: call-service
-                  service: script.remote_family_room_watch_kodi
-                style:
-                  width: 8%
-                  top: 50%
-                  left: 69%
+                  left: 67%
               - type: image
                 image: /local/photos/icon_power.png
                 entity: group.family_room_tv
@@ -1356,4 +1288,4 @@ cards:
                 style:
                   width: 8%
                   top: 50%
-                  left: 92%
+                  left: 90%

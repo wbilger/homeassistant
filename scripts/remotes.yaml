@@ -25,43 +25,37 @@ remote_family_room_plex:
       entity_id: switch.family_room_tv
       state: "on"
     - service: switch.turn_on
-      entity_id: switch.family_room_roku_plex
+      data_template:
+        entity_id: '{% if is_state("input_select.remote_family_room_plex", "Plex Preview") %}switch.family_room_roku_plex_preview{% else %}switch.family_room_roku_plex{% endif %}'
 remote_family_room_watch_plex:
   alias: Family Room Watch Plex Remote
   sequence:
-    - service: rest_command.reload_plex
-      data: {}
     - service: input_select.select_option
       data:
         entity_id: input_select.remote_family_room
         option: Plex
     - service: script.family_room_watch_plex
-    - service: rest_command.reload_plex
-      data: {}
-
-remote_family_room_chromecast:
-  alias: Family Room Chromecast Remote
+    - service: script.reload_integration_plex
+remote_family_room_androidtv:
+  alias: Family Room Android TV Remote
   sequence:
     - service: input_select.select_option
       data:
         entity_id: input_select.remote_family_room
-        option: Chromecast
+        option: AndroidTV
     - condition: state
       entity_id: switch.family_room_tv
       state: "on"
-    - service: media_player.select_source
-      data:
-        entity_id: media_player.family_room_roku
-        source: "Chromecast"
-remote_family_room_watch_chromecast:
-  alias: Family Room Watch Chromecast Remote
+    - service: switch.turn_on
+      entity_id: switch.family_room_roku_androidtv
+remote_family_room_watch_androidtv:
+  alias: Family Room Watch Android TV Remote
   sequence:
     - service: input_select.select_option
       data:
         entity_id: input_select.remote_family_room
-        option: Chromecast
-    - service: script.family_room_watch_chromecast
-
+        option: AndroidTV
+    - service: script.family_room_watch_androidtv
 remote_family_room_bell:
   alias: Family Room Bell Remote
   sequence:
@@ -94,111 +88,6 @@ remote_family_room_watch_bell:
         option: Bell
     - service: script.family_room_watch_bell
 
-remote_family_room_kodi:
-  alias: Family Room Kodi Remote
-  sequence:
-    - service: input_select.select_option
-      data:
-        entity_id: input_select.remote_family_room
-        option: Kodi
-    - condition: state
-      entity_id: switch.family_room_tv
-      state: "on"
-    - service: script.remote_family_room_kodi_active
-    - condition: state
-      entity_id: switch.family_room_kodi
-      state: "off"
-    - service: switch.turn_on
-      entity_id: switch.family_room_kodi
-remote_family_room_kodi_active:
-  sequence:
-    - condition: state
-      entity_id: switch.family_room_kodi
-      state: "on"
-    - service: switch.turn_on
-      entity_id: switch.family_room_kodi_active
-remote_family_room_watch_kodi:
-  alias: Family Room Watch Kodi Remote
-  sequence:
-    - service: input_select.select_option
-      data:
-        entity_id: input_select.remote_family_room
-        option: Kodi
-    - service: script.family_room_watch_kodi
-
-remote_jalynne_plex:
-  alias: Jalynne Watch Plex Remote
-  sequence:
-    - service: input_select.select_option
-      data:
-        entity_id: input_select.remote_jalynne
-        option: Plex
-    - service: switch.turn_on
-      data:
-        entity_id: switch.jalynne_nextflix_stop
-    - service: switch.turn_on
-      data:
-        entity_id: switch.jalynne_nextflix_minimize
-    - service: switch.turn_on
-      data:
-        entity_id: switch.jalynne_plex
-
-remote_jalynne_netflix:
-  alias: Jalynne Watch Netflix Remote
-  sequence:
-    - service: input_select.select_option
-      data:
-        entity_id: input_select.remote_jalynne
-        option: Netflix
-    - service: switch.turn_on
-      data:
-        entity_id: switch.jalynne_plex_stop
-    - service: switch.turn_on
-      data:
-        entity_id: switch.jalynne_plex_minimize
-    - service: switch.turn_on
-      data:
-        entity_id: switch.jalynne_netflix
-
-remote_jalynne_plex_rewind:
-  sequence:
-    - condition: state
-      entity_id: media_player.jalynne_plex
-      state: "playing"
-    - service: switch.turn_on
-      entity_id: switch.jalynne_plex_api_select
-    - service: switch.turn_on
-      entity_id: switch.jalynne_plex_api_left
-    - service: switch.turn_on
-      entity_id: switch.jalynne_plex_api_select
-remote_jalynne_plex_fastforward:
-  sequence:
-    - condition: state
-      entity_id: media_player.jalynne_plex
-      state: "playing"
-    - service: switch.turn_on
-      entity_id: switch.jalynne_plex_api_select
-    - service: switch.turn_on
-      entity_id: switch.jalynne_plex_api_right
-    - service: switch.turn_on
-      entity_id: switch.jalynne_plex_api_right
-    - service: switch.turn_on
-      entity_id: switch.jalynne_plex_api_select
-
-#Kodi scripts for commands not in API
-remote_family_room_kodi_plex_home:
-  sequence:
-    - service: switch.turn_on
-      entity_id: switch.family_room_kodi_active
-    - service: switch.turn_on
-      entity_id: switch.family_room_plex_home
-remote_family_room_kodi_fullscreen:
-  sequence:
-    - service: switch.turn_on
-      entity_id: switch.family_room_kodi_active
-    - service: switch.turn_on
-      entity_id: switch.family_room_pc_tab
-
 remote_theatre_watch_plex:
   alias: Theatre Watch Plex Remote
   sequence:
@@ -222,6 +111,14 @@ remote_theatre_watch_roku:
         entity_id: input_select.remote_theatre
         option: Roku
     - service: script.theatre_watch_roku
+remote_theatre_watch_firestick:
+  alias: Theatre Watch Firestick Remote
+  sequence:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.remote_firestick
+        option: Roku
+    - service: script.theatre_watch_firestick
 remote_theatre_roku:
   alias: Theatre Roku Remote
   sequence:
@@ -229,6 +126,13 @@ remote_theatre_roku:
       data:
         entity_id: input_select.remote_theatre
         option: Roku
+remote_theatre_firestick:
+  alias: Theatre Firestick Remote
+  sequence:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.remote_firestick
+        option: Plex
 remote_theatre_watch_chromecast:
   alias: Theatre Watch Chromecast Remote
   sequence:
@@ -274,21 +178,21 @@ remote_dining_room_plex:
       data:
         entity_id: input_select.remote_dining_room
         option: Plex
-remote_dining_room_watch_firetv:
-  alias: Dining Room Watch FireTV Remote
+remote_dining_room_watch_androidtv:
+  alias: Dining Room Watch Android TV Remote
   sequence:
     - service: input_select.select_option
       data:
         entity_id: input_select.remote_dining_room
-        option: FireTV
-    - service: script.dining_room_watch_firetv
-remote_dining_room_firetv:
-  alias: Dining Room FireTV Remote
+        option: AndroidTV
+    - service: script.dining_room_watch_androidtv
+remote_dining_room_androidtv:
+  alias: Dining Room Android TV Remote
   sequence:
     - service: input_select.select_option
       data:
         entity_id: input_select.remote_dining_room
-        option: FireTV
+        option: AndroidTV
 remote_dining_room_watch_roku:
   alias: Dining Room Watch Roku Remote
   sequence:
@@ -304,21 +208,6 @@ remote_dining_room_roku:
       data:
         entity_id: input_select.remote_dining_room
         option: Roku
-remote_dining_room_watch_chromecast:
-  alias: Dining Room Watch Chromecast Remote
-  sequence:
-    - service: input_select.select_option
-      data:
-        entity_id: input_select.remote_dining_room
-        option: Chromecast
-    - service: script.dining_room_watch_chromecast
-remote_dining_room_chromecast:
-  alias: Dining Room Chromecast Remote
-  sequence:
-    - service: input_select.select_option
-      data:
-        entity_id: input_select.remote_dining_room
-        option: Chromecast
 remote_dining_room_watch_tv:
   alias: Dining Room Watch TV Remote
   sequence:
@@ -359,31 +248,18 @@ remote_bedroom_watch_roku:
   sequence:
     - service: script.remote_bedroom_roku
     - service: script.bedroom_watch_roku
-remote_bedroom_firetv:
-  alias: Bedroom FireTV Remote
+remote_bedroom_androidtv:
+  alias: Bedroom Android TV Remote
   sequence:
     - service: input_select.select_option
       data:
         entity_id: input_select.remote_bedroom
-        option: FireTV
-remote_bedroom_watch_firetv:
-  alias: Bedroom Watch FireTV Remote
+        option: AndroidTV
+remote_bedroom_watch_androidtv:
+  alias: Bedroom Watch Android TV Remote
   sequence:
-    - service: script.remote_bedroom_firetv
-    - service: script.bedroom_watch_firetv
-remote_bedroom_kodi:
-  alias: Bedroom Kodi Remote
-  sequence:
-    - service: input_select.select_option
-      data:
-        entity_id: input_select.remote_bedroom
-        option: Kodi
-remote_bedroom_watch_kodi:
-  alias: Bedroom Watch Kodi Remote
-  sequence:
-    - service: script.remote_bedroom_kodi
-    - service: script.bedroom_watch_kodi
-
+    - service: script.remote_bedroom_androidtv
+    - service: script.bedroom_watch_androidtv
 remote_bedroom_chromecast:
   alias: Bedroom Chromecast Remote
   sequence:

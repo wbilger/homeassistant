@@ -1,0 +1,22 @@
+action: fire-dom-event
+browser_mod:
+  service: browser_mod.popup
+  data:
+    title: Now Playing
+    content:
+      type: custom:vertical-stack-in-card
+      cards:
+        - type: custom:decluttering-card
+          template: plex_media_player
+          variables:
+            - entity: media_player.family_room_plex
+            - name: "Family Room Plex"
+        - type: markdown
+          content:
+            '{% if is_state("input_select.remote_family_room", "AndroidTV") %}
+            {{ state_attr("media_player.family_room_androidtv_plex", "media_summary") }}
+            {% elif is_state("input_select.remote_family_room", "Roku") %}
+            {{ state_attr("media_player.family_room_roku_plex", "media_summary") }}
+            {% else %}
+            {{ state_attr("media_player.family_room_plex", "media_summary") }}
+            {% endif %}'

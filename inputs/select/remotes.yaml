@@ -3,20 +3,30 @@ remote_family_room:
   icon: mdi:remote
   options:
     - Plex
-    - Kodi
     - Bell
-    - Chromecast
+    - AndroidTV
     - TV
+remote_family_room_plex:
+  name: Family Room Plex App
+  icon: mdi:plex
+  options:
+    - Plex - Free Movies & TV
+    - Plex Preview
 
 remote_dining_room:
   name: Dining Room Remote
   icon: mdi:remote
   options:
     - Plex
-    - FireTV
     - Roku
-    - Chromecast
+    - AndroidTV
     - TV
+remote_dining_room_plex:
+  name: Dining Room Plex App
+  icon: mdi:plex
+  options:
+    - Plex - Free Movies & TV
+    - Plex Preview
 
 remote_theatre:
   name: Theatre Remote
@@ -25,8 +35,15 @@ remote_theatre:
     - Plex
     - Roku
     - Chromecast
+    - Firestick
     - Projector
     - Stereo
+remote_theatre_plex:
+  name: Theatre Plex App
+  icon: mdi:plex
+  options:
+    - Plex - Free Movies & TV
+    - Plex Preview
 
 remote_bedroom:
   name: Bedroom Remote
@@ -34,15 +51,12 @@ remote_bedroom:
   options:
     - Plex
     - Roku
-    - FireTV
-    - Kodi
     - Chromecast
+    - AndroidTV
     - TV
-
-remote_jalynne:
-  name: Jalynne Remote
-  icon: mdi:remote
+remote_bedroom_plex:
+  name: Bedroom Plex App
+  icon: mdi:plex
   options:
-    - Plex
-    - Roku
-    - Netflix
+    - Plex - Free Movies & TV
+    - Plex Preview

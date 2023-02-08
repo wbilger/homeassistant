@@ -1,7 +1,7 @@
 #################################################################
 # VIEW: settings_admin                                          #
 #   Admin Settings                                              #
-################################################################# 
+#################################################################
 title: Admin Settings
 path: settings_admin
 icon: mdi:cog-box
@@ -11,27 +11,21 @@ cards:
       - !include /config/lovelace/cards/navigation.yaml
       - type: custom:vertical-stack-in-card
         cards:
-          - type: conditional
-            conditions: 
+          - type: entities
+            entities:
               - entity: input_boolean.kiosk_mode
-                state: 'on'
-            card:    
-              type: entities
-              entities:
-                - entity: input_boolean.kiosk_mode
-                  tap_action:
-                    action: none
+                tap_action:
+                  action: call-service
+                  service: browser_mod.window_reload
+                icon: mdi:refresh
           - type: conditional
-            conditions: 
+            conditions:
               - entity: input_boolean.kiosk_mode
-                state: 'off'
-            card:    
+                state: "off"
+            card:
               type: entities
               show_header_toggle: false
               entities:
-                - entity: input_boolean.kiosk_mode
-                  tap_action:
-                    action: none
                 - entity: input_boolean.kiosk_mode_hide_header
                   tap_action:
                     action: none
@@ -71,15 +65,11 @@ cards:
                 name: Cameras
                 url: /lovelace/cameras
                 icon: mdi:video
-              - type: call-service              
-                name: Reload Ikea
-                service: rest_command.reload_ikea
-                icon: mdi:lightbulb-group
-              - type: call-service              
+              - type: call-service
                 name: Reload Plex
-                service: rest_command.reload_plex
+                service: script.reload_integration_plex
                 icon: mdi:plex
-              - type: call-service              
+              - type: call-service
                 name: Get Browser DeviceID
                 service: browser_mod.debug
                 icon: mdi:android-debug-bridge

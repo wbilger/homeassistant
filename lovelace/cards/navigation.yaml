@@ -1,2 +1,76 @@
-type: custom:q-card
-card: navigation
+type: custom:vertical-stack-in-card
+horizontal: true
+cards:
+  - type: custom:state-switch
+    entity: deviceID
+    default: default
+    states:
+      default:
+        type: custom:button-card
+        template: navigation
+        entity_picture: /local/photos/home.png
+        tap_action:
+          action: navigate
+          navigation_path: /lovelace/home
+        hold_action:
+          action: navigate
+          navigation_path: /lovelace/dashboard
+      "c5c29698-84005f51": #Kitchen Tablet running Fully Kiosk Browser
+        type: custom:button-card
+        template: navigation
+        entity_picture: /local/photos/home.png
+        tap_action:
+          action: navigate
+          navigation_path: /lovelace/dashboard
+        hold_action:
+          action: navigate
+          navigation_path: /lovelace/home
+
+  - type: custom:button-card
+    template: navigation
+    entity_picture: /local/photos/bedroom.png
+    tap_action:
+      action: navigate
+      navigation_path: /lovelace/bedroom
+    hold_action:
+      action: navigate
+      navigation_path: /lovelace/r.bedroom
+  - type: custom:button-card
+    template: navigation
+    entity_picture: /local/photos/family_room.png
+    tap_action:
+      action: navigate
+      navigation_path: /lovelace/family_room
+    hold_action:
+      action: navigate
+      navigation_path: /lovelace/r.family_room
+  - type: custom:button-card
+    template: navigation
+    entity_picture: /local/photos/theatre.png
+    tap_action:
+      action: navigate
+      navigation_path: /lovelace/theatre
+    hold_action:
+      action: navigate
+      navigation_path: /lovelace/r.theatre
+  - type: custom:button-card
+    template: navigation
+    entity_picture: /local/photos/sensors.png
+    tap_action:
+      action: navigate
+      navigation_path: /lovelace/sensors
+    hold_action:
+      action: navigate
+      navigation_path: /lovelace/cameras
+  - type: custom:button-card
+    template: navigation
+    entity_picture: /local/photos/settings.png
+    tap_action:
+      action: navigate
+      navigation_path: /lovelace/settings
+    double_tap_action:
+      action: navigate
+      navigation_path: /lovelace/settings_locks
+    hold_action:
+      action: navigate
+      navigation_path: /lovelace/settings_admin

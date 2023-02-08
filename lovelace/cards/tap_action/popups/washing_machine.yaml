@@ -1,0 +1,5 @@
+action: fire-dom-event
+browser_mod:
+  service: browser_mod.popup
+  data:
+    content: !include /config/lovelace/cards/washing_machine.yaml

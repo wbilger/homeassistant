@@ -1,0 +1,15 @@
+plex_media_player:
+  card:
+    type: custom:mini-media-player
+    entity: "[[entity]]"
+    name: "[[name]]"
+    icon: mdi:plex
+    artwork: full-cover-fit
+    more_info: false
+    info: scroll
+    tap_action:
+      action: none
+    hide:
+      controls: true
+      power: true
+      volume: true

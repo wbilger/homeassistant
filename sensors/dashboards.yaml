@@ -2,58 +2,37 @@
 - platform: template
   sensors:
     kitchen_dashboard_motion:
-      friendly_name: 'Kitchen Dashboard Motion'
+      friendly_name: "Kitchen Dashboard Motion"
       value_template: '{{ state_attr("binary_sensor.fully_kitchen_dashboard", "motion") }}'
     kitchen_dashboard_battery_level:
-      friendly_name: 'Kitchen Dashboard Battery Level'
-      unit_of_measurement: '%'
+      friendly_name: "Kitchen Dashboard Battery Level"
+      unit_of_measurement: "%"
       value_template: '{{ state_attr("binary_sensor.fully_kitchen_dashboard", "battery_level") }}'
     kitchen_dashboard_battery_charging:
-      friendly_name: 'Kitchen Dashboard Charging'
+      friendly_name: "Kitchen Dashboard Charging"
       value_template: '{{ state_attr("binary_sensor.fully_kitchen_dashboard", "battery_charging") }}'
     kitchen_dashboard_battery:
-      friendly_name: 'Kitchen Dashboard Battery Level'
-      unit_of_measurement: '%'
+      friendly_name: "Kitchen Dashboard Battery Level"
+      unit_of_measurement: "%"
       value_template: '{{ state_attr("binary_sensor.fully_kitchen_dashboard", "battery") }}'
     kitchen_dashboard_charging:
-      friendly_name: 'Kitchen Dashboard Charging'
+      friendly_name: "Kitchen Dashboard Charging"
       value_template: '{{ state_attr("binary_sensor.fully_kitchen_dashboard", "charging") }}'
-#Remote Family Room  
+    #Remote Family Room
     family_room_remote_motion:
-      friendly_name: 'Family Room Remote Motion'
+      friendly_name: "Family Room Remote Motion"
       value_template: '{{ state_attr("binary_sensor.fully_family_room_remote", "motion") }}'
     family_room_remote_battery_level:
-      friendly_name: 'Family Room Remote Battery Level'
-      unit_of_measurement: '%'
+      friendly_name: "Family Room Remote Battery Level"
+      unit_of_measurement: "%"
       value_template: '{{ state_attr("binary_sensor.fully_family_room_remote", "battery_level") }}'
     family_room_remote_battery_charging:
-      friendly_name: 'Family Room Remote Charging'
+      friendly_name: "Family Room Remote Charging"
       value_template: '{{ state_attr("binary_sensor.fully_family_room_remote", "battery_charging") }}'
     family_room_remote_battery:
-      friendly_name: 'Family Room Remote Battery Level'
-      unit_of_measurement: '%'
+      friendly_name: "Family Room Remote Battery Level"
+      unit_of_measurement: "%"
       value_template: '{{ state_attr("binary_sensor.fully_family_room_remote", "battery") }}'
     family_room_remote_charging:
-      friendly_name: 'Family Room Remote Charging'
+      friendly_name: "Family Room Remote Charging"
       value_template: '{{ state_attr("binary_sensor.fully_family_room_remote", "charging") }}'
-
-#USE MQTT STATE - platform: rest
-#   name: 'Remote Family Room URL'
-#   resource: http://192.168.1.75:2971/api/state
-#   value_template: '{{ value_json.currentUrl[30:255] }}'
-# - platform: rest
-#   resource: http://192.168.1.75:2971/api/state
-#   name: 'Remote Family Room Screen On'
-#   value_template: '{{ value_json.screenOn }}'
-# - platform: mqtt
-#   name: "Remote Family Room Screen"
-#   state_topic: "wallpanel/remote_family_room/state"
-#   json_attributes_topic: "wallpanel/remote_family_rooom/state"
-#   value_template: '{{ value_json.screenOn }}'
-
-# - platform: mqtt
-#   name: "Remote Family Room Battery"
-#   state_topic: "wallpanel/remote_family_room/sensor/battery"
-#   unit_of_measurement: '%'
-#   json_attributes_topic: "wallpanel/remote_family_rooom/sensor/battery"
-#   value_template: '{{ value_json.value }}'

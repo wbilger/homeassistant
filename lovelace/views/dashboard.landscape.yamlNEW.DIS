@@ -630,7 +630,7 @@ cards:
               left: 55%
           - type: image
             image: /local/photos/light_lamp_floor.png
-            entity: light.dining_room_plug
+            entity: light.dining_room_lamp
             tap_action:
               action: toggle
             state_filter:

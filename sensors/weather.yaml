@@ -1,6 +1,6 @@
 # Weather prediction
 - platform: darksky
-  api_key: !secret darksky_api  
+  api_key: !secret darksky_api
   forecast:
     - 0
     - 1
@@ -39,10 +39,10 @@
 - platform: template
   sensors:
     dark_sky_wind_speed_kmh:
-      friendly_name: 'Wind Speed'
-      unit_of_measurement: 'km/h'
-      value_template: '{{ states("sensor.dark_sky_wind_speed") | float * 18 / 5 }}'  #convert to km/h
+      friendly_name: "Wind Speed"
+      unit_of_measurement: "km/h"
+      value_template: '{{ states("sensor.dark_sky_wind_speed") | float * 18 / 5 }}' #convert to km/h
     sun_elevation:
-      friendly_name: 'Sun Elevation'
-      unit_of_measurement: '°'
+      friendly_name: "Sun Elevation"
+      unit_of_measurement: "°"
       value_template: '{{ "%+.1f"|format(state_attr("sun.sun", "elevation")) }}'

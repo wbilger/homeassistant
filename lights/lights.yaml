@@ -1,41 +1,12 @@
 ## Ikea Tradfri Gateway Security Code: UQj6FzC8GJvouvR0 - Host: 192.168.1.85
 
-- platform: template      #Fully Kiosk
+- platform: template #Fully Kiosk
   lights:
     dashboard_screen_kitchen:
       turn_on:
       turn_off:
       set_level:
 
-- platform: group
-  name: Kitchen Island Lights
-  entities:
-    - light.kitchen_island_1
-    - light.kitchen_island_2
-    - light.kitchen_island_3
-- platform: group
-  name: Family Room Light
-  entities:
-    - light.family_room_1
-    - light.family_room_2
-- platform: group
-  name: Theatre Lights
-  entities:
-    - light.theatre_fl
-    - light.theatre_fr
-    - light.theatre_rl
-    - light.theatre_rr
-- platform: group
-  name: Theatre Lights Front
-  entities:
-    - light.theatre_fl
-    - light.theatre_fr
-- platform: group
-  name: Theatre Lights Rear
-  entities:
-    - light.theatre_rl
-    - light.theatre_rr
-        
 - platform: switch
   name: Deck Lights
   entity_id: switch.deck_lights
@@ -53,7 +24,7 @@
   entity_id: switch.dining_room_light
 - platform: switch
   name: Dining Room Plug
-  entity_id: switch.dining_room_plug
+  entity_id: switch.dining_room_lamp
 - platform: switch
   name: Bedroom Light
   entity_id: switch.bedroom_light
@@ -75,6 +46,35 @@
 - platform: switch
   name: Desk Lamp
   entity_id: switch.rf_etekcity_5
-#stole for IKEA Gateway - steal Bar Light for month, or buy new - platform: switch
-#   name: Christmas Tree Lights
-#   entity_id: switch.rf_etekcity_1        
+- platform: switch
+  name: Christmas Tree Lights
+  entity_id: switch.christmas_tree
+#Ikea light groups in zigbee2mqtt
+# - platform: group
+#   name: Kitchen Island Lights
+#   entities:
+#     - light.kitchen_island_1
+#     - light.kitchen_island_2
+#     - light.kitchen_island_3
+# - platform: group
+#   name: Family Room Light
+#   entities:
+#     - light.family_room_1
+#     - light.family_room_2
+# - platform: group
+#   name: Theatre Lights
+#   entities:
+#     - light.theatre_fl
+#     - light.theatre_fr
+#     - light.theatre_rl
+#     - light.theatre_rr
+# - platform: group
+#   name: Theatre Lights Front
+#   entities:
+#     - light.theatre_fl
+#     - light.theatre_fr
+# - platform: group
+#   name: Theatre Lights Rear
+#   entities:
+#     - light.theatre_rl
+#     - light.theatre_rr

@@ -1,25 +1,25 @@
 #################################################################
 # VIEW: sensors                                                 #
 #                                                               #
-################################################################# 
+#################################################################
 title: Sensors
 path: sensors
 icon: mdi:gauge
 cards:
-  - !include /config/lovelace/cards/navigation.yaml
   - type: vertical-stack
     cards:
+      - !include /config/lovelace/cards/navigation.yaml
       - type: glance
         entities:
           - sun.sun
-          - entity: sensor.sun_elevation      
+          - entity: sensor.sun_elevation
             icon: mdi:weather-sunset
           - entity: binary_sensor.work_day
             icon: mdi:calendar-star
       - type: custom:auto-entities
         card:
           title: Last Motion Detected
-          type: entities    
+          type: entities
         filter:
           include:
             - domain: binary_sensor
@@ -38,14 +38,14 @@ cards:
               options:
                 secondary_info: last-changed
           exclude:
-            - state: unavailable                
+            - state: unavailable
         sort:
           method: last_changed
           count: 1
       - type: custom:auto-entities
         card:
           title: Last Automation
-          type: entities    
+          type: entities
         filter:
           include:
             - domain: automation
@@ -54,10 +54,11 @@ cards:
         sort:
           method: last_triggered
           count: 5
+          ignore_case: true
       - type: custom:auto-entities
         card:
           title: Last Script
-          type: entities    
+          type: entities
         filter:
           include:
             - domain: script
@@ -72,9 +73,9 @@ cards:
   - type: vertical-stack
     cards:
       - type: custom:vertical-stack-in-card
-        title: Washing Machine      #stack to get title
+        title: Washing Machine #stack to get title
         cards:
-          - !include /config/lovelace/cards/washing_machine.yaml   
+          - !include /config/lovelace/cards/washing_machine.yaml
       # - type: entities
       #   title: Front Door Lock
       #   show_header_toggle: false
@@ -83,7 +84,7 @@ cards:
       #       name: Battery Level
       #       options:
       #         type: custom:battery-entity-row
-      #         charging: 
+      #         charging:
       #           entity: sensor.kitchen_dashboard_battery_charging
       #     - entity: sensor.schlage_front_door_lock_notification
       #       name: Notification
@@ -99,7 +100,7 @@ cards:
             - entity_id: sensor.kitchen_dashboard_battery_level
               options:
                 type: custom:battery-entity-row
-                charging: 
+                charging:
                   entity: sensor.kitchen_dashboard_battery_charging
             - entity_id: sensor.kitchen_dashboard_motion
               options:
@@ -107,7 +108,7 @@ cards:
             - entity_id: sensor.remote_*_battery_level
               options:
                 type: custom:battery-entity-row
-                charging: 
+                charging:
                   entity: sensor.remote_*_charging
             - entity: sensor.remote_*_motion
               options:
@@ -122,25 +123,3 @@ cards:
             - entity_id: sensor.*dimmer*
               options:
                 type: custom:battery-entity-row
-
-  - type: vertical-stack
-    cards:                
-      - type: custom:auto-entities
-        card:
-          type: glance
-          title: System Resources 2
-        # entities:
-        #   - <entity>
-        filter:
-          include:
-            - entity_id: sensor.glances_*
-          # exclude:
-          #   - <filter>
-        #sort: <sort_method>
-      - type: custom:auto-entities
-        card:
-          type: entities
-          title: System Resources
-        filter:
-          include:
-            - entity_id: sensor.glances_*

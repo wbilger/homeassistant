@@ -24,6 +24,19 @@ theatre_surround_sound_radio:
     - service: switch.turn_on
       entity_id: switch.theatre_surround_sound_pc
 
+theatre_surround_sound_firestick:
+  sequence:
+    - service: switch.turn_on
+      entity_id: switch.theatre_surround_sound_firestick
+    - condition: state
+      entity_id: switch.theatre_surround_sound
+      state: "off"
+    - service: switch.turn_on
+      entity_id: switch.theatre_surround_sound
+    - delay: 5
+    - service: switch.turn_on
+      entity_id: switch.theatre_surround_sound_firestick
+
 theatre_surround_sound_chromecast:
   sequence:
     - service: switch.turn_on
@@ -45,9 +58,9 @@ theatre_movie_time:
     - service: script.theatre_stop_lights #turn lights to normal media 'pause' state
     - service: script.theatre_surround_sound_tv
     - service: media_player.select_source
-      data:
+      data_template:
         entity_id: media_player.theatre_roku
-        source: "Plex - Stream for Free"
+        source: '{{ states("input_select.remote_theatre_plex") }}'
     - delay: 20
     - service: script.kitchen_lights_night_dim_auto
 
@@ -59,9 +72,17 @@ theatre_watch_roku:
     - service: media_player.select_source
       data:
         entity_id: media_player.theatre_roku
-        source: "Plex - Stream for Free"
+        source: '{{ states("input_select.remote_theatre_plex") }}'
     - delay: 5 #wait for surround sound receiver
     - service: script.theatre_surround_sound_tv
+
+theatre_watch_firestick:
+  alias: Theatre Watch Firestick
+  sequence:
+    - service: homeassistant.turn_on
+      entity_id: group.theatre_tv
+    - delay: 5 #wait for surround sound receiver
+    - service: script.theatre_surround_sound_firestick
 
 theatre_chromecast_time:
   alias: Theatre Chromecast Time

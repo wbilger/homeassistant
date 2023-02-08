@@ -1,18 +1,15 @@
-- platform: uptime
-  name: Uptime in Minutes
-  unit_of_measurement: minutes
 - platform: time_date
   display_options:
-    - 'time'
-    - 'date'
-    - 'date_time'       #for schlage from frontdoor_lock_manager_common.yaml
-    - 'date_time_iso'   #for schlage from frontdoor_lock_manager_common.yaml
-    - 'time_date'       #for schlage from frontdoor_lock_manager_common.yaml
-    - 'time_utc'        #for schlage from frontdoor_lock_manager_common.yaml
-    - 'beat'            #for schlage from frontdoor_lock_manager_common.yaml
+    - "time"
+    - "date"
+    - "date_time" #for schlage from frontdoor_lock_manager_common.yaml
+    - "date_time_iso" #for schlage from frontdoor_lock_manager_common.yaml
+    - "time_date" #for schlage from frontdoor_lock_manager_common.yaml
+    - "time_utc" #for schlage from frontdoor_lock_manager_common.yaml
+    - "beat" #for schlage from frontdoor_lock_manager_common.yaml
 - platform: template
   sensors:
-    # now_time: 
+    # now_time:
     #   value_template: '{{ now().strftime("%s") }}'
     # time_now:
     #   friendly_name: "Time Now"

@@ -1,0 +1,15 @@
+action: fire-dom-event
+browser_mod:
+  service: browser_mod.popup
+  data:
+    title: Now Playing
+    content:
+      type: custom:vertical-stack-in-card
+      cards:
+        - type: custom:decluttering-card
+          template: plex_media_player
+          variables:
+            - entity: media_player.theatre_plex
+            - name: "Theatre Plex"
+        - type: markdown
+          content: '{{ state_attr("media_player.theatre_plex", "media_summary") }}'

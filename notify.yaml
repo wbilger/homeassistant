@@ -1,9 +1,14 @@
-# HTML5 browser notifications
-# - name: google
-#   platform: html5
-#   vapid_pub_key: !secret google_push_vapid_pub_key
-#   vapid_prv_key: !secret google_push_vapid_prv_key
-#   vapid_email: waynebilger@gmail.com #!secret google_email
+- name: "gmail_wayne"
+  platform: smtp
+  server: "smtp.gmail.com"
+  port: 465
+  timeout: 15
+  sender: !secret gmail_sender
+  encryption: tls
+  username: !secret gmail_sender
+  password: !secret gmail_smtp_password
+  recipient: !secret gmail_recipient
+  sender_name: !secret hass_name_lovelace
 
 - name: bilger_family
   platform: group
@@ -27,7 +32,7 @@
 
 - name: google_assistant_broadcast
   platform: rest
-  resource: http://192.168.1.14:5000/broadcast_message
+  resource: http://192.168.1.16:5000/broadcast_message
 - name: google_assistant_command
   platform: rest
-  resource: http://192.168.1.14:5000/command
+  resource: http://192.168.1.16:5000/command

@@ -9,10 +9,11 @@ switch.family_room_surround_sound:
   hidden: true
   icon: mdi:surround-sound
   assumed_state: false
-switch.family_room_kodi:
-  icon: mdi:kodi
 switch.family_room_bell:
   icon: mdi:television-classic
-switch.deck_fan:
+switch.butt_kickers:
+  icon: mdi:speaker-wireless
+  friendly_name: Butt Kickers
+switch.deck_tv_fan:
   icon: mdi:fan
   friendly_name: Deck TV Fan

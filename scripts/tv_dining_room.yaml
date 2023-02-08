@@ -4,12 +4,12 @@ dining_room_tv_tv:
       entity_id: switch.dining_room_tv_input_tv
     - condition: state
       entity_id: switch.dining_room_tv
-      state: 'off'
+      state: "off"
     - service: switch.turn_on
       entity_id: switch.dining_room_tv
     - wait_template: '{{ is_state("group.tv_dining_room", "home") }}'
-      timeout: '00:00:10'           #delay for TV to start before changing inputs (if on wrong input)
-      continue_on_timeout: 'true'    
+      timeout: "00:00:10" #delay for TV to start before changing inputs (if on wrong input)
+      continue_on_timeout: "true"
     - service: switch.turn_on
       entity_id: switch.dining_room_tv_input_tv
 
@@ -29,10 +29,10 @@ dining_room_tv_youtube:
 
 dining_room_tv_channel_10:
   sequence:
-    - service: switch.turn_on     #delay for TV to switch to Live TV if in NetFlix/YouTube
-      data_template: 
-        entity_id: '{% if is_state("input_boolean.dining_room_live_tv_delay", "on") %}switch.dining_room_tv_livetv{% endif %}'  #delay for TV to switch to Live TV if in NetFlix/YouTube
-    - delay: '00:00:{% if is_state("input_boolean.dining_room_live_tv_delay","on") %}{{ 2 | int }}{% else %}{{ 0 | int }}{% endif %}'  #delay for TV to switch to Live TV if in NetFlix/YouTube
+    - service: switch.turn_on #delay for TV to switch to Live TV if in NetFlix/YouTube
+      data_template:
+        entity_id: '{% if is_state("input_boolean.dining_room_live_tv_delay", "on") %}switch.dining_room_tv_livetv{% endif %}' #delay for TV to switch to Live TV if in NetFlix/YouTube
+    - delay: '00:00:{% if is_state("input_boolean.dining_room_live_tv_delay","on") %}{{ 2 | int }}{% else %}{{ 0 | int }}{% endif %}' #delay for TV to switch to Live TV if in NetFlix/YouTube
     - service: switch.turn_on
       entity_id: switch.dining_room_tv_1
     - service: switch.turn_on
@@ -46,10 +46,10 @@ dining_room_tv_channel_10:
 
 dining_room_tv_channel_31:
   sequence:
-    - service: switch.turn_on     #delay for TV to switch to Live TV if in NetFlix/YouTube
-      data_template: 
-        entity_id: '{% if is_state("input_boolean.dining_room_live_tv_delay", "on") %}switch.dining_room_tv_livetv{% endif %}'  #delay for TV to switch to Live TV if in NetFlix/YouTube
-    - delay: '00:00:{% if is_state("input_boolean.dining_room_live_tv_delay","on") %}{{ 2 | int }}{% else %}{{ 0 | int }}{% endif %}'  #delay for TV to switch to Live TV if in NetFlix/YouTube
+    - service: switch.turn_on #delay for TV to switch to Live TV if in NetFlix/YouTube
+      data_template:
+        entity_id: '{% if is_state("input_boolean.dining_room_live_tv_delay", "on") %}switch.dining_room_tv_livetv{% endif %}' #delay for TV to switch to Live TV if in NetFlix/YouTube
+    - delay: '00:00:{% if is_state("input_boolean.dining_room_live_tv_delay","on") %}{{ 2 | int }}{% else %}{{ 0 | int }}{% endif %}' #delay for TV to switch to Live TV if in NetFlix/YouTube
     - service: switch.turn_on
       entity_id: switch.dining_room_tv_3
     - service: switch.turn_on
@@ -60,35 +60,35 @@ dining_room_tv_channel_31:
       entity_id: switch.dining_room_tv_1
     - service: input_boolean.turn_off
       entity_id: input_boolean.dining_room_live_tv_delay
-  
-dining_room_watch_firetv:
+
+dining_room_watch_androidtv:
   sequence:
     - service: switch.turn_on
-      entity_id: switch.dining_room_tv_input_firetv
+      entity_id: switch.dining_room_tv_input_androidtv
     - condition: state
       entity_id: switch.dining_room_tv
-      state: 'off'
+      state: "off"
     - service: switch.turn_on
       entity_id: switch.dining_room_tv
-    - delay: 10    #wait at least 10 seconds in case group.tv_dining_room is still 'home' if tv just shut off    
+    - delay: 10 #wait at least 10 seconds in case group.tv_dining_room is still 'home' if tv just shut off
     - wait_template: '{{ is_state("group.tv_dining_room", "home") }}'
-      timeout: '00:00:25'           #delay for TV to start before changing inputs (if on wrong input)
-      continue_on_timeout: 'true'    
+      timeout: "00:00:25" #delay for TV to start before changing inputs (if on wrong input)
+      continue_on_timeout: "true"
     - service: switch.turn_on
-      entity_id: switch.dining_room_tv_input_firetv
+      entity_id: switch.dining_room_tv_input_androidtv
 dining_room_watch_chromecast:
   sequence:
     - service: switch.turn_on
       entity_id: switch.dining_room_tv_input_chromecast
     - condition: state
       entity_id: switch.dining_room_tv
-      state: 'off'
+      state: "off"
     - service: switch.turn_on
       entity_id: switch.dining_room_tv
-    - delay: 10    #wait at least 10 seconds in case group.tv_dining_room is still 'home' if tv just shut off    
+    - delay: 10 #wait at least 10 seconds in case group.tv_dining_room is still 'home' if tv just shut off
     - wait_template: '{{ is_state("group.tv_dining_room", "home") }}'
-      timeout: '00:00:25'           #delay for TV to start before changing inputs (if on wrong input)
-      continue_on_timeout: 'true'    
+      timeout: "00:00:25" #delay for TV to start before changing inputs (if on wrong input)
+      continue_on_timeout: "true"
     - service: switch.turn_on
       entity_id: switch.dining_room_tv_input_chromecast
 dining_room_watch_tv:
@@ -97,13 +97,13 @@ dining_room_watch_tv:
       entity_id: switch.dining_room_tv_input_tv
     - condition: state
       entity_id: switch.dining_room_tv
-      state: 'off'
+      state: "off"
     - service: switch.turn_on
       entity_id: switch.dining_room_tv
-    - delay: 10    #wait at least 10 seconds in case group.tv_dining_room is still 'home' if tv just shut off    
+    - delay: 10 #wait at least 10 seconds in case group.tv_dining_room is still 'home' if tv just shut off
     - wait_template: '{{ is_state("group.tv_dining_room", "home") }}'
-      timeout: '00:00:25'           #delay for TV to start before changing inputs (if on wrong input)
-      continue_on_timeout: 'true'    
+      timeout: "00:00:25" #delay for TV to start before changing inputs (if on wrong input)
+      continue_on_timeout: "true"
     - service: script.dining_room_tv_input_tv
 dining_room_tv_off:
   sequence:
@@ -112,6 +112,6 @@ dining_room_tv_off:
     - service: media_player.media_stop
       entity_id: media_player.dining_room_aftt
     - service: media_player.turn_off
-      entity_id: media_player.dining_room_chromecast  #stop anything playing on chromecast
+      entity_id: media_player.dining_room_chromecast #stop anything playing on chromecast
     - service: switch.turn_off
       entity_id: switch.dining_room_tv

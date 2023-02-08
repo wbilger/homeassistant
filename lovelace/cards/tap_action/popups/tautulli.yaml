@@ -1,11 +1,10 @@
 action: fire-dom-event
 browser_mod:
-  command: call-service
   service: browser_mod.popup
-  service_data:
-    deviceID: this
+  data:
     title: Plex Stats
-    card:
+    #size: fullscreen
+    content:
       type: iframe
       url: !secret url_tautulli
       aspect_ratio: 160%

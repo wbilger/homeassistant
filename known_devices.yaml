@@ -5,12 +5,8 @@ bilger_home_motion:
 bilger_home_override:
   name: Bilger Home Override
   track: true
-  
-phone_wayne:    #automation updated tracker based on _gps tracker
-  name: Wayne Phone
-  picture: /local/photos/wayne.jpg
-  track: true
-phone_wayne_nmap:   
+
+phone_wayne_nmap:
   name: Wayne Phone Nmap
   mac: 88:36:5F:B2:28:A3
   picture: /local/photos/wayne.jpg
@@ -25,13 +21,9 @@ phone_wayne_bt:
   picture: /local/photos/wayne.jpg
   track: true
 
-phone_jenn:   #automation updated tracker based on _gps tracker
-  name: Jenn Phone
-  picture: /local/photos/jenn.jpg
-  track: true
-phone_jenn_nmap:   
+phone_jenn_nmap:
   name: Jenn Phone Nmap
-  mac: D0:13:FD:5E:BD:90
+  mac: 02:E4:15:E3:86:F8
   picture: /local/photos/jenn.jpg
   track: true
 phone_jenn_ping:
@@ -39,18 +31,13 @@ phone_jenn_ping:
   picture: /local/photos/jenn.jpg
   track: true
 
-phone_kale:     #automation updated tracker based on _gps tracker
-  name: Phone Kale
-  picture: /local/photos/kale.jpg
-  track: true
 phone_kale_iphonedetect:
   name: Kale Phone iPhoneDetect
   picture: /local/photos/kale.jpg
   track: true
 phone_kale_nmap:
-  mac: 20-69-80-50-72-EC
-  #mac: 6A:DE:CB:41:B9:48
   name: Kale Phone Nmap
+  mac: 20:69:80:50:72:EC
   picture: /local/photos/kale.jpg
   track: true
 phone_kale_ping:
@@ -67,10 +54,6 @@ watch_kale_ping:
   picture: /local/photos/kale.jpg
   track: false #true
 
-phone_jalynne:    #automation updated tracker based on _gps tracker
-  name: Phone Jalynne
-  picture: /local/photos/jalynne.jpg
-  track: true
 phone_jalynne_iphonedetect:
   name: Jalynne Phone iPhoneDetect
   picture: /local/photos/jalynne.jpg
@@ -78,11 +61,15 @@ phone_jalynne_iphonedetect:
 phone_jalynne_nmap:
   name: Jalynne Phone Nmap
   mac: 20:69:80:2A:0A:B7
-#OLD phone   mac: A8:5C:2C:51:52:BA
   picture: /local/photos/jalynne.jpg
   track: true
 phone_jalynne_ping:
   name: Jalynne Phone Ping
+  picture: /local/photos/jalynne.jpg
+  track: true
+watch_jalynne_nmap:
+  name: Jalynne Watch Nmap
+  mac: 16:EE:7D:67:12:ED
   picture: /local/photos/jalynne.jpg
   track: true
 watch_jalynne_ping:
@@ -100,7 +87,7 @@ tv_dining_room_wireless:
   mac: 78:45:61:75:16:D2
   name: Dining Room TV Wireless
   picture:
-  track: true  
+  track: true
 tv_dining_room_ping:
   icon: mdi:television
   name: Dining Room TV Ping
@@ -110,7 +97,7 @@ tv_dining_room_wireless_ping:
   mac:
   name: Dining Room TV Wireless Ping
   picture:
-  track: true  
+  track: true
 
 chromecast_family_room:
   mac: F4:F5:D8:5B:5D:B6
@@ -132,16 +119,6 @@ chromecast_dining_room_ping:
   name: chromecast dining room ping
   track: true
 
-chromecast_bedroom:
-  mac: A4:77:33:97:D7:C0
-  name: Chromecast Bedroom
-  track: true
-  vendor: Google, Inc.
-chromecast_bedroom_ping:
-  name: chromecast bedroom ping
-  picture:
-  track: true
-
 chromecast_theatre:
   mac: 6c:ad:f8:b4:95:34
   name: Chromecast Theatre
@@ -152,41 +129,16 @@ chromecast_theatre_ping:
   picture:
   track: true
 
-ikea_tradfri_gateway_nmap:
-  name: IKEA Tradfri Gateway NMAP
-  mac: A0:CC:2B:6F:7A:AD
-  track: true  
-ikea_tradfri_gateway_ping:
-  name: IKEA Tradfri Gateway Ping
+remote_family_room_nmap:
+  name: Family Room Remote Nmap
+  mac: D0:13:FD:5E:BD:90
+  picture: /local/photos/jenn.jpg
   track: true
-
 # ## NON-TRACKED DEVICES (track=false)
-tablet_samsung_tab3:
-  mac: 94:B1:0A:44:55:61
-  name: Tablet
-  track: false
-  vendor: Samsung Electronics Co.,Ltd
-urchin_r4a:
-  mac: BT_00:17:53:4A:75:38
-  name: Urchin R4A
-  track: false
-08_d0_b7_d8_e8_c9:
-  name: 08_d0_b7_d8_e8_c9
-  mac: 08:D0:B7:D8:E8:C9
-  track: false
-46_54_da_87_d9_5e:
-  name: 46_54_da_87_d9_5e
-  mac: 46:54:DA:87:D9:5E
-  track: false  
-02_04_68_03_cf_22:
-  name: 02_04_68_03_cf_22
-  mac: 02:04:68:03:CF:22
-  track: false
-16_ee_7d_67_12_ed:
-  name: 16_ee_7d_67_12_ed
-  mac: 16:EE:7D:67:12:ED
-  track: false
-20_69_80_50_72_ec:
-  name: 20_69_80_50_72_ec
-  mac: 20:69:80:50:72:EC
-  track: false
+
+tv_bedroom_ping:
+  name: tv_bedroom_ping
+  mac:
+  icon:
+  picture:
+  track: true

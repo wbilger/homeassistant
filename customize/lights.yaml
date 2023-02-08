@@ -30,6 +30,7 @@ switch.jalynne_bedroom_fan:
   icon: mdi:fan
 light.christmas_tree:
   icon: mdi:pine-tree
+  friendly_name: Christmas Tree Lights
 script.kitchen_lights_night_dim:
   icon: mdi:weather-night
 script.bedtime:

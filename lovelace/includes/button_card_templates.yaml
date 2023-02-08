@@ -1,0 +1,90 @@
+navigation:
+  show_entity_picture: true
+  styles:
+    card:
+      - height: 50px
+home_container:
+  color_type: card
+  color: "#ced62f" #yellow/gray
+  show_icon: false
+  show_label: true
+  state:
+    - value: "off"
+      styles:
+        card:
+          - background-color: var(--ha-card-background)
+  styles:
+    card:
+      - padding: 0
+    name:
+      #- border-radius: 0.4em 0.4em 0 0
+      #- padding: 0.1em
+      - width: 50px
+      - font-size: 75%
+      - font-weight: bold
+    label:
+      # - border-radius: 0.4em 0.4em 0 0
+      # - padding: 0.1em
+      - width: 50px
+      - font-size: 75%
+      - font-weight: bold
+    grid:
+      - grid-template-areas: '"n buttons" "l buttons"'
+      - grid-template-columns: min-content 1fr
+    custom_fields:
+      buttons:
+        - margin: 0.1em
+        - padding: 0.1em
+home_container_vertical:
+  color_type: card
+  #color: "#EDE7B0"
+  show_icon: false
+  state:
+    - value: "off"
+      styles:
+        card:
+          - background-color: var(--ha-card-background)
+  styles:
+    card:
+      - padding: 0
+    name:
+      - border-radius: 0.4em 0.4em 0 0
+      - padding: 0.1em
+      - width: 100%
+      - font-weight: bold
+    grid:
+      - grid-template-areas: '"i" "n" "buttons"'
+      - grid-template-columns: 1fr
+      - grid-template-rows: 1fr min-content min-content
+    custom_fields:
+      buttons:
+        - background-color: "rgba(0,0,0,0.3)"
+        - margin: 0
+        - padding: 0.1em
+home_button:
+  show_name: false
+  size: 50%
+  styles:
+    card:
+      - height: 55px
+      - background-color: "rgba(0,0,0,0.125)"
+  state:
+    - value: "unavailable"
+      styles:
+        name:
+          - opacity: 30%
+        icon:
+          - opacity: 30%
+home_button_short:
+  template: home_button
+  styles:
+    card:
+      - height: 43px
+home_button_color:
+  template: home_button
+  color: var(--secondary-text-color)
+home_button_fan:
+  template: home_button_color
+  state:
+    - value: "on"
+      spin: true

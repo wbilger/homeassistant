@@ -6,6 +6,18 @@
       command_state: 'curl -s GET http://192.168.1.60:8060/query/device-info | grep power-mode | sed -e "s:<power-mode>DisplayOff</power-mode>:OFF:" -e "s:<power-mode>PowerOn</power-mode>:ON:"'
       value_template: '{{ value == "ON" }}'
       friendly_name: Family Room TV
+    family_room_roku_plex:
+      command_on: "/usr/bin/curl -X POST http://192.168.1.60:8060/launch/13535 -H 'content-type: application/json'"
+    family_room_roku_plex_preview:
+      command_on: "/usr/bin/curl -X POST http://192.168.1.60:8060/launch/55188 -H 'content-type: application/json'"
+    family_room_roku_androidtv:
+      command_on: "/usr/bin/curl -X POST http://192.168.1.60:8060/launch/tvinput.hdmi2 -H 'content-type: application/json'"
+    family_room_roku_chromecast:
+      command_on: "/usr/bin/curl -X POST http://192.168.1.60:8060/launch/tvinput.hdmi2 -H 'content-type: application/json'"
+    bedroom_roku_plex:
+      command_on: "/usr/bin/curl -X POST http://192.168.1.62:8060/launch/13535 -H 'content-type: application/json'"
+    bedroom_roku_plex_preview:
+      command_on: "/usr/bin/curl -X POST http://192.168.1.62:8060/launch/55188 -H 'content-type: application/json'"
 #
 ### Don't need to use Roku API anymore - use Roku integration
 # family_room_roku_volume_up:
@@ -19,6 +31,8 @@
 # family_room_roku_hdmi1:
 #   command_on: "/usr/bin/curl -X POST http://192.168.1.60:8060/launch/tvinput.hdmi1 -H 'content-type: application/json'"
 # family_room_roku_hdmi2:
+#   command_on: "/usr/bin/curl -X POST http://192.168.1.60:8060/launch/tvinput.hdmi2 -H 'content-type: application/json'"
+# family_room_roku_androidtv:
 #   command_on: "/usr/bin/curl -X POST http://192.168.1.60:8060/launch/tvinput.hdmi2 -H 'content-type: application/json'"
 # family_room_roku_chromecast:
 #   command_on: "/usr/bin/curl -X POST http://192.168.1.60:8060/launch/tvinput.hdmi2 -H 'content-type: application/json'"

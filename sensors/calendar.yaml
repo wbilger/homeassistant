@@ -4,13 +4,12 @@
       value_template: >-
         {% macro getEvent(cal) %}{% if cal.attributes.message is defined and cal.attributes.message != "" and (as_timestamp(cal.attributes.start_time) | timestamp_custom('%Y-%m-%d') | string == now().date() | string or (cal.attributes.all_day == True and as_timestamp(cal.attributes.start_time) <= as_timestamp(now()))) %}{% if cal.attributes.all_day == True %}All Day {% else %}At {{ (as_timestamp(cal.attributes.start_time) | timestamp_custom('%-I:%M %p')) }} {% endif %} {{ cal.attributes.message }}{% else %}NOEVENT{% endif %}{% endmacro %}
         {% set events = [getEvent(states.calendar.curbside_pickup_yard_waste ),
-          getEvent( states.calendar.bilger_family ),
+          getEvent(states.calendar.bilger_family ),
           getEvent( states.calendar.bilger_work ),
           getEvent( states.calendar.bilger_wayne ),
-          getEvent( states.calendar.bilger_wayne_slopitch ),
-          getEvent( states.calendar.bilger_wayne_tecumsehs_umpiring ),
+          getEvent( states.calendar.bilger_wayne_talons ),
+          getEvent( states.calendar.bilger_wayne_talons_14u ),          
           getEvent( states.calendar.bilger_jenn ),
-          getEvent( states.calendar.bilger_kale ),
           getEvent( states.calendar.bilger_jalynne )] %}
         {{ (events | sort | replace("\"","'") | replace("['","") | replace("At 0","At ") | replace("13:","1:") | replace("14:","2:") | replace("15:","3:") | replace("16:","4:") | replace("17:","5:") | replace("18:","6:") | replace("19:","7:") | replace("20:","8:") | replace("21:","9:") | replace("22:","10:") | replace("23:","11:") | replace(":00","") | replace("', 'NOEVENT","") | replace("NOEVENT","") | replace("', '",", then ") | replace("['","") | replace("']",""))}}
     calendar_garbage_day:
@@ -18,7 +17,4 @@
       value_template: >-
         {% if is_state_attr("calendar.curbside_pickup_garbage_day", "message", "Garbage Day") %}
           {{ state_attr("calendar.curbside_pickup_garbage_day", "message") }}{% if is_state("calendar.curbside_pickup_garbage_day", "on") %} (Today){% elif as_timestamp(state_attr("calendar.curbside_pickup_garbage_day", "start_time")) | timestamp_custom('%Y-%m-%d') | string != now().date() | string %} (Tomorrow){% endif %}            
-        {% endif %}        
-        
-        
-
+        {% endif %}

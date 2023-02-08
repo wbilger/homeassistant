@@ -1,4 +1,8 @@
 test:
   name: Test Input Text
-dark_sky_summaries:
+weather_summaries:
   name: Weather Summaries Timer Device
+mobile_app_user_id_wayne:
+mobile_app_user_id_jenn:
+mobile_app_user_id_kale:
+mobile_app_user_id_jalynne:

@@ -8,9 +8,9 @@ family_room_tv_plex:
   sequence:
     - service: script.family_room_tv
     - service: media_player.select_source
-      data:
+      data_template:
         entity_id: media_player.family_room_roku
-        source: "Plex - Stream for Free"
+        source: '{{ states("input_select.remote_family_room_plex") }}'
     - service: script.family_room_surround_sound_tv
 family_room_tv_chromecast:
   sequence:
@@ -60,19 +60,11 @@ family_room_surround_sound_tv:
 family_room_watch_bell:
   alias: Family Room Watch Bell
   sequence:
-    - service: script.family_room_tv_pc
     - service: switch.turn_on
       entity_id: switch.family_room_bell
-    - delay: 10 #give extra time in case PC was asleep
+    - delay: 15 #give extra time in case PC was asleep
     - service: switch.turn_on
       entity_id: switch.family_room_bell
-family_room_bell_time:
-  alias: Stream TV Time
-  sequence:
-    - service: script.family_room_tv_time_lights
-    - service: script.family_room_watch_bell
-    - delay: 10
-    - service: script.kitchen_lights_night_dim_auto
 
 family_room_tv_time_lights:
   alias: Family Room TV Time Lights
@@ -86,43 +78,18 @@ family_room_tv_time_lights:
 family_room_watch_plex:
   alias: Family Room Watch Plex
   sequence:
-    - service: script.family_room_bell_stop #BellTV goto guide in case was on
     - service: script.family_room_tv_plex
 family_room_plex_time:
   alias: Family Room Plex Time
   sequence:
-    - service: script.family_room_bell_stop #BellTV goto guide in case was on
     - service: script.family_room_watch_plex
     - delay: 10
     - service: script.kitchen_lights_night_dim_auto
 
-family_room_watch_kodi:
-  alias: Family Room Watch Kodi
-  sequence:
-    - service: script.family_room_bell_stop #BellTV goto guide in case was on
-    - service: script.family_room_tv_pc
-    - service: switch.turn_on
-      entity_id: switch.family_room_kodi
-    - delay: 10 #give extra time in case PC was asleep
-    - service: switch.turn_on
-      entity_id: switch.family_room_kodi
-
 family_room_watch_tv:
   alias: Family Room Watch TV
   sequence:
-    - service: switch.turn_off
-      entity_id: switch.family_room_bell #turn off BellTV in case was on
     - service: script.family_room_tv
-
-family_room_watch_chromecast:
-  alias: Family Room Watch Chromecast
-  sequence:
-    - service: switch.turn_off
-      entity_id: switch.family_room_bell #turn off BellTV in case was on
-    - service: switch.turn_on
-      entity_id: switch.family_room_chromecast
-    - service: script.family_room_tv_chromecast
-    - service: script.family_room_surround_sound_tv
 
 family_room_bell_stop:
   alias: Family Room Bell Stop
@@ -151,8 +118,6 @@ family_room_off_not_fan_light: #separate script so that don't turn off fan light
       entity_id: light.couch_lamp
     - service: light.turn_off
       entity_id: light.desk_lamp
-    - service: switch.turn_off
-      entity_id: switch.family_room_kodi
     - service: switch.turn_off
       entity_id: switch.family_room_bell
     - service: switch.turn_off

@@ -1,0 +1,24 @@
+# #Plex Webhooks mqtt sensors
+# - platform: mqtt
+#   name: "Plex Family Room"
+#   state_topic: "plex/update/family_room"
+#   value_template: '{{ value_json.Event }}'
+#   json_attributes_topic: "plex/update/family_room"
+
+# - platform: mqtt
+#   name: "Plex Theatre"
+#   state_topic: "plex/update/theatre"
+#   value_template: '{{ value_json.Event }}'
+#   json_attributes_topic: "plex/update/theatre"
+
+# - platform: mqtt
+#   name: "Plex Dining Room"
+#   state_topic: "plex/update/dining_room"
+#   value_template: '{{ value_json.Event }}'
+#   json_attributes_topic: "plex/update/dining_room"
+
+# - platform: mqtt
+#   name: "Plex Bedroom"
+#   state_topic: "plex/update/bedroom"
+#   value_template: '{{ value_json.Event }}'
+#   json_attributes_topic: "plex/update/bedroom"

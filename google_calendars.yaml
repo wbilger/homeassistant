@@ -1,57 +1,57 @@
 ## FAMILY CALENDARS
 - cal_id: family00490980312611646622@group.calendar.google.com
   entities:
-  - device_id: bilger_family
-    name: Family
-    track: true
+    - device_id: bilger_family
+      name: Family
+      track: true
 - cal_id: 8f72ngbkle0ja7tep6l1tpvudk@group.calendar.google.com
   entities:
-  - device_id: bilger_work
-    name: Work
-    track: true
+    - device_id: bilger_work
+      name: Work
+      track: true
 - cal_id: waynebilger@gmail.com
   entities:
-  - device_id: bilger_wayne
-    name: Wayne
-    track: true
+    - device_id: bilger_wayne
+      name: Wayne
+      track: true
 - cal_id: jennbilger@gmail.com
   entities:
-  - device_id: bilger_jenn
-    name: Jenn
-    track: true
+    - device_id: bilger_jenn
+      name: Jenn
+      track: true
 - cal_id: kalebilger@gmail.com
   entities:
-  - device_id: bilger_kale
-    name: Kale
-    track: true
+    - device_id: bilger_kale
+      name: Kale
+      track: true
 - cal_id: jalynnebilger@gmail.com
   entities:
-  - device_id: bilger_jalynne
-    name: Jalynne
-    track: true
+    - device_id: bilger_jalynne
+      name: Jalynne
+      track: true
 - cal_id: lcoqf28cngopnht8l90336j4a8@group.calendar.google.com
   entities:
-  - device_id: curbside_pickup_garbage_day
-    name: Garbage Day
-    track: true
-    search: "Garbage Day"
-  - device_id: curbside_pickup_yard_waste
-    name: Yard Waste Pickup
-    track: true
-    search: "Yard Waste Pickup"
+    - device_id: curbside_pickup_garbage_day
+      name: Garbage Day
+      track: true
+      search: "Garbage Day"
+    - device_id: curbside_pickup_yard_waste
+      name: Yard Waste Pickup
+      track: true
+      search: "Yard Waste Pickup"
 
 ## SPORTS CALENDARS
 - cal_id: qdmv2tim4slemgcq8ie1idcbqunqp079@import.calendar.google.com
   entities:
-  - device_id: bilger_wayne_slopitch
-    name: Dorchester Men's Recreational Slo-Pitch League
-    track: true
+    - device_id: bilger_wayne_slopitch
+      name: Dorchester Men's Recreational Slo-Pitch League
+      track: true
 - cal_id: dknb11t0cb7kdpuutod19hd82ms8klic@import.calendar.google.com
   entities:
-  - device_id: bilger_wayne_tecumsehs_umpiring
-    ignore_availability: true
-    name: Tecumsehs-Umpiring
-    track: true
+    - device_id: bilger_wayne_tecumsehs_umpiring
+      ignore_availability: true
+      name: Tecumsehs-Umpiring
+      track: true
 # - cal_id: 7csaic1rh4abh6phhd0snkou8uv5p064@import.calendar.google.com
 #   entities:
 #   - device_id: Bilger_Kale_Hockey
@@ -65,73 +65,120 @@
 #     name: Jalynne-Hockey
 #     track: true
 
-
 ## SPECIAL CALENDARS
 - cal_id: thomcom.com_qj75716rgb99sevehcn74u94qs@group.calendar.google.com
   entities:
-  - device_id: ontario_holidays
-    name: Holidays
-    track: true
-    
-## CALENDARS NOT TRACKED        
+    - device_id: ontario_holidays
+      name: Holidays
+      track: true
+
+## CALENDARS NOT TRACKED
 - cal_id: h24er6qi4d3a18da6gv3utnnfs@group.calendar.google.com
   entities:
-  - device_id: lrt
-    name: LRT
-    track: false
+    - device_id: lrt
+      name: LRT
+      track: false
 
 - cal_id: 2dumf0djv2oo6qk9rnmroatjv4@group.calendar.google.com
   entities:
-  - device_id: waynefitness
-    name: Wayne-Fitness
-    track: false
+    - device_id: waynefitness
+      name: Wayne-Fitness
+      track: false
 
-- cal_id: '#contacts@group.v.calendar.google.com'
+- cal_id: "#contacts@group.v.calendar.google.com"
   entities:
-  - device_id: contacts
-    name: Contacts
-    track: false
+    - device_id: contacts
+      name: Contacts
+      track: false
 
 - cal_id: mlb_14_%54oronto+%42lue+%4aays#sports@group.v.calendar.google.com
   entities:
-  - device_id: toronto_blue_jays
-    name: Toronto Blue Jays
-    track: false
+    - device_id: toronto_blue_jays
+      name: Toronto Blue Jays
+      track: false
 
 - cal_id: nfl_2_%42uffalo+%42ills#sports@group.v.calendar.google.com
   entities:
-  - device_id: buffalo_bills
-    name: Buffalo Bills
-    track: false
+    - device_id: buffalo_bills
+      name: Buffalo Bills
+      track: false
 
 - cal_id: nhl_21_%54oronto+%4daple+%4ceafs#sports@group.v.calendar.google.com
   entities:
-  - device_id: toronto_maple_leafs
-    name: Toronto Maple Leafs
-    track: false
+    - device_id: toronto_maple_leafs
+      name: Toronto Maple Leafs
+      track: false
 
 - cal_id: p#weather@group.v.calendar.google.com
   entities:
-  - device_id: weather_63017
-    name: 'Weather: 63017'
-    track: false
-    
+    - device_id: weather_63017
+      name: "Weather: 63017"
+      track: false
+
 - cal_id: 0g6m2u655sc11gegi1brbi0q6o@group.calendar.google.com
   entities:
-  - device_id: tecumsehs_vacations
-    ignore_availability: true
-    name: Tecumsehs Vacations
-    track: false
-    
+    - device_id: tecumsehs_vacations
+      ignore_availability: true
+      name: Tecumsehs Vacations
+      track: false
+
 - cal_id: addressbook#contacts@group.v.calendar.google.com
   entities:
-  - device_id: contacts
-    ignore_availability: true
-    name: Contacts
-    track: false
+    - device_id: contacts
+      ignore_availability: true
+      name: Contacts
+      track: false
 - cal_id: en.canadian#holiday@group.v.calendar.google.com
   entities:
-  - device_id: holidays_in_canada
+    - device_id: holidays_in_canada
+      ignore_availability: true
+      name: Holidays in Canada
+      track: true
+
+- cal_id: wbilgerlt@gmail.com
+  entities:
+  - device_id: talons_wayne
     ignore_availability: true
-    name: Holidays in Canada
-    track: true
+    name: Talons-Wayne
+
+- cal_id: wbilger@ebba.ca
+  entities:
+  - device_id: wbilger_ebba_ca
+    ignore_availability: true
+    name: wbilger@ebba.ca
+
+- cal_id: tku92trrk41pejb9b829dip5ok@group.calendar.google.com
+  entities:
+  - device_id: toronto_blue_jays
+    ignore_availability: true
+    name: Toronto Blue Jays
+
+- cal_id: 3gil0kpep9ig2mcbnd8f5mvvi8@group.calendar.google.com
+  entities:
+  - device_id: toronto_maple_leafs
+    ignore_availability: true
+    name: Toronto Maple Leafs
+
+- cal_id: ij3n06dj25th033ldrrs25ggd26uhreh@import.calendar.google.com
+  entities:
+  - device_id: 14u_2008_london_talons_baseball
+    ignore_availability: true
+    name: 14u (2008) - London Talons Baseball
+
+- cal_id: 1rueho0v94taph9ijus9bcagnk@group.calendar.google.com
+  entities:
+  - device_id: 14u_attendance
+    ignore_availability: true
+    name: 14u Attendance
+
+- cal_id: eqdg2doh5m3cpik6ar30q8vo18@group.calendar.google.com
+  entities:
+  - device_id: to_do
+    ignore_availability: true
+    name: To Do
+
+- cal_id: hu1m45rju7tlcmmmaghagqkveaajqet4@import.calendar.google.com
+  entities:
+  - device_id: 15u_2008_london_talons_baseball
+    ignore_availability: true
+    name: 15U (2008) - London Talons Baseball

@@ -1,0 +1,2108 @@
+- id: ha_start
+  alias: Automations on restart
+  trigger:
+    - platform: homeassistant
+      event: start
+  action:
+    - service: frontend.set_theme
+      data:
+        name: '{{ states("input_select.ha_themes")}}'
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.allow_automation_execution
+    - service: rest_command.google_cast_save_input_selects
+    - service: input_select.select_option
+      data_template:
+        entity_id: input_select.radio_station_p1
+        option: '{{ states("input_text.radio_station_p1") }}'
+    - service: input_select.select_option
+      data_template:
+        entity_id: input_select.radio_station_p2
+        option: '{{ states("input_text.radio_station_p2") }}'
+    - service: input_select.select_option
+      data_template:
+        entity_id: input_select.radio_station_p3
+        option: '{{ states("input_text.radio_station_p3") }}'
+    - service: input_select.select_option
+      data_template:
+        entity_id: input_select.radio_station_p4
+        option: '{{ states("input_text.radio_station_p4") }}'
+    - delay: 10
+    - service: automation.turn_on
+      data:
+        entity_id:
+          - automation.front_door_lock_problem
+          - automation.front_door_lock_problem_cleared
+    - service: input_boolean.turn_on
+      entity_id: input_boolean.ha_startup
+  initial_state: "on"
+  mode: single
+- id: zwave_loaded_ztart_system
+  alias: Zwave Loaded - Start System
+  initial_state: "on"
+  trigger:
+    - platform: event
+      event_type: zwave.network_ready
+    - platform: event
+      event_type: zwave.network_complete
+    - platform: event
+      event_type: zwave.network_complete_some_dead
+  action:
+    - service: script.turn_on
+      entity_id: script.system_cleanup
+- id: theme_change
+  alias: Change Frontend Theme
+  initial_state: "on"
+  trigger:
+    - platform: state
+      entity_id: input_select.ha_themes
+  action:
+    - service: frontend.set_theme
+      data_template:
+        name: '{{ states("input_select.ha_themes")}}'
+- id: phone_updates
+  alias: Phone Updates
+  trigger:
+    - platform: time_pattern
+      minutes: /1
+  condition: []
+  action:
+    - service: script.phone_wayne_update
+    - service: script.phone_jenn_update
+    - service: script.phone_kale_update
+    - service: script.phone_jalynne_update
+  initial_state: "on"
+  mode: single
+- id: home_motion
+  alias: Bilger Home Motion
+  initial_state: "on"
+  trigger:
+    - platform: homeassistant
+      event: start
+    - platform: state
+      entity_id: group.bilger_home_motion
+      from: "off"
+      to: "on"
+  condition:
+    - condition: state
+      entity_id: group.bilger_home_motion
+      state: "on"
+  action:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.bilger_home_motion
+        option: home
+- id: home_motion_cleared
+  alias: Bilger Home Motion Cleared
+  initial_state: "on"
+  trigger:
+    - platform: state
+      entity_id: group.bilger_home_motion
+      from: "on"
+      to: "off"
+      for:
+        minutes: 15
+  action:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.bilger_home_motion
+        option: not_home
+- id: set_person_just_arrived
+  alias: Set person as just arrived
+  initial_state: "on"
+  trigger:
+    - platform: state
+      entity_id: person.wayne
+      to: home
+    - platform: state
+      entity_id: person.jenn
+      to: home
+    - platform: state
+      entity_id: person.kale
+      to: home
+    - platform: state
+      entity_id: person.jalynne
+      to: home
+  action:
+    - service: input_select.select_option
+      data_template:
+        entity_id:
+          "{% if trigger.entity_id == 'person.wayne' %}\n  input_select.presence_wayne_status\n{%
+          elif trigger.entity_id == 'person.jenn' %}\n  input_select.presence_jenn_status\n{%
+          elif trigger.entity_id == 'person.kale' %}\n  input_select.presence_kale_status\n{%
+          elif trigger.entity_id == 'person.jalynne' %}\n  input_select.presence_jalynne_status\n{%
+          endif %}\n"
+        option:
+          "{% if trigger.entity_id == 'person.wayne' %}\n  {% if is_state(\"input_select.presence_wayne_status\",
+          \"Just Left\") %}\n    Home\n  {% else %}\n    Just Arrived\n  {% endif %}\n{%
+          elif trigger.entity_id == 'person.jenn' %}\n  {% if is_state(\"input_select.presence_jenn_status\",
+          \"Just Left\") %}\n    Home\n  {% else %}\n    Just Arrived\n  {% endif %}\n{%
+          elif trigger.entity_id == 'person.kale' %}\n  {% if is_state(\"input_select.presence_kale_status\",
+          \"Just Left\") %}\n    Home\n  {% else %}\n    Just Arrived\n  {% endif %}\n{%
+          elif trigger.entity_id == 'person.jalynne' %}\n  {% if is_state(\"input_select.presence_jalynne_status\",
+          \"Just Left\") %}\n    Home\n  {% else %}\n    Just Arrived\n  {% endif %}\n{%
+          endif %}\n"
+    - condition: template
+      value_template:
+        '{{ trigger.entity_id == "person.kale" or trigger.entity_id ==
+        "person.jalynne" }}'
+    - service_template: timer.cancel
+      data_template:
+        entity_id:
+          "{% if trigger.entity_id == 'person.kale' %}\n  timer.away_home_timeout_kale\n{%
+          else %}\n  timer.away_home_timeout_jalynne\n{% endif %}\n"
+- id: set_person_home
+  alias: Set person as home
+  initial_state: "on"
+  trigger:
+    - platform: state
+      entity_id: input_select.presence_wayne_status
+      to: Just Arrived
+      for:
+        minutes: 10
+    - platform: state
+      entity_id: input_select.presence_jenn_status
+      to: Just Arrived
+      for:
+        minutes: 10
+    - platform: state
+      entity_id: input_select.presence_kale_status
+      to: Just Arrived
+      for:
+        minutes: 10
+    - platform: state
+      entity_id: input_select.presence_jalynne_status
+      to: Just Arrived
+      for:
+        minutes: 10
+    - platform: state
+      entity_id: input_select.presence_wayne_status
+      from: Just Left
+      to: Just Arrived
+    - platform: state
+      entity_id: input_select.presence_jenn_status
+      from: Just Left
+      to: Just Arrived
+    - platform: state
+      entity_id: input_select.presence_kale_status
+      from: Just Left
+      to: Just Arrived
+    - platform: state
+      entity_id: input_select.presence_jalynne_status
+      from: Just Left
+      to: Just Arrived
+  action:
+    - service: input_select.select_option
+      data_template:
+        entity_id:
+          "{% if trigger.entity_id == 'input_select.presence_wayne_status'
+          %}\n  input_select.presence_wayne_status\n{% elif trigger.entity_id == 'input_select.presence_jenn_status'
+          %}\n  input_select.presence_jenn_status\n{% elif trigger.entity_id == 'input_select.presence_kale_status'
+          %}\n  input_select.presence_kale_status\n{% elif trigger.entity_id == 'input_select.presence_jalynne_status'
+          %}\n  input_select.presence_jalynne_status\n{% endif %}\n"
+        option: Home
+- id: set_person_just_left
+  alias: Set person as just left
+  initial_state: "on"
+  trigger:
+    - platform: state
+      entity_id: person.wayne
+      from: home
+    - platform: state
+      entity_id: person.jenn
+      from: home
+    - platform: state
+      entity_id: person.kale
+      from: home
+    - platform: state
+      entity_id: person.jalynne
+      from: home
+  action:
+    - service: input_select.select_option
+      data_template:
+        entity_id:
+          "{% if trigger.entity_id == 'person.wayne' %}\n  input_select.presence_wayne_status\n{%
+          elif trigger.entity_id == 'person.jenn' %}\n  input_select.presence_jenn_status\n{%
+          elif trigger.entity_id == 'person.kale' %}\n  input_select.presence_kale_status\n{%
+          elif trigger.entity_id == 'person.jalynne' %}\n  input_select.presence_jalynne_status\n{%
+          endif %}\n"
+        option: Just Left
+- id: set_person_away
+  alias: Set person as away
+  initial_state: "on"
+  trigger:
+    - platform: state
+      entity_id: input_select.presence_wayne_status
+      to: Just Left
+      for:
+        minutes: 10
+    - platform: state
+      entity_id: input_select.presence_jenn_status
+      to: Just Left
+      for:
+        minutes: 10
+    - platform: state
+      entity_id: input_select.presence_kale_status
+      to: Just Left
+      for:
+        minutes: 10
+    - platform: state
+      entity_id: input_select.presence_jalynne_status
+      to: Just Left
+      for:
+        minutes: 10
+  action:
+    - service: input_select.select_option
+      data_template:
+        entity_id:
+          "{% if trigger.entity_id == 'input_select.presence_wayne_status'
+          %}\n  input_select.presence_wayne_status\n{% elif trigger.entity_id == 'input_select.presence_jenn_status'
+          %}\n  input_select.presence_jenn_status\n{% elif trigger.entity_id == 'input_select.presence_kale_status'
+          %}\n  input_select.presence_kale_status\n{% elif trigger.entity_id == 'input_select.presence_jalynne_status'
+          %}\n  input_select.presence_jalynne_status\n{% endif %}\n"
+        option: Away
+    - condition: template
+      value_template:
+        '{{ trigger.entity_id == "input_select.presence_kale_status" or
+        trigger.entity_id == "input_select.presence_jalynne_status" }}'
+    - service_template: timer.start
+      data_template:
+        entity_id:
+          "{% if trigger.entity_id == 'input_select.presence_kale_status' %}\n
+          \ timer.away_home_timeout_kale\n{% else %}\n  timer.away_home_timeout_jalynne\n{%
+          endif %}\n"
+    - service: input_boolean.turn_off
+      data_template:
+        entity_id:
+          "{% if trigger.entity_id == 'input_select.presence_kale_status' %}\n
+          \ input_boolean.home_arrival_automations_kale\n{% else %}\n  input_boolean.home_arrival_automations_jalynne\n{%
+          endif %}\n"
+- id: set_person_extended_away
+  alias: Set person as extended away
+  initial_state: "on"
+  trigger:
+    - platform: state
+      entity_id: input_select.presence_wayne_status
+      to: Away
+      for:
+        hours: 24
+    - platform: state
+      entity_id: input_select.presence_jenn_status
+      to: Away
+      for:
+        hours: 24
+    - platform: state
+      entity_id: input_select.presence_kale_status
+      to: Away
+      for:
+        hours: 24
+    - platform: state
+      entity_id: input_select.presence_jalynne_status
+      to: Away
+      for:
+        hours: 24
+  action:
+    - service: input_select.select_option
+      data_template:
+        entity_id:
+          "{% if trigger.entity_id == 'input_select.presence_wayne_status'
+          %}\n  input_select.presence_wayne_status\n{% elif trigger.entity_id == 'input_select.presence_jenn_status'
+          %}\n  input_select.presence_jenn_status\n{% elif trigger.entity_id == 'input_select.presence_kale_status'
+          %}\n  input_select.presence_kale_status\n{% elif trigger.entity_id == 'input_select.presence_jalynne_status'
+          %}\n  input_select.presence_jalynne_status\n{% endif %}\n"
+        option: Extended Away
+- id: Plex reload unavailable
+  alias: Plex reload unavailable
+  initial_state: "on"
+  mode: single
+  trigger:
+    - platform: state
+      entity_id: media_player.family_room_roku_plex
+      to: unavailable
+      for: 00:02:00
+  action:
+    - service: script.reload_integration_plex
+- id: Plex Family Room reload unavailable
+  alias: Plex Family Room reload unavailable
+  initial_state: "on"
+  mode: single
+  trigger:
+    - platform: state
+      entity_id: sensor.family_room_roku_app
+      to: Plex
+  condition:
+    - condition: state
+      entity_id: media_player.family_room_roku_plex
+      state: unavailable
+  action:
+    - service: script.reload_integration_plex
+- id: Notify Garbage Day Tomorrow
+  alias: Notify Garbage Day Tomorrow
+  initial_state: "on"
+  trigger:
+    - platform: time
+      at: "17:00:00"
+    - platform: time
+      at: "18:00:00"
+    - platform: time
+      at: "19:00:00"
+  condition:
+    - condition: template
+      value_template:
+        '{{ is_state("sensor.calendar_garbage_day", "Garbage Day (Tomorrow)")
+        }}'
+  action:
+    - service: script.notify_garbage_day_tomorrow_wayne
+    - service: script.notify_garbage_day_tomorrow_jenn
+- id: "[Notify Garbage Day Tomorrow - Action] Remind"
+  alias: "[Notify Garbage Day Tomorrow - Action] Remind"
+  initial_state: "on"
+  trigger:
+    - platform: event
+      event_type: mobile_app_notification_action
+      event_data:
+        action: garbage_day_tomorrow_remind
+  action:
+    - service:
+        notify.mobile_app_{% if trigger.event.context["user_id"] == states("input_text.mobile_app_user_id_wayne")
+        %}wayne_phone{% elif trigger.event.context["user_id"] == states("input_text.mobile_app_user_id_jenn")
+        %}jenn_phone{% elif trigger.event.context["user_id"] == states("input_text.mobile_app_user_id_kale")
+        %}kales_iphone {% else %}jays_phone{% endif %}
+      data:
+        message: clear_notification
+        data:
+          tag: garbage_day_tomorrow
+- id: "[Notify Garbage Day Tomorrow - Action] Cancel"
+  alias: "[Notify Garbage Day Tomorrow - Action] Cancel"
+  initial_state: "on"
+  trigger:
+    - platform: event
+      event_type: mobile_app_notification_action
+      event_data:
+        action: garbage_day_tomorrow_cancel
+  action:
+    - service: input_boolean.turn_off
+      data_template:
+        entity_id:
+          'input_boolean.notification_curbside_pickup_{% if trigger.event.context["user_id"]
+          == states("input_text.mobile_app_user_id_wayne") %}wayne_phone {% elif trigger.event.context["user_id"]
+          == states("input_text.mobile_app_user_id_jenn") %}jenn_phone {% elif trigger.event.context["user_id"]
+          == states("input_text.mobile_app_user_id_kale") %}kale_phone {% else %}jalynne_phone{%
+          endif %}
+
+          '
+    - service:
+        'notify.mobile_app_{% if trigger.event.context["user_id"] == states("input_text.mobile_app_user_id_wayne")
+        %}wayne_phone{% elif trigger.event.context["user_id"] == states("input_text.mobile_app_user_id_jenn")
+        %}jenn_phone{% elif trigger.event.context["user_id"] == states("input_text.mobile_app_user_id_kale")
+        %}kales_iphone {% else %}jays_phone{% endif %}
+
+        '
+      data:
+        message: clear_notification
+        data:
+          tag: garbage_day_tomorrow
+- id: Notify Garbage Day Tomorrow Last
+  alias: Notify Garbage Day Tomorrow Last
+  initial_state: "on"
+  trigger:
+    - platform: time
+      at: "20:00:00"
+  condition:
+    - condition: template
+      value_template:
+        '{{ is_state("sensor.calendar_garbage_day", "Garbage Day (Tomorrow)")
+        }}'
+  action:
+    - service: script.notify_garbage_day_tomorrow_last_wayne
+    - service: script.notify_garbage_day_tomorrow_last_jenn
+    - service: homeassistant.turn_on
+      entity_id: group.notification_curbside_pickup
+- id: Garbage Day Today
+  alias: Garbage Day Today
+  initial_state: "on"
+  trigger:
+    - platform: time
+      at: 07:00:00
+  condition:
+    - condition: state
+      entity_id: calendar.curbside_pickup_garbage_day
+      state: "on"
+  action:
+    - service: notify.bilger_parents
+      data_template:
+        title: Curb side pickup is this morning.
+        message: Be sure to put out the garbage and recycling!
+        data:
+          tag: garbage_day_today
+          icon_url: local/photos/notify_garbage_recycling.png
+    - service: homeassistant.turn_on
+      entity_id: group.notification_curbside_pickup
+- id: notify washing machine start
+  alias: notify washing machine start
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.sonoff_pow01_power
+      above: "50"
+      for: 0:00:10
+  action:
+    - service: automation.turn_on
+      entity_id: automation.notify_washing_machine_stop
+    - service: automation.turn_off
+      data:
+        entity_id: automation.notify_washing_machine_start
+        stop_actions: false
+    - service: homeassistant.turn_on
+      entity_id: group.notification_washing_machine
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.notification_washing_machine_speakers
+    - service: notify.mobile_app_wayne_phone
+      data:
+        title: Washing Machine has been started.
+        message: You will be notified when load finished.
+        data:
+          tag: washing_machine_start
+          icon_url: local/photos/notify_washing_machine.png
+          actions:
+            - action: washing_machine_notify_ok
+              title: Ok
+            - action: washing_machine_notify_speakers
+              title: and Speakers
+            - action: washing_machine_notify_cancel
+              title: Don't Notify
+          push:
+            category: washing_machine_notify_stop
+          sticky: true
+  mode: single
+- id: "[Notify Washing Machine - Action] Ok"
+  alias: "[Notify Washing Machine - Action] Ok"
+  initial_state: "on"
+  trigger:
+    - platform: event
+      event_type: mobile_app_notification_action
+      event_data:
+        action: washing_machine_notify_ok
+  action:
+    - service:
+        'notify.mobile_app_{% if trigger.event.context["user_id"] == states("input_text.mobile_app_user_id_wayne")
+        %}wayne_phone{% elif trigger.event.context["user_id"] == states("input_text.mobile_app_user_id_jenn")
+        %}jenn_phone{% elif trigger.event.context["user_id"] == states("input_text.mobile_app_user_id_kale")
+        %}kales_iphone {% else %}jays_phone{% endif %}
+
+        '
+      data:
+        message: clear_notification
+        data:
+          tag: washing_machine_start
+- id: "[Notify Washing Machine - Action] Speakers"
+  alias: "[Notify Washing Machine - Action] Speakers"
+  initial_state: "on"
+  trigger:
+    - platform: event
+      event_type: mobile_app_notification_action
+      event_data:
+        action: washing_machine_notify_speakers
+  action:
+    - service: input_boolean.turn_on
+      entity_id: input_boolean.notification_washing_machine_speakers
+    - service:
+        'notify.mobile_app_{% if trigger.event.context["user_id"] == states("input_text.mobile_app_user_id_wayne")
+        %}wayne_phone{% elif trigger.event.context["user_id"] == states("input_text.mobile_app_user_id_jenn")
+        %}jenn_phone{% elif trigger.event.context["user_id"] == states("input_text.mobile_app_user_id_kale")
+        %}kales_iphone {% else %}jays_phone{% endif %}
+
+        '
+      data:
+        message: clear_notification
+        data:
+          tag: washing_machine_start
+- id: "[Notify Washing Machine - Action] Cancel"
+  alias: "[Notify Washing Machine - Action] Cancel"
+  initial_state: "on"
+  trigger:
+    - platform: event
+      event_type: mobile_app_notification_action
+      event_data:
+        action: washing_machine_notify_cancel
+  action:
+    - service: input_boolean.turn_off
+      data_template:
+        entity_id:
+          'input_boolean.notification_washing_machine_{% if trigger.event.context["user_id"]
+          == states("input_text.mobile_app_user_id_wayne") %}wayne_phone {% elif trigger.event.context["user_id"]
+          == states("input_text.mobile_app_user_id_jenn") %}jenn_phone {% elif trigger.event.context["user_id"]
+          == states("input_text.mobile_app_user_id_kale") %}kale_phone {% else %}jalynne_phone{%
+          endif %}
+
+          '
+    - service:
+        'notify.mobile_app_{% if trigger.event.context["user_id"] == states("input_text.mobile_app_user_id_wayne")
+        %}wayne_phone{% elif trigger.event.context["user_id"] == states("input_text.mobile_app_user_id_jenn")
+        %}jenn_phone{% elif trigger.event.context["user_id"] == states("input_text.mobile_app_user_id_kale")
+        %}kales_iphone {% else %}jays_phone{% endif %}
+
+        '
+      data:
+        message: clear_notification
+        data:
+          tag: washing_machine_start
+- id: notify washing machine stop
+  alias: notify washing machine stop
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.sonoff_pow01_power
+      below: "20"
+      for:
+        seconds: "60"
+  action:
+    - service: automation.turn_on
+      data:
+        entity_id:
+          - automation.notify_washing_machine_start
+    - service: automation.turn_off
+      data:
+        entity_id: automation.notify_washing_machine_stop
+        stop_actions: false
+    - service: script.notify_washing_machine_stop_wayne
+    - service: script.notify_washing_machine_stop_jenn
+    - service: script.notify_washing_machine_stop_speakers
+- id: notify test wayne
+  alias: notify test wayne
+  trigger:
+    - platform: state
+      entity_id: input_select.presence_wayne_status
+      from: Just Left
+      to: Just Left
+  action:
+    - service: input_boolean.turn_on
+      entity_id: input_boolean.notification_test_wayne_phone
+    - service: input_boolean.turn_on
+      entity_id: input_boolean.notification_test_wayne_lrt
+    - service: notify.mobile_app_wayne_phone
+      data_template:
+        title: Test Android App Notifications.
+        message: Do you want to get the next test notification?
+        data:
+          icon_url: local/photos/notify_garbage_recycling.png
+          actions:
+            - action: notify_again_test
+              title: Notify Again?
+            - action: URI
+              title: Open Url
+              uri: https://londonrooftruss.com
+          tag: wayne_test
+          sticky: true
+          color: red
+          persistent: true
+          priority: high
+  initial_state: "on"
+  mode: single
+- id: notify test wayne 2
+  alias: notify test wayne 2
+  initial_state: "on"
+  trigger:
+    - platform: state
+      entity_id: input_select.presence_wayne_status
+      from: Just Left
+      to: Just Left
+  action:
+    - service: input_boolean.turn_on
+      entity_id: input_boolean.notification_test_wayne_phone
+    - service: input_boolean.turn_on
+      entity_id: input_boolean.notification_test_wayne_lrt
+    - service: notify.mobile_app_wayne_phone
+      data_template:
+        title: Test Android App Notifications.
+        message: Do you want to get the next test notification?
+        data:
+          image: local/photos/notify_garbage_recycling.png
+          actions:
+            - action: notify_again_test
+              title: Notify Again?
+            - action: URI
+              title: Open Url
+              uri: https://google.com
+          tag: tag
+          sticky: "false"
+          color: green
+          clickAction: https://google.com
+          ttl: 10000
+- id: notify test jenn
+  alias: notify test jenn
+  trigger:
+    - platform: state
+      entity_id: input_select.presence_wayne_status
+      from: Just Left
+      to: Just Left
+  action:
+    - service: notify.mobile_app_jenn_phone
+      data_template:
+        title: Jenn Test Android App Notifications.
+        message:
+          Press this button right here..... no over there... silly, down there
+          ↓
+        data:
+          image: local/photos/jenn_badge_away.png
+          actions:
+            - action: notify_again_test
+              title: HERE. Press Right Here!
+          color: red
+  initial_state: "on"
+  mode: single
+- id: "[Notification - Action] Jenn Press"
+  alias: "[Notification - Action] Jenn Press"
+  initial_state: "on"
+  trigger:
+    - platform: event
+      event_type: mobile_app_notification_action
+      event_data:
+        action: jenn_press
+  action:
+    - service: notify.mobile_app_wayne_phone
+      data_template:
+        title: Jenn Test Notification Clicked
+        message: '{{ trigger.event.context["user_id"] }} / {{ trigger.event.data.sourceDeviceName}}'
+    - service: persistent_notification.create
+      data_template:
+        message: Jenn's UserID
+        title: '{{ trigger.event.context["user_id"] }}'
+- id: "[Notification - Action] Notify Again"
+  alias: "[Notification - Action] Notify Again"
+  trigger:
+    - platform: event
+      event_type: mobile_app_notification_action
+      event_data:
+        action: notify_again_test
+  action:
+    - service: input_boolean.toggle
+      entity_id: input_boolean.test
+    - service: notify.mobile_app_wayne_phone
+      data_template:
+        title: Test Notification Clicked
+        message: '{{ trigger.event.context["user_id"] }} / {{ trigger.event.data["message"]}}'
+    - service: notify.mobile_app_wayne_phone
+      data:
+        message: clear_notification
+        data:
+          tag: wayne_test
+    - service: input_text.set_value
+      target:
+        entity_id: input_text.test
+      data:
+        value: '{{ trigger.event.context["user_id"] }}'
+  initial_state: "on"
+  mode: single
+# - id: notify test ios
+#   alias: notify test ios
+#   initial_state: 'on'
+#   trigger:
+#   - platform: state
+#     entity_id: input_select.presence_wayne_status
+#     from: Just Left
+#     to: Just Left
+#   action:
+#   - service: notify.mobile_app_kales_iphone
+#     data:
+#       title: Washing Machine has been started.
+#       message: Do you want to get notified when load finished?
+#       data:
+#         push:
+#           category: test
+- id: notify test closed
+  alias: notify test closed
+  trigger:
+    - platform: event
+      event_type: html5_notification.closed
+  condition:
+    - condition: template
+      value_template: '{{ trigger.event.data["tag"] == "wayne-test" }}'
+  action:
+    - service: input_text.set_value
+      target:
+        entity_id: input_text.test
+      data:
+        value:
+    - service: input_boolean.turn_off
+      data_template:
+        entity_id: input_boolean.notification_test_{{ trigger.event.data["target"] }}
+  initial_state: "on"
+  mode: single
+- id: notify test phone clicked
+  alias: notify test phone clicked
+  trigger:
+    - platform: event
+      event_type: html5_notification.clicked
+  condition:
+    - condition: template
+      value_template: '{{ trigger.event.data["tag"] == "notify-test" }}'
+  action:
+    - service: input_boolean.turn_on
+      data_template:
+        entity_id: input_boolean.notification_test_{{ trigger.event.data["action"] }}
+  initial_state: "on"
+  mode: single
+- id: notify test speakers clicked
+  alias: notify test speakers clicked
+  initial_state: "on"
+  trigger:
+    platform: event
+    event_type: html5_notification.clicked
+    event_data:
+      action: notify_speakers
+  condition:
+    - condition: template
+      value_template: '{{ trigger.event.data["tag"] == "notify-test" }}'
+  action:
+    - service: notify.google
+      data_template:
+        title: Notification will be sent to...
+        message: '{{ trigger.event.data["target"] }}'
+        target:
+          - '{{ trigger.event.data["target"] }}'
+- id: New Day
+  alias: New Day
+  trigger:
+    - platform: time
+      at: "12:01:00"
+  action:
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.vacuum_today
+- id: Work Day Home Arrival Time
+  alias: Work Day Home Arrival Time
+  initial_state: true
+  trigger:
+    - platform: time
+      at: "15:00:00"
+  condition:
+    - condition: state
+      entity_id: binary_sensor.work_day
+      state: "on"
+  action:
+    - service: homeassistant.turn_on
+      entity_id: group.notification_home_arrival
+- id: Person Awake Message Enable
+  alias: Person Awake Message Enable
+  trigger:
+    - platform: time
+      at: input_datetime.person_awake_message
+  action:
+    - service: automation.turn_on
+      entity_id: automation.person_awake_message
+- id: Person Awake Message Disable
+  alias: Person Awake Message Disable
+  initial_state: "on"
+  trigger:
+    - platform: state
+      entity_id: automation.person_awake_message_enable
+      from: "on"
+      to: "off"
+  action:
+    - service: automation.turn_off
+      entity_id: automation.person_awake_message
+- id: Person Awake Message
+  alias: Person Awake Message
+  trigger:
+    - platform: state
+      entity_id: sensor.kitchen_dashboard_motion
+      to: "True"
+    - platform: state
+      entity_id: binary_sensor.fully_kitchen_dashboard
+      to: "on"
+    - platform: state
+      entity_id: binary_sensor.kitchen_occupancy
+      to: "on"
+    - platform: state
+      entity_id: light.kitchen_sink_light
+      to: "on"
+    - platform: state
+      entity_id: light.kitchen_island_lights
+      to: "on"
+  condition:
+    - condition: state
+      entity_id: automation.person_awake_message_enable
+      state: "on"
+  action:
+    - service: automation.turn_off
+      data:
+        entity_id: automation.person_awake_message
+        stop_actions: false
+    - condition: time
+      before: "11:00:00"
+      after: input_datetime.person_awake_message
+    - service: script.lights_kitchen_morning
+      data: {}
+    - service: media_player.media_pause
+      entity_id: media_player.kitchen_speaker
+    - wait_template: '{{ states("media_player.kitchen_speaker") != "playing" }}'
+      timeout: 00:00:02
+    - service: media_player.volume_set
+      data_template:
+        entity_id: media_player.kitchen_speaker
+        volume_level:
+          '{{ states("input_number.kitchen_speaker_volume_announcements_morning")
+          | float /100 }}'
+    - service: tts.google_say
+      entity_id: media_player.kitchen_speaker
+      data_template:
+        message: 'Good Morning! It is currently
+
+          {{states("sensor.dark_sky_temperature")|round}} degrees outside,{% if
+
+          states("sensor.dark_sky_apparent_temperature")|round !=
+
+          states("sensor.dark_sky_apparent_temperature")|round %} but feels like
+
+          {{states("sensor.dark_sky_apparent_temperature")|round}}{% endif %} {% if
+
+          states("sensor.dark_sky_apparent_temperature")|round < 2 %}, Brrrrr. But,{%
+
+          else %}and{% endif %} it is
+
+          {{states("sensor.bilger_home_temperature_avg")|round}} degrees in the
+
+          house.  The weather forecast for London today is
+
+          {{states("sensor.dark_sky_hourly_summary")}}. {% if
+
+          states("sensor.calendar_bilger") != "" %}On your calendar today, {{
+
+          states("sensor.calendar_bilger") }}{% else %}You have nothing on your
+
+          calendar for today, should be an easy day!{% endif %} {% if
+
+          is_state("sensor.calendar_garbage_day", "Garbage Day (Today)") %}Also,
+
+          London curb side pickup is this morning, be sure all the garbage and
+
+          recycling is gathered and out to the curb soon!{% endif %}
+
+          '
+    - wait_template: '{{ is_state("media_player.kitchen_speaker", "playing") }}'
+      timeout: 00:00:02
+    - wait_for_trigger:
+        - platform: state
+          entity_id: media_player.kitchen_speaker
+          from: playing
+          to: idle
+          for:
+            hours: 0
+            minutes: 0
+            seconds: 3
+    - service: media_player.turn_off
+      target:
+        entity_id: media_player.kitchen_speaker
+      data: {}
+    - condition: template
+      value_template:
+        '{{ states("input_text.radio_station_person_awake_automation")
+        != "" }}'
+    - service: media_player.volume_set
+      data_template:
+        entity_id: media_player.kitchen_speaker
+        volume_level:
+          '{{ states("input_number.kitchen_speaker_volume_favourite_morning")
+          | float /100 }}'
+    - service: notify.google_assistant_command
+      data_template:
+        message:
+          Play {{ states("input_text.radio_station_person_awake_automation")
+          }} on Kitchen{% if is_state("input_boolean.person_awake_bathroom_speaker",
+          "on") and is_state("binary_sensor.work_day", "on") %} and Bathroom{% endif
+          %}
+    - delay:
+        hours: 0
+        minutes: 0
+        seconds: 0
+        milliseconds: 250
+    - service: notify.google_assistant_command
+      data_template:
+        message:
+          Play {{ states("input_text.radio_station_person_awake_automation")
+          }} on Kitchen{% if is_state("input_boolean.person_awake_bathroom_speaker",
+          "on") and is_state("binary_sensor.work_day", "on") %} and Bathroom{% endif
+          %}
+    - delay:
+        hours: 0
+        minutes: 0
+        seconds: 0
+        milliseconds: 250
+    - service: notify.google_assistant_command
+      data_template:
+        message:
+          Play {{ states("input_text.radio_station_person_awake_automation")
+          }} on Kitchen{% if is_state("input_boolean.person_awake_bathroom_speaker",
+          "on") and is_state("binary_sensor.work_day", "on") %} and Bathroom{% endif
+          %}
+    - delay:
+        hours: 0
+        minutes: 0
+        seconds: 0
+        milliseconds: 250
+    - service: notify.google_assistant_command
+      data_template:
+        message:
+          Play {{ states("input_text.radio_station_person_awake_automation")
+          }} on Kitchen{% if is_state("input_boolean.person_awake_bathroom_speaker",
+          "on") and is_state("binary_sensor.work_day", "on") %} and Bathroom{% endif
+          %}
+    - delay:
+        hours: 0
+        minutes: 0
+        seconds: 0
+        milliseconds: 250
+    - service: notify.google_assistant_command
+      data_template:
+        message:
+          Play {{ states("input_text.radio_station_person_awake_automation")
+          }} on Kitchen{% if is_state("input_boolean.person_awake_bathroom_speaker",
+          "on") and is_state("binary_sensor.work_day", "on") %} and Bathroom{% endif
+          %}
+    - delay:
+        hours: 0
+        minutes: 0
+        seconds: 0
+        milliseconds: 250
+    - service: notify.google_assistant_command
+      data_template:
+        message:
+          Play {{ states("input_text.radio_station_person_awake_automation")
+          }} on Kitchen{% if is_state("input_boolean.person_awake_bathroom_speaker",
+          "on") and is_state("binary_sensor.work_day", "on") %} and Bathroom{% endif
+          %}
+    - condition: template
+      value_template:
+        '{{ is_state("input_boolean.person_awake_bathroom_speaker", "on")
+        and is_state("binary_sensor.work_day", "on") }}'
+    - service: media_player.volume_set
+      data_template:
+        entity_id: media_player.bathroom_speaker
+        volume_level:
+          '{{ states("input_number.bathroom_speaker_volume_favourite_morning")
+          | float /100 }}'
+  initial_state: "off"
+  mode: single
+- id: Person Home Message
+  alias: Person Home Message
+  trigger:
+    - platform: state
+      entity_id: input_select.presence_wayne_status
+      from: Away
+      to: Just Arrived
+    - platform: state
+      entity_id: input_select.presence_jenn_status
+      from: Away
+      to: Just Arrived
+  condition:
+    - condition: state
+      entity_id: binary_sensor.work_day
+      state: "on"
+    - condition: time
+      after: 09:00:00
+      before: "18:30:00"
+      weekday:
+        - mon
+        - tue
+        - wed
+        - thu
+        - fri
+    - condition: template
+      value_template:
+        "{%- if trigger.entity_id == \"input_select.presence_wayne_status\"
+        -%}\n  {{is_state(\"input_boolean.notification_home_arrival_wayne\", \"on\")}}\n{%-
+        else -%}\n  {{is_state(\"input_boolean.notification_home_arrival_jenn\", \"on\")}}\n{%-
+        endif -%}"
+  action:
+    - service: automation.turn_off
+      data:
+        entity_id: automation.person_home_message
+        stop_actions: false
+    - delay: 15
+    - service: media_player.media_pause
+      entity_id: media_player.kitchen_speaker
+    - wait_template: '{{ states("media_player.kitchen_speaker") != "playing" }}'
+      timeout: 00:00:02
+    - service: media_player.volume_set
+      data_template:
+        entity_id: media_player.kitchen_speaker
+        volume_level:
+          '{{ states("input_number.kitchen_speaker_volume_announcements")
+          | float /100 }}'
+    - service: tts.google_say
+      entity_id: media_player.kitchen_speaker
+      data_template:
+        message:
+          'Welcome home {% if trigger.entity_id == ''input_select.presence_wayne_status''
+          %}Wayne I hope you had a great day at work today!{% else %}Jennifer I hope
+          you had a great {% if now().month | int < 7 or now().month | int > 8 %}day
+          at work today!{% else %}time going out and enjoying your summer vacation today!{%
+          endif %}{% endif %} It is currently {{states("sensor.dark_sky_temperature")|round}}
+          degrees outside,{% if states("sensor.dark_sky_apparent_temperature")|round
+          != states("sensor.dark_sky_apparent_temperature")|round %} but feels like
+          {{states("sensor.dark_sky_apparent_temperature")|round}}{% endif %} {% if
+          states("sensor.dark_sky_apparent_temperature")|round < 2 %}, Brrrrr. But,{%
+          else %}and{% endif %} it is {{states("sensor.bilger_home_temperature_avg")|round}}
+          degrees in the house.  The weather forecast for London is {{states("sensor.dark_sky_hourly_summary")}}.
+          {% if states("sensor.calendar_bilger") != "" %}On your calendar today, {{
+          states("sensor.calendar_bilger") }}{% else %}You have nothing on your calendar
+          for tonight, take some time to relax!{% endif %} {% if is_state("sensor.calendar_garbage_day",
+          "Garbage Day (Tomorrow)") %}Also, as a reminder, London curb side pickup is
+          tomorrow morning, be sure to gather up all the garbage and recycling tonight!{%
+          endif %}
+
+          '
+    - service_template: input_boolean.turn_off
+      data_template:
+        entity_id:
+          "{% if trigger.entity_id == 'input_select.presence_wayne_status'
+          %}\n  input_boolean.notification_home_arrival_wayne\n{% else %}  \n  input_boolean.notification_home_arrival_jenn\n{%
+          endif %}\n"
+    - service: timer.start
+      data:
+        duration: "0"
+      target:
+        entity_id: timer.person_home_message
+    - wait_template: '{{ is_state("media_player.kitchen_speaker", "playing") }}'
+      timeout: 00:00:02
+    - wait_for_trigger:
+        - platform: state
+          entity_id: media_player.kitchen_speaker
+          from: playing
+          to: idle
+    - service: media_player.media_stop
+      target:
+        entity_id: media_player.kitchen_speaker
+    - condition: template
+      value_template:
+        '{{ states("input_text.radio_station_person_home_automation")
+        != "" }}'
+    - service: media_player.volume_set
+      data_template:
+        entity_id: media_player.kitchen_speaker
+        volume_level:
+          '{{ states("input_number.kitchen_speaker_volume_favourite") |
+          float /100 }}'
+    - service: notify.google_assistant_command
+      data_template:
+        message:
+          Play {{ states("input_text.radio_station_person_home_automation") }}
+          on Kitchen
+  mode: single
+- id: Person Home Message Timeout
+  alias: Person Home Message Timeout
+  initial_state: "on"
+  trigger:
+    - platform: event
+      event_type: timer.finished
+      event_data:
+        entity_id: timer.person_home_message
+  action:
+    - service: automation.turn_on
+      entity_id: automation.person_home_message
+- id: No one is home
+  alias: No one is home
+  trigger:
+    - platform: state
+      entity_id: group.bilger_home
+      to: not_home
+      for:
+        hours: "0"
+        minutes: "15"
+        seconds: "0"
+  action:
+    - service: light.turn_off
+      data_template:
+        entity_id:
+          "{{ states.light | map(attribute='entity_id') | list | join(',
+          ') }}"
+    - service: switch.turn_off
+      entity_id: switch.bedroom_tv
+    - service: switch.turn_off
+      entity_id: switch.dining_room_tv
+    - service: homeassistant.turn_off
+      entity_id: group.family_room_tv_pc
+    - service: homeassistant.turn_off
+      entity_id: group.theatre
+    - service: script.theatre_projector_off
+    - service: notify.mobile_app_wayne_phone
+      data:
+        message: Bilger home is empty, except maybe the dog!
+    - service: lock.lock
+      entity_id: lock.schlage_allegion_be469_touchscreen_deadbolt_locked_frontdoor
+  initial_state: "on"
+  mode: single
+- id: Bilger Parents are not home on work day
+  alias: Bilger Parents not home on work day
+  trigger:
+    - platform: state
+      entity_id: group.bilger_parents
+      to: not_home
+      for:
+        hours: 0
+        minutes: 1
+        seconds: 0
+  condition:
+    - condition: state
+      entity_id: binary_sensor.work_day
+      state: "on"
+    - condition: time
+      after: 07:30:00
+      before: "16:00:00"
+  action:
+    - service: homeassistant.turn_off
+      entity_id: group.bedroom_lights
+    - service: homeassistant.turn_off
+      entity_id: group.main_floor_lights
+    - service: switch.turn_off
+      entity_id: switch.wayne_pc
+    - service: switch.turn_off
+      entity_id: switch.wayne_fr
+    - condition: template
+      value_template: '{{ states("input_text.radio_station_pdog") != "" }}'
+    - service: media_player.volume_set
+      data_template:
+        entity_id: media_player.kitchen_speaker
+        volume_level:
+          '{{ states("input_number.kitchen_speaker_volume_dog") | float
+          /100 }}'
+    - service: notify.google_assistant_command
+      data_template:
+        message: Play {{ states("input_text.radio_station_pdog") }} on Kitchen
+    - service: notify.google_assistant_command
+      data_template:
+        message: Play {{ states("input_text.radio_station_pdog") }} on Kitchen
+    - service: script.vacuum_automation
+      data: {}
+    - service: script.lock_front_door_lock
+      data: {}
+  mode: single
+- id: Person Home Lights
+  alias: Person Home Lights
+  initial_state: "on"
+  trigger:
+    - platform: state
+      entity_id: input_select.presence_wayne_status
+      from: Away
+      to: Just Arrived
+    - platform: state
+      entity_id: input_select.presence_jenn_status
+      from: Away
+      to: Just Arrived
+    - platform: state
+      entity_id: input_select.presence_kale_status
+      from: Away
+      to: Just Arrived
+    - platform: state
+      entity_id: input_select.presence_jalynne_status
+      from: Away
+      to: Just Arrived
+  condition:
+    condition: and
+    conditions:
+      - condition: or
+        conditions:
+          - condition: template
+            value_template: '{{ state_attr("sun.sun", "elevation") < 2.5 }}'
+          - condition: and
+            conditions:
+              - condition: template
+                value_template: '{{ state_attr("sun.sun", "elevation") < 5.5 }}'
+              - condition: template
+                value_template:
+                  '{{ states("sensor.dark_sky_cloud_coverage") | float > 75
+                  }}'
+          - condition: and
+            conditions:
+              - condition: template
+                value_template: '{{ state_attr("sun.sun", "elevation") < 8.5 }}'
+              - condition: template
+                value_template:
+                  '{{ states("sensor.dark_sky_cloud_coverage") | float > 95
+                  }}'
+      - condition: or
+        conditions:
+          - condition: template
+            value_template:
+              '{{ trigger.entity_id == "input_select.presence_wayne_status"
+              and is_state("input_boolean.home_arrival_automations_wayne", "on") }}'
+          - condition: template
+            value_template:
+              '{{ trigger.entity_id == "input_select.presence_jenn_status"
+              and is_state("input_boolean.home_arrival_automations_jenn", "on") }}'
+          - condition: template
+            value_template:
+              '{{ trigger.entity_id == "input_select.presence_kale_status"
+              and is_state("input_boolean.home_arrival_automations_kale", "on") }}'
+          - condition: template
+            value_template:
+              '{{ trigger.entity_id == "input_select.presence_jalynne_status"
+              and is_state("input_boolean.home_arrival_automations_jalynne", "on") }}'
+  action:
+    - service: script.lights_arrival
+    - condition: template
+      value_template:
+        '{{ trigger.entity_id == "input_select.presence_wayne_status"
+        or trigger.entity_id == "input_select.presence_jenn_status" }}'
+    - service: script.lights_arrival_kitchen_island
+- id: Person Home Lights Porch Off
+  alias: Person Home Lights Porch Off
+  initial_state: "on"
+  trigger:
+    - platform: event
+      event_type: timer.finished
+      event_data:
+        entity_id: timer.arrival_lights_porch_timeout
+  action:
+    - service: light.turn_off
+      entity_id: light.entrance_light_porch
+- id: Person Home Lights Entrance Off
+  alias: Person Home Lights Entrance Off
+  initial_state: "on"
+  trigger:
+    - platform: event
+      event_type: timer.finished
+      event_data:
+        entity_id: timer.arrival_lights_entrance_timeout
+  action:
+    - service: light.turn_off
+      entity_id: light.entrance_light
+- id: Away Home Timeout Kale
+  alias: Away Home Timeout Kale
+  initial_state: "on"
+  trigger:
+    - platform: event
+      event_type: timer.finished
+      event_data:
+        entity_id: timer.away_home_timeout_kale
+  action:
+    - service: input_boolean.turn_on
+      entity_id: input_boolean.home_arrival_automations_kale
+- id: Away Home Timeout Jalynne
+  alias: Away Home Timeout Jalynne
+  initial_state: "on"
+  trigger:
+    - platform: event
+      event_type: timer.finished
+      event_data:
+        entity_id: timer.away_home_timeout_jalynne
+  action:
+    - service: input_boolean.turn_on
+      entity_id: input_boolean.home_arrival_automations_jalynne
+- id: Not Home Notification Jenn
+  alias: Not Home Notification Jenn
+  trigger:
+    - platform: state
+      entity_id: input_select.presence_jenn_status
+      from: Just Left
+      to: Away
+  action:
+    - service: notify.mobile_app_wayne_phone
+      data:
+        message: Jenn has Left the building!
+        data:
+          color: red
+          icon_url: local/photos/jenn_badge_away.png
+  initial_state: "on"
+  mode: single
+- id: Not Home Notification Kale
+  alias: Not Home Notification Kale
+  trigger:
+    - platform: state
+      entity_id: input_select.presence_kale_status
+      from: Just Left
+      to: Away
+  action:
+    - service: notify.mobile_app_wayne_phone
+      data:
+        message: Kale has Left the building!
+        data:
+          color: red
+          icon_url: local/photos/kale_badge_away.png
+  initial_state: "on"
+  mode: single
+- id: Not Home Notification Jalynne
+  alias: Not Home Notification Jalynne
+  trigger:
+    - platform: state
+      entity_id: input_select.presence_jalynne_status
+      from: Just Left
+      to: Away
+  action:
+    - service: notify.mobile_app_wayne_phone
+      data:
+        message: Jalynne has Left the building!
+        data:
+          color: red
+          icon_url: local/photos/jalynne_badge_away.png
+  initial_state: "on"
+  mode: single
+- id: Home Notification Jenn
+  alias: Home Notification Jenn
+  trigger:
+    - platform: state
+      entity_id: input_select.presence_jenn_status
+      from: Away
+      to: Just Arrived
+  action:
+    - service: notify.mobile_app_wayne_phone
+      data:
+        message: Jenn has arrived home.
+        data:
+          color: green
+          icon_url: local/photos/jenn_badge_home.png
+  initial_state: "on"
+  mode: single
+- id: Home Notification Kale
+  alias: Home Notification Kale
+  trigger:
+    - platform: state
+      entity_id: input_select.presence_kale_status
+      from: Away
+      to: Just Arrived
+  action:
+    - service: notify.mobile_app_wayne_phone
+      data:
+        message: Kale has arrived home.
+        data:
+          color: green
+          icon_url: local/photos/kale_badge_home.png
+  initial_state: "on"
+  mode: single
+- id: Home Notification Jalynne
+  alias: Home Notification Jalynne
+  trigger:
+    - platform: state
+      entity_id: input_select.presence_jalynne_status
+      from: Away
+      to: Just Arrived
+  action:
+    - service: notify.mobile_app_wayne_phone
+      data:
+        message: Jalynne has arrived home.
+        data:
+          color: green
+          icon_url: local/photos/jalynne_badge_home.png
+  initial_state: "on"
+  mode: single
+- id: Kitchen Dashboard Motion Screen On Day
+  alias: Kitchen Dashboard Motion Screen On Day
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.fully_kitchen_dashboard
+      to: "On"
+  condition:
+    - condition: state
+      entity_id: sun.sun
+      state: above_horizon
+  action:
+    - service: browser_mod.no_blackout
+      data:
+        deviceID: fully_kitchen_dashboard
+        brightness: 255
+    - service: light.turn_on
+      data: {}
+      target:
+        entity_id: light.fully_kitchen_dashboard
+  initial_state: "on"
+  mode: single
+- id: Kitchen Dashboard Motion Screen On Night
+  alias: Kitchen Dashboard Motion Screen On Night
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.fully_kitchen_dashboard
+      to: "On"
+  condition:
+    - condition: state
+      entity_id: sun.sun
+      state: below_horizon
+  action:
+    - service: browser_mod.no_blackout
+      data:
+        deviceID: fully_kitchen_dashboard
+        brightness: 150
+    - service: light.turn_on
+      data:
+        entity_id: light.fully_kitchen_dashboard
+  initial_state: "on"
+- id: weather_summaries
+  alias: Toggle Weather Summaries
+  trigger:
+    - platform: time_pattern
+      seconds: /10
+  action:
+    - service: script.weather_summaries
+  initial_state: "on"
+  mode: single
+- id: "1617902453877"
+  alias: Radion Station P1 set
+  description: Radio Station P1 set, save display name.
+  trigger:
+    - platform: state
+      entity_id: input_select.radio_station_p1
+  condition:
+    - condition: state
+      entity_id: input_boolean.ha_startup
+      state: "on"
+  action:
+    - service: input_text.set_value
+      target:
+        entity_id: input_text.radio_station_p1_display
+      data:
+        value: '{{ states("input_select.radio_station_p1") }}'
+  mode: single
+- id: "1617902910877"
+  alias: Radion Station P2 set
+  description: Radio Station P2 set, save display name.
+  trigger:
+    - platform: state
+      entity_id: input_select.radio_station_p2
+  condition:
+    - condition: state
+      entity_id: input_boolean.ha_startup
+      state: "on"
+  action:
+    - service: input_text.set_value
+      target:
+        entity_id: input_text.radio_station_p2_display
+      data:
+        value: '{{ states("input_select.radio_station_p2") }}'
+  mode: single
+- id: "1617902936587"
+  alias: Radion Station P3 set
+  description: Radio Station P3 set, save display name.
+  trigger:
+    - platform: state
+      entity_id: input_select.radio_station_p3
+  condition:
+    - condition: state
+      entity_id: input_boolean.ha_startup
+      state: "on"
+  action:
+    - service: input_text.set_value
+      target:
+        entity_id: input_text.radio_station_p3_display
+      data:
+        value: '{{ states("input_select.radio_station_p3") }}'
+  mode: single
+- id: "1617902960115"
+  alias: Radion Station P4 set
+  description: Radio Station P4 set, save display name.
+  trigger:
+    - platform: state
+      entity_id: input_select.radio_station_p4
+  condition:
+    - condition: state
+      entity_id: input_boolean.ha_startup
+      state: "on"
+  action:
+    - service: input_text.set_value
+      target:
+        entity_id: input_text.radio_station_p4_display
+      data:
+        value: '{{ states("input_select.radio_station_p4") }}'
+  mode: single
+- id: "1617903429945"
+  alias: Radio Station Pxx set
+  description: Radio Station Preset set, update input select options
+  trigger:
+    - platform: state
+      entity_id: input_text.google_cast_p01
+    - platform: state
+      entity_id: input_text.google_cast_p02
+    - platform: state
+      entity_id: input_text.google_cast_p03
+    - platform: state
+      entity_id: input_text.google_cast_p04
+    - platform: state
+      entity_id: input_text.google_cast_p05
+    - platform: state
+      entity_id: input_text.google_cast_p06
+    - platform: state
+      entity_id: input_text.google_cast_p07
+    - platform: state
+      entity_id: input_text.google_cast_p08
+    - platform: state
+      entity_id: input_text.google_cast_p09
+    - platform: state
+      entity_id: input_text.google_cast_p10
+    - platform: state
+      entity_id: input_text.google_cast_p11
+    - platform: state
+      entity_id: input_text.google_cast_p12
+    - platform: state
+      entity_id: input_text.google_cast_p13
+    - platform: state
+      entity_id: input_text.google_cast_p14
+    - platform: state
+      entity_id: input_text.google_cast_p15
+    - platform: state
+      entity_id: input_text.google_cast_p16
+    - platform: state
+      entity_id: input_text.google_cast_p17
+    - platform: state
+      entity_id: input_text.google_cast_p18
+    - platform: state
+      entity_id: input_text.google_cast_p19
+    - platform: state
+      entity_id: input_text.google_cast_p20
+  condition: []
+  action:
+    - service: input_boolean.turn_off
+      target:
+        entity_id: input_boolean.ha_startup
+    - service: rest_command.google_cast_save_input_selects
+    - service: input_select.select_option
+      target:
+        entity_id: input_select.radio_station_p1
+      data:
+        value: '{{ states("input_text.radio_station_p1") }}'
+    - service: input_select.select_option
+      target:
+        entity_id: input_select.radio_station_p2
+      data:
+        value: '{{ states("input_text.radio_station_p2") }}'
+    - service: input_select.select_option
+      target:
+        entity_id: input_select.radio_station_p3
+      data:
+        value: '{{ states("input_text.radio_station_p3") }}'
+    - service: input_select.select_option
+      target:
+        entity_id: input_select.radio_station_p4
+      data:
+        value: '{{ states("input_text.radio_station_p4") }}'
+    - service: input_boolean.turn_on
+      target:
+        entity_id: input_boolean.ha_startup
+  mode: single
+- id: front_door_lock_problem
+  alias: Front Door Lock Problem
+  description: ""
+  trigger:
+    platform: state
+    entity_id: sensor.schlage_front_door_lock_problem
+    from: "False"
+    to: "True"
+  condition: []
+  action:
+    - service: notify.bilger_parents
+      data:
+        title: Front Door Problem
+        message: '{{ states("sensor.schlage_front_door_lock_status")}}'
+        data:
+          color: red
+          icon_url: https://img.icons8.com/cotton/2x/door-sensor-error.png
+          tag: front-door-status
+          sticky: true
+          priority: high
+  mode: single
+- id: front_door_lock_problem_cleared
+  alias: Front Door Lock Problem Cleared
+  description: ""
+  trigger:
+    platform: state
+    entity_id: sensor.schlage_front_door_lock_problem
+    from: "True"
+    to: "False"
+  condition: []
+  action:
+    - service: notify.bilger_parents
+      data:
+        title: Front Door Problem Cleared
+        message: '{{ states("sensor.schlage_front_door_lock_status")}}'
+        data:
+          color: green
+          icon_url: https://img.icons8.com/cotton/2x/door-sensor-checked.png
+          tag: front-door-status
+          sticky: false
+          priority: low
+  mode: single
+- id: "1617992187037"
+  alias: Phone GPS not updating - Wayne
+  description:
+    If there is no network to get a GPS update, device will stay home -
+    set as away
+  trigger:
+    - platform: state
+      entity_id: group.phone_wayne_lan
+      to: not_home
+      for: 00:05:00
+    - platform: homeassistant
+      event: start
+  condition:
+    - condition: or
+      conditions:
+        - condition: state
+          entity_id: device_tracker.phone_wayne
+          state: home
+        - condition: state
+          entity_id: device_tracker.phone_wayne
+          state: unknown
+  action:
+    - service: rest_command.phone_wayne_not_home
+  mode: single
+- id: "1617992282971"
+  alias: Phone GPS not updating - Jenn
+  description:
+    If there is no network to get a GPS update, device will stay home -
+    set as away
+  trigger:
+    - platform: state
+      entity_id: group.phone_jenn_lan
+      to: not_home
+      for: 00:05:00
+    - platform: homeassistant
+      event: start
+  condition:
+    - condition: or
+      conditions:
+        - condition: state
+          entity_id: device_tracker.phone_jenn
+          state: home
+        - condition: state
+          entity_id: device_tracker.phone_jenn
+          state: unknown
+  action:
+    - service: rest_command.phone_jenn_not_home
+  mode: single
+- id: "1617992358771"
+  alias: Phone GPS not updating - Kale
+  description:
+    If there is no network to get a GPS update, device will stay home -
+    set as away
+  trigger:
+    - platform: state
+      entity_id: group.phone_kale_lan
+      to: not_home
+      for: 00:05:00
+    - platform: homeassistant
+      event: start
+  condition:
+    - condition: or
+      conditions:
+        - condition: state
+          entity_id: device_tracker.phone_kale
+          state: home
+        - condition: state
+          entity_id: device_tracker.phone_kale
+          state: unknown
+  action:
+    - service: rest_command.phone_kale_not_home
+  mode: single
+- id: "1617992400891"
+  alias: Phone GPS not updating - Jalynne
+  description:
+    If there is no network to get a GPS update, device will stay home -
+    set as away
+  trigger:
+    - platform: state
+      entity_id: group.phone_jalynne_lan
+      to: not_home
+      for: 00:05:00
+    - platform: homeassistant
+      event: start
+  condition:
+    - condition: or
+      conditions:
+        - condition: state
+          entity_id: device_tracker.phone_jalynne
+          state: home
+        - condition: state
+          entity_id: device_tracker.phone_jalynne
+          state: unknown
+  action:
+    - service: rest_command.phone_jalynne_not_home
+  mode: single
+- id: dining_room_tv_turned_on
+  alias: Dining Room TV Turned On
+  initial_state: "on"
+  trigger:
+    - platform: state
+      entity_id: group.tv_dining_room
+      to: home
+  action:
+    - service: input_boolean.turn_on
+      entity_id: input_boolean.dining_room_tv
+    - service: switch.turn_on
+      entity_id: switch.dining_room_tv
+- id: dining_room_tv_turned_off
+  alias: Dining Room TV Turned Off
+  initial_state: "on"
+  trigger:
+    - platform: state
+      entity_id: group.tv_dining_room
+      to: not_home
+  action:
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.dining_room_tv
+    - service: switch.turn_off
+      entity_id: switch.dining_room_tv
+- id: bedroom_tv_stopped
+  alias: Bedroom TV Stopped
+  trigger:
+    - platform: state
+      entity_id: media_player.bedroom_universal
+      to: home
+      for:
+        minutes: 10
+    - platform: state
+      entity_id: media_player.bedroom_universal
+      to: paused
+      for:
+        minutes: 10
+    - platform: state
+      entity_id: media_player.bedroom_universal
+      to: "off"
+      for:
+        minutes: 10
+    - platform: state
+      entity_id: media_player.bedroom_universal
+      to: stopped
+      for:
+        minutes: 10
+    - platform: state
+      entity_id:
+        - media_player.bedroom_universal
+      for:
+        minutes: 10
+      to: idle
+  action:
+    - service: switch.turn_off
+      entity_id: switch.bedroom_tv
+  initial_state: "on"
+- id: deck_tv_stopped
+  alias: Deck TV Stopped
+  trigger:
+    - platform: state
+      entity_id: media_player.deck_tv
+      to: home
+      for:
+        minutes: 10
+    - platform: state
+      entity_id: media_player.deck_tv
+      to: paused
+      for:
+        minutes: 10
+    - platform: state
+      entity_id: media_player.deck_tv
+      to: "off"
+      for:
+        minutes: 10
+    - platform: state
+      entity_id: media_player.deck_tv
+      to: stopped
+      for:
+        minutes: 10
+  action:
+    - service: switch.turn_off
+      data: {}
+      target:
+        entity_id: switch.deck_tv_fan
+  initial_state: "on"
+- id: family_room_roku_plex
+  alias: Family Room Roku Plex
+  trigger:
+    - platform: state
+      entity_id: media_player.family_room_roku
+  action:
+    - service: switch.turn_on
+      data_template:
+        entity_id:
+          "{% if is_state('input_select.remote_family_room','Bell') %} {% elif
+          is_state_attr('media_player.family_room_roku','source','Plex') %}\n  switch.remote_family_room_plex
+          \ \n{% elif is_state_attr('media_player.family_room_roku','source','Chromecast')
+          %}\n  switch.remote_family_room_chromecast\n{% elif is_state_attr('media_player.family_room_roku','source','Computer')
+          %}\n  switch.null\n{% else %}  \n  switch.remote_family_room_tv            \n{%
+          endif %}\n"
+  initial_state: "on"
+- id: "1619113286884"
+  alias: notify get user_id wayne
+  description: ""
+  trigger: []
+  condition: []
+  action:
+    - service: notify.mobile_app_wayne_phone
+      data_template:
+        title: Get UserID.
+        message: Get HASS mobile app user_id for Wayne.
+        data:
+          icon_url: local/photos/wayne_circle.png
+          actions:
+            - action: mobile_app_userid_wayne
+              title: Send UserID
+          tag: mobile_app_userid_wayne
+          sticky: true
+          color: yellow
+          persistent: true
+          priority: high
+  mode: single
+  initial_state: "on"
+- id: "1619113333555"
+  alias: notify get user_id jenn
+  description: ""
+  trigger: []
+  condition: []
+  action:
+    - service: notify.mobile_app_jenn_phone
+      data_template:
+        title: Get UserID.
+        message: Get HASS mobile app user_id for Jenn.
+        data:
+          icon_url: local/photos/jenn_circle.png
+          actions:
+            - action: mobile_app_userid_jenn
+              title: Send UserID
+          tag: mobile_app_userid_jenn
+          sticky: true
+          color: yellow
+          persistent: true
+          priority: high
+  mode: single
+  initial_state: "on"
+- id: "1619113378978"
+  alias: notify get user_id kale
+  description: ""
+  trigger: []
+  condition: []
+  action:
+    - service: notify.mobile_app_kales_iphone
+      data_template:
+        title: Get UserID.
+        message: Get HASS mobile app user_id for Kale.
+        data:
+          icon_url: local/photos/kale_circle.png
+          actions:
+            - action: mobile_app_userid_kale
+              title: Send UserID
+          tag: mobile_app_userid_kale
+          sticky: true
+          color: yellow
+          persistent: true
+          priority: high
+  mode: single
+  initial_state: "on"
+- id: "1619113428122"
+  alias: notify get user_id jalynne
+  description: ""
+  trigger: []
+  condition: []
+  action:
+    - service: notify.mobile_app_jays_phone
+      data_template:
+        title: Get UserID.
+        message: Get HASS mobile app user_id for Jalynne.
+        data:
+          icon_url: local/photos/jalynne_circle.png
+          actions:
+            - action: mobile_app_userid_jalynne
+              title: Send UserID
+          tag: mobile_app_userid_jalynne
+          sticky: true
+          color: yellow
+          persistent: true
+          priority: high
+  mode: single
+  initial_state: "on"
+- id: "1619113742896"
+  alias: "notify mobile app userid retrieved wayne "
+  description: ""
+  trigger:
+    - platform: event
+      event_type: mobile_app_notification_action
+      event_data:
+        action: mobile_app_userid_wayne
+  condition: []
+  action:
+    - service: notify.mobile_app_wayne_phone
+      data_template:
+        title: Mobile App UserID retrieved for Wayne.
+        message:
+          Saved input_text.mobile_app_user_id_wayne = '{{ trigger.event.context["user_id"]
+          }}'
+    - service: input_text.set_value
+      target:
+        entity_id: input_text.mobile_app_user_id_wayne
+      data:
+        value: '{{ trigger.event.context["user_id"] }}'
+    - service: notify.mobile_app_wayne_phone
+      data:
+        message: clear_notification
+        data:
+          tag: mobile_app_userid_wayne
+  mode: single
+  initial_state: "on"
+- id: "1619114117614"
+  alias: notify mobile app userid retrieved jenn
+  description: ""
+  trigger:
+    - platform: event
+      event_type: mobile_app_notification_action
+      event_data:
+        action: mobile_app_userid_jenn
+  condition: []
+  action:
+    - service: notify.mobile_app_wayne_phone
+      data_template:
+        title: Mobile App UserID retrieved for Jenn.
+        message:
+          Saved input_text.mobile_app_user_id_jenn = '{{ trigger.event.context["user_id"]
+          }}'
+    - service: input_text.set_value
+      target:
+        entity_id: input_text.mobile_app_user_id_jenn
+      data:
+        value: '{{ trigger.event.context["user_id"] }}'
+    - service: notify.mobile_app_jenn_phone
+      data:
+        message: clear_notification
+        data:
+          tag: mobile_app_userid_jenn
+  mode: single
+  initial_state: "on"
+- id: "1619114757642"
+  alias: notify mobile app userid retrieved kale
+  description: ""
+  trigger:
+    - platform: event
+      event_type: mobile_app_notification_action
+      event_data:
+        action: mobile_app_userid_kale
+  condition: []
+  action:
+    - service: notify.mobile_app_wayne_phone
+      data_template:
+        title: Mobile App UserID retrieved for Kale.
+        message:
+          Saved input_text.mobile_app_user_id_kale = '{{ trigger.event.context["user_id"]
+          }}'
+    - service: input_text.set_value
+      target:
+        entity_id: input_text.mobile_app_user_id_kale
+      data:
+        value: '{{ trigger.event.context["user_id"] }}'
+    - service: notify.mobile_app_kales_iphone
+      data:
+        data:
+          tag: mobile_app_userid_kale
+        message: clear_notification
+  mode: single
+  initial_state: "on"
+- id: "1619114812633"
+  alias: notify mobile app userid retrieved jalynne
+  description: ""
+  trigger:
+    - platform: event
+      event_type: mobile_app_notification_action
+      event_data:
+        action: mobile_app_userid_jalynne
+  condition: []
+  action:
+    - service: notify.mobile_app_wayne_phone
+      data_template:
+        title: Mobile App UserID retrieved for Jalynne.
+        message:
+          Saved input_text.mobile_app_user_id_jalynne = '{{ trigger.event.context["user_id"]
+          }}'
+    - service: input_text.set_value
+      target:
+        entity_id: input_text.mobile_app_user_id_jalynne
+      data:
+        value: '{{ trigger.event.context["user_id"] }}'
+    - service: notify.mobile_app_jays_phone
+      data:
+        data:
+          tag: mobile_app_userid_jalynne
+        message: clear_notification
+  mode: single
+  initial_state: "on"
+- id: "1633177535841"
+  alias: Family Room Roku TV On
+  description: turn on Denon Receiver with Roku TV
+  trigger:
+    - platform: state
+      entity_id: media_player.family_room_roku_tv
+      to: "on"
+  condition: []
+  action:
+    - service: switch.turn_on
+      target:
+        entity_id: switch.family_room_surround_sound
+  mode: single
+- id: "1633177583834"
+  alias: Family Room Roku TV Off
+  description: turn off Denon Receiver with Roku TV
+  trigger:
+    - platform: state
+      entity_id: media_player.family_room_roku_tv
+      to: standby
+  condition: []
+  action:
+    - service: script.turn_on
+      target:
+        entity_id: script.family_room_off_lights_delay
+  mode: single
+- id: "1642369403205"
+  alias: Theatre Roku Home Or Plex Stopped
+  description: ""
+  trigger:
+    - platform: state
+      to: home
+      from: playing
+      entity_id: media_player.theatre_roku
+    - platform: state
+      entity_id: media_player.theatre_plex
+      from: playing
+  condition: []
+  action:
+    - service: script.theatre_stop_lights
+  mode: single
+- id: "1642369466322"
+  alias: Theatre Plex Playing
+  description: ""
+  trigger:
+    - platform: state
+      entity_id: media_player.theatre_plex
+      to: playing
+  condition: []
+  action:
+    - service: script.theatre_play_lights
+  mode: single
+- id: "1658932222202"
+  alias: Bedroom TV PowerToggle
+  description: ""
+  trigger:
+    - platform: state
+      entity_id:
+        - media_player.bedroom_tv
+  condition: []
+  action:
+    - if:
+        - condition: state
+          entity_id: media_player.bedroom_tv
+          state: unavailable
+      then:
+        - service: input_boolean.turn_off
+          data: {}
+          target:
+            entity_id: input_boolean.bedroom_tv
+      else:
+        - service: input_boolean.turn_on
+          data: {}
+          target:
+            entity_id: input_boolean.bedroom_tv
+  mode: single
+- id: "1664457786258"
+  alias: Zigbee2MQTT Restart
+  description: TEMP SOLUTION for not working on hard reboot - Restart Zigbee2MQTT
+  trigger:
+    - platform: homeassistant
+      event: start
+  condition: []
+  action:
+    - delay:
+        hours: 0
+        minutes: 2
+        seconds: 0
+        milliseconds: 0
+    - service: hassio.addon_restart
+      data:
+        addon: 45df7312_zigbee2mqtt
+  mode: single

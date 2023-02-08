@@ -1,0 +1,17 @@
+mobile_settings:
+  hide_header: true
+  ignore_entity_settings: true #for some reason, needs to be on to work on Fully Kiosk Browser
+  #custom_width: 768  #kitchen dashboard is 800, default is 820
+non_admin_settings:
+  hide_header: true
+  ignore_entity_settings: true
+entity_settings:
+  - entity:
+      input_boolean.kiosk_mode_hide_sidebar: "on"
+    hide_sidebar: true
+  - entity:
+      input_boolean.kiosk_mode_hide_header: "on"
+    hide_header: true
+  - entity:
+      input_boolean.kiosk_mode: "on"
+    kiosk: true

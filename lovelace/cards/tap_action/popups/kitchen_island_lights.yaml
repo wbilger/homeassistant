@@ -1,0 +1,29 @@
+action: fire-dom-event
+browser_mod:
+  service: browser_mod.popup
+  data:
+    title: Kitchen Island Lights
+    content:
+      type: entities
+      entities:
+        - type: custom:slider-entity-row
+          entity: light.kitchen_island_1
+          name: Left
+          icon: mdi:spotlight-beam
+          toggle: true
+        - type: custom:slider-entity-row
+          entity: light.kitchen_island_2
+          name: Middle
+          icon: mdi:spotlight-beam
+          toggle: true
+        - type: custom:slider-entity-row
+          entity: light.kitchen_island_3
+          name: Right
+          icon: mdi:spotlight-beam
+          toggle: true
+        - type: custom:text-divider-row
+          text: "Island"
+        - type: custom:slider-entity-row
+          entity: light.kitchen_island_lights
+          full_row: true
+          toggle: true

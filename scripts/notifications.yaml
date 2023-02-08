@@ -2,8 +2,8 @@ notification_test_wayne_phone:
   sequence:
     - condition: state
       entity_id: input_boolean.notification_test_wayne_phone
-      state: 'on'
-    - service: notify.mobile_app_phone_wayne
+      state: "on"
+    - service: notify.mobile_app_wayne_phone
       data_template:
         message: There should be a picture of Dwight, and actions.
         title: Testing images & actions.
@@ -12,8 +12,9 @@ notification_test_wayne_phone:
             - action: test_action
               title: Test Action?
               image: https://66.media.tumblr.com/2e6fb37c108e9ef2a7bbcc29ba0bb648/tumblr_pdpw8jtAfo1rutcjwo5_250.png
-          image: local/photos/notify_washing_machine_open
-              #image: https://66.media.tumblr.com/2e6fb37c108e9ef2a7bbcc29ba0bb648/tumblr_pdpw8jtAfo1rutcjwo5_250.png
+          image:
+            local/photos/notify_washing_machine_open
+            #image: https://66.media.tumblr.com/2e6fb37c108e9ef2a7bbcc29ba0bb648/tumblr_pdpw8jtAfo1rutcjwo5_250.png
 # notification_test_wayne_phone_html5:
 #   sequence:
 #     - condition: state
@@ -37,7 +38,7 @@ notify_washing_machine_stop_speakers:
   sequence:
     - condition: state
       entity_id: input_boolean.notification_washing_machine_speakers
-      state: 'on'
+      state: "on"
     - service: input_text.set_value
       data:
         entity_id: input_text.google_broadcast_message
@@ -53,71 +54,71 @@ notify_washing_machine_stop_speakers:
     - service: notify.google_broadcast
       data_template:
         message: '{{ states("input_text.google_broadcast_message") }}'
-        
+
 notify_washing_machine_stop_wayne:
   sequence:
     - condition: state
       entity_id: input_boolean.notification_washing_machine_wayne_phone
-      state: 'on'
-    - service: notify.mobile_app_phone_wayne
+      state: "on"
+    - service: notify.mobile_app_wayne_phone
       data_template:
         title: "Washing Machine load has finished Wayne."
         message: "Get your shit in the dryer!"
-        data:   
-          tag: washing_machine_start  #replace notification if still on phone
+        data:
+          tag: washing_machine_start #replace notification if still on phone
           icon_url: local/photos/notify_washing_machine_open.png
 
 notify_washing_machine_stop_jenn:
   sequence:
     - condition: state
       entity_id: input_boolean.notification_washing_machine_jenn_phone
-      state: 'on'
-    - service: notify.mobile_app_phone_jenn
+      state: "on"
+    - service: notify.mobile_app_jenn_phone
       data_template:
         title: "Washing Machine load has finished Jenn."
         message: "Get your shit in the dryer!"
         data:
-          tag: washing_machine_start  #replace notification if still on phone
+          tag: washing_machine_start #replace notification if still on phone
           icon_url: local/photos/notify_washing_machine_open.png
-notify_washing_machine_stop_kale:
-  sequence:
-    - condition: state
-      entity_id: input_boolean.notification_washing_machine_kale_phone
-      state: 'on'
-    - service: notify.mobile_app_kales_iphone                      
-      data_template:
-        title: "Washing Machine load has finished Kale."
-        message: "Get your shit in the dryer!"
-        data:
-          tag: washing_machine_start  #replace notification if still on phone
-          icon_url: local/photos/notify_washing_machine_open.png
-notify_washing_machine_stop_jalynne:
-  sequence:
-    - condition: state
-      entity_id: input_boolean.notification_washing_machine_jalynne_phone
-      state: 'on'
-    - service: notify.ios_jalynnes_iphone
-      data_template:
-        title: "Washing Machine load has finished Jalynne."
-        message: "Get your shit in the dryer!"
-        data:
-          tag: washing_machine_start  #replace notification if still on phone
-          icon_url: local/photos/notify_washing_machine_open.png
+# notify_washing_machine_stop_kale:
+#   sequence:
+#     - condition: state
+#       entity_id: input_boolean.notification_washing_machine_kale_phone
+#       state: "on"
+#     - service: notify.mobile_app_kales_iphone
+#       data_template:
+#         title: "Washing Machine load has finished Kale."
+#         message: "Get your shit in the dryer!"
+#         data:
+#           tag: washing_machine_start #replace notification if still on phone
+#           icon_url: local/photos/notify_washing_machine_open.png
+# notify_washing_machine_stop_jalynne:
+#   sequence:
+#     - condition: state
+#       entity_id: input_boolean.notification_washing_machine_jalynne_phone
+#       state: "on"
+#     - service: notify.ios_jalynnes_iphone
+#       data_template:
+#         title: "Washing Machine load has finished Jalynne."
+#         message: "Get your shit in the dryer!"
+#         data:
+#           tag: washing_machine_start #replace notification if still on phone
+#           icon_url: local/photos/notify_washing_machine_open.png
 
 notify_garbage_day_tomorrow_wayne:
   sequence:
     - condition: state
       entity_id: input_boolean.notification_curbside_pickup_wayne_phone
-      state: 'on'
-    - service: notify.mobile_app_phone_wayne
+      state: "on"
+    - service: notify.mobile_app_wayne_phone
       data:
         title: "Curb side pickup is tomorrow morning."
         message: "Be sure to gather up all the garbage and recycling!"
         data:
           icon_url: local/photos/notify_garbage_recycling.png
           tag: garbage_day_tomorrow
-          sticky: true        #doesn't go away when clicked
-          color: 'green'
+          sticky: true #doesn't go away when clicked
+          color: "green"
           actions:
             - action: garbage_day_tomorrow_remind
               title: Remind me in 1 hour
@@ -128,56 +129,16 @@ notify_garbage_day_tomorrow_jenn:
   sequence:
     - condition: state
       entity_id: input_boolean.notification_curbside_pickup_jenn_phone
-      state: 'on'
-    - service: notify.mobile_app_phone_jenn
+      state: "on"
+    - service: notify.mobile_app_jenn_phone
       data:
         title: "Curb side pickup is tomorrow morning."
         message: "Be sure to gather up all the garbage and recycling!"
         data:
           icon_url: local/photos/notify_garbage_recycling.png
           tag: garbage_day_tomorrow
-          sticky: true        #doesn't go away when clicked
-          color: 'green'
-          actions:
-            - action: garbage_day_tomorrow_remind
-              title: Remind me in 1 hour
-            - action: garbage_day_tomorrow_cancel
-              title: It's Done.
-
-notify_garbage_day_tomorrow_kale:
-  sequence:
-    - condition: state
-      entity_id: input_boolean.notification_curbside_pickup_kale_phone
-      state: 'on'
-    - service: notify.mobile_app_phone_kale
-      data:
-        title: "Curb side pickup is tomorrow morning."
-        message: "Be sure to gather up all the garbage and recycling!"
-        data:
-          icon_url: local/photos/notify_garbage_recycling.png
-          tag: garbage_day_tomorrow
-          sticky: true        #doesn't go away when clicked
-          color: 'green'
-          actions:
-            - action: garbage_day_tomorrow_remind
-              title: Remind me in 1 hour
-            - action: garbage_day_tomorrow_cancel
-              title: It's Done.
-
-notify_garbage_day_tomorrow_jalynne:
-  sequence:
-    - condition: state
-      entity_id: input_boolean.notification_curbside_pickup_jalynne_phone
-      state: 'on'
-    - service: notify.mobile_app_phone_jalynne
-      data:
-        title: "Curb side pickup is tomorrow morning."
-        message: "Be sure to gather up all the garbage and recycling!"
-        data:
-          icon_url: local/photos/notify_garbage_recycling.png
-          tag: garbage_day_tomorrow
-          sticky: true        #doesn't go away when clicked
-          color: 'green'
+          sticky: true #doesn't go away when clicked
+          color: "green"
           actions:
             - action: garbage_day_tomorrow_remind
               title: Remind me in 1 hour
@@ -188,55 +149,26 @@ notify_garbage_day_tomorrow_last_wayne:
   sequence:
     - condition: state
       entity_id: input_boolean.notification_curbside_pickup_wayne_phone
-      state: 'on'
-    - service: notify.mobile_app_phone_wayne
+      state: "on"
+    - service: notify.mobile_app_wayne_phone
       data:
         title: "Curb side pickup is tomorrow morning."
         message: "Be sure to gather up all the garbage and recycling!"
         data:
           icon_url: local/photos/notify_garbage_recycling.png
           tag: garbage_day_tomorrow
-          color: 'green'
-
+          color: "green"
 
 notify_garbage_day_tomorrow_last_jenn:
   sequence:
     - condition: state
       entity_id: input_boolean.notification_curbside_pickup_jenn_phone
-      state: 'on'
-    - service: notify.mobile_app_phone_jenn
+      state: "on"
+    - service: notify.mobile_app_jenn_phone
       data:
         title: "Curb side pickup is tomorrow morning."
         message: "Be sure to gather up all the garbage and recycling!"
         data:
           icon_url: local/photos/notify_garbage_recycling.png
           tag: garbage_day_tomorrow
-          color: 'green'
-
-notify_garbage_day_tomorrow_last_kale:
-  sequence:
-    - condition: state
-      entity_id: input_boolean.notification_curbside_pickup_kale_phone
-      state: 'on'
-    - service: notify.mobile_app_phone_kale
-      data:
-        title: "Curb side pickup is tomorrow morning."
-        message: "Be sure to gather up all the garbage and recycling!"
-        data:
-          icon_url: local/photos/notify_garbage_recycling.png
-          tag: garbage_day_tomorrow
-          color: 'green'
-
-notify_garbage_day_tomorrow_last_jalynne:
-  sequence:
-    - condition: state
-      entity_id: input_boolean.notification_curbside_pickup_jalynne_phone
-      state: 'on'
-    - service: notify.mobile_app_phone_jalynne
-      data:
-        title: "Curb side pickup is tomorrow morning."
-        message: "Be sure to gather up all the garbage and recycling!"
-        data:
-          icon_url: local/photos/notify_garbage_recycling.png
-          tag: garbage_day_tomorrow
-          color: 'green'
+          color: "green"
