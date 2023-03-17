@@ -33,27 +33,23 @@ phone_wayne_lan:
   entities:
     - device_tracker.phone_wayne_nmap
     - device_tracker.phone_wayne_ping
-    - device_tracker.phone_wayne_bt
 phone_jenn_lan:
   name: Jenn Phone Lan Connection
   entities:
     - device_tracker.phone_jenn_nmap
     - device_tracker.phone_jenn_ping
-    - device_tracker.phone_jenn_bt
 phone_kale_lan:
   name: Kale Phone Lan Connection
   entities:
     - device_tracker.phone_kale_iphonedetect
     - device_tracker.phone_kale_nmap
     - device_tracker.phone_kale_ping
-    - device_tracker.phone_kale_bt
 phone_jalynne_lan:
   name: Jalynne Phone Lan Connection
   entities:
     - device_tracker.phone_jalynne_iphonedetect
     - device_tracker.phone_jalynne_nmap
     - device_tracker.phone_jalynne_ping
-    - device_tracker.phone_jalynne_bt
 
 chromecast_family_room:
   name: Chromecast Family Room

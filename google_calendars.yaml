@@ -137,48 +137,30 @@
 
 - cal_id: wbilgerlt@gmail.com
   entities:
-  - device_id: talons_wayne
-    ignore_availability: true
-    name: Talons-Wayne
+    - device_id: talons_wayne
+      ignore_availability: true
+      name: Talons-Wayne
 
 - cal_id: wbilger@ebba.ca
   entities:
-  - device_id: wbilger_ebba_ca
-    ignore_availability: true
-    name: wbilger@ebba.ca
+    - device_id: wbilger_ebba_ca
+      ignore_availability: true
+      name: wbilger@ebba.ca
 
 - cal_id: tku92trrk41pejb9b829dip5ok@group.calendar.google.com
   entities:
-  - device_id: toronto_blue_jays
-    ignore_availability: true
-    name: Toronto Blue Jays
+    - device_id: toronto_blue_jays
+      ignore_availability: true
+      name: Toronto Blue Jays
 
 - cal_id: 3gil0kpep9ig2mcbnd8f5mvvi8@group.calendar.google.com
   entities:
-  - device_id: toronto_maple_leafs
-    ignore_availability: true
-    name: Toronto Maple Leafs
-
-- cal_id: ij3n06dj25th033ldrrs25ggd26uhreh@import.calendar.google.com
-  entities:
-  - device_id: 14u_2008_london_talons_baseball
-    ignore_availability: true
-    name: 14u (2008) - London Talons Baseball
-
-- cal_id: 1rueho0v94taph9ijus9bcagnk@group.calendar.google.com
-  entities:
-  - device_id: 14u_attendance
-    ignore_availability: true
-    name: 14u Attendance
+    - device_id: toronto_maple_leafs
+      ignore_availability: true
+      name: Toronto Maple Leafs
 
 - cal_id: eqdg2doh5m3cpik6ar30q8vo18@group.calendar.google.com
   entities:
-  - device_id: to_do
-    ignore_availability: true
-    name: To Do
-
-- cal_id: hu1m45rju7tlcmmmaghagqkveaajqet4@import.calendar.google.com
-  entities:
-  - device_id: 15u_2008_london_talons_baseball
-    ignore_availability: true
-    name: 15U (2008) - London Talons Baseball
+    - device_id: to_do
+      ignore_availability: true
+      name: To Do

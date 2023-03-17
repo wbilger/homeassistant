@@ -1,0 +1,43 @@
+action: fire-dom-event
+browser_mod:
+  service: browser_mod.popup
+  data:
+    title: Theatre Lights
+    #size: fullscreen
+    content:
+      type: entities
+      entities:
+        - type: custom:text-divider-row
+          text: "Front Lights"
+        - type: custom:slider-entity-row
+          entity: light.theatre_lights_front
+          full_row: true
+          toggle: true
+        - type: custom:slider-entity-row
+          entity: light.theatre_fl
+          name: Front Left
+          toggle: true
+        - type: custom:slider-entity-row
+          entity: light.theatre_fr
+          name: Front Right
+          toggle: true
+        - type: custom:text-divider-row
+          text: "Rear Lights"
+        - type: custom:slider-entity-row
+          entity: light.theatre_lights_rear
+          full_row: true
+          toggle: true
+        - type: custom:slider-entity-row
+          entity: light.theatre_rl
+          name: Rear Left
+          toggle: true
+        - type: custom:slider-entity-row
+          entity: light.theatre_rr
+          name: Rear Right
+          toggle: true
+        - type: custom:text-divider-row
+          text: "All"
+        - type: custom:slider-entity-row
+          entity: light.theatre_lights
+          full_row: true
+          toggle: true

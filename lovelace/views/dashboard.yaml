@@ -484,12 +484,12 @@ cards:
           - type: image
             image: /local/photos/yellow.png
             aspect_ratio: 33%
-            entity: switch.bedroom_lights
+            entity: light.bedroom_lights
             tap_action:
               action: call-service
               service: switch.turn_off
               service_data:
-                entity_id: switch.bedroom_lights
+                entity_id: light.bedroom_lights
             state_filter:
               "off": opacity(10%) hue-rotate(170deg) brightness(200%)
               "on": opacity(20%)
@@ -540,7 +540,7 @@ cards:
               action: call-service
               service: switch.turn_off
               service_data:
-                entity_id: switch.bedroom_lights
+                entity_id: light.bedroom_lights
             style:
               color: gray
               font-weight: bold
@@ -551,12 +551,12 @@ cards:
           - type: image
             image: /local/photos/yellow.png
             aspect_ratio: 35%
-            entity: switch.dining_room_lights
+            entity: light.dining_room_lights
             tap_action:
               action: call-service
               service: switch.turn_off
               service_data:
-                entity_id: switch.dining_room_lights
+                entity_id: light.dining_room_lights
             state_filter:
               "off": opacity(10%) hue-rotate(170deg) brightness(200%)
               "on": opacity(20%)
@@ -568,12 +568,12 @@ cards:
               border: 1px solid lightgray
           - type: custom:text-action-element
             text: Dining Room
-            entity: switch.dining_room_lights
+            entity: light.dining_room_lights
             tap_action:
               action: call-service
               service: switch.turn_off
               service_data:
-                entity_id: switch.dining_room_lights
+                entity_id: light.dining_room_lights
             style:
               top: 64.5%
               left: 50%
@@ -640,7 +640,7 @@ cards:
               action: call-service
               service: switch.turn_off
               service_data:
-                entity_id: switch.dining_room_lights
+                entity_id: light.dining_room_lights
             style:
               opacity: 45%
               width: 53%
@@ -679,7 +679,7 @@ cards:
               action: call-service
               service: switch.turn_off
               service_data:
-                entity_id: switch.dining_room_lights
+                entity_id: light.dining_room_lights
             state_image:
               "on": /local/photos/icon_motion-sensor-on.png
             style:
@@ -692,7 +692,7 @@ cards:
               action: call-service
               service: switch.turn_off
               service_data:
-                entity_id: switch.dining_room_lights
+                entity_id: light.dining_room_lights
             style:
               color: gray
               font-weight: bold
@@ -929,13 +929,13 @@ cards:
         elements:
           - type: image
             image: /local/photos/yellow.png
-            entity: switch.family_room_lights
+            entity: light.family_room_lights
             aspect_ratio: 115%
             tap_action:
               action: call-service
               service: switch.turn_off
               service_data:
-                entity_id: switch.family_room_lights
+                entity_id: light.family_room_lights
             state_filter:
               "off": opacity(0%)
               "on": opacity(15%)
@@ -963,7 +963,7 @@ cards:
               action: call-service
               service: switch.turn_off
               service_data:
-                entity_id: switch.family_room_lights
+                entity_id: light.family_room_lights
             state_image:
               "on": /local/photos/icon_motion-sensor-on.png
             style:
@@ -976,7 +976,7 @@ cards:
               action: call-service
               service: switch.turn_off
               service_data:
-                entity_id: switch.family_room_lights
+                entity_id: light.family_room_lights
             style:
               color: gray
               font-weight: bold
@@ -1090,12 +1090,12 @@ cards:
               left: 92.8%
           - type: image
             image: /local/photos/yellow.png
-            entity: switch.theatre_lights
+            entity: light.theatre_lights
             tap_action:
               action: call-service
               service: switch.turn_off
               service_data:
-                entity_id: switch.theatre_lights
+                entity_id: light.theatre_lights
             state_filter:
               "off": opacity(0%)
               "on": opacity(15%)

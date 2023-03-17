@@ -17,12 +17,12 @@ cards:
               - type: image
                 image: /local/photos/yellow.png
                 aspect_ratio: 27.25%
-                entity: switch.theatre_lights
+                entity: light.theatre_lights
                 tap_action:
                   action: call-service
                   service: switch.turn_off
                   service_data:
-                    entity_id: switch.theatre_lights
+                    entity_id: light.theatre_lights
                 state_filter:
                   "off": opacity(0%)
                   "on": opacity(10%)
@@ -117,7 +117,6 @@ cards:
                       command:
                         - info
                   hold_action: !include /config/lovelace/cards/tap_action/popups/tautulli.yaml
-                  double_tap_action: !include /config/lovelace/cards/tap_action/popups/plex_recently_added.yaml
                   styles:
                     card:
                       - height: 94px
@@ -313,7 +312,6 @@ cards:
                       command:
                         - info
                   hold_action: !include /config/lovelace/cards/tap_action/popups/tautulli.yaml
-                  double_tap_action: !include /config/lovelace/cards/tap_action/popups/plex_recently_added.yaml
                   styles:
                     card:
                       - height: 94px
@@ -929,12 +927,12 @@ cards:
               image: /local/photos/transparent.png
               aspect_ratio: 20%
               elements:
-                - type: custom:text-element
+                - type: custom:text-action-element
                   text: Optoma GT750E 3D
                   style:
                     top: 35%
                     left: 50%
-                - type: custom:text-element
+                - type: custom:text-action-element
                   text: Projector
                   style:
                     top: 65%
@@ -961,7 +959,7 @@ cards:
                     left: 15%
                     width: 50%
                     font-size: smaller
-                - type: custom:text-element
+                - type: custom:text-action-element
                   text: Hold for 3D Mode off
                   style:
                     top: 87%
@@ -998,7 +996,7 @@ cards:
                     left: 82%
                     width: 50%
                     font-size: smaller
-                - type: custom:text-element
+                - type: custom:text-action-element
                   text: Optoma GT750E 3D
                   style:
                     top: 35%
@@ -1013,12 +1011,12 @@ cards:
           #     image: /local/photos/transparent.png
           #     aspect_ratio: 20%
           #     elements:
-          #       - type: custom:text-element
+          #       - type: custom:text-action-element
           #         text: Denon AVR-391
           #         style:
           #           top: 35%
           #           left: 50%
-          #       - type: custom:text-element
+          #       - type: custom:text-action-element
           #         text: Surround Sound Receiver
           #         style:
           #           top: 65%

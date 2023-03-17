@@ -1,6 +1,6 @@
 #################################################################
-# VIEW: bedroom                                                 #
-#                                                               #
+# VIEW: bedroom
+#   Bedroom
 #################################################################
 title: Bedroom
 path: bedroom
@@ -8,187 +8,96 @@ icon: mdi:bed
 cards:
   - type: vertical-stack
     cards:
-      - !include /config/lovelace/cards/navigation.yaml
-      - type: picture-elements
-        image: /local/photos/transparent.png
-        aspect_ratio: 12%
-        elements:
-          - type: custom:text-element
-            text: Bedroom
-            style:
-              color: var(--primary-text-color)
-              font-size: larger
-              font-weight: bold
-              top: 50%
-              left: 20%
-          - type: image
-            image: /local/photos/icon_remote.png
-            tap_action:
-              action: navigate
-              navigation_path: /lovelace/r.bedroom
-            style:
-              width: 10%
-              top: 50%
-              left: 50%
-
-      - type: entities
-        show_header_toggle: false
-        entities:
-          - input_select.remote_bedroom_plex
+      - type: custom:decluttering-card
+        template: room_header
+        variables:
+          - image: /local/photos/pic_home_bilger-small.png
+      - type: custom:decluttering-card
+        template: remote_button
+        variables:
+          - name: Bedroom
+          - navigation_path: /lovelace/r.bedroom
+      - type: custom:button-card
+        template: home_container
+        entity: light.bedroom_lights
+        name: Lights
+        styles:
+          name:
+            - width: 60px
+        custom_fields:
+          buttons:
+            card:
+              type: horizontal-stack
+              cards:
+                - type: custom:button-card
+                  template: home_button
+                  entity: light.jenn_bedroom
+                  icon: mdi:wall-sconce
+                  name: Jenn Bed
+                - type: custom:button-card
+                  template: home_button
+                  entity: light.bedroom_light
+                  icon: mdi:ceiling-light
+                  name: Bedroom
+                - type: custom:button-card
+                  template: home_button_fan
+                  entity: switch.sonoff_basic_02 #bedroom_fan
+                  icon: mdi:fan
+                - type: custom:button-card
+                  template: home_button_color
+                  entity: switch.bedroom_tv
+                  icon: mdi:television
+                  hold_action:
+                    action: navigate
+                    navigation_path: /lovelace/r.bedroom
 
       - type: horizontal-stack
         cards:
           - type: custom:button-card
-            entity: light.jenn_bedroom
-            icon: mdi:wall-sconce
-            show_name: false
-            hold_action:
-              action: more-info
+            template: home_container
+            entity: light.jalynne_bedroom_lights
+            name: Jalynne
             styles:
-              card:
-                - height: 65px
-          - type: custom:button-card
-            entity: light.bedroom_light
-            icon: mdi:ceiling-light
-            show_name: false
-            styles:
-              card:
-                - height: 65px
-          - type: custom:button-card
-            entity: switch.sonoff_basic_02 #bedroom_fan
-            icon: mdi:fan
-            show_name: false
-            color: var(--secondary-text-color)
-            state:
-              - value: "on"
-                spin: true
-            styles:
-              card:
-                - height: 65px
+              name:
+                - width: 60px
+            custom_fields:
+              buttons:
+                card:
+                  type: horizontal-stack
+                  cards:
+                    - type: custom:button-card
+                      template: home_button_short
+                      entity: light.jalynne_bedroom
+                      icon: mdi:lightbulb
+                    - type: custom:button-card
+                      template: home_button_short
+                      entity: switch.jalynne_bedroom_fan
+                      color: var(--secondary-text-color)
+                      state:
+                        - value: "on"
+                          spin: true #(uncomment this line for spinning icon)
+                    - type: custom:button-card
+                      template: home_button_short
+                      entity: light.jalynnes_lamp
+                      icon: mdi:lamp
+                      hold_action:
+                        action: more-info
 
-          - type: custom:button-card
-            entity: switch.bedroom_tv
-            icon: mdi:television
-            color: var(--secondary-text-color)
-            show_name: false
-            styles:
-              card:
-                - height: 65px
-      - type: horizontal-stack
-        cards:
-          - type: custom:button-card
-            entity: light.jalynne_bedroom
-            icon: mdi:ceiling-light
-            name: Jalynne Light
-            styles:
-              card:
-                - height: 65px
-          - type: custom:button-card
-            entity: switch.jalynne_bedroom_fan
-            icon: mdi:fan
-            name: Jalynne Fan
-            color: var(--secondary-text-color)
-            state:
-              - value: "on"
-                spin: true
-            styles:
-              card:
-                - height: 65px
-          - type: custom:button-card
-            entity: light.jalynnes_lamp
-            icon: mdi:lamp
-            name: Jalynne Lamp
-            styles:
-              card:
-                - height: 65px
+      - type: custom:button-card
+        show_entity_picture: true
+        entity_picture: /local/photos/pic_music_notes.png
+        tap_action:
+          action: none
+        styles:
+          card:
+            - height: 253.15px
+            - padding: 0
+          entity_picture:
+            - width: 60%
 
-      - type: picture-elements
-        image: /local/photos/transparent.png
-        aspect_ratio: 56%
-        elements:
-          - type: image
-            image: /local/photos/pic_music_notes.png
-            aspect_ratio: 20%
-            tap_action:
-              action: none
-            style:
-              top: 20%
-              left: 50%
-              width: 100%
-
-          - type: custom:mini-media-player
-            entity: media_player.bedroom_clock
-            group: true
-            icon: mdi:google-home
-            info: scroll
-            hide:
-              volume: true
-              controls: true
-              progress: true
-            style:
-              width: 95%
-              top: 55%
-              left: 50%
-          - type: custom:mini-media-player
-            entity: media_player.bedroom_clock
-            group: true
-            artwork: none
-            hide:
-              name: true
-              icon: true
-              power: true
-              info: true
-              progress: true
-            style:
-              width: 90%
-              top: 75%
-              left: 50%
-
-          - type: state-label
-            entity: input_text.radio_station_p1_display
-            tap_action:
-              action: call-service
-              service: notify.google_assistant_command
-              service_data:
-                message: 'Play {{ states("input_select.radio_station_p1") }} on Bedroom Clock'
-            style:
-              top: 94%
-              left: 12.5%
-              font-size: 11px
-              color: var(--secondary-text-color)
-          - type: state-label
-            entity: input_text.radio_station_p2_display
-            tap_action:
-              action: call-service
-              service: notify.google_assistant_command
-              service_data:
-                message: 'Play {{ states("input_select.radio_station_p2") }} on Bedroom Clock'
-            style:
-              top: 94%
-              left: 37.5%
-              font-size: 11px
-              color: var(--secondary-text-color)
-          - type: state-label
-            entity: input_text.radio_station_p3_display
-            tap_action:
-              action: call-service
-              service: notify.google_assistant_command
-              service_data:
-                message: 'Play {{ states("input_select.radio_station_p3") }} on Bedroom Clock'
-            style:
-              top: 94%
-              left: 62.5%
-              font-size: 11px
-              color: var(--secondary-text-color)
-          - type: state-label
-            entity: input_text.radio_station_p4_display
-            tap_action:
-              action: call-service
-              service: notify.google_assistant_command
-              service_data:
-                message: 'Play {{ states("input_select.radio_station_p4") }} on Bedroom Clock'
-            style:
-              top: 94%
-              left: 87.5%
-              font-size: 11px
-              color: var(--secondary-text-color)
+      - type: custom:decluttering-card
+        template: room_radio_player
+        variables:
+          - radio_player: media_player.bedroom_clock
+          - radio_player_name: "Bedroom Clock"
+          - radio_player_tap_action: none

@@ -10,6 +10,13 @@ cards:
     cards:
       - !include /config/lovelace/cards/navigation.yaml
       - type: entities
+        title: Plex Players
+        show_header_toggle: false
+        entities:
+          - input_select.remote_family_room_plex
+          - input_select.remote_theatre_plex
+          - input_select.remote_bedroom_plex
+      - type: entities
         title: Google Speaker Automations
         show_header_toggle: false
         entities:

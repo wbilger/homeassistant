@@ -8,22 +8,17 @@ bilger_home_override:
 
 phone_wayne_nmap:
   name: Wayne Phone Nmap
-  mac: 88:36:5F:B2:28:A3
+  mac: 58:CB:52:3E:CF:F3
   picture: /local/photos/wayne.jpg
   track: true
 phone_wayne_ping:
   name: Wayne Phone Ping
   picture: /local/photos/wayne.jpg
   track: true
-phone_wayne_bt:
-  name: Wayne Phone Bluetooth
-  mac: BT_88:36:5F:16:58:A0
-  picture: /local/photos/wayne.jpg
-  track: true
 
 phone_jenn_nmap:
   name: Jenn Phone Nmap
-  mac: 02:E4:15:E3:86:F8
+  mac: 00:05:8B:0A:6C:EB
   picture: /local/photos/jenn.jpg
   track: true
 phone_jenn_ping:

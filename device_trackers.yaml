@@ -8,7 +8,7 @@
     #chromecast_bedroom_ping: 192.168.1.6not8
     chromecast_theatre_ping: 192.168.1.69
     phone_wayne_ping: 192.168.1.90
-    phone_jenn_ping: 192.168.1.91
+    #phone_jenn_ping: 192.168.1.91
     phone_kale_ping: 192.168.1.92
     phone_jalynne_ping: 192.168.1.93
     watch_kale_ping: 192.168.1.94

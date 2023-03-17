@@ -1,8 +1,8 @@
-dummy:      #dummy for automations or scripts where templates fail to find valid input_boolean
+dummy: #dummy for automations or scripts where templates fail to find valid input_boolean
 ha_startup:
-  initial: off
-person_awake_bathroom_speaker:  
-curbside_pickup_tomorrow: 
+  initial: "off"
+person_awake_bathroom_speaker:
+curbside_pickup_tomorrow:
 home_arrival_automations_wayne:
 home_arrival_automations_jenn:
 home_arrival_automations_kale:

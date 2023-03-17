@@ -1,4 +1,4 @@
-navigation:
+button_row:
   show_entity_picture: true
   styles:
     card:
@@ -13,18 +13,18 @@ home_container:
       styles:
         card:
           - background-color: var(--ha-card-background)
+    - value: "unavailable"
+      styles:
+        card:
+          - background-color: var(--ha-card-background)
   styles:
     card:
-      - padding: 0
+      - height: 76px
     name:
-      #- border-radius: 0.4em 0.4em 0 0
-      #- padding: 0.1em
       - width: 50px
       - font-size: 75%
       - font-weight: bold
     label:
-      # - border-radius: 0.4em 0.4em 0 0
-      # - padding: 0.1em
       - width: 50px
       - font-size: 75%
       - font-weight: bold
@@ -33,41 +33,22 @@ home_container:
       - grid-template-columns: min-content 1fr
     custom_fields:
       buttons:
-        - margin: 0.1em
-        - padding: 0.1em
-home_container_vertical:
-  color_type: card
-  #color: "#EDE7B0"
-  show_icon: false
-  state:
-    - value: "off"
-      styles:
-        card:
-          - background-color: var(--ha-card-background)
+        - padding: 0.2em
+home_container_short:
+  template: home_container
   styles:
     card:
-      - padding: 0
-    name:
-      - border-radius: 0.4em 0.4em 0 0
-      - padding: 0.1em
-      - width: 100%
-      - font-weight: bold
-    grid:
-      - grid-template-areas: '"i" "n" "buttons"'
-      - grid-template-columns: 1fr
-      - grid-template-rows: 1fr min-content min-content
-    custom_fields:
-      buttons:
-        - background-color: "rgba(0,0,0,0.3)"
-        - margin: 0
-        - padding: 0.1em
+      - height: 56px
 home_button:
   show_name: false
-  size: 50%
+  size: 60%
   styles:
     card:
-      - height: 55px
+      - height: 68px
       - background-color: "rgba(0,0,0,0.125)"
+    name:
+      - font-size: 100%
+      - padding-bottom: 5px
   state:
     - value: "unavailable"
       styles:
@@ -79,7 +60,7 @@ home_button_short:
   template: home_button
   styles:
     card:
-      - height: 43px
+      - height: 48px
 home_button_color:
   template: home_button
   color: var(--secondary-text-color)

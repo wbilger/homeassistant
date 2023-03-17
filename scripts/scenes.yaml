@@ -9,10 +9,10 @@ bedtime:
         entity_id: group.family_room
     - service: light.turn_off
       data:
-        entity_id: group.entrance_way_lights
+        entity_id: light.entrance_way_lights
     - service: light.turn_off
       data:
-        entity_id: group.dining_room_lights
+        entity_id: light.dining_room_lights
     - delay: 10
     - service: light.turn_on
       data:

@@ -23,7 +23,7 @@
 #         elements:
 #           - type: image
 #             image: /local/photos/light_brightness.png
-#             entity: group.entrance_way_lights
+#             entity: light.entrance_way_lights
 #             tap_action:
 #               action: toggle
 #             state_filter:

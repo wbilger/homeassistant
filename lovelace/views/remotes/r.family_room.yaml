@@ -15,12 +15,12 @@ cards:
           - type: image
             image: /local/photos/yellow.png
             aspect_ratio: 27.25%
-            entity: switch.family_room_lights
+            entity: light.family_room_lights
             tap_action:
               action: call-service
               service: switch.turn_off
               service_data:
-                entity_id: switch.family_room_lights
+                entity_id: light.family_room_lights
             state_filter:
               "off": opacity(0%)
               "on": opacity(10%)
@@ -36,7 +36,7 @@ cards:
               action: call-service
               service: switch.turn_off
               service_data:
-                entity_id: switch.family_room_lights
+                entity_id: light.family_room_lights
             style:
               color: gray
               font-weight: bold
@@ -159,7 +159,6 @@ cards:
                       command:
                         - info
                   hold_action: !include /config/lovelace/cards/tap_action/popups/tautulli.yaml
-                  double_tap_action: !include /config/lovelace/cards/tap_action/popups/plex_recently_added.yaml
                   styles:
                     card:
                       - height: 94px
@@ -383,7 +382,6 @@ cards:
                       entity_id: media_player.family_room_androidtv
                       command: "MENU"
                   hold_action: !include /config/lovelace/cards/tap_action/popups/tautulli.yaml
-                  double_tap_action: !include /config/lovelace/cards/tap_action/popups/plex_recently_added.yaml
                   styles:
                     card:
                       - height: 94px
@@ -1132,7 +1130,7 @@ cards:
               image: /local/photos/transparent.png
               aspect_ratio: 20%
               elements:
-                - type: custom:text-element
+                - type: custom:text-action-element
                   text: Family Room Bell TV
                   style:
                     top: 30%

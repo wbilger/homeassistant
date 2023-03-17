@@ -1,8 +1,8 @@
 #used for z-wave lock system startup
 allow_automation_execution:
-  name: 'Allow Automation'
-  initial: off
+  name: "Allow Automation"
+  initial: "off"
 
 system_ready:
-  name: 'System Ready'
-  initial: off
+  name: "System Ready"
+  initial: "off"

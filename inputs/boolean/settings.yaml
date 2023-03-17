@@ -1,18 +1,17 @@
 test:
-  initial: off
+  initial: "off"
 test_trigger:
-  initial: off
+  initial: "off"
 
 kiosk_mode:
   initial: on
   name: Kiosk Mode
-  icon: mdi:tablet-dashboard
+  icon: mdi:cellphone
 kiosk_mode_hide_header:
   initial: on
   name: Hide Header
   icon: mdi:page-layout-header
 kiosk_mode_hide_sidebar:
-  initial: off
   name: Hide Sidebar
   icon: mdi:page-layout-sidebar-left
 

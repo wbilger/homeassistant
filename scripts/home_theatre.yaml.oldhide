@@ -414,7 +414,7 @@ theatre_off:
     - service: script.theatre_projector_off
     - delay: 120                          #delay for 2 mins
     - service: homeassistant.turn_off
-      entity_id: group.theatre_lights
+      entity_id: light.theatre_lights_all
 
 theatre_projector_16x9:
   sequence:

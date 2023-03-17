@@ -6,7 +6,7 @@ device_timer_1_list:
     - switch.rf_etekcity_3
     - switch.rf_etekcity_4
     - switch.rf_etekcity_5
-    - group.entrance_way_lights
+    - light.entrance_way_lights
     - light.front_porch_light
     - light.entrance_light
     - light.front_window
@@ -22,7 +22,7 @@ device_timer_2_list:
     - switch.rf_etekcity_3
     - switch.rf_etekcity_4
     - switch.rf_etekcity_5
-    - group.entrance_way_lights
+    - light.entrance_way_lights
     - light.front_porch_light
     - light.entrance_light
     - light.front_window
@@ -38,7 +38,7 @@ device_timer_3_list:
     - switch.rf_etekcity_3
     - switch.rf_etekcity_4
     - switch.rf_etekcity_5
-    - group.entrance_way_lights
+    - light.entrance_way_lights
     - light.front_porch_light
     - light.entrance_light
     - light.front_window
@@ -54,7 +54,7 @@ device_timer_xmas_tree_list:
     - switch.rf_etekcity_3
     - switch.rf_etekcity_4
     - switch.rf_etekcity_5
-    - group.entrance_way_lights
+    - light.entrance_way_lights
     - light.front_porch_light
     - light.entrance_light
     - light.front_window

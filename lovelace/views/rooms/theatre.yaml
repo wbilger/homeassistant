@@ -1,6 +1,6 @@
 #################################################################
-# VIEW: theatre                                                 #
-#                                                               #
+# VIEW: theatre
+#   Theatre
 #################################################################
 title: Theatre
 path: theatre
@@ -8,213 +8,176 @@ icon: mdi:projector
 cards:
   - type: vertical-stack
     cards:
-      - !include /config/lovelace/cards/navigation.yaml
-      - type: picture-elements
-        image: /local/photos/transparent.png
-        aspect_ratio: 12%
-        elements:
-          - type: custom:text-element
-            text: Theatre
-            style:
-              color: var(--primary-text-color)
-              font-size: larger
-              font-weight: bold
-              top: 50%
-              left: 20%
-          - type: image
-            image: /local/photos/icon_remote.png
-            tap_action:
-              action: navigate
-              navigation_path: /lovelace/r.theatre
-            style:
-              width: 10%
-              top: 50%
-              left: 50%
-
-      - type: custom:vertical-stack-in-card
-        cards:
-          - type: picture-elements
-            image: /local/photos/transparent.png
-            aspect_ratio: 11%
-            elements:
-              - type: image
-                image: /local/photos/yellow.png
-                aspect_ratio: 11%
-                entity: group.theatre_lights
-                tap_action:
-                  action: toggle
-                state_filter:
-                  "off": opacity(10%) hue-rotate(170deg) brightness(200%)
-                  "on": opacity(50%)
-                  "unavailable": opacity(20%) hue-rotate(180deg)
-                style:
-                  width: 100%
-                  top: 50%
-                  left: 50%
-              - type: custom:text-action-element
-                text: Lights
-                entity: group.theatre_lights
-                tap_action:
-                  action: toggle
-                style:
-                  color: var(--primary-text-color)
-                  top: 50%
-                  left: 50%
-
-          - type: entities
-            show_header_toggle: false
-            entities:
-              - type: custom:fold-entity-row
-                head:
-                  type: custom:slider-entity-row
+      - type: custom:decluttering-card
+        template: room_header
+        variables:
+          - image: /local/photos/pic_home_bilger-small.png
+      - type: custom:decluttering-card
+        template: remote_button
+        variables:
+          - name: Theatre
+          - navigation_path: /lovelace/r.theatre
+      - type: custom:button-card
+        template: home_container
+        entity: light.theatre_lights_all
+        name: Lights
+        custom_fields:
+          buttons:
+            card:
+              type: horizontal-stack
+              cards:
+                - type: custom:button-card
+                  template: home_button
                   entity: light.theatre_lights
-                  name: Theatre
-                  toggle: true
-                items:
-                  - type: custom:slider-entity-row
-                    entity: light.theatre_fl
-                    icon: mdi:spotlight-beam
-                    name: Front L
-                    toggle: true
-                  - type: custom:slider-entity-row
-                    entity: light.theatre_fr
-                    icon: mdi:spotlight-beam
-                    name: Front R
-                    toggle: true
-                  - type: custom:slider-entity-row
-                    entity: light.theatre_rl
-                    icon: mdi:spotlight-beam
-                    name: Rear L
-                    toggle: true
-                  - type: custom:slider-entity-row
-                    entity: light.theatre_rr
-                    icon: mdi:spotlight-beam
-                    name: Rear R
-                    toggle: true
-              - light.bar_light
+                  icon: mdi:spotlight-beam
+                  hold_action: !include /config/lovelace/cards/tap_action/popups/theatre_lights.yaml
+                - type: custom:button-card
+                  template: home_button
+                  entity: light.bar_light
+                  name: Bar Light
+                  show_name: true
+                  size: 80%
+      - type: custom:decluttering-card
+        template: slider
+        variables:
+          - name: Theatre Lights
+          - entity: light.theatre_lights
 
-      - type: custom:vertical-stack-in-card
-        cards:
-          - type: picture-elements
-            image: /local/photos/transparent.png
-            aspect_ratio: 11%
-            elements:
-              - type: image
-                image: /local/photos/yellow.png
-                aspect_ratio: 11%
-                entity: group.theatre_tv
-                tap_action:
-                  action: toggle
-                state_filter:
-                  "off": opacity(10%) hue-rotate(170deg) brightness(200%)
-                  "on": opacity(50%)
-                  "unavailable": opacity(20%) hue-rotate(180deg)
-                style:
-                  width: 100%
-                  top: 50%
-                  left: 50%
-              - type: custom:text-action-element
-                text: Theatre TV
-                entity: group.theatre_tv
-                tap_action:
-                  action: toggle
-                style:
-                  color: var(--primary-text-color)
-                  top: 50%
-                  left: 50%
-          - type: entities
-            show_header_toggle: false
-            entities:
-              - entity: switch.theatre_projector
-                type: custom:multiple-entity-row
-                name: Projector
-                icon: mdi:projector
-                show_state: false
-                tap_action:
-                  action: none
-                entities:
-                  - entity: switch.theatre_projector
-                    name: false
-                    toggle: true
-                  - entity: switch.theatre_projector
-                    name: Shutdown
-                    icon: mdi:power
-                    state_color: false
-                    tap_action:
-                      action: call-service
-                      service: script.theatre_projector_off
-              - entity: switch.theatre_surround_sound
-                name: Surround Sound
-                icon: mdi:surround-sound
-              - entity: switch.butt_kickers
-              - input_select.remote_theatre_plex
-          - type: picture-elements
-            image: /local/photos/transparent.png
-            aspect_ratio: 3%
-            elements:
-              - type: image
-                image: /local/photos/transparent.png
+      - type: custom:button-card
+        template: home_container
+        entity: group.theatre_tv
+        name: Theatre
+        custom_fields:
+          buttons:
+            card:
+              type: horizontal-stack
+              cards:
+                - type: custom:button-card
+                  template: home_button
+                  entity: switch.theatre_projector
+                  icon: mdi:projector
+                  color: var(--secondary-text-color)
+                  tap_action:
+                    confirmation:
+                      text: "[[[ return `Toggle the Projector Power?` ]]]"
+                    action: toggle
+                  hold_action:
+                    action: navigate
+                    navigation_path: /lovelace/r.theatre
+                - type: custom:button-card
+                  template: home_button
+                  entity: switch.theatre_projector
+                  icon: mdi:power
+                  state_filter:
+                    "off": opacity(30%)
+                  tap_action:
+                    confirmation:
+                      text: "[[[ return `Turn off the Projector Power?` ]]]"
+                    action: call-service
+                    service: script.theatre_projector_off
+                - type: custom:button-card
+                  template: home_button
+                  entity: switch.family_room_surround_sound
+                  icon: mdi:audio-video
+                  color: var(--secondary-text-color)
+                - type: custom:button-card
+                  template: home_button
+                  entity: switch.butt_kickers
+                  color: var(--secondary-text-color)
 
       #################################################################
       # VIEW: r.theatre
       #   Theatre Remote - Media Start Bottom Bar
       #################################################################
-      - type: picture-elements
-        image: /local/photos/transparent.png
-        aspect_ratio: 12%
-        elements:
-          - type: image
-            image: /local/photos/icon_roku.png
-            tap_action:
-              action: call-service
-              service: script.remote_theatre_watch_roku
-            style:
-              width: 8%
-              top: 50%
-              left: 12%
-          - type: image
-            image: /local/photos/icon_chrome.png
-            tap_action:
-              action: call-service
-              service: script.remote_theatre_watch_chromecast
-            style:
-              width: 8%
-              top: 50%
-              left: 29%
-          - type: image
-            image: /local/photos/projector_screen-16x9.png
-            entity: switch.theatre_projector
-            tap_action:
-              action: call-service
-              service: script.theatre_projector_16x9
-            state_filter:
-              "off": opacity(10%)
-            style:
-              width: 8%
-              top: 50%
-              left: 50%
-          - type: image
-            image: /local/photos/projector_screen-21x9.png
-            entity: switch.theatre_projector
-            tap_action:
-              action: call-service
-              service: script.theatre_projector_21x9
-            state_filter:
-              "off": opacity(10%)
-            style:
-              width: 10%
-              top: 50%
-              left: 65%
-          - type: image
-            image: /local/photos/icon_power.png
+      - type: custom:vertical-stack-in-card
+        horizontal: true
+        cards:
+          - type: custom:vertical-stack-in-card
+            horizontal: true
+            cards:
+              - type: custom:button-card
+                template: button_row
+                entity_picture: /local/photos/icon_roku.png
+                tap_action:
+                  action: call-service
+                  service: script.theatre_watch_roku
+                hold_action:
+                  action: call-service
+                  service: script.remote_theatre_watch_roku
+              - type: custom:button-card
+                template: button_row
+                entity_picture: /local/photos/icon_chrome.png
+                tap_action:
+                  action: call-service
+                  service: script.remote_theatre_watch_chromecast
+                hold_action:
+                  action: call-service
+                  service: script.remote_theatre_watch_chromecast
+              - type: custom:button-card
+                template: button_row
+                entity: switch.theatre_projector
+                show_name: false
+                entity_picture: /local/photos/projector_screen-16x9.png
+                state_filter:
+                  "off": opacity(10%)
+                tap_action:
+                  confirmation:
+                    text: "[[[ return `Switch Projector to Widescreen (16:9)?` ]]]"
+                  action: call-service
+                  service: script.theatre_projector_16x9
+                hold_action:
+                  action: call-service
+                  service: script.theatre_projector_16x9
+              - type: custom:button-card
+                template: button_row
+                entity: switch.theatre_projector
+                show_name: false
+                entity_picture: /local/photos/projector_screen-21x9.png
+                state_filter:
+                  "off": opacity(10%)
+                tap_action:
+                  confirmation:
+                    text: "[[[ return `Switch Projector to Theatre Wide (21:9)?` ]]]"
+                  action: call-service
+                  service: script.theatre_projector_21x9
+                hold_action:
+                  action: call-service
+                  service: script.theatre_projector_21x9
+          - type: custom:button-card
+            template: button_row
+            entity_picture: /local/photos/icon_power.png
             entity: group.theatre_tv
-            tap_action:
-              action: call-service
-              service: script.theatre_off
+            show_name: false
             state_filter:
               "on": opacity(75%)
               "off": opacity(20%)
-            style:
-              width: 8%
-              top: 50%
-              left: 85%
+            tap_action:
+              confirmation:
+                text: "[[[ return `Shutdown the Theatre?` ]]]"
+              action: call-service
+              service: script.theatre_off
+            hold_action:
+              action: call-service
+              service: script.theatre_off
+            styles:
+              card:
+                - width: 80px
+
+      - type: custom:button-card
+        show_entity_picture: true
+        entity_picture: /local/photos/pic_music_notes.png
+        tap_action:
+          action: none
+        styles:
+          card:
+            - height: 128.5px
+            - padding: 0
+          entity_picture:
+            - width: 60%
+
+      - type: custom:decluttering-card
+        template: room_radio_player
+        variables:
+          - radio_player: media_player.theatre_chromecast
+          - radio_player_name: "Theatre Stereo"
+          - radio_player_tap_action: none

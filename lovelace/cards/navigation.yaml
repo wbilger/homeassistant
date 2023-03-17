@@ -7,7 +7,7 @@ cards:
     states:
       default:
         type: custom:button-card
-        template: navigation
+        template: button_row
         entity_picture: /local/photos/home.png
         tap_action:
           action: navigate
@@ -17,7 +17,7 @@ cards:
           navigation_path: /lovelace/dashboard
       "c5c29698-84005f51": #Kitchen Tablet running Fully Kiosk Browser
         type: custom:button-card
-        template: navigation
+        template: button_row
         entity_picture: /local/photos/home.png
         tap_action:
           action: navigate
@@ -27,7 +27,7 @@ cards:
           navigation_path: /lovelace/home
 
   - type: custom:button-card
-    template: navigation
+    template: button_row
     entity_picture: /local/photos/bedroom.png
     tap_action:
       action: navigate
@@ -36,7 +36,7 @@ cards:
       action: navigate
       navigation_path: /lovelace/r.bedroom
   - type: custom:button-card
-    template: navigation
+    template: button_row
     entity_picture: /local/photos/family_room.png
     tap_action:
       action: navigate
@@ -45,7 +45,7 @@ cards:
       action: navigate
       navigation_path: /lovelace/r.family_room
   - type: custom:button-card
-    template: navigation
+    template: button_row
     entity_picture: /local/photos/theatre.png
     tap_action:
       action: navigate
@@ -54,7 +54,7 @@ cards:
       action: navigate
       navigation_path: /lovelace/r.theatre
   - type: custom:button-card
-    template: navigation
+    template: button_row
     entity_picture: /local/photos/sensors.png
     tap_action:
       action: navigate
@@ -63,7 +63,7 @@ cards:
       action: navigate
       navigation_path: /lovelace/cameras
   - type: custom:button-card
-    template: navigation
+    template: button_row
     entity_picture: /local/photos/settings.png
     tap_action:
       action: navigate

@@ -13,3 +13,463 @@ plex_media_player:
       controls: true
       power: true
       volume: true
+remote_button:
+  card:
+    type: custom:vertical-stack-in-card
+    horizontal: true
+    cards:
+      - type: custom:button-card
+        name: "[[name]]"
+        tap_action:
+          action: none
+        styles:
+          card:
+            - height: 45px
+          name:
+            - font-weight: bold
+      - type: custom:button-card
+        template: button_row
+        entity_picture: /local/photos/icon_remote.png
+        tap_action:
+          action: navigate
+          navigation_path: "[[navigation_path]]"
+        styles:
+          card:
+            - height: 45px
+            - width: 45px
+          entity_picture:
+            - width: 41px
+      - type: custom:button-card
+        color_type: blank-card
+slider:
+  card:
+    type: custom:button-card
+    entity: "[[entity]]" #light.kitchen_island_lights
+    name: "[[name]]"
+    custom_fields:
+      slider:
+        card:
+          type: custom:slider-entity-row
+          entity: "[[entity]]"
+          hide_state: true
+          full_row: true
+          hide_when_off: false
+          tap_action:
+            action: toggle
+    state:
+      - value: "unavailable"
+        styles:
+          name:
+            - opacity: 30%
+    styles:
+      card:
+        - height: 56px
+      grid:
+        - grid-template-areas: '"n" "slider"'
+        - grid-template-columns: 1fr
+        - grid-template-rows: 20% min-content
+      name:
+        - font-size: 13px
+        - color: var(--paper-card-background-color)
+      custom_fields:
+        slider:
+          - height: 10px
+          - padding: 5px
+room_header:
+  card:
+    type: custom:vertical-stack-in-card
+    cards:
+      - !include /config/lovelace/cards/navigation.yaml
+      - type: picture-elements
+        #aspect_ratio: 29%
+        height: 50px
+        image: "[[image]]"
+        elements:
+          - type: conditional
+            conditions:
+              - entity: binary_sensor.device_timer_xmas_tree
+                state: "on"
+            elements:
+              - type: image
+                entity: light.christmas_tree_lights
+                tap_action:
+                  action: toggle
+                hold_action: !include /config/lovelace/cards/tap_action/popups/christmas_tree_lights.yaml
+                image: /local/photos/icon_christmas-tree.png
+                state_filter:
+                  "off": opacity(60%)
+                  "unavailable": opacity(30%)
+                style:
+                  width: 14%
+                  top: 40%
+                  left: 30%
+          - type: image
+            entity: sensor.calendar_garbage_day
+            tap_action:
+              action: none
+            image: /local/photos/icon_transparent.png
+            state_image:
+              "Garbage Day (Tomorrow)": /local/photos/icon_garbage_day-tomorrow.png
+              "Garbage Day (Today)": /local/photos/icon_garbage_day.png
+            style:
+              width: 12%
+              top: 82%
+              left: 60%
+
+          - type: image
+            image: /local/photos/icon_irobot.png
+            entity: vacuum.boomba
+            tap_action: !include /config/lovelace/cards/tap_action/popups/vacuum.yaml
+            state_filter:
+              "off": opacity(35%)
+              "docked": opacity(50%)
+              "unavailable": opacity(20%) brightness(10%)
+            style:
+              width: 7%
+              top: 50%
+              left: 5%
+          - type: image
+            image: /local/photos/transparent.png
+            entity: sensor.vacuum_bin_full
+            tap_action: !include /config/lovelace/cards/tap_action/popups/vacuum.yaml
+            state_image:
+              "True": /local/photos/icon_irobot_red.png
+            style:
+              width: 7%
+              top: 50%
+              left: 5%
+          - type: state-label
+            entity: sensor.vacuum_bin_status
+            tap_action: !include /config/lovelace/cards/tap_action/popups/vacuum.yaml
+            hold_action:
+              action: call-service
+              service: vacuum.toggle
+              service_data:
+                entity_id: vacuum.boomba
+            style:
+              top: 32%
+              left: 5%
+              font-size: 10px
+              color: red
+
+          - type: image
+            entity: automation.notify_washing_machine_stop
+            image: /local/photos/icon_washing_machine.png
+            tap_action: !include /config/lovelace/cards/tap_action/popups/washing_machine.yaml
+            state_filter:
+              "off": opacity(20%)
+            style:
+              width: 7%
+              top: 82%
+              left: 5%
+          - type: image
+            entity: sensor.ecobee_mode_status
+            tap_action:
+              action: navigate
+              navigation_path: /lovelace/thermostat
+            hold_action:
+              action: more-info
+            image: /local/photos/icon_transparent.png
+            state_image:
+              "Home": /local/photos/icon_home.png
+              "Away": /local/photos/icon_away.png
+              "Sleep": /local/photos/icon_sleep-moon.png
+              "Morning": /local/photos/icon_sunrise.png
+              "Evening": /local/photos/icon_sunset.png
+              "Night": /local/photos/icon_night.png
+              "Vacation": /local/photos/icon_vacation.png
+              "Manual": /local/photos/icon_select-color.png
+              "?": /local/photos/icon_question-red.png
+            style:
+              width: 7%
+              top: 82%
+              left: 15%
+          - type: image
+            entity: sensor.ecobee_operation
+            tap_action:
+              action: navigate
+              navigation_path: /lovelace/thermostat
+            hold_action:
+              action: more-info
+            image: /local/photos/icon_power.png
+            state_image:
+              "Heat": /local/photos/icon_flame.png
+              "Heat_Idle": /local/photos/icon_flame.png
+              "Cool": /local/photos/icon_snowflake.png
+              "Cool_Idle": /local/photos/icon_snowflake.png
+              "Fan": /local/photos/icon_fan.png
+              "?": /local/photos/icon_question-red.png
+            state_filter:
+              "Heat_Idle": opacity(40%)
+              "Cool_Idle": opacity(40%)
+            style:
+              width: 8%
+              top: 82%
+              left: 27%
+          - type: state-label
+            entity: sensor.ecobee_temperature_target_real
+            tap_action:
+              action: navigate
+              navigation_path: /lovelace/thermostat
+            hold_action:
+              action: more-info
+            style:
+              font-size: 140%
+              top: 82%
+              left: 40%
+              color: white
+          - type: state-label
+            entity: sensor.rtemperature_home_avg
+            tap_action:
+              action: navigate
+              navigation_path: /lovelace/thermostat
+            hold_action:
+              action: more-info
+            style:
+              color: white
+              font-weight: bold
+              font-size: 260%
+              top: 82%
+              left: 85%
+          - type: icon
+            entity: sensor.ecobee_humidity
+            tap_action:
+              action: navigate
+              navigation_path: /lovelace/thermostat
+            hold_action:
+              action: more-info
+            icon: mdi:water-percent
+            style:
+              top: 56%
+              left: 95%
+              color: white
+          - type: state-label
+            entity: sensor.ecobee_humidity
+            tap_action:
+              action: navigate
+              navigation_path: /lovelace/thermostat
+            hold_action:
+              action: more-info
+            style:
+              font-size: 130%
+              top: 57%
+              left: 85%
+              color: white
+          ##### Presence badges
+          - type: image
+            entity: sensor.presence_wayne_status
+            image: /local/photos/wayne_badge_home.png
+            show_name: false
+            show_state: false
+            tap_action:
+              action: navigate
+              navigation_path: /map
+            hold_action:
+              action: more-info
+            state_image:
+              "Away": /local/photos/wayne_badge_away.png
+              "Just Left": /local/photos/wayne_badge_away.png
+              "Extended Away": /local/photos/wayne_badge_away.png
+            state_filter:
+              "Away": opacity(33%)
+              "Extended Away": opacity(20%)
+              "Just Arrived": opacity(60%)
+              "Just Left": opacity(60%)
+            style:
+              width: 50px
+              top: 26%
+              left: 20%
+          - type: state-label
+            entity: sensor.location_away_wayne
+            tap_action:
+              action: navigate
+              navigation_path: /map
+            style:
+              font-size: smaller
+              font-weight: bold
+              top: 43%
+              left: 20%
+          - type: image
+            entity: sensor.presence_jenn_status
+            image: /local/photos/jenn_badge_home.png
+            show_name: false
+            show_state: false
+            tap_action:
+              action: navigate
+              navigation_path: /map
+            hold_action:
+              action: more-info
+            state_image:
+              "Away": /local/photos/jenn_badge_away.png
+              "Just Left": /local/photos/jenn_badge_away.png
+              "Extended Away": /local/photos/jenn_badge_away.png
+            state_filter:
+              "Away": opacity(33%)
+              "Extended Away": opacity(20%)
+              "Just Arrived": opacity(60%)
+              "Just Left": opacity(60%)
+            style:
+              width: 50px
+              top: 26%
+              left: 40%
+          - type: state-label
+            entity: sensor.location_away_jenn
+            tap_action:
+              action: navigate
+              navigation_path: /map
+            style:
+              font-size: smaller
+              font-weight: bold
+              top: 43%
+              left: 40%
+          - type: image
+            entity: sensor.presence_kale_status
+            image: /local/photos/kale_badge_home.png
+            show_name: false
+            show_state: false
+            tap_action:
+              action: navigate
+              navigation_path: /map
+            hold_action:
+              action: more-info
+            state_image:
+              "Away": /local/photos/kale_badge_away.png
+              "Just Left": /local/photos/kale_badge_away.png
+              "Extended Away": /local/photos/kale_badge_away.png
+            state_filter:
+              "Away": opacity(33%)
+              "Extended Away": opacity(20%)
+              "Just Arrived": opacity(60%)
+              "Just Left": opacity(60%)
+            style:
+              width: 50px
+              top: 26%
+              left: 60%
+          - type: state-label
+            entity: sensor.location_away_kale
+            tap_action:
+              action: navigate
+              navigation_path: /map
+            style:
+              font-size: smaller
+              font-weight: bold
+              top: 43%
+              left: 60%
+          - type: image
+            entity: sensor.presence_jalynne_status
+            image: /local/photos/jalynne_badge_home.png
+            show_name: false
+            show_state: false
+            tap_action:
+              action: navigate
+              navigation_path: /map
+            hold_action:
+              action: more-info
+            state_image:
+              "Away": /local/photos/jalynne_badge_away.png
+              "Just Left": /local/photos/jalynne_badge_away.png
+              "Extended Away": /local/photos/jalynne_badge_away.png
+            state_filter:
+              "Away": opacity(33%)
+              "Extended Away": opacity(20%)
+              "Just Arrived": opacity(60%)
+              "Just Left": opacity(60%)
+            style:
+              width: 50px
+              top: 26%
+              left: 80%
+          - type: state-label
+            entity: sensor.location_away_jalynne
+            tap_action:
+              action: navigate
+              navigation_path: /map
+            style:
+              font-size: smaller
+              font-weight: bold
+              top: 43%
+              left: 80%
+
+room_radio_player:
+  card:
+    type: picture-elements
+    image: /local/photos/transparent.png
+    aspect_ratio: 27.8%
+    elements:
+      - type: custom:mini-media-player
+        entity: "[[radio_player]]"
+        tap_action: "[[radio_player_tap_action]]"
+        group: true
+        icon: mdi:google-home
+        info: scroll
+        hide:
+          volume: true
+          controls: true
+          progress: true
+        style:
+          width: 95%
+          top: 25%
+          left: 50%
+      - type: custom:mini-media-player
+        entity: "[[radio_player]]"
+        tap_action: "[[radio_player_tap_action]]"
+        group: true
+        artwork: none
+        hide:
+          name: true
+          icon: true
+          power: true
+          info: true
+          progress: true
+        style:
+          width: 90%
+          top: 60%
+          left: 50%
+      - type: state-label
+        entity: input_text.radio_station_p1_display
+        tap_action:
+          action: call-service
+          service: notify.google_assistant_command
+          service_data:
+            message: 'Play {{ states("input_select.radio_station_p1") }} on [[radio_player_name]]'
+        style:
+          top: 90%
+          left: 12.5%
+          font-size: 11px
+          color: var(--secondary-text-color)
+
+      - type: state-label
+        entity: input_text.radio_station_p2_display
+        tap_action:
+          action: call-service
+          service: notify.google_assistant_command
+          service_data:
+            message: 'Play {{ states("input_select.radio_station_p2") }} on [[radio_player_name]]'
+        style:
+          top: 90%
+          left: 37.5%
+          font-size: 11px
+          color: var(--secondary-text-color)
+      - type: state-label
+        entity: input_text.radio_station_p3_display
+        tap_action:
+          action: call-service
+          service: notify.google_assistant_command
+          service_data:
+            message: 'Play {{ states("input_select.radio_station_p3") }} on [[radio_player_name]]'
+        style:
+          top: 90%
+          left: 62.5%
+          font-size: 11px
+          color: var(--secondary-text-color)
+      - type: state-label
+        entity: input_text.radio_station_p4_display
+        tap_action:
+          action: call-service
+          service: notify.google_assistant_command
+          service_data:
+            message: 'Play {{ states("input_select.radio_station_p4") }} on [[radio_player_name]]'
+        style:
+          top: 90%
+          left: 87.5%
+          font-size: 11px
+          color: var(--secondary-text-color)

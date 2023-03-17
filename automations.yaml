@@ -1148,9 +1148,9 @@
       before: "16:00:00"
   action:
     - service: homeassistant.turn_off
-      entity_id: group.bedroom_lights
+      entity_id: light.bedroom_lights
     - service: homeassistant.turn_off
-      entity_id: group.main_floor_lights
+      entity_id: light.main_floor_lights
     - service: switch.turn_off
       entity_id: switch.wayne_pc
     - service: switch.turn_off
@@ -1432,7 +1432,7 @@
   initial_state: "on"
   mode: single
 - id: "1617902453877"
-  alias: Radion Station P1 set
+  alias: Radio Station P1 set
   description: Radio Station P1 set, save display name.
   trigger:
     - platform: state
@@ -1449,7 +1449,7 @@
         value: '{{ states("input_select.radio_station_p1") }}'
   mode: single
 - id: "1617902910877"
-  alias: Radion Station P2 set
+  alias: Radio Station P2 set
   description: Radio Station P2 set, save display name.
   trigger:
     - platform: state
@@ -1466,7 +1466,7 @@
         value: '{{ states("input_select.radio_station_p2") }}'
   mode: single
 - id: "1617902936587"
-  alias: Radion Station P3 set
+  alias: Radio Station P3 set
   description: Radio Station P3 set, save display name.
   trigger:
     - platform: state
@@ -1483,7 +1483,7 @@
         value: '{{ states("input_select.radio_station_p3") }}'
   mode: single
 - id: "1617902960115"
-  alias: Radion Station P4 set
+  alias: Radio Station P4 set
   description: Radio Station P4 set, save display name.
   trigger:
     - platform: state

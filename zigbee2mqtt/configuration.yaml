@@ -9,16 +9,10 @@ serial:
 frontend:
   port: 8099
 devices:
-  '0x000b57fffe8d1636':
-    friendly_name: Kitchen Island Dimmer
   '0x000b57fffe94f7f9':
     friendly_name: Kitchen Island 1
-  '0x000b57fffe9647c3':
-    friendly_name: Kitchen Island 2
-  '0x000b57fffe8d1dad':
-    friendly_name: Kitchen Island 3
   '0x000b57fffe2f0876':
-    friendly_name: Jenn Bedroom Light
+    friendly_name: Jenn Bedroom
   '0x000b57fffe149fed':
     friendly_name: Theatre Dimmer
   '0x000b57fffe8caa58':
@@ -37,6 +31,16 @@ devices:
     friendly_name: Family Room 2
   '0x000b57fffe4c81e4':
     friendly_name: Couch Lamp
+  '0xf082c0fffe8b16b1':
+    friendly_name: Jenn Bedroom Dimmer
+  '0x000b57fffe8d1636':
+    friendly_name: '0x000b57fffe8d1636'
+  '0x000b57fffe9647c3':
+    friendly_name: Kitchen Island 2
+  '0xf082c0fffe90c841':
+    friendly_name: Kitchen Island Dimmer
+  '0x000b57fffe8d1dad':
+    friendly_name: Kitchen Island 3
 groups:
   '1':
     friendly_name: Kitchen Island Lights

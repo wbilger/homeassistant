@@ -17,12 +17,12 @@ cards:
               - type: image
                 image: /local/photos/yellow.png
                 aspect_ratio: 27.25%
-                entity: switch.bedroom_lights
+                entity: light.bedroom_lights
                 tap_action:
                   action: call-service
                   service: switch.turn_off
                   service_data:
-                    entity_id: switch.bedroom_lights
+                    entity_id: light.bedroom_lights
                 state_filter:
                   "off": opacity(0%)
                   "on": opacity(10%)
@@ -119,7 +119,6 @@ cards:
                       command:
                         - info
                   hold_action: !include /config/lovelace/cards/tap_action/popups/tautulli.yaml
-                  double_tap_action: !include /config/lovelace/cards/tap_action/popups/plex_recently_added.yaml
                   styles:
                     card:
                       - height: 94px
@@ -740,12 +739,12 @@ cards:
                     width: 7%
                     top: 50%
                     left: 40px
-                - type: custom:text-element
+                - type: custom:text-action-element
                   text: Bedroom TV
                   style:
                     top: 40%
                     left: 112px
-                - type: custom:text-element
+                - type: custom:text-action-element
                   text: Digital OTA Television
                   style:
                     color: var(--secondary-text-color)

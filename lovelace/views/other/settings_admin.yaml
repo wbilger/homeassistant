@@ -15,9 +15,7 @@ cards:
             entities:
               - entity: input_boolean.kiosk_mode
                 tap_action:
-                  action: call-service
-                  service: browser_mod.window_reload
-                icon: mdi:refresh
+                  action: none
           - type: conditional
             conditions:
               - entity: input_boolean.kiosk_mode
